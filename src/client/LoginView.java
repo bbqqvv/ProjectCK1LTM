@@ -2,16 +2,15 @@ package client;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.InetAddress;
 
 public class LoginView extends JFrame {
     private JTextField usernameField;
     private JPasswordField passwordField;
     private JButton loginButton;
     private JButton registerButton;
-    private MailClient client;
 
-    public LoginView(MailClient client) {
-        this.client = client;
+    public LoginView() {
         setTitle("Login");
         setSize(300, 150);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -31,8 +30,9 @@ public class LoginView extends JFrame {
         add(registerButton);
 
         loginButton.addActionListener(e -> login());
-        registerButton.addActionListener(e -> register());
+        registerButton.addActionListener(e -> openRegisterView());
 
+        setLocationRelativeTo(null); // Center the frame
         setVisible(true);
     }
 
@@ -40,25 +40,32 @@ public class LoginView extends JFrame {
         try {
             String username = usernameField.getText();
             String password = new String(passwordField.getPassword());
-            String response = client.sendRequest("LOGIN:" + username + ":" + password);
+
+            // Lấy địa chỉ IP của máy client
+            String ipAddress = InetAddress.getLocalHost().getHostAddress();
+
+            // Tạo đối tượng MailClient tạm thời để gửi yêu cầu đăng nhập
+            MailClient tempClient = new MailClient("localhost", 4445);
+            String response = tempClient.sendRequest("LOGIN:" + username + ":" + password);
+
             JOptionPane.showMessageDialog(this, response);
             if (response.contains("successful")) {
+                // Lưu địa chỉ IP của client vào server
+                tempClient.sendRequest("SAVE_IP:" + username + ":" + ipAddress);  // Lưu địa chỉ IP của client
+
+                // Khởi tạo kết nối đến server với địa chỉ IP động
+                MailClient client = new MailClient("localhost", 4445); // Thay bằng IP của server nếu cần
                 new MailClientView(client, username);
                 dispose();
             }
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "An error occurred: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
 
-    private void register() {
-        try {
-            String username = usernameField.getText();
-            String password = new String(passwordField.getPassword());
-            String response = client.sendRequest("REGISTER:" + username + ":" + password);
-            JOptionPane.showMessageDialog(this, response);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    private void openRegisterView() {
+        new RegisterView();
+        dispose();
     }
 }

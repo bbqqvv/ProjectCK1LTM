@@ -4,19 +4,20 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ServerView extends JFrame {
-    private JTextArea serverLogs;
+    private JTextArea logArea;
 
     public ServerView() {
         setTitle("Mail Server");
-        setSize(500, 300);
+        setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        serverLogs = new JTextArea();
-        serverLogs.setEditable(false);
-        add(new JScrollPane(serverLogs), BorderLayout.CENTER);
+        logArea = new JTextArea();
+        logArea.setEditable(false);
+        add(new JScrollPane(logArea), BorderLayout.CENTER);
         setVisible(true);
     }
 
-    public void appendLog(String log) {
-        serverLogs.append(log + "\n");
+    public void appendLog(String message) {
+        logArea.append(message + "\n");
+        logArea.setCaretPosition(logArea.getDocument().getLength()); // Cuộn xuống dưới cùng
     }
 }

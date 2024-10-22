@@ -2,13 +2,13 @@ package client;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
 public class MailClientView extends JFrame {
     private JPanel sidePanel; // Sidebar chứa các nút
     private JPanel mainPanel; // Panel chính để hiển thị nội dung
     private MailClient client;
     private String username;
+    private JTextArea emailContentArea; // Hiển thị nội dung email
 
     public MailClientView(MailClient client, String username) {
         this.client = client;
@@ -28,10 +28,14 @@ public class MailClientView extends JFrame {
         JButton sendEmailButton = new JButton("Send Email");
         JButton loadEmailsButton = new JButton("Load Emails");
         JButton deleteEmailButton = new JButton("Delete Email"); // Nút xóa email
+        JButton replyEmailButton = new JButton("Reply Email"); // Nút trả lời email
+        JButton searchEmailButton = new JButton("Search Email"); // Nút tìm kiếm email
 
         sidePanel.add(sendEmailButton);
         sidePanel.add(loadEmailsButton);
         sidePanel.add(deleteEmailButton);
+        sidePanel.add(replyEmailButton);
+        sidePanel.add(searchEmailButton);
 
         // Tạo panel chính để hiển thị nội dung
         mainPanel = new JPanel();
@@ -50,7 +54,10 @@ public class MailClientView extends JFrame {
         sendEmailButton.addActionListener(e -> switchPanel("SendEmail"));
         loadEmailsButton.addActionListener(e -> switchPanel("LoadEmails"));
         deleteEmailButton.addActionListener(e -> deleteEmail()); // Xử lý sự kiện xóa email
+        replyEmailButton.addActionListener(e -> replyEmail()); // Xử lý sự kiện trả lời email
+        searchEmailButton.addActionListener(e -> searchEmail()); // Xử lý sự kiện tìm kiếm email
 
+        setLocationRelativeTo(null); // Căn giữa cửa sổ
         setVisible(true);
     }
 
@@ -62,7 +69,7 @@ public class MailClientView extends JFrame {
     private JPanel createSendEmailPanel() {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
-        panel.setBackground(new Color(255, 255, 255)); // Màu trắng
+        panel.setBackground(Color.WHITE); // Màu trắng
 
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(new GridLayout(0, 2, 10, 10)); // Sử dụng GridLayout với khoảng cách
@@ -76,7 +83,7 @@ public class MailClientView extends JFrame {
 
         panel.add(inputPanel, BorderLayout.NORTH);
 
-        JTextArea emailContentArea = new JTextArea(10, 30);
+        emailContentArea = new JTextArea(10, 30);
         panel.add(new JScrollPane(emailContentArea), BorderLayout.CENTER);
 
         JButton sendButton = new JButton("Send Email");
@@ -84,10 +91,15 @@ public class MailClientView extends JFrame {
             String receiver = receiverField.getText();
             String subject = subjectField.getText();
             String content = emailContentArea.getText();
+            if (receiver.isEmpty() || subject.isEmpty() || content.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
             try {
                 String response = client.sendRequest("SEND_EMAIL:" + username + ":" + receiver + ":" + subject + ":" + content);
                 JOptionPane.showMessageDialog(this, response);
             } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "An error occurred: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
             }
         });
@@ -101,7 +113,7 @@ public class MailClientView extends JFrame {
         panel.setLayout(new BorderLayout());
         panel.setBackground(new Color(240, 248, 255)); // Màu xanh nhạt
 
-        JTextArea emailContentArea = new JTextArea(15, 30);
+        emailContentArea = new JTextArea(15, 30);
         panel.add(new JScrollPane(emailContentArea), BorderLayout.CENTER);
 
         JButton loadButton = new JButton("Load Emails");
@@ -110,6 +122,7 @@ public class MailClientView extends JFrame {
                 String response = client.sendRequest("LOAD_EMAILS:" + username);
                 emailContentArea.setText(response);
             } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "An error occurred: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
             }
         });
@@ -119,8 +132,37 @@ public class MailClientView extends JFrame {
     }
 
     private void deleteEmail() {
-        // Thêm logic xóa email ở đây
-        // Ví dụ: hiển thị danh sách email và cho phép người dùng chọn email để xóa
-        JOptionPane.showMessageDialog(this, "Chức năng xóa email chưa được thực hiện.");
+        String emailId = JOptionPane.showInputDialog(this, "Enter email ID to delete:");
+        if (emailId != null && !emailId.isEmpty()) {
+            try {
+                String response = client.sendRequest("DELETE_EMAIL:" + username + ":" + emailId);
+                JOptionPane.showMessageDialog(this, response);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "An error occurred: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    private void replyEmail() {
+        String emailId = JOptionPane.showInputDialog(this, "Enter email ID to reply to:");
+        if (emailId != null && !emailId.isEmpty()) {
+            // Logic để trả lời email dựa trên emailId
+            String response = "Replying to email ID: " + emailId; // Chưa thực hiện logic thực tế
+            JOptionPane.showMessageDialog(this, response);
+        }
+    }
+
+    private void searchEmail() {
+        String keyword = JOptionPane.showInputDialog(this, "Enter keyword to search:");
+        if (keyword != null && !keyword.isEmpty()) {
+            try {
+                String response = client.sendRequest("SEARCH_EMAILS:" + username + ":" + keyword);
+                emailContentArea.setText(response);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "An error occurred: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                ex.printStackTrace();
+            }
+        }
     }
 }

@@ -8,5 +8,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="D:/Program Files - Study/Libary/Driver SQL/MySQL/mysql-connector-java-8.0.30.jar"/>
 	<classpathentry kind="lib" path="D:/Program Files - Study/Libary/Driver SQL/MySQL/protobuf-java-3.19.4.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files - Study/Libary/JAR/jbcrypt-0.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

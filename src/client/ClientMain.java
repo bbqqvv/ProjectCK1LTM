@@ -1,14 +1,14 @@
 package client;
 
-import javax.swing.JOptionPane;
+import java.net.InetAddress;
 
 public class ClientMain {
     public static void main(String[] args) {
         try {
-            String serverAddress = JOptionPane.showInputDialog("Enter server IP:");
-            MailClient client = new MailClient(serverAddress, 4445);
-            LoginView loginView = new LoginView(client);
+            // Khởi tạo đối tượng MailClient sau khi đăng nhập thành công
+            new LoginView(); // Không cần cung cấp serverAddress ban đầu, sẽ lấy sau khi đăng nhập
         } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
             e.printStackTrace();
         }
     }

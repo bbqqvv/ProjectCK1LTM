@@ -1,63 +1,80 @@
 package model;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 public class Mail {
+    private int id;
     private String sender;
     private String receiver;
+    private String subject;
     private String content;
-    private String subject; // Tiêu đề của email
-    private LocalDateTime sentDate; // Ngày gửi
-    private boolean isSent; // Trạng thái gửi
+    private Date sentDate;
+    private boolean isSent;
 
-    public Mail(String sender, String receiver, String content, String subject) {
+    public Mail(int id, String sender, String receiver, String subject, String content, Date sentDate, boolean isSent) {
+        this.id = id;
         this.sender = sender;
         this.receiver = receiver;
-        this.content = content;
         this.subject = subject;
-        this.sentDate = LocalDateTime.now(); // Gán ngày gửi khi tạo
-        this.isSent = false; // Mặc định là chưa gửi
+        this.content = content;
+        this.sentDate = sentDate;
+        this.isSent = isSent;
     }
 
-    // Getters
+    // Getters and Setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getSender() {
         return sender;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
     }
 
     public String getReceiver() {
         return receiver;
     }
 
-    public String getContent() {
-        return content;
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
     }
 
     public String getSubject() {
         return subject;
     }
 
-    public LocalDateTime getSentDate() {
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Date getSentDate() {
         return sentDate;
+    }
+
+    public void setSentDate(Date sentDate) {
+        this.sentDate = sentDate;
     }
 
     public boolean isSent() {
         return isSent;
     }
 
-    // Setters
     public void setSent(boolean sent) {
         isSent = sent;
-    }
-
-    @Override
-    public String toString() {
-        return "Mail{" +
-                "sender='" + sender + '\'' +
-                ", receiver='" + receiver + '\'' +
-                ", content='" + content + '\'' +
-                ", subject='" + subject + '\'' +
-                ", sentDate=" + sentDate +
-                ", isSent=" + isSent +
-                '}';
     }
 }
