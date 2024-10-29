@@ -10,7 +10,8 @@ public class MailClientView extends JFrame {
     private JPanel sidePanel, mainPanel;
     private MailClient client;
     private String username; // Đây sẽ là username hoặc email
-    private JTextArea emailContentArea;
+    private JTextArea sendEmailContentArea; // JTextArea cho gửi email
+    private JTextArea loadEmailContentArea; // JTextArea cho tải email
     private JLabel statusLabel;
 
     public MailClientView(MailClient client, String username) {
@@ -120,8 +121,8 @@ public class MailClientView extends JFrame {
 
         panel.add(inputPanel, BorderLayout.NORTH);
 
-        emailContentArea = new JTextArea(10, 30);
-        panel.add(new JScrollPane(emailContentArea), BorderLayout.CENTER);
+        sendEmailContentArea = new JTextArea(10, 30);
+        panel.add(new JScrollPane(sendEmailContentArea), BorderLayout.CENTER);
 
         JButton sendButton = new JButton("📧 Send Email");
         sendButton.addActionListener(e -> sendEmail(receiverField, subjectField));
@@ -138,7 +139,7 @@ public class MailClientView extends JFrame {
     private void sendEmail(JTextField receiverField, JTextField subjectField) {
         String receiver = receiverField.getText();
         String subject = subjectField.getText();
-        String content = emailContentArea.getText();
+        String content = sendEmailContentArea.getText();
 
         if (receiver.isEmpty() || subject.isEmpty() || content.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -169,8 +170,8 @@ public class MailClientView extends JFrame {
 
         panel.add(searchPanel, BorderLayout.NORTH);
 
-        emailContentArea = new JTextArea(15, 30);
-        panel.add(new JScrollPane(emailContentArea), BorderLayout.CENTER);
+        loadEmailContentArea = new JTextArea(15, 30);
+        panel.add(new JScrollPane(loadEmailContentArea), BorderLayout.CENTER);
 
         JButton loadButton = new JButton("📥 Load Emails");
         loadButton.addActionListener(e -> loadEmails());
@@ -182,7 +183,6 @@ public class MailClientView extends JFrame {
     private void loadEmails() {
         try {
             String response = client.sendRequest("LOAD_EMAILS:" + username);
-            // Assume response is in the format: "ID:Sender:Receiver:Subject:Content:Date:IsSent;..."
             String[] emails = response.split(";");
             DefaultListModel<String> listModel = new DefaultListModel<>();
             Map<String, String> emailDetailsMap = new HashMap<>();
@@ -236,7 +236,7 @@ public class MailClientView extends JFrame {
         if (keyword != null && !keyword.isEmpty()) {
             try {
                 String response = client.sendRequest("SEARCH_EMAILS:" + username + ":" + keyword);
-                emailContentArea.setText(response);
+                loadEmailContentArea.setText(response);
                 updateStatusLabel("Search results for: " + keyword);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "An error occurred: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -272,7 +272,7 @@ public class MailClientView extends JFrame {
         if (keyword != null && !keyword.isEmpty()) {
             try {
                 String response = client.sendRequest("SEARCH_EMAILS:" + username + ":" + keyword);
-                emailContentArea.setText(response);
+                loadEmailContentArea.setText(response);
                 updateStatusLabel("Search results for: " + keyword);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "An error occurred: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

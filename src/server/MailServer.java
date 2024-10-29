@@ -53,7 +53,7 @@ public class MailServer {
             return;
         }
 
-        String command = tokens.remove(0).toUpperCase(); // Lấy lệnh và loại bỏ nó khỏi danh sách
+        String command = tokens.remove(0).toUpperCase();
 
         switch (command) {
             case "REGISTER":
@@ -87,7 +87,7 @@ public class MailServer {
         String email = tokens.remove(0);
         String password = tokens.remove(0);
         
-        User newUser = new User(0, username, password, email); // Khởi tạo User với email
+        User newUser = new User(0, username, password, email);
         boolean registrationSuccess = userDAO.addUser(newUser);
         sendResponse(registrationSuccess ? "Register successful" : "Register failed", packet);
     }
@@ -97,19 +97,18 @@ public class MailServer {
             sendResponse("Invalid login request", packet);
             return;
         }
-        String email = tokens.remove(0); // Sử dụng email thay vì username
+        String email = tokens.remove(0);
         String password = tokens.remove(0);
-        User loginUser = new User(0, null, password, email); // Khởi tạo User với email
+        User loginUser = new User(0, null, password, email);
         boolean loginSuccess = userDAO.loginUser(loginUser);
         
         if (loginSuccess) {
-            String ipAddress = packet.getAddress().getHostAddress(); // Lấy địa chỉ IP từ DatagramPacket
-            userDAO.updateUserIpAddress(email, ipAddress); // Cập nhật địa chỉ IP sau khi đăng nhập thành công
+            String ipAddress = packet.getAddress().getHostAddress();
+            userDAO.updateUserIpAddress(email, ipAddress);
         }
         
         sendResponse(loginSuccess ? "Login successful" : "Login failed", packet);
     }
-
 
     private void handleSendEmail(List<String> tokens, DatagramPacket packet) throws IOException {
         if (tokens.size() < 4) {
@@ -129,8 +128,8 @@ public class MailServer {
             sendResponse("Invalid load emails request", packet);
             return;
         }
-        String email = tokens.remove(0); // Sử dụng email thay vì username
-        String emails = mailDAO.getAllMailsForUser(email); // Tải email dựa trên email
+        String email = tokens.remove(0);
+        String emails = mailDAO.getAllMailsForUser(email);
         sendResponse(emails.isEmpty() ? "No emails found" : emails, packet);
     }
 
