@@ -87,8 +87,7 @@ public class MailServer {
         String email = tokens.remove(0);
         String password = tokens.remove(0);
         
-        // Chỉ khởi tạo id, ipAddress, createdAt và updatedAt khi cần
-        User newUser = new User(0, username, password, email); // Khởi tạo User không cần địa chỉ IP
+        User newUser = new User(0, username, password, email); // Khởi tạo User với email
         boolean registrationSuccess = userDAO.addUser(newUser);
         sendResponse(registrationSuccess ? "Register successful" : "Register failed", packet);
     }
@@ -98,14 +97,14 @@ public class MailServer {
             sendResponse("Invalid login request", packet);
             return;
         }
-        String username = tokens.remove(0);
+        String email = tokens.remove(0); // Sử dụng email thay vì username
         String password = tokens.remove(0);
-        User loginUser = new User(0, username, password, null); // Khởi tạo User không cần email
+        User loginUser = new User(0, null, password, email); // Khởi tạo User với email
         boolean loginSuccess = userDAO.loginUser(loginUser);
         
         if (loginSuccess) {
             String ipAddress = packet.getAddress().getHostAddress(); // Lấy địa chỉ IP từ DatagramPacket
-            userDAO.updateUserIpAddress(username, ipAddress); // Cập nhật địa chỉ IP sau khi đăng nhập thành công
+            userDAO.updateUserIpAddress(email, ipAddress); // Cập nhật địa chỉ IP sau khi đăng nhập thành công
         }
         
         sendResponse(loginSuccess ? "Login successful" : "Login failed", packet);
@@ -130,8 +129,8 @@ public class MailServer {
             sendResponse("Invalid load emails request", packet);
             return;
         }
-        String username = tokens.remove(0);
-        String emails = mailDAO.getAllMailsForUser(username);
+        String email = tokens.remove(0); // Sử dụng email thay vì username
+        String emails = mailDAO.getAllMailsForUser(email); // Tải email dựa trên email
         sendResponse(emails.isEmpty() ? "No emails found" : emails, packet);
     }
 

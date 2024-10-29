@@ -1,6 +1,9 @@
 package client;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.text.JTextComponent;
+
 import java.awt.*;
 
 public class RegisterView extends JFrame {
@@ -9,36 +12,55 @@ public class RegisterView extends JFrame {
     private JPasswordField passwordField;
     private JPasswordField confirmPasswordField;
     private JButton registerButton;
+    private JButton cancelButton;
+	private JTextComponent statusLabel;
 
     public RegisterView() {
         setTitle("Register");
-        setSize(300, 200);
+        setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new GridLayout(5, 2));
+        getContentPane().setLayout(new BorderLayout());
 
-        add(new JLabel("Username:"));
+        // Tạo panel tiêu đề
+        JPanel headerPanel = new JPanel();
+        headerPanel.add(new JLabel("<html><h2>Register Account</h2></html>"));
+        getContentPane().add(headerPanel, BorderLayout.NORTH);
+
+        // Tạo panel chính với lưới
+        JPanel mainPanel = new JPanel(new GridLayout(5, 2, 10, 10));
+        mainPanel.setBorder(new EmptyBorder(10, 20, 10, 20));
+
+        mainPanel.add(new JLabel("Username:"));
         usernameField = new JTextField(15);
-        add(usernameField);
+        mainPanel.add(usernameField);
 
-        add(new JLabel("Email:"));
+        mainPanel.add(new JLabel("Email:"));
         emailField = new JTextField(15);
-        add(emailField);
+        mainPanel.add(emailField);
 
-        add(new JLabel("Password:"));
+        mainPanel.add(new JLabel("Password:"));
         passwordField = new JPasswordField(15);
-        add(passwordField);
+        mainPanel.add(passwordField);
 
-        add(new JLabel("Confirm Password:"));
+        mainPanel.add(new JLabel("Confirm Password:"));
         confirmPasswordField = new JPasswordField(15);
-        add(confirmPasswordField);
+        mainPanel.add(confirmPasswordField);
 
+        getContentPane().add(mainPanel, BorderLayout.CENTER);
+
+        // Tạo panel chứa nút đăng ký và hủy
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
         registerButton = new JButton("Register");
-        add(new JLabel());  // Empty label for spacing
-        add(registerButton);
+        cancelButton = new JButton("Cancel");
+        buttonPanel.add(registerButton);
+        buttonPanel.add(cancelButton);
 
         registerButton.addActionListener(e -> register());
+        cancelButton.addActionListener(e -> openLoginView());
 
-        setLocationRelativeTo(null); // Center the frame
+        getContentPane().add(buttonPanel, BorderLayout.SOUTH);
+
+        setLocationRelativeTo(null); // Căn giữa cửa sổ
         setVisible(true);
     }
 
@@ -49,13 +71,14 @@ public class RegisterView extends JFrame {
             String password = new String(passwordField.getPassword());
             String confirmPassword = new String(confirmPasswordField.getPassword());
 
+            // Kiểm tra tính hợp lệ của thông tin đầu vào
             if (!password.equals(confirmPassword)) {
-                JOptionPane.showMessageDialog(this, "Passwords do not match.", "Error", JOptionPane.ERROR_MESSAGE);
+                statusLabel.setText("Passwords do not match.");
                 return;
             }
 
             if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "All fields are required.", "Error", JOptionPane.ERROR_MESSAGE);
+                statusLabel.setText("All fields are required.");
                 return;
             }
 
@@ -76,4 +99,8 @@ public class RegisterView extends JFrame {
         }
     }
 
+    private void openLoginView() {
+        new LoginView();
+        dispose();
+    }
 }

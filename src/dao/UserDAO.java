@@ -20,7 +20,7 @@ public class UserDAO {
 
     public boolean addUser(User user) {
         String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
-        String sql = "INSERT INTO users (username, password, email, ip_address) VALUES (?, ?, ?, NULL)"; // Thêm NULL cho ip_address
+        String sql = "INSERT INTO users (username, password, email, ip_address) VALUES (?, ?, ?, NULL)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, user.getUsername());
             stmt.setString(2, hashedPassword);
@@ -28,26 +28,32 @@ public class UserDAO {
             stmt.executeUpdate();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+            // Ghi log và ném ngoại lệ
+            throw new RuntimeException("Error adding user", e);
         }
     }
 
+
     public boolean loginUser(User loginUser) {
-        String sql = "SELECT password FROM users WHERE username = ?";
+        String sql = "SELECT * FROM users WHERE email = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, loginUser.getUsername());
+            stmt.setString(1, loginUser.getEmail());
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     String storedPassword = rs.getString("password");
-                    return BCrypt.checkpw(loginUser.getPassword(), storedPassword); // So sánh mật khẩu đã băm
+                    System.out.println("Stored Password: " + storedPassword); // Ghi log mật khẩu đã lưu
+                    boolean isPasswordCorrect = BCrypt.checkpw(loginUser.getPassword(), storedPassword);
+                    System.out.println("Password Check: " + isPasswordCorrect); // Kiểm tra mật khẩu
+                    return isPasswordCorrect;
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false; // Trả về false nếu không tìm thấy người dùng hoặc mật khẩu không khớp
+        return false;
     }
+
+
 
     public void updateUserIpAddress(String username, String ipAddress) {
         String sql = "UPDATE users SET ip_address = ? WHERE username = ?";
