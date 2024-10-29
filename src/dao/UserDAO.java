@@ -46,6 +46,21 @@ public class UserDAO {
         return false;
     }
 
+    public String getUsername(String email) {
+        String sql = "SELECT username FROM users WHERE email = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("username");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null; // Return null if the username is not found
+    }
+
     public void updateUserIpAddress(String email, String ipAddress) {
         String sql = "UPDATE users SET ip_address = ? WHERE email = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -57,5 +72,5 @@ public class UserDAO {
         }
     }
 
-    // Các phương thức khác không thay đổi
+    // Other methods remain unchanged
 }

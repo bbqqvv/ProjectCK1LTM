@@ -105,9 +105,12 @@ public class MailServer {
         if (loginSuccess) {
             String ipAddress = packet.getAddress().getHostAddress();
             userDAO.updateUserIpAddress(email, ipAddress);
+            // Get username for the logged-in user
+            String username = userDAO.getUsername(email);
+            sendResponse("Login successful. Welcome, " + username + "!", packet);
+        } else {
+            sendResponse("Login failed", packet);
         }
-        
-        sendResponse(loginSuccess ? "Login successful" : "Login failed", packet);
     }
 
     private void handleSendEmail(List<String> tokens, DatagramPacket packet) throws IOException {

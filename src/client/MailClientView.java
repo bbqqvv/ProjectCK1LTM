@@ -3,7 +3,6 @@ package client;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.JTextComponent;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
@@ -20,9 +19,7 @@ public class MailClientView extends JFrame {
     private JTable emailTable;
     private int currentPage = 1;
     private final int emailsPerPage = 10;
-    private int totalEmails = 0; // Tổng số email, sẽ nhận từ server khi tải
-    private int totalPages = 1;
-    private Map<Integer, String[]> emailCache = new HashMap<>(); // Bộ đệm các trang đã tải
+    private Map<Integer, String[]> emailCache = new HashMap<>();
 	private JTextArea loadEmailContentArea;
 
     public MailClientView(MailClient client, String username) {
@@ -53,6 +50,7 @@ public class MailClientView extends JFrame {
         sidePanel = new JPanel();
         sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
         sidePanel.setBackground(new Color(245, 245, 245));
+        sidePanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         addButtonToSidePanel("✉ Send Email", e -> switchPanel("SendEmail"));
         addButtonToSidePanel("📥 Load Emails", e -> switchPanel("LoadEmails"));
@@ -100,6 +98,7 @@ public class MailClientView extends JFrame {
         button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         button.setBorderPainted(false);
         button.addMouseListener(new ButtonHoverEffect());
+        button.setToolTipText("Click to " + text);
         return button;
     }
 
@@ -182,18 +181,21 @@ public class MailClientView extends JFrame {
                 showEmailDetails();
             }
         });
-
-        emailDetailsArea = new JTextArea();
-        emailDetailsArea.setEditable(false);
-        emailDetailsArea.setWrapStyleWord(true);
-        emailDetailsArea.setLineWrap(true);
+        emailTable.setDefaultEditor(Object.class, null); // Make table read-only
+        emailTable.setFillsViewportHeight(true);
+        emailTable.setRowHeight(30); // Increase row height
+        emailTable.getTableHeader().setReorderingAllowed(false); // Disable column reordering
 
         JScrollPane emailScrollPane = new JScrollPane(emailTable);
-        JScrollPane detailsScrollPane = new JScrollPane(emailDetailsArea);
+        panel.add(emailScrollPane, BorderLayout.CENTER);
 
-        JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, emailScrollPane, detailsScrollPane);
-        splitPane.setDividerLocation(200);
-        panel.add(splitPane, BorderLayout.CENTER);
+        // Create and initialize emailDetailsArea
+        emailDetailsArea = new JTextArea(5, 30);
+        emailDetailsArea.setEditable(false); // Make it read-only
+        emailDetailsArea.setLineWrap(true);
+        emailDetailsArea.setWrapStyleWord(true);
+        JScrollPane detailsScrollPane = new JScrollPane(emailDetailsArea);
+        panel.add(detailsScrollPane, BorderLayout.SOUTH);
 
         JPanel paginationPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JButton prevPageButton = new JButton("Previous Page");
@@ -204,7 +206,7 @@ public class MailClientView extends JFrame {
         prevPageButton.addActionListener(e -> loadEmails(currentPage - 1));
         nextPageButton.addActionListener(e -> loadEmails(currentPage + 1));
 
-        panel.add(paginationPanel, BorderLayout.SOUTH);
+        panel.add(paginationPanel, BorderLayout.NORTH); // Moved to the north for better layout
         return panel;
     }
 
@@ -230,10 +232,10 @@ public class MailClientView extends JFrame {
 
             for (String email : emails) {
                 String[] fields = email.split(", ");
-                if (fields.length >= 5) {
+                if (fields.length >= 4) {
                     String id = fields[0].split(":")[1].trim();
                     String sender = fields[1].split(":")[1].trim();
-                    String subject = fields[2].split(":")[1].trim(); 
+                    String subject = fields[2].split(":")[1].trim();
                     String date = fields[3].split(":")[1].trim();
                     emailTableModel.addRow(new Object[]{id, sender, subject, date});
                 }
@@ -242,19 +244,12 @@ public class MailClientView extends JFrame {
             if (emailTableModel.getRowCount() == 0) {
                 updateStatusLabel("No emails found for page " + currentPage + ".");
             } else {
-                updatePaginationStatus();
+                updateStatusLabel("Loaded " + emailTableModel.getRowCount() + " emails.");
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "An error occurred: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
-    }
-
-
-
-
-    private void updatePaginationStatus() {
-        updateStatusLabel("Page " + currentPage + " of " + totalPages);
     }
 
     private void showEmailDetails() {
@@ -295,6 +290,7 @@ public class MailClientView extends JFrame {
         if (keyword != null && !keyword.isEmpty()) {
             try {
                 String response = client.sendRequest("SEARCH_EMAILS:" + username + ":" + keyword);
+                // Assuming loadEmailContentArea is defined; if not, implement as needed.
                 loadEmailContentArea.setText(response);
                 updateStatusLabel("Search results for: " + keyword);
             } catch (Exception ex) {
