@@ -2,11 +2,14 @@ package client;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MailClientView extends JFrame {
     private JPanel sidePanel, mainPanel;
@@ -20,6 +23,8 @@ public class MailClientView extends JFrame {
     private int currentPage = 1;
     private final int emailsPerPage = 10;
     private Map<Integer, String[]> emailCache = new HashMap<>();
+    private List<String> emailContents = new ArrayList<>();
+
 	private JTextArea loadEmailContentArea;
 
     public MailClientView(MailClient client, String username) {
@@ -210,9 +215,12 @@ public class MailClientView extends JFrame {
         return panel;
     }
 
+ // Tạo một danh sách để lưu trữ nội dung email
+
     private void loadEmails(int page) {
         currentPage = page;
         emailTableModel.setRowCount(0); // Xóa dữ liệu cũ trong bảng
+        emailContents.clear(); // Xóa danh sách nội dung cũ
 
         try {
             String response = client.sendRequest("LOAD_EMAILS:" + username + ":" + currentPage + ":" + emailsPerPage);
@@ -231,13 +239,27 @@ public class MailClientView extends JFrame {
             }
 
             for (String email : emails) {
-                String[] fields = email.split(", ");
-                if (fields.length >= 4) {
-                    String id = fields[0].split(":")[1].trim();
-                    String sender = fields[1].split(":")[1].trim();
-                    String subject = fields[2].split(":")[1].trim();
-                    String date = fields[3].split(":")[1].trim();
+                // Kiểm tra xem chuỗi email có trống hay không trước khi phân tích
+                if (email.trim().isEmpty()) continue;
+
+                // Sử dụng regex để trích xuất các trường
+                String regex = "ID: (\\d+), Sender: ([^,]+), Receiver: ([^,]+), Subject: ([^,]+), Content: (.*?), Sent Date: ([^,]+), Is Sent: (true|false)";
+                Pattern pattern = Pattern.compile(regex);
+                Matcher matcher = pattern.matcher(email);
+
+                if (matcher.find()) {
+                    String id = matcher.group(1);
+                    String sender = matcher.group(2);
+                    String subject = matcher.group(4);
+                    String date = matcher.group(6);
+                    String content = matcher.group(5); // Lưu nội dung vào danh sách
+
+                    // Thêm dữ liệu vào bảng
                     emailTableModel.addRow(new Object[]{id, sender, subject, date});
+                    emailContents.add(content); // Thêm nội dung vào danh sách
+                } else {
+                    // Nếu không tìm thấy định dạng đúng, có thể ghi log hoặc thông báo
+                    System.err.println("Dữ liệu không đúng định dạng: " + email);
                 }
             }
 
@@ -259,6 +281,9 @@ public class MailClientView extends JFrame {
             for (int col = 0; col < emailTable.getColumnCount(); col++) {
                 emailDetails += emailTable.getColumnName(col) + ": " + emailTable.getValueAt(selectedRow, col) + "\n";
             }
+            // Thêm nội dung email vào chi tiết
+            String content = emailContents.get(selectedRow); // Lấy nội dung từ danh sách
+            emailDetails += "Content: " + content + "\n"; // Thêm nội dung vào chi tiết
             emailDetailsArea.setText(emailDetails);
         }
     }
