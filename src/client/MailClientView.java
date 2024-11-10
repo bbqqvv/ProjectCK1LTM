@@ -23,6 +23,8 @@ public class MailClientView extends JFrame {
 	private int emailsPerPage = 10;
 	private List<String> emailContents = new ArrayList<>();
 	private JTableHeader header;
+	private String sortOrder;
+	private boolean notificationsEnabled;
 
 	public MailClientView(MailClient client, String username) {
 		this.client = client;
@@ -79,6 +81,22 @@ public class MailClientView extends JFrame {
 		panel.add(sendButton, BorderLayout.SOUTH);
 
 		return panel;
+	}
+	private void addRightClickMenu() {
+	    JPopupMenu popupMenu = new JPopupMenu();
+
+	    // Tùy chọn "Delete"
+	    JMenuItem deleteMenuItem = new JMenuItem("Delete");
+	    deleteMenuItem.addActionListener(e -> deleteEmail());
+	    popupMenu.add(deleteMenuItem);
+
+	    // Tùy chọn "Reply"
+	    JMenuItem replyMenuItem = new JMenuItem("Reply");
+	    replyMenuItem.addActionListener(e -> replyEmail());
+	    popupMenu.add(replyMenuItem);
+
+	    // Gắn menu chuột phải vào bảng
+	    emailTable.setComponentPopupMenu(popupMenu);
 	}
 
 	private void addInputField(JPanel panel, String labelText, JTextField textField) {
@@ -201,6 +219,7 @@ public class MailClientView extends JFrame {
 				}
 			}
 		});
+	    addRightClickMenu();
 
 		return panel;
 	}
@@ -260,7 +279,7 @@ public class MailClientView extends JFrame {
 		emailDetailsArea.setEditable(false);
 	}
 
-	private void loadEmails(int page) {
+	public void loadEmails(int page) {
 		currentPage = page;
 		emailTableModel.setRowCount(0);
 		emailContents.clear();
@@ -380,7 +399,7 @@ public class MailClientView extends JFrame {
 		getContentPane().add(statusLabel, BorderLayout.SOUTH);
 	}
 
-	private void updateStatusLabel(String message) {
+	public void updateStatusLabel(String message) {
 		statusLabel.setText("Status: " + message);
 	}
 
@@ -397,69 +416,81 @@ public class MailClientView extends JFrame {
 	}
 
 	public void openSettings() {
-		JDialog settingsDialog = new JDialog(this, "Settings", true);
-		settingsDialog.setSize(300, 200);
-		settingsDialog.setLocationRelativeTo(this);
-		settingsDialog.setLayout(new BorderLayout());
-
-		JPanel settingsPanel = new JPanel(new GridLayout(0, 2, 10, 10));
-
-		// Thêm các tùy chọn cài đặt mẫu
-		JLabel themeLabel = new JLabel("Select Theme:");
-		JComboBox<String> themeComboBox = new JComboBox<>(new String[] { "Light", "Dark" });
-
-		JLabel emailsPerPageLabel = new JLabel("Emails per Page:");
-		JTextField emailsPerPageField = new JTextField(String.valueOf(emailsPerPage)); // Giá trị hiện tại
-
-		settingsPanel.add(themeLabel);
-		settingsPanel.add(themeComboBox);
-		settingsPanel.add(emailsPerPageLabel);
-		settingsPanel.add(emailsPerPageField);
-
-		JButton saveButton = new JButton("Save");
-		saveButton.addActionListener(e -> {
-			// Lưu các cài đặt người dùng chọn
-			String selectedTheme = (String) themeComboBox.getSelectedItem();
-			int emailsPerPageValue;
-			try {
-				emailsPerPageValue = Integer.parseInt(emailsPerPageField.getText());
-			} catch (NumberFormatException ex) {
-				JOptionPane.showMessageDialog(this, "Please enter a valid number for emails per page.", "Invalid Input",
-						JOptionPane.WARNING_MESSAGE);
-				return;
-			}
-
-			// Áp dụng theme và cập nhật số email trên mỗi trang
-			applyTheme(selectedTheme);
-			updateEmailsPerPage(emailsPerPageValue);
-
-			settingsDialog.dispose();
-		});
-
-		settingsDialog.add(settingsPanel, BorderLayout.CENTER);
-		settingsDialog.add(saveButton, BorderLayout.SOUTH);
-
-		settingsDialog.setVisible(true);
+	    // Truyền thêm username vào SettingsDialog
+	    new SettingsDialog(this, emailsPerPage, username);
 	}
 
 	private void updateEmailsPerPage(int emailsPerPageValue) {
-		this.emailsPerPage = emailsPerPageValue; // Cập nhật giá trị emailsPerPage
-		loadEmails(1); // Tải lại email từ trang đầu tiên
+	    this.emailsPerPage = emailsPerPageValue; // Cập nhật giá trị emailsPerPage
+	    loadEmails(1); // Tải lại email từ trang đầu tiên
 	}
 
 	private void applyTheme(String selectedTheme) {
-		if ("Dark".equalsIgnoreCase(selectedTheme)) {
-			// Đặt màu nền và màu chữ cho theme tối
-			getContentPane().setBackground(Color.DARK_GRAY);
-			statusLabel.setForeground(Color.WHITE);
-		} else {
-			// Đặt theme sáng mặc định
-			getContentPane().setBackground(Color.WHITE);
-			statusLabel.setForeground(Color.BLACK);
-		}
+	    if ("Dark".equalsIgnoreCase(selectedTheme)) {
+	        // Đặt màu nền và màu chữ cho theme tối
+	        getContentPane().setBackground(Color.DARK_GRAY);
+	        statusLabel.setForeground(Color.WHITE);
+	    } else {
+	        // Đặt theme sáng mặc định
+	        getContentPane().setBackground(Color.WHITE);
+	        statusLabel.setForeground(Color.BLACK);
+	    }
 
-		// Cập nhật giao diện tất cả các thành phần để theme mới có hiệu lực
-		SwingUtilities.updateComponentTreeUI(this);
+	    // Cập nhật giao diện tất cả các thành phần để theme mới có hiệu lực
+	    SwingUtilities.updateComponentTreeUI(this);
 	}
+
+	public void setEmailsPerPage(int emailsPerPage) {
+	    this.emailsPerPage = emailsPerPage;
+	}
+
+	public void setFont(Font font) {
+	    // Apply the font to the email display area (e.g., text area, labels)
+	    emailDetailsArea.setFont(font);
+	}
+
+	public void setSortOrder(String sortOrder) {
+	    // Implement sorting logic based on the selected order
+	    // E.g., by date, subject, or sender
+	    this.sortOrder = sortOrder;
+	    loadEmails(1);  // Reload emails with the new sort order
+	}
+
+	public void setNotificationsEnabled(boolean enabled) {
+	    // Implement logic to enable or disable notifications
+	    this.notificationsEnabled = enabled;
+	    // Additional logic to manage notifications, e.g., update status label
+	    if (enabled) {
+	        updateStatusLabel("Notifications enabled");
+	    } else {
+	        updateStatusLabel("Notifications disabled");
+	    }
+	}
+
+
+	public void setAutoRefreshEnabled(boolean autoRefreshEnabled) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setUsername(String newUsername) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void showLoginScreen() {
+	    // Đóng màn hình hiện tại (nếu cần thiết)
+	    this.setVisible(false);  // Ẩn màn hình chính của ứng dụng
+	    JOptionPane.showMessageDialog(this, "Logged out successfully.", "Logout", JOptionPane.INFORMATION_MESSAGE);
+
+	    // Tạo và hiển thị màn hình đăng nhập
+	    LoginView loginScreen = new LoginView();  // Giả sử LoginScreen là một JFrame hoặc JDialog
+	    loginScreen.setVisible(true);  // Hiển thị màn hình đăng nhập
+
+	    // Nếu bạn muốn tự động thoát khi đăng xuất
+	    // System.exit(0);  // Dùng khi bạn muốn đóng toàn bộ ứng dụng và chỉ quay lại màn hình đăng nhập.
+	}
+
+
 
 }
