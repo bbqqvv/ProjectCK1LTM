@@ -5,24 +5,22 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MailClientView extends JFrame {
-    private JPanel sidePanel, mainPanel;
+    private JPanel mainPanel;
     private MailClient client;
     private String username;
     private JTextArea sendEmailContentArea;
-    private JTextPane emailDetailsArea; // Thay đổi từ JTextArea sang JTextPane
+    private JTextPane emailDetailsArea;
     private JLabel statusLabel;
     private DefaultTableModel emailTableModel;
     private JTable emailTable;
     private int currentPage = 1;
-    private final int emailsPerPage = 10;
+    private int emailsPerPage = 10;
     private List<String> emailContents = new ArrayList<>();
     private JTableHeader header;
 
@@ -42,47 +40,15 @@ public class MailClientView extends JFrame {
         setLocationRelativeTo(null);
         getContentPane().setLayout(new BorderLayout());
 
-        createSidePanel();
+        // Tạo sidePanel từ lớp SidePanel mới
+        SidebarPanel sidePanel = new SidebarPanel(this);
+        getContentPane().add(sidePanel, BorderLayout.WEST);
+
         createMainPanel();
         createStatusLabel();
 
         setVisible(true);
         updateStatusLabel("Logged in as: " + username);
-    }
-
-    private void createSidePanel() {
-        sidePanel = new JPanel();
-        sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
-        sidePanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-        addButtonToSidePanel("✉ Send Email", e -> switchPanel("SendEmail"));
-        addButtonToSidePanel("📥 Load Emails", e -> switchPanel("LoadEmails"));
-        addButtonToSidePanel("🗑️ Delete Email", e -> deleteEmail());
-        addButtonToSidePanel("↩️ Reply Email", e -> replyEmail());
-        addButtonToSidePanel("🔍 Search Email", e -> searchEmail());
-
-        getContentPane().add(sidePanel, BorderLayout.WEST);
-    }
-
-    private void addButtonToSidePanel(String text, ActionListener action) {
-        JButton button = createButton(text);
-        button.addActionListener(action);
-        sidePanel.add(button);
-        sidePanel.add(Box.createVerticalStrut(10));
-    }
-
-    private JButton createButton(String text) {
-        JButton button = new JButton(text);
-        button.setAlignmentX(Component.CENTER_ALIGNMENT);
-        button.setMaximumSize(new Dimension(180, 40));
-        button.setFocusPainted(false);
-        button.setBackground(new Color(173, 216, 230));
-        button.setFont(new Font("Arial", Font.BOLD, 14));
-        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        button.setBorderPainted(false);
-        button.addMouseListener(new ButtonHoverEffect());
-        button.setToolTipText("Click to " + text);
-        return button;
     }
 
     private void createMainPanel() {
@@ -126,16 +92,16 @@ public class MailClientView extends JFrame {
         String content = sendEmailContentArea.getText();
 
         if (receiver.isEmpty() || subject.isEmpty() || content.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Warning", JOptionPane.WARNING_MESSAGE);
+            showNotification("Please fill in all fields.", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
+
         try {
             String response = client.sendRequest("SEND_EMAIL:" + username + ":" + receiver + ":" + subject + ":" + content);
-            JOptionPane.showMessageDialog(this, response);
+            showNotification(response, "Email Sent", JOptionPane.INFORMATION_MESSAGE);
             updateStatusLabel("Email sent to " + receiver);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "An error occurred: " + ex.getMessage(), "Error",
-                    JOptionPane.ERROR_MESSAGE);
+            showNotification("An error occurred: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
     }
@@ -170,13 +136,6 @@ public class MailClientView extends JFrame {
         JButton prevPageButton = new JButton("◀ Previous");
         JButton nextPageButton = new JButton("Next ▶");
 
-        prevPageButton.setPreferredSize(new Dimension(120, 30));
-        nextPageButton.setPreferredSize(new Dimension(120, 30));
-        prevPageButton.setBackground(new Color(100, 149, 237));
-        prevPageButton.setForeground(Color.WHITE);
-        nextPageButton.setBackground(new Color(100, 149, 237));
-        nextPageButton.setForeground(Color.WHITE);
-
         paginationPanel.add(prevPageButton);
         paginationPanel.add(nextPageButton);
 
@@ -192,7 +151,7 @@ public class MailClientView extends JFrame {
 
     private void createEmailDetailsArea() {
         emailDetailsArea = new JTextPane();
-        emailDetailsArea.setContentType("text/html"); // Định dạng HTML
+        emailDetailsArea.setContentType("text/html");
         emailDetailsArea.setEditable(false);
     }
 
@@ -212,8 +171,7 @@ public class MailClientView extends JFrame {
             String[] emails = response.split("\n");
 
             for (String email : emails) {
-                if (email.trim().isEmpty())
-                    continue;
+                if (email.trim().isEmpty()) continue;
 
                 String regex = "ID: (\\d+), Sender: ([^,]+), Receiver: ([^,]+), Subject: ([^,]+), Content: (.*?), Sent Date: ([^,]+), Is Sent: (true|false)";
                 Pattern pattern = Pattern.compile(regex);
@@ -232,24 +190,29 @@ public class MailClientView extends JFrame {
             }
 
             updateStatusLabel("Loaded " + emailTableModel.getRowCount() + " emails.");
+            
+            // Thêm thông báo khi tải thành công
+            showNotification("Successfully loaded " + emailTableModel.getRowCount() + " emails.", "Emails Loaded", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "An error occurred: " + ex.getMessage(), "Error",
-                    JOptionPane.ERROR_MESSAGE);
+            showNotification("An error occurred: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
     }
 
 
-    private void showEmailDetails() {
+    private void showNotification(String message, String title, int messageType) {
+        JOptionPane.showMessageDialog(this, message, title, messageType);
+    }
+
+
+	private void showEmailDetails() {
         int selectedRow = emailTable.getSelectedRow();
         if (selectedRow != -1) {
-            // Lấy dữ liệu từ các cột và nội dung email
             String sender = emailTable.getValueAt(selectedRow, 1).toString();
             String subject = emailTable.getValueAt(selectedRow, 2).toString();
             String date = emailTable.getValueAt(selectedRow, 3).toString();
             String content = emailContents.get(selectedRow);
 
-            // Tạo HTML để hiển thị chi tiết
             String emailDetails = "<html><body style='font-family:Arial,sans-serif;'>"
                     + "<h2>Subject: " + subject + "</h2>"
                     + "<p><strong>From:</strong> " + sender + "</p>"
@@ -258,12 +221,12 @@ public class MailClientView extends JFrame {
                     + "<div style='margin-top:10px;'>" + content + "</div>"
                     + "</body></html>";
 
-            // Hiển thị chi tiết email trong JTextPane
             emailDetailsArea.setText(emailDetails);
-            emailDetailsArea.setCaretPosition(0); // Cuộn lên đầu nội dung
+            emailDetailsArea.setCaretPosition(0);
         }
     }
-    private void switchPanel(String panelName) {
+
+    public void switchPanel(String panelName) {
         CardLayout layout = (CardLayout) mainPanel.getLayout();
         layout.show(mainPanel, panelName);
 
@@ -272,33 +235,32 @@ public class MailClientView extends JFrame {
         }
     }
 
-    private void deleteEmail() {
+    public void deleteEmail() {
         int selectedRow = emailTable.getSelectedRow();
         if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "Select an email to delete.", "Warning", JOptionPane.WARNING_MESSAGE);
+            showNotification("Select an email to delete.", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
         String id = emailTableModel.getValueAt(selectedRow, 0).toString();
-        int confirm = JOptionPane.showConfirmDialog(this, "Are you sure to delete this email?", "Confirm Deletion",
-                JOptionPane.YES_NO_OPTION);
+        int confirm = JOptionPane.showConfirmDialog(this, "Are you sure to delete this email?", "Confirm Deletion", JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {
             try {
                 String response = client.sendRequest("DELETE_EMAIL:" + username + ":" + id);
-                JOptionPane.showMessageDialog(this, response);
+                showNotification(response, "Email Deletion", JOptionPane.INFORMATION_MESSAGE);
                 loadEmails(currentPage);
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "An error occurred: " + ex.getMessage(), "Error",
-                        JOptionPane.ERROR_MESSAGE);
+                showNotification("An error occurred: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
             }
         }
     }
 
-    private void replyEmail() {
+
+    void replyEmail() {
         JOptionPane.showMessageDialog(this, "Feature under construction", "Info", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    private void searchEmail() {
+    void searchEmail() {
         JOptionPane.showMessageDialog(this, "Feature under construction", "Info", JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -313,6 +275,7 @@ public class MailClientView extends JFrame {
         statusLabel.setText("Status: " + message);
     }
 
+
     class ButtonHoverEffect extends MouseAdapter {
         @Override
         public void mouseEntered(MouseEvent e) {
@@ -324,4 +287,71 @@ public class MailClientView extends JFrame {
             e.getComponent().setBackground(new Color(173, 216, 230));
         }
     }
+
+    public void openSettings() {
+        JDialog settingsDialog = new JDialog(this, "Settings", true);
+        settingsDialog.setSize(300, 200);
+        settingsDialog.setLocationRelativeTo(this);
+        settingsDialog.setLayout(new BorderLayout());
+
+        JPanel settingsPanel = new JPanel(new GridLayout(0, 2, 10, 10));
+
+        // Thêm các tùy chọn cài đặt mẫu
+        JLabel themeLabel = new JLabel("Select Theme:");
+        JComboBox<String> themeComboBox = new JComboBox<>(new String[]{"Light", "Dark"});
+
+        JLabel emailsPerPageLabel = new JLabel("Emails per Page:");
+        JTextField emailsPerPageField = new JTextField(String.valueOf(emailsPerPage));  // Giá trị hiện tại
+
+        settingsPanel.add(themeLabel);
+        settingsPanel.add(themeComboBox);
+        settingsPanel.add(emailsPerPageLabel);
+        settingsPanel.add(emailsPerPageField);
+
+        JButton saveButton = new JButton("Save");
+        saveButton.addActionListener(e -> {
+            // Lưu các cài đặt người dùng chọn
+            String selectedTheme = (String) themeComboBox.getSelectedItem();
+            int emailsPerPageValue;
+            try {
+                emailsPerPageValue = Integer.parseInt(emailsPerPageField.getText());
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Please enter a valid number for emails per page.", "Invalid Input", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            // Áp dụng theme và cập nhật số email trên mỗi trang
+            applyTheme(selectedTheme);
+            updateEmailsPerPage(emailsPerPageValue);
+
+            settingsDialog.dispose();
+        });
+
+        settingsDialog.add(settingsPanel, BorderLayout.CENTER);
+        settingsDialog.add(saveButton, BorderLayout.SOUTH);
+
+        settingsDialog.setVisible(true);
+    }
+
+    private void updateEmailsPerPage(int emailsPerPageValue) {
+        this.emailsPerPage = emailsPerPageValue;  // Cập nhật giá trị emailsPerPage
+        loadEmails(1);  // Tải lại email từ trang đầu tiên
+    }
+
+
+    private void applyTheme(String selectedTheme) {
+        if ("Dark".equalsIgnoreCase(selectedTheme)) {
+            // Đặt màu nền và màu chữ cho theme tối
+            getContentPane().setBackground(Color.DARK_GRAY);
+            statusLabel.setForeground(Color.WHITE);
+        } else {
+            // Đặt theme sáng mặc định
+            getContentPane().setBackground(Color.WHITE);
+            statusLabel.setForeground(Color.BLACK);
+        }
+        
+        // Cập nhật giao diện tất cả các thành phần để theme mới có hiệu lực
+        SwingUtilities.updateComponentTreeUI(this);
+    }
+
 }

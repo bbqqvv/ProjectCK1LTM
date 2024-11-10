@@ -3,11 +3,16 @@ package server;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class ServerView extends JFrame {
     private JTextArea logArea;
     private JButton startButton;
     private JButton stopButton;
+    private boolean isRunning = false; // Biến trạng thái để theo dõi server
+	private ServerView view;
 
     public ServerView() {
         setTitle("Mail Server");
@@ -16,7 +21,7 @@ public class ServerView extends JFrame {
         setLocationRelativeTo(null);
         getContentPane().setLayout(new BorderLayout());
 
-        // Create toolbar for controls
+        // Tạo toolbar với các nút điều khiển
         JToolBar toolBar = new JToolBar();
         toolBar.setBackground(new Color(173, 216, 230));
         
@@ -30,7 +35,7 @@ public class ServerView extends JFrame {
         
         getContentPane().add(toolBar, BorderLayout.NORTH);
 
-        // Create log area
+        // Tạo khu vực log
         logArea = new JTextArea();
         logArea.setEditable(false);
         logArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
@@ -43,22 +48,54 @@ public class ServerView extends JFrame {
         
         getContentPane().add(scrollPane, BorderLayout.CENTER);
 
-        // Make window visible
+        // Hiển thị cửa sổ
         setVisible(true);
     }
 
     private void startServer(ActionEvent e) {
-        // Logic to start the server
+        if (isRunning) { 
+            // Kiểm tra nếu server đang chạy
+            JOptionPane.showMessageDialog(this, "Server is already running!", "Info", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
+        isRunning = true; // Cập nhật trạng thái là server đang chạy
+        logArea.setText(""); // Xóa log trước khi bắt đầu lại
         appendLog("Server started...");
     }
 
     private void stopServer(ActionEvent e) {
-        // Logic to stop the server
+        if (!isRunning) {
+            // Kiểm tra nếu server đã dừng
+            JOptionPane.showMessageDialog(this, "Server is not running.", "Info", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
         appendLog("Server stopped...");
+        isRunning = false; // Cập nhật trạng thái là server đã dừng
+        logArea.setText(""); // Xóa log khi dừng server
     }
 
-    public void appendLog(String message) {
-        logArea.append(message + "\n");
-        logArea.setCaretPosition(logArea.getDocument().getLength()); // Scroll to the bottom
+
+
+    // Phương thức để hiển thị thông báo trên giao diện
+    public void showNotification(String message) {
+        JOptionPane.showMessageDialog(this, message, "New Notification", JOptionPane.INFORMATION_MESSAGE);
     }
+
+
+
+    public void appendLog(String message) {
+        // Ghi vào JTextArea
+        logArea.append(message + "\n");
+        logArea.setCaretPosition(logArea.getDocument().getLength()); // Cuộn xuống cuối cùng
+
+        // Ghi log vào file
+        try (FileWriter fw = new FileWriter("server.log", true); BufferedWriter bw = new BufferedWriter(fw)) {
+            bw.write(message + "\n");
+        } catch (IOException e) {
+            view.appendLog("Error writing log to file: " + e.getMessage());
+        }
+    }
+
 }

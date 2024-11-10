@@ -21,6 +21,7 @@ public class MailServer {
     public MailServer(UserDAO userDAO, MailDAO mailDAO) {
         this.userDAO = userDAO;
         this.mailDAO = mailDAO;
+        
     }
 
     public void setView(ServerView view) {
@@ -38,7 +39,15 @@ public class MailServer {
                 socket.receive(packet);
                 String request = new String(packet.getData(), 0, packet.getLength()).trim();
                 view.appendLog("Received: " + request);
-                handleRequest(request, packet);
+
+                // Xử lý mỗi yêu cầu trong một luồng riêng biệt
+                new Thread(() -> {
+                    try {
+                        handleRequest(request, packet);
+                    } catch (IOException e) {
+                        view.appendLog("Error processing request: " + e.getMessage());
+                    }
+                }).start();
             }
         } catch (IOException e) {
             view.appendLog("Error: " + e.getMessage());
