@@ -54,7 +54,7 @@ public class MailServer {
             e.printStackTrace();
         }
     }
-
+    
     private void handleRequest(String request, DatagramPacket packet) throws IOException {
         List<String> tokens = new ArrayList<>(Arrays.asList(request.split(":")));
         if (tokens.isEmpty()) {
@@ -81,10 +81,69 @@ public class MailServer {
                 handleLoadEmails(tokens, packet);
                 break;
 
+            case "SEARCH_EMAILS":
+                handleSearchEmails(tokens, packet);
+                break;
+
+            case "DELETE_EMAIL":  // Xử lý xóa email
+                handleDeleteEmail(tokens, packet);
+                break;
+
             default:
                 sendResponse("Invalid command", packet);
                 break;
         }
+    }
+    private void handleDeleteEmail(List<String> tokens, DatagramPacket packet) throws IOException {
+        if (tokens.size() < 2) {
+            sendResponse("Invalid delete email request", packet);
+            return;
+        }
+
+        try {
+            String email = tokens.remove(0); // Lấy email người dùng (exam@gmail.com)
+            int mailId = Integer.parseInt(tokens.remove(0)); // Lấy ID của email cần xóa (7)
+
+            System.out.println("Attempting to delete email with ID: " + mailId + " for user: " + email);  // Ghi log ID email và người dùng
+
+            // Kiểm tra email có tồn tại trong CSDL trước khi xóa
+            boolean exists = mailDAO.mailExists(mailId);
+            if (!exists) {
+                sendResponse("Email with ID " + mailId + " does not exist", packet);
+                return;
+            }
+
+            // Tiến hành gọi phương thức xóa
+            boolean isDeleted = mailDAO.deleteMail(mailId);
+
+            // Ghi log kết quả xóa
+            if (isDeleted) {
+                System.out.println("Email with ID " + mailId + " deleted successfully.");
+                sendResponse("Email deleted successfully", packet);
+            } else {
+                System.out.println("Failed to delete email with ID " + mailId);
+                sendResponse("Failed to delete email", packet);
+            }
+        } catch (NumberFormatException e) {
+            sendResponse("Invalid email ID format", packet);
+        }
+    }
+
+
+    
+    private void handleSearchEmails(List<String> tokens, DatagramPacket packet) throws IOException {
+        if (tokens.size() < 3) {
+            sendResponse("Invalid search request", packet);
+            return;
+        }
+        String email = tokens.remove(0);   // Email của người dùng cần tìm kiếm
+        String keyword = tokens.remove(0); // Từ khóa tìm kiếm
+        int currentPage = Integer.parseInt(tokens.remove(0)); // Trang hiện tại
+        int emailsPerPage = Integer.parseInt(tokens.remove(0)); // Số email trên mỗi trang
+
+        // Tìm kiếm email trong cơ sở dữ liệu
+        String foundEmails = mailDAO.searchMailsForUser(email, keyword, currentPage, emailsPerPage);
+        sendResponse(foundEmails.isEmpty() ? "No emails found" : foundEmails, packet);
     }
 
     private void handleRegister(List<String> tokens, DatagramPacket packet) throws IOException {

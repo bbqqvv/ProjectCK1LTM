@@ -39,3 +39,403 @@ ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content:
 ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
 
 Error: Address already in use: bind
+Mail server is running on port 4445
+Server started...
+Received: LOGIN:exam@gmail.com:123
+Sent response: Login successful. Welcome, Bùi Quốc Văn!
+Received: SAVE_IP:exam@gmail.com:192.168.1.3
+Sent response: Invalid command
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: LOAD_EMAILS:exam@gmail.com:2:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: SEARCH_EMAILS:exam@gmail.com:exam:2:10
+Sent response: Invalid command
+Received: SEARCH_EMAILS:exam@gmail.com:Quân:2:10
+Sent response: Invalid command
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: SEARCH_EMAILS:exam@gmail.com:XXX:1:10
+Sent response: Invalid command
+Received: LOAD_EMAILS:exam@gmail.com:2:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: LOAD_EMAILS:exam@gmail.com:2:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: SEARCH_EMAILS:exam@gmail.com:XXX:2:10
+Sent response: Invalid command
+Mail server is running on port 4445
+Server started...
+Received: LOGIN:exam@gmail.com:123
+Sent response: Login successful. Welcome, Bùi Quốc Văn!
+Received: SAVE_IP:exam@gmail.com:192.168.1.3
+Sent response: Invalid command
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: SEARCH_EMAILS:exam@gmail.com:XXX:1:10
+Sent response: ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: SEARCH_EMAILS:exam@gmail.com:exam:1:10
+Sent response: No emails found
+Received: SEARCH_EMAILS:exam@gmail.com:XXX:1:10
+Sent response: ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Mail server is running on port 4445
+Server started...
+Received: LOGIN:exam@gmail.com:123
+Sent response: Login successful. Welcome, Bùi Quốc Văn!
+Received: SAVE_IP:exam@gmail.com:192.168.1.3
+Sent response: Invalid command
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: SEARCH_EMAILS:exam@gmail.com:XXX:1:10
+Sent response: ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: SEARCH_EMAILS:exam@gmail.com:XX:1:10
+Sent response: ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: LOAD_EMAILS:exam@gmail.com:1:1
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: LOAD_EMAILS:exam@gmail.com:2:1
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: LOAD_EMAILS:exam@gmail.com:1:1
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: LOGIN:exam1@gmail.com:123
+Sent response: Login successful. Welcome, Văn Quốc Bùi!
+Received: SAVE_IP:exam1@gmail.com:192.168.1.3
+Sent response: Invalid command
+Received: LOAD_EMAILS:exam1@gmail.com:1:10
+Sent response: ID: 1, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Em Xin Nghĩ Học Ạ, Content: Dạ hôm nay em bị bệnh, Sent Date: 2024-10-30, Is Sent: false
+ID: 6, Sender: exam1@gmail.com, Receiver: exam1@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 9, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Xin chào Exam, Content: XXXXXX, Sent Date: 2024-11-10, Is Sent: false
+
+Received: LOAD_EMAILS:exam1@gmail.com:2:10
+Sent response: ID: 1, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Em Xin Nghĩ Học Ạ, Content: Dạ hôm nay em bị bệnh, Sent Date: 2024-10-30, Is Sent: false
+ID: 6, Sender: exam1@gmail.com, Receiver: exam1@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 9, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Xin chào Exam, Content: XXXXXX, Sent Date: 2024-11-10, Is Sent: false
+
+Received: LOAD_EMAILS:exam1@gmail.com:1:10
+Sent response: ID: 1, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Em Xin Nghĩ Học Ạ, Content: Dạ hôm nay em bị bệnh, Sent Date: 2024-10-30, Is Sent: false
+ID: 6, Sender: exam1@gmail.com, Receiver: exam1@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 9, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Xin chào Exam, Content: XXXXXX, Sent Date: 2024-11-10, Is Sent: false
+
+Received: LOAD_EMAILS:exam1@gmail.com:1:10
+Sent response: ID: 1, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Em Xin Nghĩ Học Ạ, Content: Dạ hôm nay em bị bệnh, Sent Date: 2024-10-30, Is Sent: false
+ID: 6, Sender: exam1@gmail.com, Receiver: exam1@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 9, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Xin chào Exam, Content: XXXXXX, Sent Date: 2024-11-10, Is Sent: false
+
+Received: LOAD_EMAILS:exam1@gmail.com:1:10
+Sent response: ID: 1, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Em Xin Nghĩ Học Ạ, Content: Dạ hôm nay em bị bệnh, Sent Date: 2024-10-30, Is Sent: false
+ID: 6, Sender: exam1@gmail.com, Receiver: exam1@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 9, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Xin chào Exam, Content: XXXXXX, Sent Date: 2024-11-10, Is Sent: false
+
+Received: LOAD_EMAILS:exam1@gmail.com:1:10
+Sent response: ID: 1, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Em Xin Nghĩ Học Ạ, Content: Dạ hôm nay em bị bệnh, Sent Date: 2024-10-30, Is Sent: false
+ID: 6, Sender: exam1@gmail.com, Receiver: exam1@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 9, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Xin chào Exam, Content: XXXXXX, Sent Date: 2024-11-10, Is Sent: false
+
+Received: LOAD_EMAILS:exam1@gmail.com:1:10
+Sent response: ID: 1, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Em Xin Nghĩ Học Ạ, Content: Dạ hôm nay em bị bệnh, Sent Date: 2024-10-30, Is Sent: false
+ID: 6, Sender: exam1@gmail.com, Receiver: exam1@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 9, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Xin chào Exam, Content: XXXXXX, Sent Date: 2024-11-10, Is Sent: false
+
+Received: LOAD_EMAILS:exam1@gmail.com:1:10
+Sent response: ID: 1, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Em Xin Nghĩ Học Ạ, Content: Dạ hôm nay em bị bệnh, Sent Date: 2024-10-30, Is Sent: false
+ID: 6, Sender: exam1@gmail.com, Receiver: exam1@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 9, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Xin chào Exam, Content: XXXXXX, Sent Date: 2024-11-10, Is Sent: false
+
+Received: LOAD_EMAILS:exam1@gmail.com:1:10
+Sent response: ID: 1, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Em Xin Nghĩ Học Ạ, Content: Dạ hôm nay em bị bệnh, Sent Date: 2024-10-30, Is Sent: false
+ID: 6, Sender: exam1@gmail.com, Receiver: exam1@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 9, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Xin chào Exam, Content: XXXXXX, Sent Date: 2024-11-10, Is Sent: false
+
+Received: LOAD_EMAILS:exam1@gmail.com:1:10
+Sent response: ID: 1, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Em Xin Nghĩ Học Ạ, Content: Dạ hôm nay em bị bệnh, Sent Date: 2024-10-30, Is Sent: false
+ID: 6, Sender: exam1@gmail.com, Receiver: exam1@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 9, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Xin chào Exam, Content: XXXXXX, Sent Date: 2024-11-10, Is Sent: false
+
+Received: LOAD_EMAILS:exam1@gmail.com:1:10
+Sent response: ID: 1, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Em Xin Nghĩ Học Ạ, Content: Dạ hôm nay em bị bệnh, Sent Date: 2024-10-30, Is Sent: false
+ID: 6, Sender: exam1@gmail.com, Receiver: exam1@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 9, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Xin chào Exam, Content: XXXXXX, Sent Date: 2024-11-10, Is Sent: false
+
+Received: LOGIN:exam@gmail.com:123
+Sent response: Login successful. Welcome, Bùi Quốc Văn!
+Received: SAVE_IP:exam@gmail.com:192.168.1.3
+Sent response: Invalid command
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: LOAD_EMAILS:exam@gmail.com:0:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Mail server is running on port 4445
+Server started...
+Received: LOGIN:exam@gmail.com:123
+Sent response: Login successful. Welcome, Bùi Quốc Văn!
+Received: SAVE_IP:exam@gmail.com:192.168.1.3
+Sent response: Invalid command
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: LOGIN:exam@gmail.com:123
+Sent response: Login successful. Welcome, Bùi Quốc Văn!
+Received: SAVE_IP:exam@gmail.com:192.168.1.3
+Sent response: Invalid command
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: LOAD_EMAILS:exam@gmail.com:2:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Error: Address already in use: bind
+Received: LOGIN:exam@gmail.com:123
+Sent response: Login successful. Welcome, Bùi Quốc Văn!
+Received: SAVE_IP:exam@gmail.com:192.168.1.3
+Sent response: Invalid command
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: DELETE_EMAIL:exam@gmail.com:8
+Sent response: Invalid command
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: DELETE_EMAIL:exam@gmail.com:7
+Sent response: Invalid command
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: LOGIN:exam@gmail.com:123
+Sent response: Login successful. Welcome, Bùi Quốc Văn!
+Received: SAVE_IP:exam@gmail.com:192.168.1.3
+Sent response: Invalid command
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: DELETE_EMAIL:exam@gmail.com:7
+Sent response: Invalid command
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: LOAD_EMAILS:exam@gmail.com:2:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: LOGIN:exam@gmail.com:123
+Sent response: Login successful. Welcome, Bùi Quốc Văn!
+Received: SAVE_IP:exam@gmail.com:192.168.1.3
+Sent response: Invalid command
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: DELETE_EMAIL:exam@gmail.com:2
+Sent response: Invalid command
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: DELETE_EMAIL:exam@gmail.com:2
+Sent response: Invalid command
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Mail server is running on port 4445
+Received: LOGIN:exam@gmail.com:123
+Sent response: Login successful. Welcome, Bùi Quốc Văn!
+Received: SAVE_IP:exam@gmail.com:192.168.1.3
+Sent response: Invalid command
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: LOGIN:exam@gmail.com:123
+Sent response: Login successful. Welcome, Bùi Quốc Văn!
+Received: SAVE_IP:exam@gmail.com:192.168.1.3
+Sent response: Invalid command
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: DELETE_EMAIL:exam@gmail.com:2
+Sent response: Invalid email ID format
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: LOAD_EMAILS:exam@gmail.com:2:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: DELETE_EMAIL:exam@gmail.com:8
+Sent response: Invalid email ID format
+Received: LOAD_EMAILS:exam@gmail.com:2:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: DELETE_EMAIL:exam@gmail.com:8
+Sent response: Invalid email ID format
+Received: LOAD_EMAILS:exam@gmail.com:2:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: LOGIN:exam@gmail.com:123
+Sent response: Login successful. Welcome, Bùi Quốc Văn!
+Received: SAVE_IP:exam@gmail.com:192.168.1.3
+Sent response: Invalid command
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: DELETE_EMAIL:exam@gmail.com:7
+Sent response: Invalid email ID format
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: DELETE_EMAIL:exam@gmail.com:7
+Sent response: Invalid email ID format
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Mail server is running on port 4445
+Server started...
+Received: LOGIN:exam@gmail.com:123
+Sent response: Login successful. Welcome, Bùi Quốc Văn!
+Received: SAVE_IP:exam@gmail.com:192.168.1.3
+Sent response: Invalid command
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+ID: 8, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+
+Received: DELETE_EMAIL:exam@gmail.com:8
+Sent response: Email deleted successfully
+Received: LOAD_EMAILS:exam@gmail.com:1:10
+Sent response: ID: 2, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Quân, Content: Xin chào cu em, Sent Date: 2024-10-30, Is Sent: false
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: XXXXX, Sent Date: 2024-10-31, Is Sent: false
+

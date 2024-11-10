@@ -19,7 +19,6 @@ public class SidebarPanel extends JPanel {
         addButton("📥 Load Emails", e -> mailClientView.switchPanel("LoadEmails"));
         addButton("🗑️ Delete Email", e -> mailClientView.deleteEmail());
         addButton("↩️ Reply Email", e -> mailClientView.replyEmail());
-        addButton("🔍 Search Email", e -> mailClientView.searchEmail());
         addButton("⚙ Settings", e -> mailClientView.openSettings());  // Nút mới cho Settings
     }
 
