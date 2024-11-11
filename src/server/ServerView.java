@@ -1,101 +1,165 @@
 package server;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ServerView extends JFrame {
     private JTextArea logArea;
     private JButton startButton;
     private JButton stopButton;
-    private boolean isRunning = false; // Biến trạng thái để theo dõi server
-	private ServerView view;
+    private JButton clearLogButton;
+    private JButton saveLogButton;
+    private JLabel statusLabel;
+    private boolean isRunning = false;
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
     public ServerView() {
         setTitle("Mail Server");
-        setSize(600, 400);
+        setSize(700, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        getContentPane().setLayout(new BorderLayout());
+        getContentPane().setLayout(new BorderLayout(10, 10));
+        getContentPane().setBackground(new Color(240, 248, 255));
 
-        // Tạo toolbar với các nút điều khiển
-        JToolBar toolBar = new JToolBar();
-        toolBar.setBackground(new Color(173, 216, 230));
-        
-        startButton = new JButton("Start Server");
-        startButton.addActionListener(this::startServer);
-        toolBar.add(startButton);
-        
-        stopButton = new JButton("Stop Server");
-        stopButton.addActionListener(this::stopServer);
-        toolBar.add(stopButton);
-        
-        getContentPane().add(toolBar, BorderLayout.NORTH);
+        initToolBar();
+        initLogArea();
+        initStatusBar();
 
-        // Tạo khu vực log
-        logArea = new JTextArea();
-        logArea.setEditable(false);
-        logArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
-        logArea.setBackground(new Color(240, 248, 255));
-        logArea.setLineWrap(true);
-        logArea.setWrapStyleWord(true);
-        
-        JScrollPane scrollPane = new JScrollPane(logArea);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        
-        getContentPane().add(scrollPane, BorderLayout.CENTER);
-
-        // Hiển thị cửa sổ
         setVisible(true);
     }
 
+    private void initToolBar() {
+        JToolBar toolBar = new JToolBar();
+        toolBar.setFloatable(false);
+        toolBar.setBackground(new Color(224, 236, 244));
+        toolBar.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+        startButton = createButton("Start Server", "Start the server", e -> startServer(e), "icons/start.png");
+        stopButton = createButton("Stop Server", "Stop the server", e -> stopServer(e), "icons/stop.png");
+        stopButton.setEnabled(false);
+        clearLogButton = createButton("Clear Log", "Clear the log area", e -> logArea.setText(""), "icons/clear.png");
+        saveLogButton = createButton("Save Log", "Save the log to a file", e -> saveLogToFile(e), "icons/save.png");
+
+        toolBar.add(startButton);
+        toolBar.add(stopButton);
+        toolBar.addSeparator();
+        toolBar.add(clearLogButton);
+        toolBar.add(saveLogButton);
+
+        getContentPane().add(toolBar, BorderLayout.NORTH);
+    }
+
+    private JButton createButton(String text, String toolTip, ActionListener action, String iconPath) {
+        JButton button = new JButton(text);
+        button.setToolTipText(toolTip);
+        button.addActionListener(action); // Accepts ActionListener
+        button.setIcon(new ImageIcon(iconPath)); // Placeholder for icon
+        button.setBackground(new Color(173, 216, 230));
+        button.setFocusPainted(false);
+        button.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 15));
+        return button;
+    }
+
+
+    private void initLogArea() {
+        logArea = new JTextArea();
+        logArea.setEditable(false);
+        logArea.setFont(new Font("Monospaced", Font.PLAIN, 13));
+        logArea.setBackground(new Color(240, 248, 255));
+        logArea.setLineWrap(true);
+        logArea.setWrapStyleWord(true);
+
+        JScrollPane scrollPane = new JScrollPane(logArea);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setBorder(BorderFactory.createTitledBorder("Server Log"));
+
+        getContentPane().add(scrollPane, BorderLayout.CENTER);
+    }
+
+    private void initStatusBar() {
+        JPanel statusPanel = new JPanel(new BorderLayout());
+        statusPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+
+        statusLabel = new JLabel("Status: Stopped", new ImageIcon("icons/stopped.png"), JLabel.LEFT);
+        statusLabel.setFont(new Font("SansSerif", Font.BOLD, 12));
+        statusLabel.setForeground(Color.RED);
+        statusPanel.add(statusLabel, BorderLayout.WEST);
+
+        getContentPane().add(statusPanel, BorderLayout.SOUTH);
+    }
+
     private void startServer(ActionEvent e) {
-        if (isRunning) { 
-            // Kiểm tra nếu server đang chạy
-            JOptionPane.showMessageDialog(this, "Server is already running!", "Info", JOptionPane.INFORMATION_MESSAGE);
+        if (isRunning) {
+            showNotification("Server is already running!");
             return;
         }
-        
-        isRunning = true; // Cập nhật trạng thái là server đang chạy
-        logArea.setText(""); // Xóa log trước khi bắt đầu lại
+
+        isRunning = true;
+        logArea.setText("");
         appendLog("Server started...");
+        updateUIForRunningState(true);
     }
 
     private void stopServer(ActionEvent e) {
         if (!isRunning) {
-            // Kiểm tra nếu server đã dừng
-            JOptionPane.showMessageDialog(this, "Server is not running.", "Info", JOptionPane.INFORMATION_MESSAGE);
+            showNotification("Server is not running.");
             return;
         }
 
         appendLog("Server stopped...");
-        isRunning = false; // Cập nhật trạng thái là server đã dừng
-        logArea.setText(""); // Xóa log khi dừng server
+        isRunning = false;
+        updateUIForRunningState(false);
     }
 
-
-
-    // Phương thức để hiển thị thông báo trên giao diện
-    public void showNotification(String message) {
-        JOptionPane.showMessageDialog(this, message, "New Notification", JOptionPane.INFORMATION_MESSAGE);
-    }
-
-
-
-    public void appendLog(String message) {
-        // Ghi vào JTextArea
-        logArea.append(message + "\n");
-        logArea.setCaretPosition(logArea.getDocument().getLength()); // Cuộn xuống cuối cùng
-
-        // Ghi log vào file
+    private void saveLogToFile(ActionEvent e) {
         try (FileWriter fw = new FileWriter("server.log", true); BufferedWriter bw = new BufferedWriter(fw)) {
-            bw.write(message + "\n");
-        } catch (IOException e) {
-            view.appendLog("Error writing log to file: " + e.getMessage());
+            bw.write(logArea.getText());
+            showNotification("Log saved to server.log");
+        } catch (IOException ex) {
+            appendLog("Error saving log to file: " + ex.getMessage());
         }
     }
 
+    public void showNotification(String message) {
+        JOptionPane.showMessageDialog(this, message, "Notification", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void appendLog(String message) {
+        String timeStampedMessage = String.format("[%s] %s", dateFormat.format(new Date()), message);
+        logArea.append(timeStampedMessage + "\n");
+        logArea.setCaretPosition(logArea.getDocument().getLength());
+
+        try (FileWriter fw = new FileWriter("server.log", true); BufferedWriter bw = new BufferedWriter(fw)) {
+            bw.write(timeStampedMessage + "\n");
+        } catch (IOException e) {
+            logArea.append("Error writing log to file: " + e.getMessage() + "\n");
+        }
+    }
+
+    private void updateUIForRunningState(boolean isRunning) {
+        startButton.setEnabled(!isRunning);
+        stopButton.setEnabled(isRunning);
+
+        if (isRunning) {
+            statusLabel.setText("Status: Running");
+            statusLabel.setForeground(new Color(0, 128, 0));
+            statusLabel.setIcon(new ImageIcon("icons/running.png")); // Placeholder for running icon
+        } else {
+            statusLabel.setText("Status: Stopped");
+            statusLabel.setForeground(Color.RED);
+            statusLabel.setIcon(new ImageIcon("icons/stopped.png")); // Placeholder for stopped icon
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(ServerView::new);
+    }
 }
