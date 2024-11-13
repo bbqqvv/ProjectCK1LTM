@@ -20,7 +20,10 @@ public class SidebarPanel extends JPanel {
         addButton("🗑️ Delete Email", e -> mailClientView.deleteEmail());
         addButton("↩️ Reply Email", e -> mailClientView.replyEmail());
         addButton("⚙ Settings", e -> mailClientView.openSettings());  // Nút mới cho Settings
+        addButton("💬 Chat", e -> mailClientView.switchPanel("Chat"));  // Nút mới cho Chat
     }
+
+
 
     private void addButton(String text, ActionListener action) {
         JButton button = createButton(text);

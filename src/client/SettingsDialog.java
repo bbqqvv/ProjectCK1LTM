@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalTime;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -14,12 +15,11 @@ public class SettingsDialog extends JDialog {
     private String selectedFontSize;
     private String selectedSortOrder;
     private boolean notificationsEnabled;
-    private MailClientView parentView;
-
-    private String username;
     private boolean autoRefreshEnabled;
+    private String username;
     private Locale currentLocale;
     private ResourceBundle messages;
+    private MailClientView parentView;
 
     // Constructor
     public SettingsDialog(MailClientView parentView, int emailsPerPage, String username) {
@@ -41,7 +41,7 @@ public class SettingsDialog extends JDialog {
         settingsPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         JLabel themeLabel = new JLabel(messages.getString("settings.selectTheme"));
-        JComboBox<String> themeComboBox = new JComboBox<>(new String[]{messages.getString("settings.light"), messages.getString("settings.dark")});
+        JComboBox<String> themeComboBox = new JComboBox<>(new String[]{messages.getString("settings.light"), messages.getString("settings.dark"), messages.getString("settings.auto")});
 
         JLabel emailsPerPageLabel = new JLabel(messages.getString("settings.emailsPerPage"));
         JTextField emailsPerPageField = new JTextField(String.valueOf(emailsPerPage));
@@ -164,18 +164,31 @@ public class SettingsDialog extends JDialog {
     private void changeLanguage(Locale newLocale) {
         this.currentLocale = newLocale;
         this.messages = ResourceBundle.getBundle("messages", currentLocale);  // Load new language
-        initializeDialog();  // Rebuild the dialog UI with new language
+        // Rebuild the dialog UI with new language and retain current values
+        initializeDialog();  // Ensure data is retained on language change
     }
 
     private void applyTheme(String selectedTheme) {
         if ("Dark".equalsIgnoreCase(selectedTheme)) {
             parentView.getContentPane().setBackground(Color.DARK_GRAY);
             parentView.updateStatusLabel(messages.getString("settings.darkThemeApplied"));
+        } else if ("Auto".equalsIgnoreCase(selectedTheme)) {
+            applyAutoTheme();
         } else {
             parentView.getContentPane().setBackground(Color.WHITE);
             parentView.updateStatusLabel(messages.getString("settings.lightThemeApplied"));
         }
         SwingUtilities.updateComponentTreeUI(parentView);
+    }
+
+    private void applyAutoTheme() {
+        // Set theme automatically based on the time of day
+        LocalTime currentTime = LocalTime.now();
+        if (currentTime.isBefore(LocalTime.NOON)) {
+            applyTheme("Light");
+        } else {
+            applyTheme("Dark");
+        }
     }
 
     private void updateEmailsPerPage(int emailsPerPageValue) {

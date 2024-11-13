@@ -11,6 +11,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MailClientView extends JFrame {
+
+	private Timer autoRefreshTimer;
+	private boolean autoRefreshEnabled = false;
 	private JPanel mainPanel;
 	private MailClient client;
 	private String username;
@@ -27,6 +30,14 @@ public class MailClientView extends JFrame {
 	private boolean notificationsEnabled;
 
 	public MailClientView(MailClient client, String username) {
+
+		// Initialize auto-refresh timer for emails
+		autoRefreshTimer = new Timer(30000, e -> { // Refresh every 30 seconds
+			if (autoRefreshEnabled) {
+				loadEmails(currentPage); // Reload emails if auto-refresh is enabled
+			}
+		});
+		autoRefreshTimer.start();
 		this.client = client;
 		this.username = username;
 
@@ -55,25 +66,34 @@ public class MailClientView extends JFrame {
 
 	private void createMainPanel() {
 		mainPanel = new JPanel(new CardLayout());
-		mainPanel.add(createSendEmailPanel(), "SendEmail");
+		mainPanel.add(createSendEmailPanel(null, null, null), "SendEmail");
 		mainPanel.add(createLoadEmailsPanel(), "LoadEmails");
 		getContentPane().add(mainPanel, BorderLayout.CENTER);
 	}
 
-	private JPanel createSendEmailPanel() {
+	private JPanel createSendEmailPanel(String receiver, String subject, String quotedContent) {
 		JPanel panel = new JPanel(new BorderLayout());
 		panel.setBackground(Color.WHITE);
 
+		// Input panel to hold receiver and subject
 		JPanel inputPanel = new JPanel(new GridLayout(0, 2, 10, 10));
 		JTextField receiverField = new JTextField(20);
 		JTextField subjectField = new JTextField(20);
+
+		// Pre-fill receiver and subject if replying to an email
+		receiverField.setText(receiver != null ? receiver : "");
+		subjectField.setText(subject != null ? subject : "");
 
 		addInputField(inputPanel, "Receiver Email:", receiverField);
 		addInputField(inputPanel, "Subject:", subjectField);
 
 		panel.add(inputPanel, BorderLayout.NORTH);
 
+		// Content area (text area) for the email body
 		sendEmailContentArea = new JTextArea(10, 30);
+		if (quotedContent != null) {
+			sendEmailContentArea.setText(quotedContent); // Pre-fill with quoted content if replying
+		}
 		panel.add(new JScrollPane(sendEmailContentArea), BorderLayout.CENTER);
 
 		JButton sendButton = new JButton("📧 Send Email");
@@ -82,21 +102,22 @@ public class MailClientView extends JFrame {
 
 		return panel;
 	}
+
 	private void addRightClickMenu() {
-	    JPopupMenu popupMenu = new JPopupMenu();
+		JPopupMenu popupMenu = new JPopupMenu();
 
-	    // Tùy chọn "Delete"
-	    JMenuItem deleteMenuItem = new JMenuItem("Delete");
-	    deleteMenuItem.addActionListener(e -> deleteEmail());
-	    popupMenu.add(deleteMenuItem);
+		// Tùy chọn "Delete"
+		JMenuItem deleteMenuItem = new JMenuItem("Delete");
+		deleteMenuItem.addActionListener(e -> deleteEmail());
+		popupMenu.add(deleteMenuItem);
 
-	    // Tùy chọn "Reply"
-	    JMenuItem replyMenuItem = new JMenuItem("Reply");
-	    replyMenuItem.addActionListener(e -> replyEmail());
-	    popupMenu.add(replyMenuItem);
+		// Tùy chọn "Reply"
+		JMenuItem replyMenuItem = new JMenuItem("Reply");
+		replyMenuItem.addActionListener(e -> replyEmail());
+		popupMenu.add(replyMenuItem);
 
-	    // Gắn menu chuột phải vào bảng
-	    emailTable.setComponentPopupMenu(popupMenu);
+		// Gắn menu chuột phải vào bảng
+		emailTable.setComponentPopupMenu(popupMenu);
 	}
 
 	private void addInputField(JPanel panel, String labelText, JTextField textField) {
@@ -147,15 +168,15 @@ public class MailClientView extends JFrame {
 		emailTable.setRowHeight(30);
 		emailTable.getTableHeader().setReorderingAllowed(false);
 		emailTable.getSelectionModel().addListSelectionListener(e -> {
-		    if (!e.getValueIsAdjusting()) {
-		        int selectedRow = emailTable.getSelectedRow();
-		        if (selectedRow != -1) {
-		            // Lấy ID của email được chọn
-		            String emailId = emailTable.getValueAt(selectedRow, 0).toString();
-		            // Lưu ID email để xóa khi cần
-		            System.out.println("Email selected for deletion: " + emailId);
-		        }
-		    }
+			if (!e.getValueIsAdjusting()) {
+				int selectedRow = emailTable.getSelectedRow();
+				if (selectedRow != -1) {
+					// Lấy ID của email được chọn
+					String emailId = emailTable.getValueAt(selectedRow, 0).toString();
+					// Lưu ID email để xóa khi cần
+					System.out.println("Email selected for deletion: " + emailId);
+				}
+			}
 		});
 
 		header = emailTable.getTableHeader();
@@ -219,58 +240,73 @@ public class MailClientView extends JFrame {
 				}
 			}
 		});
-	    addRightClickMenu();
+		addRightClickMenu();
 
 		return panel;
 	}
 
 	private void searchEmail(String keyword) {
-		// Kiểm tra từ khóa tìm kiếm
 		if (keyword == null || keyword.trim().isEmpty()) {
-			loadEmails(currentPage); // Nếu không có từ khóa, load lại tất cả email
+			loadEmails(currentPage);
 			return;
 		}
 
-		emailTableModel.setRowCount(0); // Xóa dữ liệu bảng hiện tại
-		emailContents.clear(); // Xóa danh sách email đã tải
+		emailTableModel.setRowCount(0);
+		emailContents.clear();
 
-		try {
-			// Gửi yêu cầu tìm kiếm email
-			String response = client
-					.sendRequest("SEARCH_EMAILS:" + username + ":" + keyword + ":" + currentPage + ":" + emailsPerPage);
+		SwingWorker<Void, String[]> searchWorker = new SwingWorker<>() {
+			@Override
+			protected Void doInBackground() throws Exception {
+				String response = client.sendRequest(
+						"SEARCH_EMAILS:" + username + ":" + keyword + ":" + currentPage + ":" + emailsPerPage);
 
-			if (response == null || response.isEmpty()) {
-				updateStatusLabel("No emails found for the search.");
-				return;
+				if (response == null || response.isEmpty()) {
+					publish(new String[] { "No emails found for the search." });
+					return null;
+				}
+
+				String[] emails = response.split("\n");
+				for (String email : emails) {
+					if (email.trim().isEmpty())
+						continue;
+					publish(parseEmailData(email));
+				}
+				return null;
 			}
 
-			String[] emails = response.split("\n");
+			@Override
+			protected void process(List<String[]> chunks) {
+				for (String[] emailData : chunks) {
+					emailTableModel.addRow(emailData);
+				}
+				updateStatusLabel("Found " + emailTableModel.getRowCount() + " emails for your search.");
+			}
 
-			for (String email : emails) {
-				if (email.trim().isEmpty())
-					continue;
-
-				String regex = "ID: (\\d+), Sender: ([^,]+), Receiver: ([^,]+), Subject: ([^,]+), Content: (.*?), Sent Date: ([^,]+), Is Sent: (true|false)";
-				Pattern pattern = Pattern.compile(regex);
-				Matcher matcher = pattern.matcher(email);
-
-				if (matcher.find()) {
-					String id = matcher.group(1);
-					String sender = matcher.group(2);
-					String subject = matcher.group(4);
-					String date = matcher.group(6);
-					String content = matcher.group(5);
-
-					emailTableModel.addRow(new Object[] { id, sender, subject, date });
-					emailContents.add(content);
+			@Override
+			protected void done() {
+				if (emailTableModel.getRowCount() == 0) {
+					updateStatusLabel("No emails found for the search.");
 				}
 			}
+		};
+		searchWorker.execute();
+	}
 
-			updateStatusLabel("Found " + emailTableModel.getRowCount() + " emails for your search.");
-		} catch (Exception ex) {
-			showNotification("An error occurred: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-			ex.printStackTrace();
+	private String[] parseEmailData(String email) {
+		String regex = "ID: (\\d+), Sender: ([^,]+), Receiver: ([^,]+), Subject: ([^,]+), Content: (.*?), Sent Date: ([^,]+), Is Sent: (true|false)";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(email);
+
+		if (matcher.find()) {
+			String id = matcher.group(1);
+			String sender = matcher.group(2);
+			String subject = matcher.group(4);
+			String date = matcher.group(6);
+			String content = matcher.group(5);
+			emailContents.add(content);
+			return new String[] { id, sender, subject, date };
 		}
+		return null;
 	}
 
 	private void createEmailDetailsArea() {
@@ -284,48 +320,48 @@ public class MailClientView extends JFrame {
 		emailTableModel.setRowCount(0);
 		emailContents.clear();
 
-		try {
-			String response = client.sendRequest("LOAD_EMAILS:" + username + ":" + currentPage + ":" + emailsPerPage);
+		SwingWorker<Void, String[]> loadWorker = new SwingWorker<>() {
+			@Override
+			protected Void doInBackground() throws Exception {
+				String response = client
+						.sendRequest("LOAD_EMAILS:" + username + ":" + currentPage + ":" + emailsPerPage);
 
-			if (response == null || response.isEmpty()) {
-				updateStatusLabel("No emails to display.");
-				return;
+				if (response == null || response.isEmpty()) {
+					publish(new String[] { "No emails to display." });
+					return null;
+				}
+
+				String[] emails = response.split("\n");
+				for (String email : emails) {
+					if (email.trim().isEmpty())
+						continue;
+					publish(parseEmailData(email));
+				}
+				return null;
 			}
 
-			String[] emails = response.split("\n");
+			@Override
+			protected void process(List<String[]> chunks) {
+				for (String[] emailData : chunks) {
+					emailTableModel.addRow(emailData);
+				}
+				updateStatusLabel("Loaded " + emailTableModel.getRowCount() + " emails.");
+			}
 
-			for (String email : emails) {
-				if (email.trim().isEmpty())
-					continue;
-
-				String regex = "ID: (\\d+), Sender: ([^,]+), Receiver: ([^,]+), Subject: ([^,]+), Content: (.*?), Sent Date: ([^,]+), Is Sent: (true|false)";
-				Pattern pattern = Pattern.compile(regex);
-				Matcher matcher = pattern.matcher(email);
-
-				if (matcher.find()) {
-					String id = matcher.group(1);
-					String sender = matcher.group(2);
-					String subject = matcher.group(4);
-					String date = matcher.group(6);
-					String content = matcher.group(5);
-
-					emailTableModel.addRow(new Object[] { id, sender, subject, date });
-					emailContents.add(content);
+			@Override
+			protected void done() {
+				if (emailTableModel.getRowCount() == 0) {
+					updateStatusLabel("No emails to display.");
 				}
 			}
-
-			updateStatusLabel("Loaded " + emailTableModel.getRowCount() + " emails.");
-
-			// Thêm thông báo khi tải thành công
-			showNotification("Successfully loaded " + emailTableModel.getRowCount() + " emails.", "Emails Loaded",
-					JOptionPane.INFORMATION_MESSAGE);
-		} catch (Exception ex) {
-			showNotification("An error occurred: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-			ex.printStackTrace();
-		}
+		};
+		loadWorker.execute();
 	}
 
 	private void showNotification(String message, String title, int messageType) {
+
+		// Optional: Play a sound for notification
+		// Optional: Change icon in system tray or app window for notifications
 		JOptionPane.showMessageDialog(this, message, title, messageType);
 	}
 
@@ -346,6 +382,10 @@ public class MailClientView extends JFrame {
 		}
 	}
 
+	public void updateStatusLabel(String message) {
+		statusLabel.setText(message);
+	}
+
 	public void switchPanel(String panelName) {
 		CardLayout layout = (CardLayout) mainPanel.getLayout();
 		layout.show(mainPanel, panelName);
@@ -356,40 +396,57 @@ public class MailClientView extends JFrame {
 	}
 
 	public void deleteEmail() {
-	    int selectedRow = emailTable.getSelectedRow(); // Lấy dòng được chọn trong bảng
-	    if (selectedRow == -1) {
-	        showNotification("Select an email to delete.", "Warning", JOptionPane.WARNING_MESSAGE);
-	        return; // Nếu không có email nào được chọn, dừng lại và hiển thị cảnh báo
-	    }
+		int selectedRow = emailTable.getSelectedRow(); // Lấy dòng được chọn trong bảng
+		if (selectedRow == -1) {
+			showNotification("Select an email to delete.", "Warning", JOptionPane.WARNING_MESSAGE);
+			return; // Nếu không có email nào được chọn, dừng lại và hiển thị cảnh báo
+		}
 
-	    String id = emailTable.getValueAt(selectedRow, 0).toString(); // Lấy ID của email
-	    int confirm = JOptionPane.showConfirmDialog(this, "Are you sure to delete this email?", "Confirm Deletion", JOptionPane.YES_NO_OPTION);
+		String id = emailTable.getValueAt(selectedRow, 0).toString(); // Lấy ID của email
+		int confirm = JOptionPane.showConfirmDialog(this, "Are you sure to delete this email?", "Confirm Deletion",
+				JOptionPane.YES_NO_OPTION);
 
-	    if (confirm == JOptionPane.YES_OPTION) { // Nếu người dùng xác nhận xóa
-	        try {
-	            // Gửi yêu cầu xóa email tới server
-	            String response = client.sendRequest("DELETE_EMAIL:" + username + ":" + id);
-	            
-	            // Hiển thị thông báo kết quả xóa email
-	            showNotification(response, "Email Deletion", JOptionPane.INFORMATION_MESSAGE);
+		if (confirm == JOptionPane.YES_OPTION) { // Nếu người dùng xác nhận xóa
+			try {
+				// Gửi yêu cầu xóa email tới server
+				String response = client.sendRequest("DELETE_EMAIL:" + username + ":" + id);
 
-	            // Sau khi xóa thành công, cập nhật lại bảng email
-	            loadEmails(currentPage); // Tải lại email cho trang hiện tại
+				// Hiển thị thông báo kết quả xóa email
+				showNotification(response, "Email Deletion", JOptionPane.INFORMATION_MESSAGE);
 
-	            // Clear selection for better UX
-	            emailTable.clearSelection();
+				// Sau khi xóa thành công, cập nhật lại bảng email
+				loadEmails(currentPage); // Tải lại email cho trang hiện tại
 
-	        } catch (Exception ex) {
-	            // Xử lý lỗi nếu có
-	            showNotification("An error occurred: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-	            ex.printStackTrace();
-	        }
-	    }
+				// Clear selection for better UX
+				emailTable.clearSelection();
+
+			} catch (Exception ex) {
+				// Xử lý lỗi nếu có
+				showNotification("An error occurred: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				ex.printStackTrace();
+			}
+		}
 	}
 
+	public void replyEmail() {
+		int selectedRow = emailTable.getSelectedRow(); // Check selected email
+		if (selectedRow == -1) {
+			showNotification("Select an email to reply to.", "Warning", JOptionPane.WARNING_MESSAGE);
+			return;
+		}
 
-	void replyEmail() {
-		JOptionPane.showMessageDialog(this, "Feature under construction", "Info", JOptionPane.INFORMATION_MESSAGE);
+		String sender = emailTable.getValueAt(selectedRow, 1).toString();
+		String subject = "Re: " + emailTable.getValueAt(selectedRow, 2).toString();
+		String originalContent = emailContents.get(selectedRow);
+
+		// Prepare quoted content for reply
+		String quotedContent = "<br><br>--- Original Message ---<br>" + originalContent.replaceAll("(\r\n|\n)", "<br>");
+
+		// Open a new compose panel with reply details
+		JPanel replyPanel = createSendEmailPanel(sender, subject, quotedContent); // Pass receiver, subject, and quoted
+																					// content
+		mainPanel.add(replyPanel, "ReplyEmail");
+		switchPanel("ReplyEmail"); // Switch to the reply panel
 	}
 
 	private void createStatusLabel() {
@@ -397,10 +454,6 @@ public class MailClientView extends JFrame {
 		statusLabel.setFont(new Font("Arial", Font.PLAIN, 14));
 		statusLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		getContentPane().add(statusLabel, BorderLayout.SOUTH);
-	}
-
-	public void updateStatusLabel(String message) {
-		statusLabel.setText("Status: " + message);
 	}
 
 	class ButtonHoverEffect extends MouseAdapter {
@@ -416,81 +469,67 @@ public class MailClientView extends JFrame {
 	}
 
 	public void openSettings() {
-	    // Truyền thêm username vào SettingsDialog
-	    new SettingsDialog(this, emailsPerPage, username);
+		// Truyền thêm username vào SettingsDialog
+		new SettingsDialog(this, emailsPerPage, username);
 	}
 
-	private void updateEmailsPerPage(int emailsPerPageValue) {
-	    this.emailsPerPage = emailsPerPageValue; // Cập nhật giá trị emailsPerPage
-	    loadEmails(1); // Tải lại email từ trang đầu tiên
-	}
-
-	private void applyTheme(String selectedTheme) {
-	    if ("Dark".equalsIgnoreCase(selectedTheme)) {
-	        // Đặt màu nền và màu chữ cho theme tối
-	        getContentPane().setBackground(Color.DARK_GRAY);
-	        statusLabel.setForeground(Color.WHITE);
-	    } else {
-	        // Đặt theme sáng mặc định
-	        getContentPane().setBackground(Color.WHITE);
-	        statusLabel.setForeground(Color.BLACK);
-	    }
-
-	    // Cập nhật giao diện tất cả các thành phần để theme mới có hiệu lực
-	    SwingUtilities.updateComponentTreeUI(this);
-	}
 
 	public void setEmailsPerPage(int emailsPerPage) {
-	    this.emailsPerPage = emailsPerPage;
+		this.emailsPerPage = emailsPerPage;
 	}
 
 	public void setFont(Font font) {
-	    // Apply the font to the email display area (e.g., text area, labels)
-	    emailDetailsArea.setFont(font);
+		// Apply the font to the email display area (e.g., text area, labels)
+		emailDetailsArea.setFont(font);
 	}
 
 	public void setSortOrder(String sortOrder) {
-	    // Implement sorting logic based on the selected order
-	    // E.g., by date, subject, or sender
-	    this.sortOrder = sortOrder;
-	    loadEmails(1);  // Reload emails with the new sort order
+
+		// Sorting options: by date, sender, or subject
+		if ("date".equalsIgnoreCase(sortOrder)) {
+		} else if ("sender".equalsIgnoreCase(sortOrder)) {
+		} else if ("subject".equalsIgnoreCase(sortOrder)) {
+		}
+		
+		this.sortOrder = sortOrder;
+		loadEmails(1); 
 	}
 
 	public void setNotificationsEnabled(boolean enabled) {
-	    // Implement logic to enable or disable notifications
-	    this.notificationsEnabled = enabled;
-	    // Additional logic to manage notifications, e.g., update status label
-	    if (enabled) {
-	        updateStatusLabel("Notifications enabled");
-	    } else {
-	        updateStatusLabel("Notifications disabled");
-	    }
+		// Implement logic to enable or disable notifications
+		this.notificationsEnabled = enabled;
+		// Additional logic to manage notifications, e.g., update status label
+		if (enabled) {
+			updateStatusLabel("Notifications enabled");
+		} else {
+			updateStatusLabel("Notifications disabled");
+		}
 	}
 
-
 	public void setAutoRefreshEnabled(boolean autoRefreshEnabled) {
-		// TODO Auto-generated method stub
-		
+
+		this.autoRefreshEnabled = autoRefreshEnabled;
+		if (!autoRefreshEnabled && autoRefreshTimer.isRunning()) {
+			autoRefreshTimer.stop();
+		} else if (autoRefreshEnabled && !autoRefreshTimer.isRunning()) {
+			autoRefreshTimer.start();
+		}
+		updateStatusLabel("Auto-refresh " + (autoRefreshEnabled ? "enabled" : "disabled"));
+
 	}
 
 	public void setUsername(String newUsername) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void showLoginScreen() {
-	    // Đóng màn hình hiện tại (nếu cần thiết)
-	    this.setVisible(false);  // Ẩn màn hình chính của ứng dụng
-	    JOptionPane.showMessageDialog(this, "Logged out successfully.", "Logout", JOptionPane.INFORMATION_MESSAGE);
 
-	    // Tạo và hiển thị màn hình đăng nhập
-	    LoginView loginScreen = new LoginView();  // Giả sử LoginScreen là một JFrame hoặc JDialog
-	    loginScreen.setVisible(true);  // Hiển thị màn hình đăng nhập
+	
+		this.setVisible(false); // Ẩn màn hình chính của ứng dụng
+		JOptionPane.showMessageDialog(this, "Logged out successfully.", "Logout", JOptionPane.INFORMATION_MESSAGE);
+		LoginView loginScreen = new LoginView(); // Giả sử LoginScreen là một JFrame hoặc JDialog
+		loginScreen.setVisible(true); // Hiển thị màn hình đăng nhập
 
-	    // Nếu bạn muốn tự động thoát khi đăng xuất
-	    // System.exit(0);  // Dùng khi bạn muốn đóng toàn bộ ứng dụng và chỉ quay lại màn hình đăng nhập.
 	}
-
-
 
 }

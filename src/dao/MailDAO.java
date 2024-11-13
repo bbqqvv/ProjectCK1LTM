@@ -125,6 +125,20 @@ public class MailDAO {
 	    }
 	    return false;  // Nếu không tìm thấy bản ghi nào, trả về false
 	}
+	
+	public boolean markEmailAsRead(int mailId) {
+	    String sql = "UPDATE mails SET is_sent = true WHERE id = ?";
+	    try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+	        stmt.setInt(1, mailId); // Set ID của email cần cập nhật
+	        int rowsAffected = stmt.executeUpdate();
+	        
+	        // Kiểm tra xem có bản ghi nào bị ảnh hưởng không
+	        return rowsAffected > 0; // Trả về true nếu có ít nhất một bản ghi bị thay đổi
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        return false; // Nếu có lỗi xảy ra, trả về false
+	    }
+	}
 
 
 }

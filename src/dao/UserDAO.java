@@ -72,5 +72,21 @@ public class UserDAO {
         }
     }
 
+    public String getUserIpAddress(String receiverEmail) {
+        String sql = "SELECT ip_address FROM users WHERE email = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, receiverEmail);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("ip_address");  // Trả về địa chỉ IP của người nhận
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null; // Nếu không tìm thấy, trả về null
+    }
+
+
     // Other methods remain unchanged
 }
