@@ -5316,3 +5316,587 @@ ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Conte
 ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
 ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
 
+[00:38:58] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[00:38:58] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[00:38:58] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[00:38:58] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:38:58] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:38:58] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:39:01] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[00:39:01] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:39:08] Received: LOAD_EMAILS:exam@gmail.com:1:20
+[00:39:08] Received: LOAD_EMAILS:exam@gmail.com:1:20
+[00:39:08] Received: LOAD_EMAILS:exam@gmail.com:1:20
+[00:39:08] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:39:08] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:39:08] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:39:13] Received: LOAD_EMAILS:exam@gmail.com:2:20
+[00:39:13] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:39:15] Received: LOAD_EMAILS:exam@gmail.com:1:20
+[00:39:15] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:39:15] Received: LOAD_EMAILS:exam@gmail.com:0:20
+[00:39:15] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:39:15] Received: LOAD_EMAILS:exam@gmail.com:-1:20
+[00:39:15] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:39:15] Received: LOAD_EMAILS:exam@gmail.com:-2:20
+[00:39:15] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:39:16] Received: LOAD_EMAILS:exam@gmail.com:-1:20
+[00:39:16] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:39:16] Received: LOAD_EMAILS:exam@gmail.com:0:20
+[00:39:16] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:39:17] Received: LOAD_EMAILS:exam@gmail.com:1:20
+[00:39:17] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:39:17] Received: LOAD_EMAILS:exam@gmail.com:2:20
+[00:39:17] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:39:22] Received: LOAD_EMAILS:exam@gmail.com:1:20
+[00:39:22] Received: LOAD_EMAILS:exam@gmail.com:1:20
+[00:39:22] Received: LOAD_EMAILS:exam@gmail.com:1:20
+[00:39:22] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:39:22] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:39:22] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:40:55] Received: LOAD_EMAILS:exam@gmail.com:1:20
+[00:40:55] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:40:56] Received: LOAD_EMAILS:exam@gmail.com:1:20
+[00:40:56] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:41:06] Received: LOAD_EMAILS:exam@gmail.com:1:20
+[00:41:06] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:49:26] Received: LOGIN:exam@gmail.com:123
+[00:49:26] Sent response: Login successful. Welcome, BÙI QUỐC VĂN!
+[00:49:26] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[00:49:26] Sent response: Invalid command
+[00:49:33] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[00:49:33] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:50:00] Received: LOGIN:exam@gmail.com:123
+[00:50:00] Sent response: Login successful. Welcome, BÙI QUỐC VĂN!
+[00:50:00] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[00:50:00] Sent response: Invalid command
+[00:50:01] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[00:50:01] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:50:13] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[00:50:13] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:50:28] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[00:50:28] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:51:02] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[00:51:02] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:51:03] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[00:51:03] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:53:12] Received: LOGIN:exam@gmail.com:123
+[00:53:12] Sent response: Login successful. Welcome, BÙI QUỐC VĂN!
+[00:53:12] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[00:53:12] Sent response: Invalid command
+[00:53:17] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[00:53:17] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[00:54:25] Received: LOAD_EMAILS:testUser:1:10
+[00:54:25] Sent response: No emails found
+[00:54:26] Received: LOAD_EMAILS:testUser:1:10
+[00:54:26] Sent response: No emails found
+[00:54:40] Received: LOAD_EMAILS:testUser:1:10
+[00:54:40] Sent response: No emails found
+[00:55:06] Received: LOAD_EMAILS:testUser:1:10
+[00:55:06] Sent response: No emails found
+[00:55:11] Received: LOAD_EMAILS:testUser:1:10
+[00:55:11] Sent response: No emails found
+[00:55:32] Received: LOAD_EMAILS:testUser:1:10
+[00:55:32] Sent response: No emails found
+[00:55:34] Received: LOAD_EMAILS:testUser:1:10
+[00:55:34] Sent response: No emails found
+[00:56:43] Received: LOAD_EMAILS:testUser:1:10
+[00:56:43] Sent response: No emails found
+[00:56:43] Received: LOAD_EMAILS:testUser:1:10
+[00:56:43] Sent response: No emails found
+[00:59:08] Received: LOAD_EMAILS:testUser:1:10
+[00:59:08] Sent response: No emails found
+[01:00:07] Received: LOAD_EMAILS:testUser:1:10
+[01:00:07] Sent response: No emails found
+[01:01:07] Received: LOAD_EMAILS:testUser:1:10
+[01:01:07] Sent response: No emails found
+[02:31:28] Mail server is running on port 4445
+[02:31:29] Server started...
+[02:31:42] Received: LOGIN:exam@gmail.com:123
+[02:31:42] Sent response: Login successful. Welcome, BÙI QUỐC VĂN!
+[02:31:42] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[02:31:42] Sent response: Invalid command
+[02:31:55] Received: LOGIN:exam1@gmail.com:123
+[02:31:55] Sent response: Login successful. Welcome, VAN QUOC BUI!
+[02:31:55] Received: SAVE_IP:exam1@gmail.com:192.168.1.3
+[02:31:55] Sent response: Invalid command
+[02:31:58] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[02:31:58] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[02:32:04] Received: LOAD_EMAILS:exam1@gmail.com:1:10
+[02:32:04] Sent response: ID: 11, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-11, Is Sent: false
+ID: 12, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello, Content: ss
+
+[Attachment, Sent Date: 2024-11-12, Is Sent: false
+ID: 16, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Exam1, Content: XXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 17, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Exam1, Content: XXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 18, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: MMMAMSDAD, Content: ÀASFASFASFAFS, Sent Date: 2024-11-13, Is Sent: false
+ID: 19, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXX, Content: abc xyz, Sent Date: 2024-11-13, Is Sent: false
+ID: 20, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 21, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 22, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 23, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 24, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 25, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 26, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 27, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XX, Content: 123, Sent Date: 2024-11-13, Is Sent: false
+ID: 28, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XX, Content: 123, Sent Date: 2024-11-13, Is Sent: false
+ID: 29, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 30, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 31, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 32, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 33, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 34, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 35, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 36, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 37, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 44, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXX, Content: XXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 45, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXX, Content: XXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 46, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: MMMMM, Content: 12313123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 47, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Re, Content:  Hello, Sent Date: 2024-11-13, Is Sent: false
+ID: 48, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Re, Content:  Hello, Sent Date: 2024-11-13, Is Sent: false
+ID: 49, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXX, Content: XXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 50, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXX, Content: XXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 53, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXX, Content: 12313123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 55, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Re, Content:  XXXXX, Sent Date: 2024-11-14, Is Sent: false
+
+[02:32:13] Received: DELETE_EMAIL:exam1@gmail.com:18
+[02:32:13] Sent response: Email deleted successfully
+[02:32:14] Received: LOAD_EMAILS:exam1@gmail.com:1:10
+[02:32:14] Sent response: ID: 11, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-11, Is Sent: false
+ID: 12, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello, Content: ss
+
+[Attachment, Sent Date: 2024-11-12, Is Sent: false
+ID: 16, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Exam1, Content: XXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 17, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Exam1, Content: XXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 19, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXX, Content: abc xyz, Sent Date: 2024-11-13, Is Sent: false
+ID: 20, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 21, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 22, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 23, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 24, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 25, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 26, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 27, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XX, Content: 123, Sent Date: 2024-11-13, Is Sent: false
+ID: 28, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XX, Content: 123, Sent Date: 2024-11-13, Is Sent: false
+ID: 29, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 30, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 31, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 32, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 33, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 34, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 35, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 36, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 37, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 44, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXX, Content: XXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 45, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXX, Content: XXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 46, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: MMMMM, Content: 12313123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 47, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Re, Content:  Hello, Sent Date: 2024-11-13, Is Sent: false
+ID: 48, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Re, Content:  Hello, Sent Date: 2024-11-13, Is Sent: false
+ID: 49, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXX, Content: XXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 50, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXX, Content: XXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 53, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXX, Content: 12313123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 55, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Re, Content:  XXXXX, Sent Date: 2024-11-14, Is Sent: false
+
+[02:32:18] Received: LOAD_EMAILS:exam1@gmail.com:1:20
+[02:32:18] Received: LOAD_EMAILS:exam1@gmail.com:1:20
+[02:32:18] Received: LOAD_EMAILS:exam1@gmail.com:1:20
+[02:32:18] Sent response: ID: 11, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-11, Is Sent: false
+ID: 12, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello, Content: ss
+
+[Attachment, Sent Date: 2024-11-12, Is Sent: false
+ID: 16, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Exam1, Content: XXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 17, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Exam1, Content: XXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 19, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXX, Content: abc xyz, Sent Date: 2024-11-13, Is Sent: false
+ID: 20, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 21, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 22, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 23, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 24, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 25, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 26, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 27, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XX, Content: 123, Sent Date: 2024-11-13, Is Sent: false
+ID: 28, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XX, Content: 123, Sent Date: 2024-11-13, Is Sent: false
+ID: 29, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 30, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 31, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 32, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 33, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 34, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 35, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 36, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 37, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 44, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXX, Content: XXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 45, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXX, Content: XXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 46, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: MMMMM, Content: 12313123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 47, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Re, Content:  Hello, Sent Date: 2024-11-13, Is Sent: false
+ID: 48, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Re, Content:  Hello, Sent Date: 2024-11-13, Is Sent: false
+ID: 49, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXX, Content: XXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 50, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXX, Content: XXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 53, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXX, Content: 12313123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 55, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Re, Content:  XXXXX, Sent Date: 2024-11-14, Is Sent: false
+
+[02:32:18] Sent response: ID: 11, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-11, Is Sent: false
+ID: 12, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello, Content: ss
+
+[Attachment, Sent Date: 2024-11-12, Is Sent: false
+ID: 16, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Exam1, Content: XXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 17, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Exam1, Content: XXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 19, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXX, Content: abc xyz, Sent Date: 2024-11-13, Is Sent: false
+ID: 20, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 21, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 22, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 23, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 24, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 25, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 26, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 27, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XX, Content: 123, Sent Date: 2024-11-13, Is Sent: false
+ID: 28, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XX, Content: 123, Sent Date: 2024-11-13, Is Sent: false
+ID: 29, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 30, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 31, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 32, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 33, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 34, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 35, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 36, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 37, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 44, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXX, Content: XXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 45, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXX, Content: XXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 46, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: MMMMM, Content: 12313123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 47, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Re, Content:  Hello, Sent Date: 2024-11-13, Is Sent: false
+ID: 48, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Re, Content:  Hello, Sent Date: 2024-11-13, Is Sent: false
+ID: 49, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXX, Content: XXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 50, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXX, Content: XXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 53, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXX, Content: 12313123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 55, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Re, Content:  XXXXX, Sent Date: 2024-11-14, Is Sent: false
+
+[02:32:18] Sent response: ID: 11, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-11, Is Sent: false
+ID: 12, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello, Content: ss
+
+[Attachment, Sent Date: 2024-11-12, Is Sent: false
+ID: 16, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Exam1, Content: XXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 17, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Exam1, Content: XXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 19, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXX, Content: abc xyz, Sent Date: 2024-11-13, Is Sent: false
+ID: 20, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 21, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 22, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 23, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 24, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 25, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 26, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: ÁDASDASDA, Content: XXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 27, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XX, Content: 123, Sent Date: 2024-11-13, Is Sent: false
+ID: 28, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XX, Content: 123, Sent Date: 2024-11-13, Is Sent: false
+ID: 29, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 30, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 31, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 32, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 33, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 34, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 35, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 36, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 37, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXXXXXXXX, Content: 13213123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 44, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXX, Content: XXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 45, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXX, Content: XXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 46, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: MMMMM, Content: 12313123123123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 47, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Re, Content:  Hello, Sent Date: 2024-11-13, Is Sent: false
+ID: 48, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Re, Content:  Hello, Sent Date: 2024-11-13, Is Sent: false
+ID: 49, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXX, Content: XXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 50, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXXXXX, Content: XXXXX, Sent Date: 2024-11-13, Is Sent: false
+ID: 53, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXX, Content: 12313123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 55, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Re, Content:  XXXXX, Sent Date: 2024-11-14, Is Sent: false
+
+[15:30:00] Mail server is running on port 4445
+[15:30:01] Server started...
+[15:38:52] Received: LOGIN:exam@gmail.com:123
+[15:38:52] Sent response: Login successful. Welcome, BÙI QUỐC VĂN!
+[15:38:52] Received: SAVE_IP:exam@gmail.com:10.50.52.119
+[15:38:52] Sent response: Invalid command
+[16:16:56] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[16:16:56] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[16:17:16] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[16:17:16] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[16:21:54] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[16:21:54] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[16:21:54] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[16:21:54] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[16:21:54] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[16:21:54] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[16:22:02] Received: LOAD_EMAILS:exam@gmail.com:1:20
+[16:22:02] Received: LOAD_EMAILS:exam@gmail.com:1:20
+[16:22:02] Received: LOAD_EMAILS:exam@gmail.com:1:20
+[16:22:02] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[16:22:02] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[16:22:02] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[16:35:26] Received: LOAD_EMAILS:exam@gmail.com:1:20
+[16:35:26] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[16:36:10] Received: LOAD_EMAILS:exam@gmail.com:1:20
+[16:36:10] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[16:52:24] Mail server is running on port 4445
+[16:52:25] Server started...
+[16:52:39] Received: LOGIN:exam@gmail.com:123
+[16:52:39] Sent response: Login successful. Welcome, BÙI QUỐC VĂN!
+[16:52:39] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[16:52:39] Sent response: Invalid command
+[16:52:41] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[16:52:41] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[16:52:54] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[16:52:54] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[16:52:55] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[16:52:55] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[16:59:12] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[16:59:12] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[16:59:13] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[16:59:13] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[17:00:58] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[17:00:58] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[17:00:59] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[17:00:59] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[17:36:36] Mail server is running on port 4445
+[17:36:37] Server started...
+[17:36:49] Received: LOGIN:exam@gmail.com:123
+[17:36:50] Sent response: Login successful. Welcome, BÙI QUỐC VĂN!
+[17:36:50] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[17:36:50] Sent response: Invalid command
+[17:36:54] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[17:36:54] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: Xin chào exam nhé1, Sent Date: 2024-11-11, Is Sent: false
+ID: 13, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: 123, Content: 123, Sent Date: 2024-11-12, Is Sent: false
+ID: 41, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXXXX, Content: 213123123, Sent Date: 2024-11-13, Is Sent: false
+ID: 52, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Re, Content:  MMMAMSDAD, Sent Date: 2024-11-13, Is Sent: false
+ID: 54, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello, Content: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-13, Is Sent: false
+
+[17:36:59] Received: DELETE_EMAIL:exam@gmail.com:52

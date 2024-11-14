@@ -19,11 +19,10 @@ public class SidebarPanel extends JPanel {
         addButton("📥 Load Emails", e -> mailClientView.switchPanel("LoadEmails"));
         addButton("🗑️ Delete Email", e -> mailClientView.deleteEmail());
         addButton("↩️ Reply Email", e -> mailClientView.replyEmail());
-        addButton("⚙ Settings", e -> mailClientView.openSettings());  // Nút mới cho Settings
         addButton("💬 Chat", e -> mailClientView.switchPanel("Chat"));  // Nút mới cho Chat
+        addButton("⚙ Settings", e -> mailClientView.openSettings());  // Nút mới cho Settings
+
     }
-
-
 
     private void addButton(String text, ActionListener action) {
         JButton button = createButton(text);
@@ -37,7 +36,7 @@ public class SidebarPanel extends JPanel {
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
         button.setMaximumSize(new Dimension(180, 40));
         button.setFocusPainted(false);
-        button.setBackground(new Color(173, 216, 230));
+        button.setBackground(new Color(255, 223, 0)); // Màu vàng sáng
         button.setFont(new Font("Arial", Font.BOLD, 14));
         button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         button.setBorderPainted(false);
@@ -49,12 +48,12 @@ public class SidebarPanel extends JPanel {
     class ButtonHoverEffect extends MouseAdapter {
         @Override
         public void mouseEntered(MouseEvent e) {
-            e.getComponent().setBackground(new Color(135, 206, 250));
+            e.getComponent().setBackground(new Color(255, 204, 0)); // Màu vàng đậm khi hover
         }
 
         @Override
         public void mouseExited(MouseEvent e) {
-            e.getComponent().setBackground(new Color(173, 216, 230));
+            e.getComponent().setBackground(new Color(255, 223, 0)); // Trở lại màu vàng sáng khi không hover
         }
     }
 }

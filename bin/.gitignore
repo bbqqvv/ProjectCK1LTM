@@ -1,9 +1,4 @@
-/server/
-/socket/
 /client/
-/dao/
-/messages_vi.properties
-/messages.properties
+/common/
 /model/
-/test/
-/database/
+/server/

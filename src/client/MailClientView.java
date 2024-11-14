@@ -31,6 +31,7 @@ public class MailClientView extends JFrame {
 	private boolean notificationsEnabled;
 	 private JProgressBar loadingProgressBar;  // Declare it at the class level
 	    private JPanel panel;  // Declare the panel to hold the progress bar and other components
+		private JFileChooser fileChooser;
 	public MailClientView(MailClient client, String username) {
 
 		// Initialize auto-refresh timer for emails
@@ -50,7 +51,7 @@ public class MailClientView extends JFrame {
 		}
 
 		setTitle("Elegant Mail Client");
-		setSize(800, 600);
+		setSize(1100, 700);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -134,7 +135,7 @@ public class MailClientView extends JFrame {
 	    sendButton.addActionListener(e -> sendEmail(receiverField, subjectField));
 
 	    JButton clearButton = new JButton("❌ Clear");
-	    clearButton.addActionListener(e -> clearForm(receiverField, subjectField));
+	    clearButton.addActionListener(e -> clearForm(receiverField, subjectField,fileNameLabel));
 
 	    buttonPanel.add(sendButton);
 	    buttonPanel.add(clearButton);
@@ -157,14 +158,8 @@ public class MailClientView extends JFrame {
 	    panel.add(textField);
 	}
 
-	private void clearForm(JTextField receiverField, JTextField subjectField) {
-	    receiverField.setText("");
-	    subjectField.setText("");
-	    sendEmailContentArea.setText("");
-	}
-
 	private void chooseFileToAttach(JLabel fileNameLabel) {
-	    JFileChooser fileChooser = new JFileChooser();
+	     fileChooser = new JFileChooser();
 	    int returnValue = fileChooser.showOpenDialog(null);
 	    if (returnValue == JFileChooser.APPROVE_OPTION) {
 	        File selectedFile = fileChooser.getSelectedFile();
@@ -173,6 +168,13 @@ public class MailClientView extends JFrame {
 	        fileNameLabel.setText("No file chosen");
 	    }
 	}
+	private void clearForm(JTextField receiverField, JTextField subjectField, JLabel fileNameLabel) {
+	    receiverField.setText("");
+	    subjectField.setText("");
+	    fileNameLabel.setText("");
+	    sendEmailContentArea.setText("");
+	}
+
 
 	private void sendEmail(JTextField receiverField, JTextField subjectField) {
 	    String receiver = receiverField.getText();

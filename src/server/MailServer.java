@@ -94,6 +94,7 @@ public class MailServer {
                 break;
         }
     }
+    
     private void handleDeleteEmail(List<String> tokens, DatagramPacket packet) throws IOException {
         if (tokens.size() < 2) {
             sendResponse("Invalid delete email request", packet);
