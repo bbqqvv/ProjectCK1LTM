@@ -368,90 +368,95 @@ public class MailClientView extends JFrame {
 		return null;
 	}
 
+	// Phương thức tạo JTextPane cho khu vực hiển thị chi tiết email
 	private void createEmailDetailsArea() {
-		emailDetailsArea = new JTextPane();
-		emailDetailsArea.setContentType("text/html");
-		emailDetailsArea.setEditable(false);
+	    emailDetailsArea = new JTextPane();
+	    emailDetailsArea.setContentType("text/html");
+	    emailDetailsArea.setEditable(false);
 	}
 
-	   public void loadEmails(int page) {
-	        currentPage = page;
-	        emailTableModel.setRowCount(0);
-	        emailContents.clear();
+	public void loadEmails(int page) {
+		currentPage = page;
+		emailTableModel.setRowCount(0);
+		emailContents.clear();
 
-	        // Show the progress bar when loading starts
-	        if (loadingProgressBar != null) {
-	            loadingProgressBar.setVisible(true);
-	        }
+		try {
+			String response = client.sendRequest("LOAD_EMAILS:" + username + ":" + currentPage + ":" + emailsPerPage);
 
-	        SwingWorker<Void, String[]> loadWorker = new SwingWorker<>() {
-	            @Override
-	            protected Void doInBackground() throws Exception {
-	                String response = client
-	                        .sendRequest("LOAD_EMAILS:" + username + ":" + currentPage + ":" + emailsPerPage);
+			if (response == null || response.isEmpty()) {
+				updateStatusLabel("No emails to display.");
+				return;
+			}
 
-	                if (response == null || response.isEmpty()) {
-	                    publish(new String[] { "No emails to display." });
-	                    return null;
-	                }
+			String[] emails = response.split("\n");
 
-	                String[] emails = response.split("\n");
-	                for (String email : emails) {
-	                    if (email.trim().isEmpty())
-	                        continue;
-	                    publish(parseEmailData(email));
-	                }
-	                return null;
-	            }
+			for (String email : emails) {
+				if (email.trim().isEmpty())
+					continue;
 
-	            @Override
-	            protected void process(List<String[]> chunks) {
-	                for (String[] emailData : chunks) {
-	                    emailTableModel.addRow(emailData);
-	                }
-	                updateStatusLabel("Loaded " + emailTableModel.getRowCount() + " emails.");
-	            }
+				String regex = "ID: (\\d+), Sender: ([^,]+), Receiver: ([^,]+), Subject: ([^,]+), Content: (.*?), Sent Date: ([^,]+), Is Sent: (true|false)";
+				Pattern pattern = Pattern.compile(regex);
+				Matcher matcher = pattern.matcher(email);
 
-	            @Override
-	            protected void done() {
-	                if (emailTableModel.getRowCount() == 0) {
-	                    updateStatusLabel("No emails to display.");
-	                }
+				if (matcher.find()) {
+					String id = matcher.group(1);
+					String sender = matcher.group(2);
+					String subject = matcher.group(4);
+					String date = matcher.group(6);
+					String content = matcher.group(5);
 
-	                // Hide the progress bar once loading is complete
-	                if (loadingProgressBar != null) {
-	                    loadingProgressBar.setVisible(false);
-	                }
-	            }
-	        };
-	        loadWorker.execute();
+					emailTableModel.addRow(new Object[] { id, sender, subject, date });
+					emailContents.add(content);
+				}
+			}
+
+			updateStatusLabel("Loaded " + emailTableModel.getRowCount() + " emails.");
+
+			// Thêm thông báo khi tải thành công
+			showNotification("Successfully loaded " + emailTableModel.getRowCount() + " emails.", "Emails Loaded",
+					JOptionPane.INFORMATION_MESSAGE);
+		} catch (Exception ex) {
+			showNotification("An error occurred: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+			ex.printStackTrace();
+		}
+	}
+
+
+	// Xây dựng nội dung chi tiết email dưới dạng HTML để hiển thị
+	private String buildEmailDetails(String sender, String subject, String date, String content) {
+	    StringBuilder emailDetails = new StringBuilder();
+	    emailDetails.append("<html><body style='font-family:Arial,sans-serif;'>")
+	                .append("<h2>Chủ đề: ").append(subject != null ? subject : "No Subject").append("</h2>")
+	                .append("<p><strong>Người gửi:</strong> ").append(sender != null ? sender : "Unknown Sender").append("</p>")
+	                .append("<p><strong>Ngày gửi:</strong> ").append(date != null ? date : "Unknown Date").append("</p>")
+	                .append("<hr>")
+	                .append("<div style='margin-top:10px;'>").append(content != null ? content : "No content available").append("</div>")
+	                .append("</body></html>");
+	    return emailDetails.toString();
+	}
+
+	private void showEmailDetails() {
+	    int selectedRow = emailTable.getSelectedRow();
+	    if (selectedRow != -1 && selectedRow < emailContents.size()) { // Thêm kiểm tra giới hạn
+	        // Kiểm tra giá trị của mỗi cột để tránh lỗi NullPointerException
+	        Object senderObj = emailTable.getValueAt(selectedRow, 1);
+	        Object subjectObj = emailTable.getValueAt(selectedRow, 2);
+	        Object dateObj = emailTable.getValueAt(selectedRow, 3);
+
+	        String sender = (senderObj != null) ? senderObj.toString() : "Unknown Sender";
+	        String subject = (subjectObj != null) ? subjectObj.toString() : "No Subject";
+	        String date = (dateObj != null) ? dateObj.toString() : "Unknown Date";
+
+	        String content = (selectedRow < emailContents.size()) ? emailContents.get(selectedRow) : "No content available";
+
+	        // Tạo nội dung email để hiển thị
+	        String emailDetails = buildEmailDetails(sender, subject, date, content);
+	        emailDetailsArea.setText(emailDetails);
+	        emailDetailsArea.setCaretPosition(0);
+	    } else {
+	        emailDetailsArea.setText("<html><body><p>Không có chi tiết email để hiển thị.</p></body></html>");
 	    }
-
-	   private String buildEmailDetails(String sender, String subject, String date, String content) {
-		    StringBuilder emailDetails = new StringBuilder();
-		    emailDetails.append("<html><body style='font-family:Arial,sans-serif;'>")
-		                .append("<h2>Chủ đề: ").append(subject).append("</h2>")
-		                .append("<p><strong>Người gửi:</strong> ").append(sender).append("</p>")
-		                .append("<p><strong>Ngày gửi:</strong> ").append(date).append("</p>")
-		                .append("<hr>")
-		                .append("<div style='margin-top:10px;'>").append(content).append("</div>")
-		                .append("</body></html>");
-		    return emailDetails.toString();
-		}
-
-		private void showEmailDetails() {
-		    int selectedRow = emailTable.getSelectedRow();
-		    if (selectedRow != -1) {
-		        String sender = emailTable.getValueAt(selectedRow, 1).toString();
-		        String subject = emailTable.getValueAt(selectedRow, 2).toString();
-		        String date = emailTable.getValueAt(selectedRow, 3).toString();
-		        String content = emailContents.get(selectedRow);
-
-		        String emailDetails = buildEmailDetails(sender, subject, date, content);
-		        emailDetailsArea.setText(emailDetails);
-		        emailDetailsArea.setCaretPosition(0);
-		    }
-		}
+	}
 
 
 	private void showNotification(String message, String title, int messageType) {
