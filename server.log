@@ -6314,3 +6314,14 @@ ID: 53, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: XXXX, Conten
 ID: 55, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Re, Content:  XXXXX, Sent Date: 2024-11-14, Is Sent: false
 ID: 56, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Re, Content:  XXXXX, Sent Date: 2024-11-14, Is Sent: false
 
+[00:03:56] Mail server is running on port 4445
+[00:04:02] Server started...
+[00:04:27] Received: LOGIN:exam@gmail.com:123
+[00:04:28] Sent response: Login successful. Welcome, BÙI QUỐC VĂN!
+[00:04:28] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[00:04:28] Sent response: Invalid command
+[00:04:41] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[00:04:41] Sent response: No emails found
+[00:04:57] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[00:04:57] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
+
