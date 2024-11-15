@@ -3,6 +3,7 @@ package server;
 import database.DatabaseConnection;
 import dao.MailDAO;
 import dao.UserDAO;
+import dao.ServerDAO;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -12,9 +13,11 @@ public class ServerMain {
             Connection connection = DatabaseConnection.getConnection(); // Lấy kết nối
             UserDAO userDAO = new UserDAO(connection); // Khởi tạo UserDAO
             MailDAO mailDAO = new MailDAO(connection); // Khởi tạo MailDAO
-            MailServer mailServer = new MailServer(userDAO, mailDAO); // Khởi tạo MailServer với DAO
+            ServerDAO serverDAO = new ServerDAO(connection); // Khởi tạo ServerDAO
             
-            // Tạo đối tượng ServerView và gán cho MailServer
+            MailServer mailServer = new MailServer(userDAO, mailDAO, serverDAO); // Khởi tạo MailServer với DAO
+            
+            // Khởi tạo ServerView và gán cho MailServer
             ServerView serverView = new ServerView();
             mailServer.setView(serverView); // Gán ServerView cho MailServer
             

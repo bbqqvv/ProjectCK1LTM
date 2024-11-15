@@ -2,11 +2,14 @@ package server;
 
 import model.User;
 import dao.MailDAO;
+import dao.ServerDAO;
 import dao.UserDAO;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,11 +20,12 @@ public class MailServer {
     private ServerView view;
     private UserDAO userDAO;
     private MailDAO mailDAO;
+    private ServerDAO serverDAO; // Thêm trường ServerDAO
 
-    public MailServer(UserDAO userDAO, MailDAO mailDAO) {
+    public MailServer(UserDAO userDAO, MailDAO mailDAO, ServerDAO serverDAO) {
         this.userDAO = userDAO;
         this.mailDAO = mailDAO;
-        
+        this.serverDAO = serverDAO;
     }
 
     public void setView(ServerView view) {
@@ -32,6 +36,10 @@ public class MailServer {
         try {
             socket = new DatagramSocket(PORT);
             view.appendLog("Mail server is running on port " + PORT);
+
+            // Lưu địa chỉ IP và port của server vào CSDL
+            String serverIp = InetAddress.getLocalHost().getHostAddress();
+            serverDAO.saveServer(serverIp, PORT); // Lưu IP và port
 
             while (true) {
                 byte[] buffer = new byte[1024];
@@ -54,7 +62,16 @@ public class MailServer {
             e.printStackTrace();
         }
     }
-    
+
+    public void stop() throws UnknownHostException {
+        if (socket != null && !socket.isClosed()) {
+            socket.close();
+            view.appendLog("Mail server stopped.");
+            // Xóa địa chỉ IP và port của server khỏi CSDL
+            String serverIp = InetAddress.getLocalHost().getHostAddress();
+            serverDAO.deleteServer(serverIp, PORT);
+        }
+    }
     private void handleRequest(String request, DatagramPacket packet) throws IOException {
         List<String> tokens = new ArrayList<>(Arrays.asList(request.split(":")));
         if (tokens.isEmpty()) {

@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="D:/Program Files - Study/Libary/JAR/jbcrypt-0.4.jar"/>
 	<classpathentry kind="lib" path="D:/Program Files - Study/Libary/JAR/flatlaf-3.5.1.jar"/>
 	<classpathentry kind="lib" path="D:/Program Files - Study/Libary/JAR/flatlaf-swingx-3.5.1.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files - Study/Libary/JAR/Lombox/lombok-1.18.34.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

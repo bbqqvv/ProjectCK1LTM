@@ -42,11 +42,10 @@ public class ServerView extends JFrame {
         toolBar.setBackground(new Color(224, 236, 244));
         toolBar.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-        startButton = createButton("Start Server", "Start the server", e -> startServer(e), "icons/start.png");
-        stopButton = createButton("Stop Server", "Stop the server", e -> stopServer(e), "icons/stop.png");
-        stopButton.setEnabled(false);
-        clearLogButton = createButton("Clear Log", "Clear the log area", e -> logArea.setText(""), "icons/clear.png");
-        saveLogButton = createButton("Save Log", "Save the log to a file", e -> saveLogToFile(e), "icons/save.png");
+        startButton = createButton("Start Server", "Start the server", e -> startServer(e), "/images/play.png", 24, 24);
+        stopButton = createButton("Stop Server", "Stop the server", e -> stopServer(e), "/images/stop-button.png", 24, 24);
+        clearLogButton = createButton("Clear Log", "Clear the log area", e -> logArea.setText(""), "/images/clean.png", 24, 24);
+        saveLogButton = createButton("Save Log", "Save the log to a file", e -> saveLogToFile(e), "/images/diskette.png", 24, 24);
 
         toolBar.add(startButton);
         toolBar.add(stopButton);
@@ -57,16 +56,25 @@ public class ServerView extends JFrame {
         getContentPane().add(toolBar, BorderLayout.NORTH);
     }
 
-    private JButton createButton(String text, String toolTip, ActionListener action, String iconPath) {
+    private JButton createButton(String text, String toolTipText, java.awt.event.ActionListener action, String iconPath, int width, int height) {
         JButton button = new JButton(text);
-        button.setToolTipText(toolTip);
-        button.addActionListener(action); // Accepts ActionListener
-        button.setIcon(new ImageIcon(iconPath)); // Placeholder for icon
-        button.setBackground(new Color(173, 216, 230));
-        button.setFocusPainted(false);
-        button.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 15));
+
+        try {
+            // Load the icon
+            ImageIcon icon = new ImageIcon(getClass().getResource(iconPath));
+
+            // Resize the icon
+            Image scaledImage = icon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+            button.setIcon(new ImageIcon(scaledImage));
+        } catch (NullPointerException e) {
+            System.out.println("Icon not found: " + iconPath);
+        }
+
+        button.setToolTipText(toolTipText);
+        button.addActionListener(action);
         return button;
     }
+
 
 
     private void initLogArea() {
