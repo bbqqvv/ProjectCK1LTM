@@ -1,5 +1,6 @@
 package server;
 
+import model.Server;
 import model.User;
 import dao.MailDAO;
 import dao.ServerDAO;
@@ -187,13 +188,22 @@ public class MailServer {
         String password = tokens.remove(0);
         User loginUser = new User(0, null, password, email);
         boolean loginSuccess = userDAO.loginUser(loginUser);
-        
+
         if (loginSuccess) {
             String ipAddress = packet.getAddress().getHostAddress();
             userDAO.updateUserIpAddress(email, ipAddress);
+            
+            // Lấy địa chỉ IP và Port của server từ database
+            Server serverInfo = serverDAO.getServerIpAndPort();
+            
             // Get username for the logged-in user
             String username = userDAO.getUsername(email);
-            sendResponse("Login successful. Welcome, " + username + "!", packet);
+            
+            // Tạo thông báo phản hồi bao gồm IP và Port của server
+            String response = "Login successful. Welcome, " + username + "!" 
+                              + (serverInfo != null ? " Server IP: " + serverInfo.getServerIp() 
+                              + ", Port: " + serverInfo.getServerPort() : " Server info not found.");
+            sendResponse(response, packet);
         } else {
             sendResponse("Login failed", packet);
         }

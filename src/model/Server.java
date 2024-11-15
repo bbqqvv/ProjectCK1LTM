@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+
 public class Server {
     private String serverId;
     private String serverIp;
@@ -17,4 +15,30 @@ public class Server {
         this.serverIp = serverIp;
         this.serverPort = serverPort;
     }
+
+	public String getServerId() {
+		return serverId;
+	}
+
+	public void setServerId(String serverId) {
+		this.serverId = serverId;
+	}
+
+	public String getServerIp() {
+		return serverIp;
+	}
+
+	public void setServerIp(String serverIp) {
+		this.serverIp = serverIp;
+	}
+
+	public int getServerPort() {
+		return serverPort;
+	}
+
+	public void setServerPort(int serverPort) {
+		this.serverPort = serverPort;
+	}
+
+
 }
