@@ -119,9 +119,20 @@ public class ServerView extends JFrame {
         logArea.setText("");
         appendLog("Server started...");
         updateUIForRunningState(true);
-       
-        // Start the server logic (Assuming the MailServer has a start method)
-        mailServer.start();
+
+        // Start the server logic in a background thread using SwingWorker
+        new SwingWorker<Void, String>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                mailServer.start();
+                return null;
+            }
+
+            @Override
+            protected void done() {
+                appendLog("Server is running.");
+            }
+        }.execute();
     }
 
     private void stopServer(ActionEvent e) {
