@@ -1,5 +1,8 @@
 package client;
 
+import dao.ServerDAO;
+import model.Server;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -12,8 +15,11 @@ public class LoginView extends JFrame {
     private JButton registerButton;
     private JLabel statusLabel;
     private JCheckBox showPasswordCheckbox;
+    private ServerDAO serverDAO;  // Đối tượng để truy vấn CSDL
 
-    public LoginView() {
+    public LoginView(ServerDAO serverDAO) {
+        this.serverDAO = serverDAO;  // Khởi tạo đối tượng ServerDAO
+
         setTitle("Mail Client - Login");
         setSize(450, 250);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -80,19 +86,27 @@ public class LoginView extends JFrame {
                     String email = emailField.getText();
                     String password = new String(passwordField.getPassword());
 
-                    // Lấy địa chỉ IP của máy
-                    String ipAddress = InetAddress.getLocalHost().getHostAddress();
+                    // Lấy thông tin IP và Port của server từ CSDL
+                    Server server = serverDAO.getServerIpAndPort(); // Lấy đối tượng server từ CSDL
 
-                    // Tạo đối tượng MailClient với địa chỉ IP của máy
-                    MailClient tempClient = new MailClient(ipAddress, 4445); // Sử dụng ipAddress thay vì "localhost"
+                    if (server == null) {
+                        statusLabel.setText("Server IP or Port not found in the database");
+                        return null;
+                    }
+
+                    String serverIp = server.getServerIp();
+                    int serverPort = server.getServerPort();
+
+                    // Tạo đối tượng MailClient với địa chỉ IP và cổng của server
+                    MailClient tempClient = new MailClient(serverIp, serverPort);
                     String response = tempClient.sendRequest("LOGIN:" + email + ":" + password);
 
                     if (response.contains("successful")) {
-                        // Lưu địa chỉ IP vào máy chủ
-                        tempClient.sendRequest("SAVE_IP:" + email + ":" + ipAddress);
+                        // Lưu địa chỉ IP vào máy chủ nếu cần
+                        tempClient.sendRequest("SAVE_IP:" + email + ":" + InetAddress.getLocalHost().getHostAddress());
 
                         // Mở giao diện MailClientView
-                        MailClient client = new MailClient(ipAddress, 4445); // Sử dụng ipAddress thay vì "localhost"
+                        MailClient client = new MailClient(serverIp, serverPort);
                         new MailClientView(client, email);
                         dispose();
                     } else {
@@ -113,7 +127,6 @@ public class LoginView extends JFrame {
         loginButton.setEnabled(false);
         worker.execute();
     }
-
 
     private void openRegisterView() {
         new RegisterView();

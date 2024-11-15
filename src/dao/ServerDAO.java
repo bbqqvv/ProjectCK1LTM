@@ -15,6 +15,7 @@ public class ServerDAO {
         this.connection = connection;
     }
 
+    // Phương thức lưu server vào CSDL
     public void saveServer(String serverIp, int serverPort) {
         String sql = "INSERT INTO server_config (server_id, server_ip, server_port) VALUES (?, ?, ?)";
         
@@ -33,6 +34,7 @@ public class ServerDAO {
         }
     }
 
+    // Phương thức xóa server khỏi CSDL
     public void deleteServer(String serverIp, int port) {
         String sql = "DELETE FROM server_config WHERE server_ip = ? AND server_port = ?";
         
@@ -54,7 +56,8 @@ public class ServerDAO {
             e.printStackTrace();
         }
     }
- // Kiểm tra server có tồn tại không
+
+    // Kiểm tra server có tồn tại không
     public boolean serverExists(String serverIp, int port) {
         String sql = "SELECT COUNT(*) FROM server_config WHERE server_ip = ? AND server_port = ?";
         
@@ -74,8 +77,8 @@ public class ServerDAO {
         
         return false;
     }
-    
-    // Phương thức lấy địa chỉ IP và Port của server
+
+    // Phương thức lấy cả IP và Port của server
     public Server getServerIpAndPort() {
         String sql = "SELECT server_ip, server_port FROM server_config LIMIT 1"; // Lấy bản ghi đầu tiên
         Server server = null;
@@ -95,7 +98,7 @@ public class ServerDAO {
         return server;
     }
 
-    // Phương thức lấy địa chỉ IP của server
+    // Phương thức lấy chỉ IP của server
     public String getServerIp() {
         String sql = "SELECT server_ip FROM server_config LIMIT 1"; // Lấy địa chỉ IP từ bản ghi đầu tiên
         String serverIp = null;
@@ -111,5 +114,23 @@ public class ServerDAO {
         }
 
         return serverIp;
+    }
+
+    // Phương thức lấy chỉ Port của server
+    public int getServerPort() {
+        String sql = "SELECT server_port FROM server_config LIMIT 1"; // Lấy Port từ bản ghi đầu tiên
+        int serverPort = -1;
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+            if (resultSet.next()) {
+                serverPort = resultSet.getInt("server_port");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error retrieving server Port: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return serverPort;
     }
 }

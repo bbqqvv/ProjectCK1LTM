@@ -1,6 +1,9 @@
 package client;
 
 import javax.swing.*;
+
+import dao.ServerDAO;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -140,9 +143,11 @@ public class SettingsDialog extends JDialog {
         JButton logoutButton = new JButton(messages.getString("settings.logout"));
         logoutButton.setPreferredSize(new Dimension(120, 40));
         logoutButton.addActionListener(new ActionListener() {
-            @Override
+            private ServerDAO serverDAO;
+
+			@Override
             public void actionPerformed(ActionEvent e) {
-                parentView.showLoginScreen();
+                parentView.showLoginScreen(serverDAO);
                 dispose();
             }
         });

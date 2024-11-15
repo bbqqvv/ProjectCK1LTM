@@ -4,6 +4,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.JTextComponent;
 
+import dao.ServerDAO;
+
 import java.awt.*;
 
 public class RegisterView extends JFrame {
@@ -14,6 +16,7 @@ public class RegisterView extends JFrame {
     private JButton registerButton;
     private JButton cancelButton;
 	private JTextComponent statusLabel;
+	private ServerDAO serverDAO;
 
     public RegisterView() {
         setTitle("Register");
@@ -90,7 +93,7 @@ public class RegisterView extends JFrame {
             String response = tempClient.sendRequest(request);
             JOptionPane.showMessageDialog(this, response);
             if (response.contains("successful")) {
-                new LoginView();
+                new LoginView(serverDAO);
                 dispose();
             }
         } catch (Exception e) {
@@ -100,7 +103,9 @@ public class RegisterView extends JFrame {
     }
 
     private void openLoginView() {
-        new LoginView();
+   
+
+        new LoginView(serverDAO);
         dispose();
     }
 }
