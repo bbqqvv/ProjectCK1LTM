@@ -2,6 +2,8 @@ package server;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import dao.ServerDAO;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,20 +22,25 @@ public class ServerView extends JFrame {
     private JLabel statusLabel;
     private boolean isRunning = false;
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+    private MailServer mailServer;
 
-    public ServerView() {
+    public ServerView(MailServer mailServer) {
+        this.mailServer = mailServer;  // Initialize mailServer
         setTitle("Mail Server");
         setSize(700, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         getContentPane().setLayout(new BorderLayout(10, 10));
         getContentPane().setBackground(new Color(240, 248, 255));
+        initUI();
 
+        setVisible(true);
+    }
+
+    private void initUI() {
         initToolBar();
         initLogArea();
         initStatusBar();
-
-        setVisible(true);
     }
 
     private void initToolBar() {
@@ -56,7 +63,7 @@ public class ServerView extends JFrame {
         getContentPane().add(toolBar, BorderLayout.NORTH);
     }
 
-    private JButton createButton(String text, String toolTipText, java.awt.event.ActionListener action, String iconPath, int width, int height) {
+    private JButton createButton(String text, String toolTipText, ActionListener action, String iconPath, int width, int height) {
         JButton button = new JButton(text);
 
         try {
@@ -74,8 +81,6 @@ public class ServerView extends JFrame {
         button.addActionListener(action);
         return button;
     }
-
-
 
     private void initLogArea() {
         logArea = new JTextArea();
@@ -114,6 +119,9 @@ public class ServerView extends JFrame {
         logArea.setText("");
         appendLog("Server started...");
         updateUIForRunningState(true);
+       
+        // Start the server logic (Assuming the MailServer has a start method)
+        mailServer.start();
     }
 
     private void stopServer(ActionEvent e) {
@@ -122,9 +130,18 @@ public class ServerView extends JFrame {
             return;
         }
 
-        appendLog("Server stopped...");
-        isRunning = false;
-        updateUIForRunningState(false);
+        try {
+            appendLog("Attempting to stop the server...");
+            mailServer.stop();  // Stop the server logic
+            appendLog("Server stopped successfully.");
+        } catch (Exception ex) {
+            appendLog("Error stopping server: " + ex.getMessage());
+            ex.printStackTrace();
+        } finally {
+            isRunning = false;
+            updateUIForRunningState(false);
+            appendLog("Server status updated to 'Stopped'.");
+        }
     }
 
     private void saveLogToFile(ActionEvent e) {
@@ -165,9 +182,5 @@ public class ServerView extends JFrame {
             statusLabel.setForeground(Color.RED);
             statusLabel.setIcon(new ImageIcon("icons/stopped.png")); // Placeholder for stopped icon
         }
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(ServerView::new);
     }
 }

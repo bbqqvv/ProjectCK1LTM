@@ -15,49 +15,53 @@ public class ServerDAO {
         this.connection = connection;
     }
 
-    // Phương thức lưu server vào CSDL
     public void saveServer(String serverIp, int serverPort) {
+        if (serverExists(serverIp, serverPort)) {
+            System.out.println("Server with IP " + serverIp + " and Port " + serverPort + " already exists.");
+            return; 
+        }
+
         String sql = "INSERT INTO server_config (server_id, server_ip, server_port) VALUES (?, ?, ?)";
-        
-        // Tạo ID ngẫu nhiên bằng UUID
         String serverId = UUID.randomUUID().toString();
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, serverId); // ID
-            preparedStatement.setString(2, serverIp); // IP
-            preparedStatement.setInt(3, serverPort);  // Port
-            
-            // Thực thi câu lệnh
-            preparedStatement.executeUpdate();
+            preparedStatement.setString(1, serverId); 
+            preparedStatement.setString(2, serverIp); 
+            preparedStatement.setInt(3, serverPort); 
+            preparedStatement.executeUpdate(); 
+            System.out.println("Server saved successfully with IP " + serverIp + " and Port " + serverPort);
         } catch (SQLException e) {
+            System.err.println("Error saving server: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
-    // Phương thức xóa server khỏi CSDL
-    public void deleteServer(String serverIp, int port) {
+    public boolean deleteServer(String serverIp, int serverPort) {
+        if (!serverExists(serverIp, serverPort)) {
+            System.out.println("Server with IP " + serverIp + " and Port " + serverPort + " does not exist in the database.");
+            return false; 
+        }
+
         String sql = "DELETE FROM server_config WHERE server_ip = ? AND server_port = ?";
-        
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, serverIp);  // Địa chỉ IP
-            preparedStatement.setInt(2, port);         // Số port
-            
-            // Thực thi câu lệnh xóa
+            preparedStatement.setString(1, serverIp); 
+            preparedStatement.setInt(2, serverPort);   
+
             int rowsAffected = preparedStatement.executeUpdate();
-            
-            // Kiểm tra và ghi log số dòng bị ảnh hưởng
             if (rowsAffected > 0) {
-                System.out.println("Server deleted successfully. Rows affected: " + rowsAffected);
+                System.out.println("Server deleted successfully with IP " + serverIp + " and Port " + serverPort);
+                return true;
             } else {
-                System.out.println("No server found with IP " + serverIp + " and port " + port);
+                System.out.println("Failed to delete server with IP " + serverIp + " and Port " + serverPort);
             }
         } catch (SQLException e) {
             System.err.println("Error deleting server: " + e.getMessage());
             e.printStackTrace();
         }
+
+        return false; 
     }
 
-    // Kiểm tra server có tồn tại không
     public boolean serverExists(String serverIp, int port) {
         String sql = "SELECT COUNT(*) FROM server_config WHERE server_ip = ? AND server_port = ?";
         
@@ -78,7 +82,6 @@ public class ServerDAO {
         return false;
     }
 
-    // Phương thức lấy cả IP và Port của server
     public Server getServerIpAndPort() {
         String sql = "SELECT server_ip, server_port FROM server_config LIMIT 1"; // Lấy bản ghi đầu tiên
         Server server = null;
@@ -98,7 +101,6 @@ public class ServerDAO {
         return server;
     }
 
-    // Phương thức lấy chỉ IP của server
     public String getServerIp() {
         String sql = "SELECT server_ip FROM server_config LIMIT 1"; // Lấy địa chỉ IP từ bản ghi đầu tiên
         String serverIp = null;
@@ -116,7 +118,6 @@ public class ServerDAO {
         return serverIp;
     }
 
-    // Phương thức lấy chỉ Port của server
     public int getServerPort() {
         String sql = "SELECT server_port FROM server_config LIMIT 1"; // Lấy Port từ bản ghi đầu tiên
         int serverPort = -1;

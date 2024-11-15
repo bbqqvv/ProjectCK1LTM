@@ -15,13 +15,13 @@ public class ServerMain {
             MailDAO mailDAO = new MailDAO(connection); // Khởi tạo MailDAO
             ServerDAO serverDAO = new ServerDAO(connection); // Khởi tạo ServerDAO
             
-            MailServer mailServer = new MailServer(userDAO, mailDAO, serverDAO); // Khởi tạo MailServer với DAO
+            // Khởi tạo MailServer với DAO
+            MailServer mailServer = new MailServer(userDAO, mailDAO, serverDAO);
             
             // Khởi tạo ServerView và gán cho MailServer
-            ServerView serverView = new ServerView();
+            ServerView serverView = new ServerView(mailServer); // Pass mailServer to ServerView
             mailServer.setView(serverView); // Gán ServerView cho MailServer
-            
-            mailServer.start(); // Bắt đầu máy chủ
+
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Could not establish a connection to the database.");

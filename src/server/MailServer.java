@@ -14,6 +14,8 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MailServer {
     private static final int PORT = 4445;
@@ -22,6 +24,7 @@ public class MailServer {
     private UserDAO userDAO;
     private MailDAO mailDAO;
     private ServerDAO serverDAO; // Thêm trường ServerDAO
+    private ExecutorService executor = Executors.newFixedThreadPool(10);  // Tạo một ExecutorService với 10 luồng
 
     public MailServer(UserDAO userDAO, MailDAO mailDAO, ServerDAO serverDAO) {
         this.userDAO = userDAO;
@@ -32,6 +35,7 @@ public class MailServer {
     public void setView(ServerView view) {
         this.view = view;
     }
+
 
     public void start() {
         try {
@@ -49,14 +53,14 @@ public class MailServer {
                 String request = new String(packet.getData(), 0, packet.getLength()).trim();
                 view.appendLog("Received: " + request);
 
-                // Xử lý mỗi yêu cầu trong một luồng riêng biệt
-                new Thread(() -> {
+                // Xử lý yêu cầu trong một thread từ ExecutorService
+                executor.submit(() -> {
                     try {
                         handleRequest(request, packet);
                     } catch (IOException e) {
                         view.appendLog("Error processing request: " + e.getMessage());
                     }
-                }).start();
+                });
             }
         } catch (IOException e) {
             view.appendLog("Error: " + e.getMessage());
@@ -64,15 +68,34 @@ public class MailServer {
         }
     }
 
+
     public void stop() throws UnknownHostException {
-        if (socket != null && !socket.isClosed()) {
-            socket.close();
-            view.appendLog("Mail server stopped.");
+        try {
+            if (socket != null && !socket.isClosed()) {
+                socket.close();
+                view.appendLog("Mail server stopped.");
+            }
+
             // Xóa địa chỉ IP và port của server khỏi CSDL
             String serverIp = InetAddress.getLocalHost().getHostAddress();
-            serverDAO.deleteServer(serverIp, PORT);
+            boolean isDeleted = serverDAO.deleteServer(serverIp, PORT);
+            
+            if (isDeleted) {
+                view.appendLog("Server information removed from database.");
+            } else {
+                view.appendLog("Failed to remove server information from database.");
+            }
+            
+        } catch (IOException e) {
+            view.appendLog("Error while stopping server: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            // Đảm bảo trạng thái của server được cập nhật và không bị treo
+            // Update the view to indicate that the server has stopped
+            view.appendLog("Server is no longer running.");
         }
     }
+
     private void handleRequest(String request, DatagramPacket packet) throws IOException {
         List<String> tokens = new ArrayList<>(Arrays.asList(request.split(":")));
         if (tokens.isEmpty()) {

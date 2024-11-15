@@ -23,3 +23,255 @@
 [16:37:50] Received: LOAD_EMAILS:exam1@gmail.com:1:10
 [16:37:50] Sent response: ID: 2, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Các Bạn, Content: XXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
 
+[16:54:54] Received: LOGIN:exam1@gmail.:123
+[16:54:54] Sent response: Login failed
+[16:55:03] Received: LOGIN:exam1@gmail.:123
+[16:55:03] Sent response: Login failed
+[16:55:18] Received: LOGIN:exam1@gmail.com:123
+[16:55:18] Sent response: Login successful. Welcome, VAN QUOC BUI! Server IP: 192.168.1.3, Port: 4445
+[16:55:18] Received: SAVE_IP:exam1@gmail.com:127.0.1.1
+[16:55:18] Sent response: Invalid command
+[16:55:26] Received: LOAD_EMAILS:exam1@gmail.com:1:10
+[16:55:26] Sent response: ID: 2, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Các Bạn, Content: XXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
+
+[16:57:30] Mail server is running on port 4445
+[16:57:31] Server started...
+[16:58:49] Received: LOGIN:exam1@gmail.com:123
+[16:58:49] Sent response: Login successful. Welcome, VAN QUOC BUI! Server IP: 192.168.1.3, Port: 4445
+[16:58:49] Received: SAVE_IP:exam1@gmail.com:127.0.1.1
+[16:58:49] Sent response: Invalid command
+[17:02:42] Received: LOGIN:exam1@gmail.com:123
+[17:02:42] Sent response: Login successful. Welcome, VAN QUOC BUI! Server IP: 192.168.1.3, Port: 4445
+[17:02:42] Received: SAVE_IP:exam1@gmail.com:127.0.1.1
+[17:02:42] Sent response: Invalid command
+[17:03:49] Received: LOAD_EMAILS:exam1@gmail.com:1:10
+[17:03:49] Sent response: ID: 2, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Các Bạn, Content: XXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
+
+[17:04:11] Received: SEARCH_EMAILS:exam1@gmail.com:Hello:1:10
+[17:04:11] Sent response: ID: 2, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Các Bạn, Content: XXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
+
+[17:04:34] Received: LOGIN:exam@gmail.com:123
+[17:04:34] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
+[17:04:34] Received: SAVE_IP:exam@gmail.com:127.0.1.1
+[17:04:34] Sent response: Invalid command
+[17:05:00] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[17:05:00] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
+
+[17:05:05] Received: SEND_EMAIL:exam1@gmail.com:exam@gmail.com:Hello XXXXXXX:e123123123123123123
+[17:05:05] Sent response: Email sent
+[17:05:07] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[17:05:07] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
+ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[17:05:24] Server stopped...
+[17:05:38] Received: LOGIN:exam@gmail.com:123
+[17:05:38] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
+[17:05:38] Received: SAVE_IP:exam@gmail.com:127.0.1.1
+[17:05:38] Sent response: Invalid command
+[17:20:52] Mail server is running on port 4445
+[17:21:16] Server started...
+[17:21:28] Received: LOGIN:exam@gmail.com:123
+[17:21:28] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
+[17:21:28] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[17:21:28] Sent response: Invalid command
+[17:21:31] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[17:21:31] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
+ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[19:56:18] Mail server is running on port 4445
+[19:56:19] Server started...
+[19:56:24] Error stopping server: Cannot invoke "server.MailServer.stop()" because "this.mailServer" is null
+[19:56:38] Server started...
+[19:56:51] Mail server is running on port 4445
+[19:56:56] Server started...
+[19:57:47] Error stopping server: Cannot invoke "server.MailServer.stop()" because "this.mailServer" is null
+[20:10:31] Server error: Address already in use: bind
+[20:10:31] Server socket is already closed.
+[20:10:31] Executor service stopped.
+[20:10:39] Mail server is running on port 4445
+[20:10:50] Server started...
+[20:10:50] Server error: Address already in use: bind
+[20:10:50] Server socket is already closed.
+[20:10:50] Executor service stopped.
+[20:11:11] Server socket is already closed.
+[20:11:11] Executor service stopped.
+[20:11:11] Server stopped successfully.
+[20:11:18] Server started...
+[20:11:18] Server error: Address already in use: bind
+[20:11:18] Server socket is already closed.
+[20:11:18] Executor service stopped.
+[20:11:22] Server socket is already closed.
+[20:11:22] Executor service stopped.
+[20:11:22] Server stopped successfully.
+[20:11:23] Server started...
+[20:11:23] Server error: Address already in use: bind
+[20:11:23] Server socket is already closed.
+[20:11:23] Executor service stopped.
+[20:11:26] Server socket is already closed.
+[20:11:26] Executor service stopped.
+[20:11:26] Server stopped successfully.
+[20:11:30] Server started...
+[20:11:30] Server error: Address already in use: bind
+[20:11:30] Server socket is already closed.
+[20:11:30] Executor service stopped.
+[20:12:16] Server socket is already closed.
+[20:12:16] Executor service stopped.
+[20:12:16] Server stopped successfully.
+[20:12:17] Server started...
+[20:12:17] Server error: Address already in use: bind
+[20:12:17] Server socket is already closed.
+[20:12:17] Executor service stopped.
+[20:12:17] Server socket is already closed.
+[20:12:17] Executor service stopped.
+[20:12:17] Server stopped successfully.
+[20:12:18] Server started...
+[20:12:18] Server error: Address already in use: bind
+[20:12:18] Server socket is already closed.
+[20:12:18] Executor service stopped.
+[20:12:19] Server socket is already closed.
+[20:12:19] Executor service stopped.
+[20:12:19] Server stopped successfully.
+[20:12:19] Server started...
+[20:12:19] Server error: Address already in use: bind
+[20:12:19] Server socket is already closed.
+[20:12:19] Executor service stopped.
+[20:12:20] Server socket is already closed.
+[20:12:20] Executor service stopped.
+[20:12:20] Server stopped successfully.
+[20:12:21] Server started...
+[20:12:21] Server error: Address already in use: bind
+[20:12:21] Server socket is already closed.
+[20:12:21] Executor service stopped.
+[20:12:22] Server socket is already closed.
+[20:12:22] Executor service stopped.
+[20:12:22] Server stopped successfully.
+[20:12:23] Server started...
+[20:12:23] Server error: Address already in use: bind
+[20:12:23] Server socket is already closed.
+[20:12:23] Executor service stopped.
+[20:12:23] Server socket is already closed.
+[20:12:23] Executor service stopped.
+[20:12:23] Server stopped successfully.
+[20:12:23] Server started...
+[20:12:23] Server error: Address already in use: bind
+[20:12:23] Server socket is already closed.
+[20:12:23] Executor service stopped.
+[20:12:24] Server socket is already closed.
+[20:12:24] Executor service stopped.
+[20:12:24] Server stopped successfully.
+[20:12:24] Server started...
+[20:12:24] Server error: Address already in use: bind
+[20:12:24] Server socket is already closed.
+[20:12:24] Executor service stopped.
+[20:12:24] Server socket is already closed.
+[20:12:24] Executor service stopped.
+[20:12:24] Server stopped successfully.
+[20:12:25] Server started...
+[20:12:25] Server error: Address already in use: bind
+[20:12:25] Server socket is already closed.
+[20:12:25] Executor service stopped.
+[20:17:32] Mail server is running on port 4445
+[20:17:33] Server started...
+[20:17:33] Server error: Address already in use: bind
+[20:17:33] Server socket is already closed.
+[20:17:33] Executor service stopped.
+[20:17:46] Server socket is already closed.
+[20:17:46] Executor service stopped.
+[20:17:46] Server stopped successfully.
+[20:17:55] Server started...
+[20:17:55] Server error: Address already in use: bind
+[20:17:55] Server socket is already closed.
+[20:17:55] Executor service stopped.
+[20:17:56] Server socket is already closed.
+[20:17:56] Executor service stopped.
+[20:17:56] Server stopped successfully.
+[20:18:07] Server started...
+[20:18:07] Server error: Address already in use: bind
+[20:18:07] Server socket is already closed.
+[20:18:07] Executor service stopped.
+[20:18:12] Server socket is already closed.
+[20:18:12] Executor service stopped.
+[20:18:12] Server stopped successfully.
+[20:19:18] Mail server is running on port 4445
+[20:19:19] Server started...
+[20:19:28] Server stopped...
+[20:19:29] Server started...
+[20:19:37] Server stopped...
+[20:19:40] Mail server is running on port 4445
+[20:19:41] Server started...
+[20:19:52] Server stopped...
+[20:19:53] Server started...
+[20:22:58] Mail server is running on port 4445
+[20:23:03] Server started...
+[20:23:10] Server stopped...
+[20:23:13] Server started...
+[20:23:22] Server stopped...
+[20:23:23] Server started...
+[20:23:31] Mail server is running on port 4445
+[20:23:32] Server started...
+[20:31:42] Mail server is running on port 4445
+[20:31:43] Server started...
+[20:31:44] Attempting to stop the server...
+[20:31:44] Error stopping server: Cannot invoke "server.MailServer.stop()" because "this.mailServer" is null
+[20:31:44] Server status updated to 'Stopped'.
+[20:36:38] Server started...
+[20:36:43] Attempting to stop the server...
+[20:36:43] Server stopped successfully.
+[20:36:43] Server status updated to 'Stopped'.
+[20:37:00] Server started...
+[20:37:11] Server started...
+[20:37:15] Attempting to stop the server...
+[20:37:15] Server stopped successfully.
+[20:37:15] Server status updated to 'Stopped'.
+[20:37:35] Mail server is running on port 4445
+[20:37:36] Server started...
+[20:37:50] Attempting to stop the server...
+[20:37:50] Error stopping server: Cannot invoke "server.MailServer.stop()" because "this.mailServer" is null
+[20:37:50] Server status updated to 'Stopped'.
+[20:45:07] Mail server is running on port 4445
+[20:45:13] Server started...
+[20:45:20] Attempting to stop the server...
+[20:45:20] Error stopping server: Cannot invoke "server.MailServer.stop()" because "this.mailServer" is null
+[20:45:20] Server status updated to 'Stopped'.
+[20:45:26] Server started...
+[20:45:51] Mail server is running on port 4445
+[20:45:52] Server started...
+[20:46:06] Attempting to stop the server...
+[20:46:06] Error stopping server: Cannot invoke "server.MailServer.stop()" because "this.mailServer" is null
+[20:46:06] Server status updated to 'Stopped'.
+[20:50:05] Mail server is running on port 4445
+[20:50:08] Server started...
+[20:50:16] Attempting to stop the server...
+[20:50:22] Error stopping server: Cannot invoke "server.MailServer.stop()" because "this.mailServer" is null
+[20:50:45] Mail server is running on port 4445
+[20:50:46] Server started...
+[20:50:53] Attempting to stop the server...
+[20:50:56] Error stopping server: Cannot invoke "server.MailServer.stop()" because "this.mailServer" is null
+[20:51:36] Server status updated to 'Stopped'.
+[20:54:22] Mail server is running on port 4445
+[20:54:23] Server started...
+[20:54:30] Attempting to stop the server...
+[20:54:30] Error stopping server: Cannot invoke "server.MailServer.stop()" because "this.mailServer" is null
+[20:54:30] Server status updated to 'Stopped'.
+[20:56:42] Mail server is running on port 4445
+[20:57:09] Mail server is running on port 4445
+[20:57:19] Server started...
+[20:57:19] Error: Address already in use: bind
+[20:57:25] Attempting to stop the server...
+[20:57:25] Mail server stopped.
+[20:57:25] Error: Socket closed
+[20:57:25] Server information removed from database.
+[20:57:25] Server is no longer running.
+[20:57:25] Server stopped successfully.
+[20:57:25] Server status updated to 'Stopped'.
+[20:58:23] Server started...
+[20:58:23] Mail server is running on port 4445
+[20:58:45] Server started...
+[20:58:45] Mail server is running on port 4445
+[20:58:54] Server started...
+[20:58:54] Error: Address already in use: bind
+[20:58:54] Attempting to stop the server...
+[20:58:54] Server information removed from database.
+[20:58:54] Server is no longer running.
+[20:58:54] Server stopped successfully.
+[20:58:54] Server status updated to 'Stopped'.
