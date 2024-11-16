@@ -39,40 +39,51 @@ public class MailClientView extends JFrame {
 	private JProgressBar loadingProgressBar; // Declare it at the class level
 	private JPanel panel; // Declare the panel to hold the progress bar and other components
 	private JFileChooser fileChooser;
-	
+	private JButton buttonMenu;
+	private SidebarPanel sidePanel;
+	private boolean isSidebarVisible = true; // Trạng thái hiển thị sidebar
+
 	public MailClientView(MailClient client, String username) {
 
-		// Initialize auto-refresh timer for emails
-		autoRefreshTimer = new Timer(30000, e -> { // Refresh every 30 seconds
-			if (autoRefreshEnabled) {
-				loadEmails(currentPage); // Reload emails if auto-refresh is enabled
-			}
-		});
-		autoRefreshTimer.start();
-		this.client = client;
-		this.username = username;
+	    // Initialize auto-refresh timer for emails
+	    autoRefreshTimer = new Timer(30000, e -> {
+	        if (autoRefreshEnabled) {
+	            loadEmails(currentPage); // Reload emails if auto-refresh is enabled
+	        }
+	    });
+	    autoRefreshTimer.start();
 
-		try {
-			UIManager.setLookAndFeel(new com.formdev.flatlaf.FlatLightLaf());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	    this.client = client;
+	    this.username = username;
 
-		setTitle("Elegant Mail Client");
-		setSize(1100, 700);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
-		getContentPane().setLayout(new BorderLayout());
+	    try {
+	        UIManager.setLookAndFeel(new com.formdev.flatlaf.FlatLightLaf());
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
 
-		// Tạo sidePanel từ lớp SidePanel mới
-		SidebarPanel sidePanel = new SidebarPanel(this);
-		getContentPane().add(sidePanel, BorderLayout.WEST);
+	    setTitle("Elegant Mail Client");
+	    setSize(1100, 700);
+	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    setLocationRelativeTo(null);
+	    getContentPane().setLayout(new BorderLayout());
+//
+//	    // Create and add the top menu panel
+//	    JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT)); // Align left
+//	    createButtonMenu(); // Initialize buttonMenu
+//	    topPanel.add(buttonMenu); // Add buttonMenu to top panel
+//	    getContentPane().add(topPanel, BorderLayout.NORTH); // Add top panel to the top
 
-		createMainPanel();
-		createStatusLabel();
+	    // Create and add the sidebar panel
+	    sidePanel = new SidebarPanel(this);
+	    getContentPane().add(sidePanel, BorderLayout.WEST);
 
-		setVisible(true);
-		updateStatusLabel("Logged in as: " + username);
+	    // Create main panel and status label
+	    createMainPanel();
+	    createStatusLabel();
+
+	    setVisible(true);
+	    updateStatusLabel("Logged in as: " + username);
 	}
 
 	private void createMainPanel() {
@@ -648,5 +659,6 @@ public class MailClientView extends JFrame {
 		loginScreen.setVisible(true); // Hiển thị màn hình đăng nhập
 
 	}
+
 
 }
