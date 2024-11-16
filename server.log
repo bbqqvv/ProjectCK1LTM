@@ -332,3 +332,368 @@ ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX
 [21:42:30] Server stopped successfully.
 [21:42:30] Server status updated to 'Stopped'.
 [21:42:30] Server is running.
+[22:01:01] Server started...
+[22:01:01] Mail server is running on port 4445
+[22:01:01] Attempting to stop the server...
+[22:01:01] Mail server stopped.
+[22:01:01] Error: Socket closed
+[22:01:01] Server information removed from database.
+[22:01:01] Server is no longer running.
+[22:01:01] Server stopped successfully.
+[22:01:01] Server status updated to 'Stopped'.
+[22:01:01] Server is running.
+[22:01:11] Server started...
+[22:01:11] Mail server is running on port 4445
+[22:05:52] Server started...
+[22:05:52] Mail server is running on port 4445
+[22:05:55] Attempting to stop the server...
+[22:05:55] Server stopped successfully.
+[22:05:55] Error: Socket closed
+[22:05:55] Server status updated to 'Stopped'.
+[22:05:55] Server is running.
+[22:06:43] Server started...
+[22:06:43] Mail server is running on port 4445
+[22:06:44] Attempting to stop the server...
+[22:06:56] Error: Socket closed
+[22:07:17] Mail server stopped.
+[22:07:23] Server information removed from database.
+[22:07:25] Server is no longer running.
+[22:07:27] Server stopped successfully.
+[00:18:32] Server started...
+[00:18:32] Mail server is running on port 4445
+[00:18:45] Received: LOGIN:exam@gmail.com:123
+[00:18:45] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
+[00:18:45] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[00:18:45] Sent response: Invalid command
+[00:24:58] Received: LOAD_EMAILS:exam@gmail.com:1:20
+[00:24:58] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
+ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[00:24:59] Received: LOAD_EMAILS:exam@gmail.com:1:20
+[00:24:59] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
+ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[00:25:00] Received: LOAD_EMAILS:exam@gmail.com:1:20
+[00:25:00] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
+ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[00:25:01] Received: LOAD_EMAILS:exam@gmail.com:1:20
+[00:25:01] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
+ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[00:25:26] Received: LOAD_EMAILS:exam@gmail.com:1:20
+[00:25:26] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
+ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[00:25:46] Received: LOAD_EMAILS:exam@gmail.com:1:20
+[00:25:46] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
+ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[01:10:46] Received: LOAD_EMAILS:exam@gmail.com:1:20
+[01:10:46] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
+ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[01:10:59] Received: LOAD_EMAILS:exam@gmail.com:1:20
+[01:10:59] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
+ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[01:11:00] Received: LOAD_EMAILS:exam@gmail.com:1:20
+[01:11:00] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
+ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[01:11:01] Received: LOAD_EMAILS:exam@gmail.com:1:20
+[01:11:01] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
+ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[16:58:33] Server started...
+[16:58:33] Mail server is running on port 4445
+[16:58:44] Received: LOGIN:exam@gmail.com:123
+[16:58:44] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
+[16:58:44] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[16:58:44] Sent response: Invalid command
+[16:59:16] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[16:59:16] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
+ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[17:01:33] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[17:01:33] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
+ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[17:11:50] Received: LOGIN:exam@gmail.com:123
+[17:11:50] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
+[17:11:50] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[17:11:50] Sent response: Invalid command
+[17:25:38] Received: LOGIN:exam@gmail.com:123
+[17:25:38] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
+[17:25:38] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[17:25:38] Sent response: Invalid command
+[17:25:42] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[17:25:42] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
+ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[17:26:39] Received: LOGIN:exam@gmail.com:123
+[17:26:39] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
+[17:26:39] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[17:26:39] Sent response: Invalid command
+[17:32:21] Received: LOGIN:exam@gmail.com:123
+[17:32:21] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
+[17:32:21] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[17:32:21] Sent response: Invalid command
+[17:36:39] Received: LOAD_EMAILS:testUser:1:10
+[17:36:39] Sent response: No emails found
+[17:41:51] Received: LOAD_EMAILS:testUser:1:10
+[17:41:51] Sent response: No emails found
+[17:42:40] Received: LOAD_EMAILS:testUser:1:10
+[17:42:40] Sent response: No emails found
+[17:50:35] Received: LOAD_EMAILS:testUser:1:10
+[17:50:35] Sent response: No emails found
+[17:50:37] Received: LOAD_EMAILS:testUser:1:10
+[17:50:37] Sent response: No emails found
+[17:59:53] Received: LOAD_EMAILS:testUser:1:10
+[17:59:53] Sent response: No emails found
+[18:06:25] Received: LOAD_EMAILS:testUser:1:10
+[18:06:25] Sent response: No emails found
+[18:06:26] Received: LOAD_EMAILS:testUser:1:10
+[18:06:26] Sent response: No emails found
+[18:06:27] Received: LOAD_EMAILS:testUser:1:10
+[18:06:27] Sent response: No emails found
+[18:14:54] Received: LOAD_EMAILS:testUser:1:10
+[18:14:54] Sent response: No emails found
+[18:15:18] Received: LOAD_EMAILS:testUser:1:10
+[18:15:18] Sent response: No emails found
+[18:15:21] Received: LOAD_EMAILS:testUser:1:10
+[18:15:21] Sent response: No emails found
+[18:16:15] Received: LOAD_EMAILS:testUser:1:10
+[18:16:15] Sent response: No emails found
+[18:18:05] Received: LOAD_EMAILS:testUser:1:10
+[18:18:05] Sent response: No emails found
+[18:25:42] Received: LOAD_EMAILS:testUser:1:10
+[18:25:42] Sent response: No emails found
+[18:25:52] Received: LOAD_EMAILS:testUser:1:10
+[18:25:52] Sent response: No emails found
+[18:26:11] Received: LOAD_EMAILS:testUser:1:10
+[18:26:11] Sent response: No emails found
+[18:51:00] Server started...
+[18:51:00] Mail server is running on port 4445
+[18:51:12] Received: LOAD_EMAILS:testUser:1:10
+[18:51:12] Sent response: No emails found
+[18:53:04] Received: LOAD_EMAILS:testUser:1:10
+[18:53:04] Sent response: No emails found
+[18:53:50] Received: LOAD_EMAILS:testUser:1:10
+[18:53:50] Sent response: No emails found
+[18:54:08] Received: LOAD_EMAILS:testUser:1:10
+[18:54:08] Sent response: No emails found
+[18:55:40] Received: LOAD_EMAILS:testUser:1:10
+[18:55:40] Sent response: No emails found
+[18:55:49] Received: LOAD_EMAILS:testUser:1:10
+[18:55:49] Sent response: No emails found
+[18:55:55] Received: LOAD_EMAILS:testUser:1:10
+[18:55:55] Sent response: No emails found
+[19:41:13] Received: LOAD_EMAILS:testUser:1:10
+[19:41:13] Sent response: No emails found
+[19:43:54] Received: LOAD_EMAILS:testUser:1:10
+[19:43:54] Sent response: No emails found
+[19:46:07] Received: LOAD_EMAILS:testUser:1:10
+[19:46:07] Sent response: No emails found
+[19:51:21] Received: LOAD_EMAILS:testUser:1:10
+[19:51:21] Sent response: No emails found
+[19:51:22] Received: LOAD_EMAILS:testUser:1:10
+[19:51:22] Sent response: No emails found
+[19:51:31] Received: LOAD_EMAILS:testUser:1:10
+[19:51:31] Sent response: No emails found
+[19:53:16] Received: LOAD_EMAILS:testUser:1:10
+[19:53:16] Sent response: No emails found
+[19:53:20] Received: LOAD_EMAILS:testUser:1:10
+[19:53:20] Sent response: No emails found
+[19:58:56] Received: LOAD_EMAILS:testUser:1:10
+[19:58:56] Sent response: No emails found
+[20:00:44] Received: LOAD_EMAILS:testUser:1:10
+[20:00:44] Sent response: No emails found
+[20:01:09] Attempting to stop the server...
+[20:01:09] Mail server stopped.
+[20:01:09] Error: Socket closed
+[20:01:09] Server information removed from database.
+[20:01:09] Server is no longer running.
+[20:01:09] Server stopped successfully.
+[20:01:09] Server status updated to 'Stopped'.
+[20:01:09] Server is running.
+[20:01:09] Server started...
+[20:01:09] Mail server is running on port 4445
+[20:02:27] Received: LOAD_EMAILS:testUser:1:10
+[20:02:27] Sent response: No emails found
+[20:02:33] Received: LOAD_EMAILS:testUser:1:10
+[20:02:33] Sent response: No emails found
+[20:05:05] Received: LOAD_EMAILS:testUser:1:10
+[20:05:05] Sent response: No emails found
+[20:09:25] Received: LOAD_EMAILS:testUser:1:10
+[20:09:25] Sent response: No emails found
+[20:09:28] Received: LOAD_EMAILS:testUser:1:10
+[20:09:28] Sent response: No emails found
+[20:09:31] Received: LOAD_EMAILS:testUser:1:10
+[20:09:31] Sent response: No emails found
+[20:09:44] Received: LOGIN:exam@gmail.com:123
+[20:09:44] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
+[20:09:44] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[20:09:44] Sent response: Invalid command
+[20:09:47] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[20:09:47] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
+ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[20:13:40] Received: LOGIN:exam@gmail.com:123
+[20:13:40] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
+[20:13:40] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[20:13:40] Sent response: Invalid command
+[20:13:41] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[20:13:41] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
+ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[20:32:24] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[20:32:24] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
+ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[20:32:25] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[20:32:25] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
+ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[20:32:27] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[20:32:27] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
+ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[20:34:06] Received: LOGIN:exam@gmail.com:123
+[20:34:06] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
+[20:34:06] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[20:34:06] Sent response: Invalid command
+[20:34:08] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[20:34:08] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
+ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[20:39:39] Received: LOGIN:exam@gmail.com:123
+[20:39:39] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
+[20:39:39] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[20:39:39] Sent response: Invalid command
+[20:39:40] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[20:39:40] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
+ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[20:39:47] Received: DELETE_EMAIL:exam@gmail.com:1
+[20:39:47] Sent response: Email deleted successfully
+[20:39:48] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[20:39:48] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[20:39:54] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[20:39:54] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[20:40:00] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[20:40:00] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[20:41:26] Received: LOGIN:exam@gmail.com:123
+[20:41:26] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
+[20:41:26] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[20:41:26] Sent response: Invalid command
+[20:41:27] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[20:41:27] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[20:41:37] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[20:41:37] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[20:44:12] Attempting to stop the server...
+[20:44:12] Mail server stopped.
+[20:44:12] Error: Socket closed
+[20:44:12] Server information removed from database.
+[20:44:12] Server is no longer running.
+[20:44:12] Server stopped successfully.
+[20:44:12] Server status updated to 'Stopped'.
+[20:44:12] Server is running.
+[20:44:13] Server started...
+[20:44:13] Mail server is running on port 4445
+[20:44:34] Received: LOGIN:exam@gmail.com:123
+[20:44:34] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
+[20:44:35] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[20:44:35] Sent response: Invalid command
+[20:45:13] Received: LOGIN:exam@gmail.com:123
+[20:45:13] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
+[20:45:13] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[20:45:13] Sent response: Invalid command
+[20:45:16] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[20:45:16] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[20:49:58] Received: LOGIN:exam@gmail.com:123
+[20:49:58] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
+[20:49:58] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[20:49:58] Sent response: Invalid command
+[20:52:37] Received: LOGIN:exam@gmail.com:123
+[20:52:37] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
+[20:52:37] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[20:52:37] Sent response: Invalid command
+[21:13:39] Attempting to stop the server...
+[21:13:39] Mail server stopped.
+[21:13:39] Error: Socket closed
+[21:13:39] Server information removed from database.
+[21:13:39] Server is no longer running.
+[21:13:39] Server stopped successfully.
+[21:13:39] Server status updated to 'Stopped'.
+[21:13:39] Server is running.
+[21:13:40] Server started...
+[21:13:40] Mail server is running on port 4445
+[21:13:53] Received: LOGIN:exam@gmail.com:123
+[21:13:54] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
+[21:13:54] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[21:13:54] Sent response: Invalid command
+[21:14:04] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[21:14:04] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[21:17:34] Server started...
+[21:17:34] Mail server is running on port 4445
+[21:17:45] Received: LOGIN:exam@gmail.com:123
+[21:17:45] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
+[21:17:45] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[21:17:45] Sent response: Invalid command
+[21:19:33] Received: LOGIN:exam@gmail.com:123
+[21:19:33] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
+[21:19:33] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[21:19:33] Sent response: Invalid command
+[21:19:55] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[21:19:55] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[21:20:03] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[21:20:03] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[21:20:50] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[21:20:50] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[21:24:14] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[21:24:14] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[21:24:27] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[21:24:27] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[21:24:32] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[21:24:32] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[21:24:33] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[21:24:33] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[21:24:34] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[21:24:34] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[21:24:38] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[21:24:38] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[21:24:40] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[21:24:40] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[21:24:40] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[21:24:40] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[21:26:04] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[21:26:04] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[21:27:43] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[21:27:43] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[21:27:58] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[21:27:58] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
+[21:32:43] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[21:32:43] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
+
