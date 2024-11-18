@@ -3,6 +3,7 @@ package client;
 import javax.swing.*;
 
 import dao.ServerDAO;
+import dao.UserDAO;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -23,20 +24,22 @@ public class SettingsDialog extends JDialog {
     private Locale currentLocale;
     private ResourceBundle messages;
     private MailClientView parentView;
-
+    private ServerDAO serverDAO;
+	private UserDAO userDAO;
     // Constructor
-    public SettingsDialog(MailClientView parentView, int emailsPerPage, String username) {
-        super(parentView, "Settings", true);
-        this.parentView = parentView;
-        this.emailsPerPage = emailsPerPage;
-        this.username = username;
-        this.currentLocale = Locale.getDefault(); // Default locale
-        this.messages = ResourceBundle.getBundle("messages", currentLocale); // Load messages for current locale
-        initializeDialog();
-    }
+	public SettingsDialog(MailClientView parentView, int emailsPerPage, String username, UserDAO userDAO) {
+	    super(parentView, "Settings", true);
+	    this.parentView = parentView;
+	    this.emailsPerPage = emailsPerPage;
+	    this.username = username;
+	    this.userDAO = userDAO;  // Truyền userDAO vào constructor
+	    this.currentLocale = Locale.getDefault();
+	    this.messages = ResourceBundle.getBundle("messages", currentLocale);
+	    initializeDialog();
+	}
 
     private void initializeDialog() {
-        setSize(450, 400);
+        setSize(550, 400);
         setLocationRelativeTo(parentView);
         setLayout(new BorderLayout(10, 10));
 
@@ -139,18 +142,37 @@ public class SettingsDialog extends JDialog {
             usernameField.setText(username);
         });
 
-        // Logout Button
+     // Logout Button
         JButton logoutButton = new JButton(messages.getString("settings.logout"));
         logoutButton.setPreferredSize(new Dimension(120, 40));
-        logoutButton.addActionListener(new ActionListener() {
-            private ServerDAO serverDAO;
 
-			@Override
+        logoutButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
-                parentView.showLoginScreen(serverDAO);
-                dispose();
+                // Sử dụng email (hoặc username) từ thông tin đã truyền vào SettingsDialog
+                if (username == null || username.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, messages.getString("settings.noUserDetected"));
+                    return;
+                }
+
+                // Kiểm tra xem email (hoặc username) có đang đăng nhập không
+                if (userDAO.isUserLoggedIn(username)) { // username được truyền từ MailClientView
+                    // Nếu đang đăng nhập, tiến hành đăng xuất
+                    userDAO.updateLoginStatus(username, false);
+                    JOptionPane.showMessageDialog(null, messages.getString("settings.logoutSuccess"));
+
+                    // Quay về màn hình đăng nhập
+                    parentView.showLoginScreen(serverDAO);
+                    dispose();
+                } else {
+                    // Nếu email không đăng nhập
+                    JOptionPane.showMessageDialog(null, messages.getString("settings.notLoggedIn"));
+                }
             }
         });
+
+
+        settingsPanel.add(logoutButton); // Thêm nút vào panel
 
         // Button Panel
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));

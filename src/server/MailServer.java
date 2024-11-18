@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+
 public class MailServer {
     private static final int PORT = 4445;
     private DatagramSocket socket;
@@ -197,10 +198,11 @@ public class MailServer {
         String email = tokens.remove(0);
         String password = tokens.remove(0);
         
-        User newUser = new User(0, username, password, email);
+        User newUser = new User(0, username, password, email, false);
         boolean registrationSuccess = userDAO.addUser(newUser);
         sendResponse(registrationSuccess ? "Register successful" : "Register failed", packet);
     }
+
 
     private void handleLogin(List<String> tokens, DatagramPacket packet) throws IOException {
         if (tokens.size() < 2) {
@@ -209,28 +211,40 @@ public class MailServer {
         }
         String email = tokens.remove(0);
         String password = tokens.remove(0);
-        User loginUser = new User(0, null, password, email);
+
+        // Kiểm tra xem người dùng đã đăng nhập hay chưa
+        if (userDAO.isUserLoggedIn(email)) {
+            sendResponse("You are already logged in.", packet);
+            return;
+        }
+        // Tạo đối tượng User với trạng thái isLogin mặc định là false
+        User loginUser = new User(0, null, password, email, false);  // isLogin mặc định là false
         boolean loginSuccess = userDAO.loginUser(loginUser);
 
         if (loginSuccess) {
+            // Cập nhật trạng thái đăng nhập của người dùng
+            userDAO.updateLoginStatus(email, true);  // Cập nhật isLogin = true
+
+            // Cập nhật địa chỉ IP của người dùng
             String ipAddress = packet.getAddress().getHostAddress();
             userDAO.updateUserIpAddress(email, ipAddress);
-            
-            // Lấy địa chỉ IP và Port của server từ database
+
+            // Lấy thông tin máy chủ từ database
             Server serverInfo = serverDAO.getServerIpAndPort();
-            
-            // Get username for the logged-in user
+
+            // Lấy tên người dùng
             String username = userDAO.getUsername(email);
-            
+
             // Tạo thông báo phản hồi bao gồm IP và Port của server
             String response = "Login successful. Welcome, " + username + "!" 
                               + (serverInfo != null ? " Server IP: " + serverInfo.getServerIp() 
                               + ", Port: " + serverInfo.getServerPort() : " Server info not found.");
             sendResponse(response, packet);
         } else {
-            sendResponse("Login failed", packet);
+            sendResponse("Login failed. Invalid email or password.", packet);
         }
     }
+
 
     private void handleSendEmail(List<String> tokens, DatagramPacket packet) throws IOException {
         if (tokens.size() < 4) {
