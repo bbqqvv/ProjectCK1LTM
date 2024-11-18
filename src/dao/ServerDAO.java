@@ -1,6 +1,7 @@
 package dao;
 
 import model.Server;
+import model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,11 +9,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
+import org.mindrot.jbcrypt.BCrypt;
+
+import common.SnowflakeIdWorker;
+
 public class ServerDAO {
     private Connection connection;
+	private SnowflakeIdWorker idWorker;
 
     public ServerDAO(Connection connection) {
         this.connection = connection;
+        this.idWorker = new SnowflakeIdWorker(1, 1); 
     }
 
     public void saveServer(String serverIp, int serverPort) {
@@ -21,11 +28,13 @@ public class ServerDAO {
             return; 
         }
 
+        long uniqueId = idWorker.generateId();  // Tạo ID duy nhất chỉ một lần
+
         String sql = "INSERT INTO server_config (server_id, server_ip, server_port) VALUES (?, ?, ?)";
-        String serverId = UUID.randomUUID().toString();
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, serverId); 
+            // Sử dụng Snowflake ID (kiểu long) thay vì UUID
+            preparedStatement.setLong(1, uniqueId);  // Thay vì set String cho server_id, sử dụng setLong
             preparedStatement.setString(2, serverIp); 
             preparedStatement.setInt(3, serverPort); 
             preparedStatement.executeUpdate(); 
@@ -33,8 +42,31 @@ public class ServerDAO {
         } catch (SQLException e) {
             System.err.println("Error saving server: " + e.getMessage());
             e.printStackTrace();
+            // Nên thêm log lỗi vào hệ thống thay vì chỉ in ra console
         }
     }
+
+    public boolean serverExists(String serverIp, int port) {
+        String sql = "SELECT COUNT(*) FROM server_config WHERE server_ip = ? AND server_port = ?";
+        
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, serverIp);
+            preparedStatement.setInt(2, port);
+            
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt(1) > 0;
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error checking server existence: " + e.getMessage());
+            e.printStackTrace();
+            // Nên có log lỗi ở đây
+        }
+        
+        return false;
+    }
+
 
     public boolean deleteServer(String serverIp, int serverPort) {
         if (!serverExists(serverIp, serverPort)) {
@@ -60,26 +92,6 @@ public class ServerDAO {
         }
 
         return false; 
-    }
-
-    public boolean serverExists(String serverIp, int port) {
-        String sql = "SELECT COUNT(*) FROM server_config WHERE server_ip = ? AND server_port = ?";
-        
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, serverIp);
-            preparedStatement.setInt(2, port);
-            
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                if (resultSet.next()) {
-                    return resultSet.getInt(1) > 0;
-                }
-            }
-        } catch (SQLException e) {
-            System.err.println("Error checking server existence: " + e.getMessage());
-            e.printStackTrace();
-        }
-        
-        return false;
     }
 
     public Server getServerIpAndPort() {
@@ -134,4 +146,7 @@ public class ServerDAO {
 
         return serverPort;
     }
+
+
+
 }

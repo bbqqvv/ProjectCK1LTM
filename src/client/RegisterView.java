@@ -15,10 +15,12 @@ public class RegisterView extends JFrame {
     private JPasswordField confirmPasswordField;
     private JButton registerButton;
     private JButton cancelButton;
-	private JTextComponent statusLabel;
-	private ServerDAO serverDAO;
+    private JTextComponent statusLabel;
+    private ServerDAO serverDAO; // Thêm biến serverDAO
 
-    public RegisterView() {
+    // Constructor của RegisterView yêu cầu ServerDAO
+    public RegisterView(ServerDAO serverDAO) {
+        this.serverDAO = serverDAO; // Nhận ServerDAO từ đối tượng gọi
         setTitle("Register");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -93,7 +95,7 @@ public class RegisterView extends JFrame {
             String response = tempClient.sendRequest(request);
             JOptionPane.showMessageDialog(this, response);
             if (response.contains("successful")) {
-                new LoginView(serverDAO);
+                openLoginView();  // Chuyển tới LoginView sau khi đăng ký thành công
                 dispose();
             }
         } catch (Exception e) {
@@ -103,9 +105,7 @@ public class RegisterView extends JFrame {
     }
 
     private void openLoginView() {
-   
-
-        new LoginView(serverDAO);
+        new LoginView(serverDAO);  // Truyền serverDAO khi mở LoginView
         dispose();
     }
 }

@@ -4,6 +4,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import com.toedter.calendar.JDateChooser;
+
 import dao.MailDAO;
 import dao.ServerDAO;
 import dao.UserDAO;
@@ -13,13 +15,13 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import com.toedter.calendar.JDateChooser;
 
 public class MailClientView extends JFrame {
 
@@ -45,8 +47,9 @@ public class MailClientView extends JFrame {
 	private JButton buttonMenu;
 	private SidebarPanel sidePanel;
 	private boolean isSidebarVisible = true; // Trạng thái hiển thị sidebar
-
-	public MailClientView(MailClient client, String username) {
+	private UserDAO userDAO;
+	private ServerDAO serverDAO;
+	public MailClientView(MailClient client, String username, UserDAO userDAO, ServerDAO serverDAO) {
 
 	    // Initialize auto-refresh timer for emails
 	    autoRefreshTimer = new Timer(30000, e -> {
@@ -58,7 +61,9 @@ public class MailClientView extends JFrame {
 
 	    this.client = client;
 	    this.username = username;
-
+	    this.userDAO = userDAO;
+	    this.serverDAO = serverDAO;
+	    this.emailsPerPage = emailsPerPage;
 	    try {
 	        UIManager.setLookAndFeel(new com.formdev.flatlaf.FlatLightLaf());
 	    } catch (Exception e) {
@@ -251,7 +256,7 @@ public class MailClientView extends JFrame {
 	        for (File file : files) {
 	            System.out.println(file.getName());
 	        }
-	    }
+	     }
 	}
 
 	private void sendTestEmail(JTextField receiverField) {
@@ -715,7 +720,8 @@ public class MailClientView extends JFrame {
 
 	public void openSettings() {
 		// Truyền thêm username vào SettingsDialog
-		new SettingsDialog(this, emailsPerPage, username);
+		// Truyền userDAO và serverDAO vào SettingsDialog
+		new SettingsDialog(this, emailsPerPage, username, userDAO);
 	}
 
 	public void setEmailsPerPage(int emailsPerPage) {
@@ -767,13 +773,30 @@ public class MailClientView extends JFrame {
 	}
 
 	public void showLoginScreen(ServerDAO serverDAO) {
+	    // Ẩn màn hình hiện tại
+	    this.setVisible(false);
 
-		this.setVisible(false); // Ẩn màn hình chính của ứng dụng
-		JOptionPane.showMessageDialog(this, "Logged out successfully.", "Logout", JOptionPane.INFORMATION_MESSAGE);
-		LoginView loginScreen = new LoginView(serverDAO); // Giả sử LoginScreen là một JFrame hoặc JDialog
-		loginScreen.setVisible(true); // Hiển thị màn hình đăng nhập
+	    // Hiển thị thông báo đăng xuất thành công
+	    JOptionPane.showMessageDialog(this, "Logged out successfully.", "Logout", JOptionPane.INFORMATION_MESSAGE);
 
+	    // Kiểm tra nếu serverDAO bị null, tạo lại từ DatabaseConnection
+	    if (serverDAO == null) {
+	        try {
+	            Connection connection = DatabaseConnection.getConnection();
+	            serverDAO = new ServerDAO(connection);  // Tạo lại ServerDAO nếu không có sẵn
+	        } catch (SQLException ex) {
+	            JOptionPane.showMessageDialog(this, "Error reconnecting to the database: " + ex.getMessage(),
+	                    "Database Error", JOptionPane.ERROR_MESSAGE);
+	            ex.printStackTrace();
+	            return;
+	        }
+	    }
+
+	    // Tạo lại LoginView với serverDAO và hiển thị màn hình đăng nhập
+	    LoginView loginScreen = new LoginView(serverDAO); 
+	    loginScreen.setVisible(true);
 	}
+
 
 
 }

@@ -1,699 +1,316 @@
-[16:03:06] Server stopped...
-[16:03:06] Server started...
-[16:36:12] Mail server is running on port 4445
-[16:36:12] Server started...
-[16:36:23] Received: LOGIN:exam@gmail.com:123
-[16:36:23] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
-[16:36:23] Received: SAVE_IP:exam@gmail.com:192.168.1.3
-[16:36:23] Sent response: Invalid command
-[16:36:25] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[16:36:25] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-
-[16:37:13] Received: LOGIN:exam1@gmail.com:123
-[16:37:13] Sent response: Login successful. Welcome, VAN QUOC BUI! Server IP: 192.168.1.3, Port: 4445
-[16:37:13] Received: SAVE_IP:exam1@gmail.com:192.168.1.3
-[16:37:13] Sent response: Invalid command
-[16:37:15] Received: LOAD_EMAILS:exam1@gmail.com:1:10
-[16:37:15] Sent response: No emails found
-[16:37:32] Received: SEND_EMAIL:exam@gmail.com:exam1@gmail.com:Hello Các Bạn:XXXXXXXXXXXXXX
-[16:37:32] Sent response: Email sent
-[16:37:34] Received: LOAD_EMAILS:exam1@gmail.com:1:10
-[16:37:34] Sent response: ID: 2, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Các Bạn, Content: XXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-
-[16:37:50] Received: LOAD_EMAILS:exam1@gmail.com:1:10
-[16:37:50] Sent response: ID: 2, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Các Bạn, Content: XXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-
-[16:54:54] Received: LOGIN:exam1@gmail.:123
-[16:54:54] Sent response: Login failed
-[16:55:03] Received: LOGIN:exam1@gmail.:123
-[16:55:03] Sent response: Login failed
-[16:55:18] Received: LOGIN:exam1@gmail.com:123
-[16:55:18] Sent response: Login successful. Welcome, VAN QUOC BUI! Server IP: 192.168.1.3, Port: 4445
-[16:55:18] Received: SAVE_IP:exam1@gmail.com:127.0.1.1
-[16:55:18] Sent response: Invalid command
-[16:55:26] Received: LOAD_EMAILS:exam1@gmail.com:1:10
-[16:55:26] Sent response: ID: 2, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Các Bạn, Content: XXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-
-[16:57:30] Mail server is running on port 4445
-[16:57:31] Server started...
-[16:58:49] Received: LOGIN:exam1@gmail.com:123
-[16:58:49] Sent response: Login successful. Welcome, VAN QUOC BUI! Server IP: 192.168.1.3, Port: 4445
-[16:58:49] Received: SAVE_IP:exam1@gmail.com:127.0.1.1
-[16:58:49] Sent response: Invalid command
-[17:02:42] Received: LOGIN:exam1@gmail.com:123
-[17:02:42] Sent response: Login successful. Welcome, VAN QUOC BUI! Server IP: 192.168.1.3, Port: 4445
-[17:02:42] Received: SAVE_IP:exam1@gmail.com:127.0.1.1
-[17:02:42] Sent response: Invalid command
-[17:03:49] Received: LOAD_EMAILS:exam1@gmail.com:1:10
-[17:03:49] Sent response: ID: 2, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Các Bạn, Content: XXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-
-[17:04:11] Received: SEARCH_EMAILS:exam1@gmail.com:Hello:1:10
-[17:04:11] Sent response: ID: 2, Sender: exam@gmail.com, Receiver: exam1@gmail.com, Subject: Hello Các Bạn, Content: XXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-
-[17:04:34] Received: LOGIN:exam@gmail.com:123
-[17:04:34] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
-[17:04:34] Received: SAVE_IP:exam@gmail.com:127.0.1.1
-[17:04:34] Sent response: Invalid command
-[17:05:00] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[17:05:00] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-
-[17:05:05] Received: SEND_EMAIL:exam1@gmail.com:exam@gmail.com:Hello XXXXXXX:e123123123123123123
-[17:05:05] Sent response: Email sent
-[17:05:07] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[17:05:07] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[17:05:24] Server stopped...
-[17:05:38] Received: LOGIN:exam@gmail.com:123
-[17:05:38] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
-[17:05:38] Received: SAVE_IP:exam@gmail.com:127.0.1.1
-[17:05:38] Sent response: Invalid command
-[17:20:52] Mail server is running on port 4445
-[17:21:16] Server started...
-[17:21:28] Received: LOGIN:exam@gmail.com:123
-[17:21:28] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
-[17:21:28] Received: SAVE_IP:exam@gmail.com:192.168.1.3
-[17:21:28] Sent response: Invalid command
-[17:21:31] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[17:21:31] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[19:56:18] Mail server is running on port 4445
-[19:56:19] Server started...
-[19:56:24] Error stopping server: Cannot invoke "server.MailServer.stop()" because "this.mailServer" is null
-[19:56:38] Server started...
-[19:56:51] Mail server is running on port 4445
-[19:56:56] Server started...
-[19:57:47] Error stopping server: Cannot invoke "server.MailServer.stop()" because "this.mailServer" is null
-[20:10:31] Server error: Address already in use: bind
-[20:10:31] Server socket is already closed.
-[20:10:31] Executor service stopped.
-[20:10:39] Mail server is running on port 4445
-[20:10:50] Server started...
-[20:10:50] Server error: Address already in use: bind
-[20:10:50] Server socket is already closed.
-[20:10:50] Executor service stopped.
-[20:11:11] Server socket is already closed.
-[20:11:11] Executor service stopped.
-[20:11:11] Server stopped successfully.
-[20:11:18] Server started...
-[20:11:18] Server error: Address already in use: bind
-[20:11:18] Server socket is already closed.
-[20:11:18] Executor service stopped.
-[20:11:22] Server socket is already closed.
-[20:11:22] Executor service stopped.
-[20:11:22] Server stopped successfully.
-[20:11:23] Server started...
-[20:11:23] Server error: Address already in use: bind
-[20:11:23] Server socket is already closed.
-[20:11:23] Executor service stopped.
-[20:11:26] Server socket is already closed.
-[20:11:26] Executor service stopped.
-[20:11:26] Server stopped successfully.
-[20:11:30] Server started...
-[20:11:30] Server error: Address already in use: bind
-[20:11:30] Server socket is already closed.
-[20:11:30] Executor service stopped.
-[20:12:16] Server socket is already closed.
-[20:12:16] Executor service stopped.
-[20:12:16] Server stopped successfully.
-[20:12:17] Server started...
-[20:12:17] Server error: Address already in use: bind
-[20:12:17] Server socket is already closed.
-[20:12:17] Executor service stopped.
-[20:12:17] Server socket is already closed.
-[20:12:17] Executor service stopped.
-[20:12:17] Server stopped successfully.
-[20:12:18] Server started...
-[20:12:18] Server error: Address already in use: bind
-[20:12:18] Server socket is already closed.
-[20:12:18] Executor service stopped.
-[20:12:19] Server socket is already closed.
-[20:12:19] Executor service stopped.
-[20:12:19] Server stopped successfully.
-[20:12:19] Server started...
-[20:12:19] Server error: Address already in use: bind
-[20:12:19] Server socket is already closed.
-[20:12:19] Executor service stopped.
-[20:12:20] Server socket is already closed.
-[20:12:20] Executor service stopped.
-[20:12:20] Server stopped successfully.
-[20:12:21] Server started...
-[20:12:21] Server error: Address already in use: bind
-[20:12:21] Server socket is already closed.
-[20:12:21] Executor service stopped.
-[20:12:22] Server socket is already closed.
-[20:12:22] Executor service stopped.
-[20:12:22] Server stopped successfully.
-[20:12:23] Server started...
-[20:12:23] Server error: Address already in use: bind
-[20:12:23] Server socket is already closed.
-[20:12:23] Executor service stopped.
-[20:12:23] Server socket is already closed.
-[20:12:23] Executor service stopped.
-[20:12:23] Server stopped successfully.
-[20:12:23] Server started...
-[20:12:23] Server error: Address already in use: bind
-[20:12:23] Server socket is already closed.
-[20:12:23] Executor service stopped.
-[20:12:24] Server socket is already closed.
-[20:12:24] Executor service stopped.
-[20:12:24] Server stopped successfully.
-[20:12:24] Server started...
-[20:12:24] Server error: Address already in use: bind
-[20:12:24] Server socket is already closed.
-[20:12:24] Executor service stopped.
-[20:12:24] Server socket is already closed.
-[20:12:24] Executor service stopped.
-[20:12:24] Server stopped successfully.
-[20:12:25] Server started...
-[20:12:25] Server error: Address already in use: bind
-[20:12:25] Server socket is already closed.
-[20:12:25] Executor service stopped.
-[20:17:32] Mail server is running on port 4445
-[20:17:33] Server started...
-[20:17:33] Server error: Address already in use: bind
-[20:17:33] Server socket is already closed.
-[20:17:33] Executor service stopped.
-[20:17:46] Server socket is already closed.
-[20:17:46] Executor service stopped.
-[20:17:46] Server stopped successfully.
-[20:17:55] Server started...
-[20:17:55] Server error: Address already in use: bind
-[20:17:55] Server socket is already closed.
-[20:17:55] Executor service stopped.
-[20:17:56] Server socket is already closed.
-[20:17:56] Executor service stopped.
-[20:17:56] Server stopped successfully.
-[20:18:07] Server started...
-[20:18:07] Server error: Address already in use: bind
-[20:18:07] Server socket is already closed.
-[20:18:07] Executor service stopped.
-[20:18:12] Server socket is already closed.
-[20:18:12] Executor service stopped.
-[20:18:12] Server stopped successfully.
-[20:19:18] Mail server is running on port 4445
-[20:19:19] Server started...
-[20:19:28] Server stopped...
-[20:19:29] Server started...
-[20:19:37] Server stopped...
-[20:19:40] Mail server is running on port 4445
-[20:19:41] Server started...
-[20:19:52] Server stopped...
-[20:19:53] Server started...
-[20:22:58] Mail server is running on port 4445
-[20:23:03] Server started...
-[20:23:10] Server stopped...
-[20:23:13] Server started...
-[20:23:22] Server stopped...
-[20:23:23] Server started...
-[20:23:31] Mail server is running on port 4445
-[20:23:32] Server started...
-[20:31:42] Mail server is running on port 4445
-[20:31:43] Server started...
-[20:31:44] Attempting to stop the server...
-[20:31:44] Error stopping server: Cannot invoke "server.MailServer.stop()" because "this.mailServer" is null
-[20:31:44] Server status updated to 'Stopped'.
-[20:36:38] Server started...
-[20:36:43] Attempting to stop the server...
-[20:36:43] Server stopped successfully.
-[20:36:43] Server status updated to 'Stopped'.
-[20:37:00] Server started...
-[20:37:11] Server started...
-[20:37:15] Attempting to stop the server...
-[20:37:15] Server stopped successfully.
-[20:37:15] Server status updated to 'Stopped'.
-[20:37:35] Mail server is running on port 4445
-[20:37:36] Server started...
-[20:37:50] Attempting to stop the server...
-[20:37:50] Error stopping server: Cannot invoke "server.MailServer.stop()" because "this.mailServer" is null
-[20:37:50] Server status updated to 'Stopped'.
-[20:45:07] Mail server is running on port 4445
-[20:45:13] Server started...
-[20:45:20] Attempting to stop the server...
-[20:45:20] Error stopping server: Cannot invoke "server.MailServer.stop()" because "this.mailServer" is null
-[20:45:20] Server status updated to 'Stopped'.
-[20:45:26] Server started...
-[20:45:51] Mail server is running on port 4445
-[20:45:52] Server started...
-[20:46:06] Attempting to stop the server...
-[20:46:06] Error stopping server: Cannot invoke "server.MailServer.stop()" because "this.mailServer" is null
-[20:46:06] Server status updated to 'Stopped'.
-[20:50:05] Mail server is running on port 4445
-[20:50:08] Server started...
-[20:50:16] Attempting to stop the server...
-[20:50:22] Error stopping server: Cannot invoke "server.MailServer.stop()" because "this.mailServer" is null
-[20:50:45] Mail server is running on port 4445
-[20:50:46] Server started...
-[20:50:53] Attempting to stop the server...
-[20:50:56] Error stopping server: Cannot invoke "server.MailServer.stop()" because "this.mailServer" is null
-[20:51:36] Server status updated to 'Stopped'.
-[20:54:22] Mail server is running on port 4445
-[20:54:23] Server started...
-[20:54:30] Attempting to stop the server...
-[20:54:30] Error stopping server: Cannot invoke "server.MailServer.stop()" because "this.mailServer" is null
-[20:54:30] Server status updated to 'Stopped'.
-[20:56:42] Mail server is running on port 4445
-[20:57:09] Mail server is running on port 4445
-[20:57:19] Server started...
-[20:57:19] Error: Address already in use: bind
-[20:57:25] Attempting to stop the server...
-[20:57:25] Mail server stopped.
-[20:57:25] Error: Socket closed
-[20:57:25] Server information removed from database.
-[20:57:25] Server is no longer running.
-[20:57:25] Server stopped successfully.
-[20:57:25] Server status updated to 'Stopped'.
-[20:58:23] Server started...
-[20:58:23] Mail server is running on port 4445
-[20:58:45] Server started...
-[20:58:45] Mail server is running on port 4445
-[20:58:54] Server started...
-[20:58:54] Error: Address already in use: bind
-[20:58:54] Attempting to stop the server...
-[20:58:54] Server information removed from database.
-[20:58:54] Server is no longer running.
-[20:58:54] Server stopped successfully.
-[20:58:54] Server status updated to 'Stopped'.
-[21:31:44] Server started...
-[21:31:44] Mail server is running on port 4445
-[21:31:56] Server started...
-[21:31:56] Mail server is running on port 4445
-[21:32:04] Server started...
-[21:32:04] Mail server is running on port 4445
-[21:32:20] Received: LOGIN:exam@gmail.com:123
-[21:32:20] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
-[21:32:20] Received: SAVE_IP:exam@gmail.com:127.0.1.1
-[21:32:20] Sent response: Invalid command
-[21:32:22] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[21:32:22] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[21:33:51] Server started...
-[21:33:51] Mail server is running on port 4445
-[21:35:15] Server started...
-[21:35:15] Mail server is running on port 4445
-[21:37:41] Server started...
-[21:37:41] Mail server is running on port 4445
-[21:37:41] Server IP: 192.168.1.3
-[21:38:20] Server started...
-[21:38:20] Mail server is running on port 4445
-[21:38:20] Server IP: 192.168.1.3
-[21:38:25] Timeout or error receiving packet: Receive timed out
-[21:38:30] Server started...
-[21:38:30] Mail server is running on port 4445
-[21:38:30] Server IP: 192.168.1.3
-[21:38:35] Timeout or error receiving packet: Receive timed out
-[21:38:40] Server started...
-[21:38:40] Mail server is running on port 4445
-[21:39:40] Server started...
-[21:39:40] Mail server is running on port 4445
-[21:39:40] Server IP: 192.168.1.3
-[21:39:56] Server started...
-[21:39:56] Mail server is running on port 4445
-[21:39:56] Server IP: 192.168.1.3
-[21:42:04] Server started...
-[21:42:04] Mail server is running on port 4445
-[21:42:19] Attempting to stop the server...
-[21:42:19] Mail server stopped.
-[21:42:19] Error: Socket closed
-[21:42:19] Server information removed from database.
-[21:42:19] Server is no longer running.
-[21:42:19] Server stopped successfully.
-[21:42:19] Server status updated to 'Stopped'.
-[21:42:19] Server is running.
-[21:42:27] Server started...
-[21:42:27] Mail server is running on port 4445
-[21:42:30] Attempting to stop the server...
-[21:42:30] Error: Socket closed
-[21:42:30] Mail server stopped.
-[21:42:30] Server information removed from database.
-[21:42:30] Server is no longer running.
-[21:42:30] Server stopped successfully.
-[21:42:30] Server status updated to 'Stopped'.
-[21:42:30] Server is running.
-[22:01:01] Server started...
-[22:01:01] Mail server is running on port 4445
-[22:01:01] Attempting to stop the server...
-[22:01:01] Mail server stopped.
-[22:01:01] Error: Socket closed
-[22:01:01] Server information removed from database.
-[22:01:01] Server is no longer running.
-[22:01:01] Server stopped successfully.
-[22:01:01] Server status updated to 'Stopped'.
-[22:01:01] Server is running.
-[22:01:11] Server started...
-[22:01:11] Mail server is running on port 4445
-[22:05:52] Server started...
-[22:05:52] Mail server is running on port 4445
-[22:05:55] Attempting to stop the server...
-[22:05:55] Server stopped successfully.
-[22:05:55] Error: Socket closed
-[22:05:55] Server status updated to 'Stopped'.
-[22:05:55] Server is running.
-[22:06:43] Server started...
-[22:06:43] Mail server is running on port 4445
-[22:06:44] Attempting to stop the server...
-[22:06:56] Error: Socket closed
-[22:07:17] Mail server stopped.
-[22:07:23] Server information removed from database.
-[22:07:25] Server is no longer running.
-[22:07:27] Server stopped successfully.
-[00:18:32] Server started...
-[00:18:32] Mail server is running on port 4445
-[00:18:45] Received: LOGIN:exam@gmail.com:123
-[00:18:45] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
-[00:18:45] Received: SAVE_IP:exam@gmail.com:192.168.1.3
-[00:18:45] Sent response: Invalid command
-[00:24:58] Received: LOAD_EMAILS:exam@gmail.com:1:20
-[00:24:58] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[00:24:59] Received: LOAD_EMAILS:exam@gmail.com:1:20
-[00:24:59] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[00:25:00] Received: LOAD_EMAILS:exam@gmail.com:1:20
-[00:25:00] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[00:25:01] Received: LOAD_EMAILS:exam@gmail.com:1:20
-[00:25:01] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[00:25:26] Received: LOAD_EMAILS:exam@gmail.com:1:20
-[00:25:26] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[00:25:46] Received: LOAD_EMAILS:exam@gmail.com:1:20
-[00:25:46] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[01:10:46] Received: LOAD_EMAILS:exam@gmail.com:1:20
-[01:10:46] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[01:10:59] Received: LOAD_EMAILS:exam@gmail.com:1:20
-[01:10:59] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[01:11:00] Received: LOAD_EMAILS:exam@gmail.com:1:20
-[01:11:00] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[01:11:01] Received: LOAD_EMAILS:exam@gmail.com:1:20
-[01:11:01] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[16:58:33] Server started...
-[16:58:33] Mail server is running on port 4445
-[16:58:44] Received: LOGIN:exam@gmail.com:123
-[16:58:44] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
-[16:58:44] Received: SAVE_IP:exam@gmail.com:192.168.1.3
-[16:58:44] Sent response: Invalid command
-[16:59:16] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[16:59:16] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[17:01:33] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[17:01:33] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[17:11:50] Received: LOGIN:exam@gmail.com:123
-[17:11:50] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
-[17:11:50] Received: SAVE_IP:exam@gmail.com:192.168.1.3
-[17:11:50] Sent response: Invalid command
-[17:25:38] Received: LOGIN:exam@gmail.com:123
-[17:25:38] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
-[17:25:38] Received: SAVE_IP:exam@gmail.com:192.168.1.3
-[17:25:38] Sent response: Invalid command
-[17:25:42] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[17:25:42] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[17:26:39] Received: LOGIN:exam@gmail.com:123
-[17:26:39] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
-[17:26:39] Received: SAVE_IP:exam@gmail.com:192.168.1.3
-[17:26:39] Sent response: Invalid command
-[17:32:21] Received: LOGIN:exam@gmail.com:123
-[17:32:21] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
-[17:32:21] Received: SAVE_IP:exam@gmail.com:192.168.1.3
-[17:32:21] Sent response: Invalid command
-[17:36:39] Received: LOAD_EMAILS:testUser:1:10
-[17:36:39] Sent response: No emails found
-[17:41:51] Received: LOAD_EMAILS:testUser:1:10
-[17:41:51] Sent response: No emails found
-[17:42:40] Received: LOAD_EMAILS:testUser:1:10
-[17:42:40] Sent response: No emails found
-[17:50:35] Received: LOAD_EMAILS:testUser:1:10
-[17:50:35] Sent response: No emails found
-[17:50:37] Received: LOAD_EMAILS:testUser:1:10
-[17:50:37] Sent response: No emails found
-[17:59:53] Received: LOAD_EMAILS:testUser:1:10
-[17:59:53] Sent response: No emails found
-[18:06:25] Received: LOAD_EMAILS:testUser:1:10
-[18:06:25] Sent response: No emails found
-[18:06:26] Received: LOAD_EMAILS:testUser:1:10
-[18:06:26] Sent response: No emails found
-[18:06:27] Received: LOAD_EMAILS:testUser:1:10
-[18:06:27] Sent response: No emails found
-[18:14:54] Received: LOAD_EMAILS:testUser:1:10
-[18:14:54] Sent response: No emails found
-[18:15:18] Received: LOAD_EMAILS:testUser:1:10
-[18:15:18] Sent response: No emails found
-[18:15:21] Received: LOAD_EMAILS:testUser:1:10
-[18:15:21] Sent response: No emails found
-[18:16:15] Received: LOAD_EMAILS:testUser:1:10
-[18:16:15] Sent response: No emails found
-[18:18:05] Received: LOAD_EMAILS:testUser:1:10
-[18:18:05] Sent response: No emails found
-[18:25:42] Received: LOAD_EMAILS:testUser:1:10
-[18:25:42] Sent response: No emails found
-[18:25:52] Received: LOAD_EMAILS:testUser:1:10
-[18:25:52] Sent response: No emails found
-[18:26:11] Received: LOAD_EMAILS:testUser:1:10
-[18:26:11] Sent response: No emails found
-[18:51:00] Server started...
-[18:51:00] Mail server is running on port 4445
-[18:51:12] Received: LOAD_EMAILS:testUser:1:10
-[18:51:12] Sent response: No emails found
-[18:53:04] Received: LOAD_EMAILS:testUser:1:10
-[18:53:04] Sent response: No emails found
-[18:53:50] Received: LOAD_EMAILS:testUser:1:10
-[18:53:50] Sent response: No emails found
-[18:54:08] Received: LOAD_EMAILS:testUser:1:10
-[18:54:08] Sent response: No emails found
-[18:55:40] Received: LOAD_EMAILS:testUser:1:10
-[18:55:40] Sent response: No emails found
-[18:55:49] Received: LOAD_EMAILS:testUser:1:10
-[18:55:49] Sent response: No emails found
-[18:55:55] Received: LOAD_EMAILS:testUser:1:10
-[18:55:55] Sent response: No emails found
-[19:41:13] Received: LOAD_EMAILS:testUser:1:10
-[19:41:13] Sent response: No emails found
-[19:43:54] Received: LOAD_EMAILS:testUser:1:10
-[19:43:54] Sent response: No emails found
-[19:46:07] Received: LOAD_EMAILS:testUser:1:10
-[19:46:07] Sent response: No emails found
-[19:51:21] Received: LOAD_EMAILS:testUser:1:10
-[19:51:21] Sent response: No emails found
-[19:51:22] Received: LOAD_EMAILS:testUser:1:10
-[19:51:22] Sent response: No emails found
-[19:51:31] Received: LOAD_EMAILS:testUser:1:10
-[19:51:31] Sent response: No emails found
-[19:53:16] Received: LOAD_EMAILS:testUser:1:10
-[19:53:16] Sent response: No emails found
-[19:53:20] Received: LOAD_EMAILS:testUser:1:10
-[19:53:20] Sent response: No emails found
-[19:58:56] Received: LOAD_EMAILS:testUser:1:10
-[19:58:56] Sent response: No emails found
-[20:00:44] Received: LOAD_EMAILS:testUser:1:10
-[20:00:44] Sent response: No emails found
-[20:01:09] Attempting to stop the server...
-[20:01:09] Mail server stopped.
-[20:01:09] Error: Socket closed
-[20:01:09] Server information removed from database.
-[20:01:09] Server is no longer running.
-[20:01:09] Server stopped successfully.
-[20:01:09] Server status updated to 'Stopped'.
-[20:01:09] Server is running.
-[20:01:09] Server started...
-[20:01:09] Mail server is running on port 4445
-[20:02:27] Received: LOAD_EMAILS:testUser:1:10
-[20:02:27] Sent response: No emails found
-[20:02:33] Received: LOAD_EMAILS:testUser:1:10
-[20:02:33] Sent response: No emails found
-[20:05:05] Received: LOAD_EMAILS:testUser:1:10
-[20:05:05] Sent response: No emails found
-[20:09:25] Received: LOAD_EMAILS:testUser:1:10
-[20:09:25] Sent response: No emails found
-[20:09:28] Received: LOAD_EMAILS:testUser:1:10
-[20:09:28] Sent response: No emails found
-[20:09:31] Received: LOAD_EMAILS:testUser:1:10
-[20:09:31] Sent response: No emails found
-[20:09:44] Received: LOGIN:exam@gmail.com:123
-[20:09:44] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
-[20:09:44] Received: SAVE_IP:exam@gmail.com:192.168.1.3
-[20:09:44] Sent response: Invalid command
-[20:09:47] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[20:09:47] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[20:13:40] Received: LOGIN:exam@gmail.com:123
-[20:13:40] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
-[20:13:40] Received: SAVE_IP:exam@gmail.com:192.168.1.3
-[20:13:40] Sent response: Invalid command
-[20:13:41] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[20:13:41] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[20:32:24] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[20:32:24] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[20:32:25] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[20:32:25] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[20:32:27] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[20:32:27] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[20:34:06] Received: LOGIN:exam@gmail.com:123
-[20:34:06] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
-[20:34:06] Received: SAVE_IP:exam@gmail.com:192.168.1.3
-[20:34:06] Sent response: Invalid command
-[20:34:08] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[20:34:08] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[20:39:39] Received: LOGIN:exam@gmail.com:123
-[20:39:39] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
-[20:39:39] Received: SAVE_IP:exam@gmail.com:192.168.1.3
-[20:39:39] Sent response: Invalid command
-[20:39:40] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[20:39:40] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam, Content: XXXXXXXXXXXXXXXXXXXXXX, Sent Date: 2024-11-15, Is Sent: false
-ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[20:39:47] Received: DELETE_EMAIL:exam@gmail.com:1
-[20:39:47] Sent response: Email deleted successfully
-[20:39:48] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[20:39:48] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[20:39:54] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[20:39:54] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[20:40:00] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[20:40:00] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[20:41:26] Received: LOGIN:exam@gmail.com:123
-[20:41:26] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
-[20:41:26] Received: SAVE_IP:exam@gmail.com:192.168.1.3
-[20:41:26] Sent response: Invalid command
-[20:41:27] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[20:41:27] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[20:41:37] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[20:41:37] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[20:44:12] Attempting to stop the server...
-[20:44:12] Mail server stopped.
-[20:44:12] Error: Socket closed
-[20:44:12] Server information removed from database.
-[20:44:12] Server is no longer running.
-[20:44:12] Server stopped successfully.
-[20:44:12] Server status updated to 'Stopped'.
-[20:44:12] Server is running.
-[20:44:13] Server started...
-[20:44:13] Mail server is running on port 4445
-[20:44:34] Received: LOGIN:exam@gmail.com:123
-[20:44:34] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
-[20:44:35] Received: SAVE_IP:exam@gmail.com:192.168.1.3
-[20:44:35] Sent response: Invalid command
-[20:45:13] Received: LOGIN:exam@gmail.com:123
-[20:45:13] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
-[20:45:13] Received: SAVE_IP:exam@gmail.com:192.168.1.3
-[20:45:13] Sent response: Invalid command
-[20:45:16] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[20:45:16] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[20:49:58] Received: LOGIN:exam@gmail.com:123
-[20:49:58] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
-[20:49:58] Received: SAVE_IP:exam@gmail.com:192.168.1.3
-[20:49:58] Sent response: Invalid command
-[20:52:37] Received: LOGIN:exam@gmail.com:123
-[20:52:37] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
-[20:52:37] Received: SAVE_IP:exam@gmail.com:192.168.1.3
-[20:52:37] Sent response: Invalid command
-[21:13:39] Attempting to stop the server...
-[21:13:39] Mail server stopped.
-[21:13:39] Error: Socket closed
-[21:13:39] Server information removed from database.
-[21:13:39] Server is no longer running.
-[21:13:39] Server stopped successfully.
-[21:13:39] Server status updated to 'Stopped'.
-[21:13:39] Server is running.
-[21:13:40] Server started...
-[21:13:40] Mail server is running on port 4445
-[21:13:53] Received: LOGIN:exam@gmail.com:123
-[21:13:54] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
-[21:13:54] Received: SAVE_IP:exam@gmail.com:192.168.1.3
-[21:13:54] Sent response: Invalid command
-[21:14:04] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[21:14:04] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[21:17:34] Server started...
-[21:17:34] Mail server is running on port 4445
-[21:17:45] Received: LOGIN:exam@gmail.com:123
-[21:17:45] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
-[21:17:45] Received: SAVE_IP:exam@gmail.com:192.168.1.3
-[21:17:45] Sent response: Invalid command
-[21:19:33] Received: LOGIN:exam@gmail.com:123
-[21:19:33] Sent response: Login successful. Welcome, BÙI QUỐC VĂN! Server IP: 192.168.1.3, Port: 4445
-[21:19:33] Received: SAVE_IP:exam@gmail.com:192.168.1.3
-[21:19:33] Sent response: Invalid command
-[21:19:55] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[21:19:55] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[21:20:03] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[21:20:03] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[21:20:50] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[21:20:50] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[21:24:14] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[21:24:14] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[21:24:27] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[21:24:27] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[21:24:32] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[21:24:32] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[21:24:33] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[21:24:33] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[21:24:34] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[21:24:34] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[21:24:38] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[21:24:38] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[21:24:40] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[21:24:40] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[21:24:40] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[21:24:40] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[21:26:04] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[21:26:04] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[21:27:43] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[21:27:43] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[21:27:58] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[21:27:58] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
-[21:32:43] Received: LOAD_EMAILS:exam@gmail.com:1:10
-[21:32:43] Sent response: ID: 3, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXXXXXX, Content: e123123123123123123, Sent Date: 2024-11-15, Is Sent: false
-
+[22:43:28] Server started...
+[22:43:28] Mail server is running on port 4445
+[22:43:29] Attempting to stop the server...
+[22:43:29] Mail server stopped.
+[22:43:29] Error: Socket closed
+[22:43:29] Server information removed from database.
+[22:43:29] Server is no longer running.
+[22:43:29] Server stopped successfully.
+[22:43:29] Server status updated to 'Stopped'.
+[22:43:29] Server is running.
+[22:43:30] Server started...
+[22:43:30] Mail server is running on port 4445
+[23:14:14] Attempting to stop the server...
+[23:14:14] Mail server stopped.
+[23:14:14] Error: Socket closed
+[23:14:14] Failed to remove server information from database.
+[23:14:14] Server is no longer running.
+[23:14:14] Server stopped successfully.
+[23:14:14] Server status updated to 'Stopped'.
+[23:14:14] Server is running.
+[23:14:20] Server started...
+[23:14:20] Mail server is running on port 4445
+[23:14:49] Server started...
+[23:14:49] Mail server is running on port 4445
+[23:15:13] Attempting to stop the server...
+[23:15:13] Mail server stopped.
+[23:15:13] Error: Socket closed
+[23:15:13] Server information removed from database.
+[23:15:13] Server is no longer running.
+[23:15:13] Server stopped successfully.
+[23:15:13] Server status updated to 'Stopped'.
+[23:15:13] Server is running.
+[23:28:31] Server started...
+[23:28:31] Mail server is running on port 4445
+[23:29:17] Received: REGISTER:exam:exam@gmail.com:123
+[23:31:00] Attempting to stop the server...
+[23:31:00] Mail server stopped.
+[23:31:00] Error: Socket closed
+[23:31:00] Server information removed from database.
+[23:31:00] Server is no longer running.
+[23:31:00] Server stopped successfully.
+[23:31:00] Server status updated to 'Stopped'.
+[23:31:00] Server is running.
+[23:31:02] Server started...
+[23:31:02] Mail server is running on port 4445
+[23:31:12] Server started...
+[23:31:12] Mail server is running on port 4445
+[23:31:28] Received: REGISTER:VAN BUI:exam@gmail.com:123
+[23:35:42] Received: REGISTER:VANBUU:123:123
+[23:38:48] Server started...
+[23:38:48] Mail server is running on port 4445
+[23:39:08] Received: REGISTER:VAN QUOC BUI:exam@gmail.com:123
+[23:41:15] Received: REGISTER:123:123:123
+[23:43:23] Received: LOGIN:123:123
+[23:43:23] Sent response: Login failed
+[23:43:25] Received: LOGIN:123:123
+[23:43:25] Sent response: Login failed
+[23:43:25] Received: LOGIN:123:123
+[23:43:25] Sent response: Login failed
+[23:43:25] Received: LOGIN:123:123
+[23:43:25] Sent response: Login failed
+[23:43:28] Received: REGISTER:123:123:123
+[23:46:08] Received: REGISTER:123:123:123
+[23:47:19] Server started...
+[23:47:19] Mail server is running on port 4445
+[23:47:34] Received: REGISTER:1:1:1
+[23:47:34] Sent response: Register successful
+[23:47:42] Attempting to stop the server...
+[23:47:42] Mail server stopped.
+[23:47:42] Error: Socket closed
+[23:47:42] Server information removed from database.
+[23:47:42] Server is no longer running.
+[23:47:42] Server stopped successfully.
+[23:47:42] Server status updated to 'Stopped'.
+[23:47:42] Server is running.
+[23:47:42] Server started...
+[23:47:42] Mail server is running on port 4445
+[23:47:49] Received: LOGIN:1:1
+[23:47:49] Sent response: Login successful. Welcome, 1! Server IP: 192.168.1.3, Port: 4445
+[23:47:49] Received: SAVE_IP:1:192.168.1.3
+[23:47:49] Sent response: Invalid command
+[23:47:51] Received: LOAD_EMAILS:1:1:10
+[23:47:51] Sent response: No emails found
+[23:49:45] Received: REGISTER:2:2:2
+[23:49:46] Sent response: Register successful
+[23:50:39] Server started...
+[23:50:39] Mail server is running on port 4445
+[23:50:48] Received: REGISTER:3:3:3
+[23:55:06] Received: REGISTER:1:1:1
+[23:56:00] Received: REGISTER:1:1:1
+[23:56:06] Attempting to stop the server...
+[23:56:06] Mail server stopped.
+[23:56:06] Error: Socket closed
+[23:56:06] Server information removed from database.
+[23:56:06] Server is no longer running.
+[23:56:06] Server stopped successfully.
+[23:56:06] Server status updated to 'Stopped'.
+[23:56:06] Server is running.
+[23:56:07] Server started...
+[23:56:07] Mail server is running on port 4445
+[23:56:17] Server started...
+[23:56:17] Mail server is running on port 4445
+[23:56:24] Received: LOGIN:1:1
+[23:56:24] Sent response: Login failed
+[23:56:27] Received: REGISTER:1:1:1
+[23:56:27] Sent response: Register successful
+[23:56:36] Received: LOGIN:1:1
+[23:56:36] Sent response: Login successful. Welcome, 1! Server IP: 192.168.1.3, Port: 4445
+[23:56:36] Received: SAVE_IP:1:192.168.1.3
+[23:56:36] Sent response: Invalid command
+[23:56:38] Received: LOAD_EMAILS:1:1:10
+[23:56:38] Sent response: No emails found
+[23:56:48] Received: REGISTER:2:2:2
+[23:56:48] Sent response: Register successful
+[23:57:06] Received: LOGIN:2:2
+[23:57:06] Sent response: Login successful. Welcome, 2! Server IP: 192.168.1.3, Port: 4445
+[23:57:06] Received: SAVE_IP:2:192.168.1.3
+[23:57:06] Sent response: Invalid command
+[23:57:10] Received: LOGIN:1:1
+[23:57:11] Sent response: Login successful. Welcome, 1! Server IP: 192.168.1.3, Port: 4445
+[23:57:11] Received: SAVE_IP:1:192.168.1.3
+[23:57:11] Sent response: Invalid command
+[23:57:43] Received: SEND_EMAIL:2:exam@gmail.com:1:1123123
+[23:57:43] Sent response: Email sent
+[23:57:44] Received: LOAD_EMAILS:2:1:10
+[23:57:44] Sent response: No emails found
+[00:04:07] Received: REGISTER:VAN QUOC BUI:exam@gmail.com:123
+[00:04:07] Sent response: Register successful
+[00:05:38] Received: REGISTER:VAN:exam1@gmail.com:123
+[00:05:38] Sent response: Register successful
+[00:07:07] Received: REGISTER:x:e@gmail.com:123
+[00:07:07] Sent response: Register successful
+[00:07:35] Received: LOGIN:e@gmail.com:123
+[00:07:35] Sent response: Login successful. Welcome, x! Server IP: 192.168.1.3, Port: 4445
+[00:07:35] Received: SAVE_IP:e@gmail.com:192.168.1.3
+[00:07:35] Sent response: Invalid command
+[00:30:13] Received: REGISTER:V:exam@gmail.com:123
+[00:30:13] Sent response: Register successful
+[00:30:42] Server started...
+[00:30:42] Mail server is running on port 4445
+[00:30:59] Received: REGISTER:V:exam@gmail.com:123
+[00:30:59] Sent response: Register successful
+[00:31:23] Received: LOGIN:exam@gmail.com:123
+[00:31:23] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, Port: 4445
+[00:31:23] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[00:31:23] Sent response: Invalid command
+[00:31:26] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[00:31:26] Sent response: No emails found
+[00:31:54] Received: LOGIN:exam@gmail.com:123
+[00:31:54] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, Port: 4445
+[00:31:54] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[00:31:54] Sent response: Invalid command
+[00:39:34] Server started...
+[00:39:34] Mail server is running on port 4445
+[00:39:50] Received: LOGIN:exam@gmail.com:123
+[00:39:50] Sent response: You are already logged in.
+[00:39:51] Received: LOGIN:exam@gmail.com:123
+[00:39:51] Sent response: You are already logged in.
+[00:39:51] Received: LOGIN:exam@gmail.com:123
+[00:39:51] Sent response: You are already logged in.
+[00:39:52] Received: LOGIN:exam@gmail.com:123
+[00:39:52] Sent response: You are already logged in.
+[00:39:52] Received: LOGIN:exam@gmail.com:123
+[00:39:52] Sent response: You are already logged in.
+[00:40:06] Received: LOGIN:exam@gmail.com:123
+[00:40:06] Sent response: You are already logged in.
+[00:40:49] Received: REGISTER:V:exam@gmail.com:123
+[00:40:50] Sent response: Register successful
+[00:40:58] Received: LOGIN:exam@gmail.com:123
+[00:40:58] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, Port: 4445
+[00:40:58] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[00:40:58] Sent response: Invalid command
+[00:41:07] Received: LOGIN:exam@gmail.com:123
+[00:41:07] Sent response: You are already logged in.
+[00:41:13] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[00:41:13] Sent response: No emails found
+[00:42:00] Received: LOGIN:exam@gmail.com:123
+[00:42:00] Sent response: You are already logged in.
+[00:47:10] Attempting to stop the server...
+[00:47:10] Mail server stopped.
+[00:47:10] Error: Socket closed
+[00:47:10] Server information removed from database.
+[00:47:10] Server is no longer running.
+[00:47:10] Server stopped successfully.
+[00:47:10] Server status updated to 'Stopped'.
+[00:47:10] Server is running.
+[00:47:17] Server started...
+[00:47:17] Mail server is running on port 4445
+[00:47:32] Received: REGISTER:V:exam@gmail.com:123
+[00:47:32] Sent response: Register successful
+[00:47:42] Received: LOGIN:exam@gmail.com:123
+[00:47:42] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, Port: 4445
+[00:47:42] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[00:47:42] Sent response: Invalid command
+[00:51:23] Server started...
+[00:51:23] Mail server is running on port 4445
+[00:51:57] Server started...
+[00:51:57] Mail server is running on port 4445
+[00:52:09] Received: REGISTER:V:exam@gmail.com:123
+[00:52:09] Sent response: Register successful
+[00:52:19] Received: LOGIN:exam@gmail.com:123
+[00:53:22] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, Port: 4445
+[00:53:22] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[00:53:22] Sent response: Invalid command
+[00:55:59] Server started...
+[00:55:59] Mail server is running on port 4445
+[00:56:09] Received: LOGIN:exam@gmail.com:123
+[00:56:09] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, Port: 4445
+[00:56:09] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[00:56:09] Sent response: Invalid command
+[00:59:58] Received: LOGIN:exam@gmail.com:123
+[00:59:58] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, Port: 4445
+[00:59:58] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[00:59:58] Sent response: Invalid command
+[01:00:16] Received: LOGIN:exam@gmail.com:123
+[01:00:16] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, Port: 4445
+[01:00:16] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[01:00:16] Sent response: Invalid command
+[01:07:45] Attempting to stop the server...
+[01:07:45] Mail server stopped.
+[01:07:45] Error: Socket closed
+[01:07:45] Server information removed from database.
+[01:07:45] Server is no longer running.
+[01:07:45] Server stopped successfully.
+[01:07:45] Server status updated to 'Stopped'.
+[01:07:45] Server is running.
+[01:07:52] Server started...
+[01:07:52] Mail server is running on port 4445
+[01:08:05] Received: LOGIN:exam@gmail.com:123
+[01:08:05] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, Port: 4445
+[01:08:05] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[01:08:05] Sent response: Invalid command
+[01:26:29] Server started...
+[01:26:29] Mail server is running on port 4445
+[01:26:39] Received: LOGIN:exam@gmail.com:123
+[01:26:39] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, Port: 4445
+[01:26:39] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[01:26:39] Sent response: Invalid command
+[01:31:03] Received: LOGIN:exam@gmail.com:123
+[01:31:03] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, Port: 4445
+[01:31:03] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[01:31:03] Sent response: Invalid command
+[01:31:24] Received: LOGIN:exam@gmail.com:123
+[01:31:24] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, Port: 4445
+[01:31:24] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[01:31:24] Sent response: Invalid command
+[01:33:07] Received: LOGIN:exam@gmail.com:123
+[01:33:07] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, Port: 4445
+[01:33:07] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[01:33:07] Sent response: Invalid command
+[01:35:19] Received: LOGIN:exam@gmail.com:123
+[01:35:19] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, Port: 4445
+[01:35:19] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[01:35:19] Sent response: Invalid command
+[01:38:37] Received: LOGIN:exam@gmail.com:123
+[01:38:37] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, Port: 4445
+[01:38:37] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[01:38:37] Sent response: Invalid command
+[01:39:36] Attempting to stop the server...
+[01:39:36] Mail server stopped.
+[01:39:36] Error: Socket closed
+[01:39:36] Server information removed from database.
+[01:39:36] Server is no longer running.
+[01:39:36] Server stopped successfully.
+[01:39:36] Server status updated to 'Stopped'.
+[01:39:36] Server is running.
+[01:39:37] Server started...
+[01:39:37] Mail server is running on port 4445
+[01:39:50] Received: LOGIN:exam@gmail.com:123
+[01:39:50] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, Port: 4445
+[01:39:50] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[01:39:50] Sent response: Invalid command
+[01:59:15] Received: LOGIN:exam@gmail.com:123
+[01:59:15] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, Port: 4445
+[01:59:15] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[01:59:15] Sent response: Invalid command
+[02:01:38] Received: LOGIN:exam@gmail.com:123
+[02:01:38] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, Port: 4445
+[02:01:38] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[02:01:38] Sent response: Invalid command
+[02:10:21] Received: LOGIN:exam@gmail.com:123
+[02:10:22] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, Port: 4445
+[02:10:22] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[02:10:22] Sent response: Invalid command
+[02:14:30] Received: LOGIN:exam@gmail.com:123
+[02:14:30] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, Port: 4445
+[02:14:30] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[02:14:30] Sent response: Invalid command
+[02:21:45] Received: LOGIN:exam@gmail.com:123
+[02:21:45] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, Port: 4445
+[02:21:45] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[02:21:45] Sent response: Invalid command
+[02:21:49] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[02:21:49] Sent response: No emails found
+[02:21:50] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[02:21:50] Sent response: No emails found
+[02:21:51] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[02:21:51] Sent response: No emails found
+[02:22:04] Received: LOGIN:exam@gmail.com:123
+[02:22:04] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, Port: 4445
+[02:22:04] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[02:22:04] Sent response: Invalid command
+[02:26:16] Server started...
+[02:26:16] Mail server is running on port 4445
+[02:26:34] Received: REGISTER:Q:exam1@gmail.com:123
+[02:26:34] Sent response: Register successful
+[02:27:23] Server started...
+[02:27:23] Mail server is running on port 4445
+[02:27:39] Received: REGISTER:Z:exam2@gmail.com:123
+[02:27:39] Sent response: Register successful
+[02:29:54] Received: REGISTER:Q:exam4@gmail.com:123
+[02:29:54] Sent response: Register successful
+[02:30:00] Received: LOGIN:exam4@gmail.com:123
+[02:30:00] Sent response: Login successful. Welcome, Q! Server IP: 192.168.1.3, Port: 4445
+[02:30:00] Received: SAVE_IP:exam4@gmail.com:192.168.1.3
+[02:30:00] Sent response: Invalid command

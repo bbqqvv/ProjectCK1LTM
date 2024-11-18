@@ -17,7 +17,7 @@ public class UserDAO {
 
     public boolean addUser(User user) {
         String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
-        String sql = "INSERT INTO users (username, password, email, ip_address) VALUES (?, ?, ?, NULL)";
+        String sql = "INSERT INTO users (username, password, email, ip_address, is_login) VALUES (?, ?, ?, NULL, 0)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, user.getUsername());
             stmt.setString(2, hashedPassword);
@@ -25,8 +25,9 @@ public class UserDAO {
             stmt.executeUpdate();
             return true;
         } catch (SQLException e) {
-            throw new RuntimeException("Error adding user", e);
+            e.printStackTrace();
         }
+        return false;
     }
 
     public boolean loginUser(User loginUser) {
@@ -37,7 +38,12 @@ public class UserDAO {
                 if (rs.next()) {
                     String storedPassword = rs.getString("password");
                     boolean isPasswordCorrect = BCrypt.checkpw(loginUser.getPassword(), storedPassword);
-                    return isPasswordCorrect;
+                    
+                    if (isPasswordCorrect) {
+                        // Successful login, update is_login flag to 1
+                        updateLoginStatus(loginUser.getEmail(), true); // Set is_login = 1
+                        return true;
+                    }
                 }
             }
         } catch (SQLException e) {
@@ -46,7 +52,39 @@ public class UserDAO {
         return false;
     }
 
-    public String getUsername(String email) {
+
+    public void updateLoginStatus(String email, boolean isLogin) {
+        String sql = "UPDATE users SET is_login = ? WHERE email = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, isLogin ? 1 : 0); // 1 = logged in, 0 = logged out
+            preparedStatement.setString(2, email);
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Login status updated successfully for user: " + email);
+            } else {
+                System.out.println("No user found with email: " + email);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error updating login status: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    public boolean isEmailExist(String email) {
+        String sql = "SELECT COUNT(*) FROM users WHERE email = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;  // Nếu email đã tồn tại, trả về true
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false; // Nếu email chưa tồn tại, trả về false
+    }
+
+	public String getUsername(String email) {
         String sql = "SELECT username FROM users WHERE email = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, email);
@@ -85,6 +123,22 @@ public class UserDAO {
             e.printStackTrace();
         }
         return null; // Nếu không tìm thấy, trả về null
+    }
+
+
+    public boolean isUserLoggedIn(String email) {
+        String sql = "SELECT is_login FROM users WHERE email = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, email);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getBoolean("is_login");  // Trả về true nếu is_login = 1
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false; // Trả về false nếu người dùng không có trong cơ sở dữ liệu
     }
 
 
