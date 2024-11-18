@@ -111,7 +111,7 @@ public class LoginView extends JFrame {
                     Server server = serverDAO.getServerIpAndPort();
 
                     if (server == null) {
-                        statusLabel.setText("Server IP or Port not found in the database");
+                        statusLabel.setText("Server IP or Port not found in the databaseee");
                         return null;
                     }
 
