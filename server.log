@@ -314,3 +314,101 @@
 [02:30:00] Sent response: Login successful. Welcome, Q! Server IP: 192.168.1.3, Port: 4445
 [02:30:00] Received: SAVE_IP:exam4@gmail.com:192.168.1.3
 [02:30:00] Sent response: Invalid command
+[02:49:02] Server started...
+[02:49:02] Mail server is running on port 4445
+[02:49:21] Received: LOGIN:exam@gmail.com:123
+[02:49:21] Sent response: Login failed. Invalid email or password.
+[02:49:21] Received: LOGIN:exam@gmail.com:123
+[02:49:21] Sent response: Login failed. Invalid email or password.
+[02:49:22] Received: LOGIN:exam@gmail.com:123
+[02:49:22] Sent response: Login failed. Invalid email or password.
+[02:49:22] Received: LOGIN:exam@gmail.com:123
+[02:49:22] Sent response: Login failed. Invalid email or password.
+[02:49:35] Received: REGISTER:V:exam@gmail.com:123
+[02:49:35] Sent response: Register successful
+[02:49:46] Received: LOGIN:exam@gmail.com:123
+[02:49:46] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, Port: 4445
+[02:49:46] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[02:49:46] Sent response: Invalid command
+[02:50:06] Received: LOGIN:exam@gmail.com:123
+[02:50:06] Sent response: You are already logged in.
+[02:50:07] Received: LOGIN:exam@gmail.com:123
+[02:50:07] Sent response: You are already logged in.
+[02:50:07] Received: LOGIN:exam@gmail.com:123
+[02:50:07] Sent response: You are already logged in.
+[02:50:07] Received: LOGIN:exam@gmail.com:123
+[02:50:07] Sent response: You are already logged in.
+[02:50:08] Received: LOGIN:exam@gmail.com:123
+[02:50:08] Sent response: You are already logged in.
+[02:50:08] Received: LOGIN:exam@gmail.com:123
+[02:50:08] Sent response: You are already logged in.
+[02:50:08] Received: LOGIN:exam@gmail.com:123
+[02:50:08] Sent response: You are already logged in.
+[02:50:08] Received: LOGIN:exam@gmail.com:123
+[02:50:08] Sent response: You are already logged in.
+[02:50:08] Received: LOGIN:exam@gmail.com:123
+[02:50:08] Sent response: You are already logged in.
+[02:50:08] Received: LOGIN:exam@gmail.com:123
+[02:50:08] Sent response: You are already logged in.
+[02:50:09] Received: LOGIN:exam@gmail.com:123
+[02:50:09] Sent response: You are already logged in.
+[02:50:09] Received: LOGIN:exam@gmail.com:123
+[02:50:09] Sent response: You are already logged in.
+[02:50:09] Received: LOGIN:exam@gmail.com:123
+[02:50:09] Sent response: You are already logged in.
+[02:50:09] Received: LOGIN:exam@gmail.com:123
+[02:50:09] Sent response: You are already logged in.
+[02:50:10] Received: LOGIN:exam@gmail.com:123
+[02:50:10] Sent response: You are already logged in.
+[02:50:10] Received: LOGIN:exam@gmail.com:123
+[02:50:10] Sent response: You are already logged in.
+[02:50:10] Received: LOGIN:exam@gmail.com:123
+[02:50:10] Sent response: You are already logged in.
+[02:50:10] Received: LOGIN:exam@gmail.com:123
+[02:50:10] Sent response: You are already logged in.
+[02:50:10] Received: LOGIN:exam@gmail.com:123
+[02:50:10] Sent response: You are already logged in.
+[02:56:17] Server started...
+[02:56:17] Mail server is running on port 4445
+[02:56:53] Received: LOGIN:exam@gmail.com:123
+[02:56:53] Sent response: You are already logged in.
+[02:56:54] Received: LOGIN:exam@gmail.com:123
+[02:56:54] Sent response: You are already logged in.
+[02:56:55] Received: LOGIN:exam@gmail.com:123
+[02:56:55] Sent response: You are already logged in.
+[02:56:55] Received: LOGIN:exam@gmail.com:123
+[02:56:55] Sent response: You are already logged in.
+[02:56:55] Received: LOGIN:exam@gmail.com:123
+[02:56:55] Sent response: You are already logged in.
+[02:56:55] Received: LOGIN:exam@gmail.com:123
+[02:56:55] Sent response: You are already logged in.
+[02:56:55] Received: LOGIN:exam@gmail.com:123
+[02:56:55] Sent response: You are already logged in.
+[02:56:55] Received: LOGIN:exam@gmail.com:123
+[02:56:55] Sent response: You are already logged in.
+[02:56:56] Received: LOGIN:exam@gmail.com:123
+[02:56:56] Sent response: You are already logged in.
+[02:56:56] Received: LOGIN:exam@gmail.com:123
+[02:56:56] Sent response: You are already logged in.
+[02:56:56] Received: LOGIN:exam@gmail.com:123
+[02:56:56] Sent response: You are already logged in.
+[02:56:56] Received: LOGIN:exam@gmail.com:123
+[02:56:56] Sent response: You are already logged in.
+[02:58:27] Received: REGISTER:123:123:123
+[02:58:27] Sent response: Register successful
+[03:16:25] Server started...
+[03:16:25] Mail server is running on port 4445
+[04:11:09] Server started...
+[04:11:09] Mail server is running on port 4445
+[04:11:18] Attempting to stop the server...
+[04:11:18] Mail server stopped.
+[04:11:18] Error: Socket closed
+[04:11:18] Server information removed from database.
+[04:11:18] Server is no longer running.
+[04:11:18] Server stopped successfully.
+[04:11:18] Server status updated to 'Stopped'.
+[04:11:18] Server is running.
+[04:11:26] Server started...
+[04:11:26] Mail server is running on port 4445
+[04:11:55] Received: REGISTER:V:exam@gmail.com:123
+[04:11:56] Sent response: Register successful

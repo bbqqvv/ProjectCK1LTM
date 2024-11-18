@@ -18,7 +18,7 @@ public class MailClientViewTest {
 
         // Tạo JFrame để kiểm tra giao diện
         SwingUtilities.invokeLater(() -> {
-            MailClientView view = new MailClientView(client, "testUser"); // Sử dụng một tên người dùng giả
+            MailClientView view = new MailClientView(client, "testUser", null, null); // Sử dụng một tên người dùng giả
             view.setVisible(true);
         });
     }
