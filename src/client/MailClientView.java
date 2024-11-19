@@ -1,27 +1,46 @@
 package client;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
-
-import com.toedter.calendar.JDateChooser;
-
-import dao.MailDAO;
-import dao.ServerDAO;
-import dao.UserDAO;
-import database.DatabaseConnection;
-
-import java.awt.*;
-import java.awt.event.*;
-import java.io.File;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JProgressBar;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingWorker;
+import javax.swing.Timer;
+import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+
+import dao.ServerDAO;
+import dao.UserDAO;
+import database.DatabaseConnection;
 
 public class MailClientView extends JFrame {
 
@@ -29,8 +48,7 @@ public class MailClientView extends JFrame {
 	private boolean autoRefreshEnabled = false;
 	private JPanel mainPanel;
 	private MailClient client;
-	private String username;
-	private JTextArea sendEmailContentArea;
+	private String userEmail;
 	private JTextPane emailDetailsArea;
 	private JLabel statusLabel;
 	private DefaultTableModel emailTableModel;
@@ -46,10 +64,11 @@ public class MailClientView extends JFrame {
 	private JFileChooser fileChooser;
 	private JButton buttonMenu;
 	private SidebarPanel sidePanel;
+	private SendEmailPanel sendEmailPanel;
 	private boolean isSidebarVisible = true; // Trạng thái hiển thị sidebar
 	private UserDAO userDAO;
 	private ServerDAO serverDAO;
-	public MailClientView(MailClient client, String username, UserDAO userDAO, ServerDAO serverDAO) {
+	public MailClientView(MailClient client, String userEmail, UserDAO userDAO, ServerDAO serverDAO) {
 
 	    // Initialize auto-refresh timer for emails
 	    autoRefreshTimer = new Timer(30000, e -> {
@@ -60,7 +79,7 @@ public class MailClientView extends JFrame {
 	    autoRefreshTimer.start();
 
 	    this.client = client;
-	    this.username = username;
+	    this.userEmail = userEmail;
 	    this.userDAO = userDAO;
 	    this.serverDAO = serverDAO;
 	    this.emailsPerPage = emailsPerPage;
@@ -91,248 +110,19 @@ public class MailClientView extends JFrame {
 	    createStatusLabel();
 
 	    setVisible(true);
-	    updateStatusLabel("Logged in as: " + username);
+	    updateStatusLabel("Logged in as: " + userEmail);
 	}
 
 	private void createMainPanel() {
-		mainPanel = new JPanel(new CardLayout());
-		mainPanel.add(createSendEmailPanel(null, null, null), "SendEmail");
-		mainPanel.add(createLoadEmailsPanel(), "LoadEmails");
-		getContentPane().add(mainPanel, BorderLayout.CENTER);
+	    mainPanel = new JPanel(new CardLayout());
+
+	    // Sử dụng lớp mới tách riêng
+	    sendEmailPanel = new SendEmailPanel(this);
+	    mainPanel.add(sendEmailPanel, "SendEmail");
+	    mainPanel.add(createLoadEmailsPanel(), "LoadEmails");
+	    getContentPane().add(mainPanel, BorderLayout.CENTER);
 	}
 
-
-	private JPanel createSendEmailPanel(String receiver, String subject, String quotedContent) {
-	    // Main panel setup
-	    JPanel mainPanel = new JPanel();
-	    mainPanel.setBackground(Color.WHITE);
-	    mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-	    mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-	    // Input panel for receiver and subject
-	    JPanel inputPanel = new JPanel(new GridLayout(2, 2, 5, 5));
-	    inputPanel.setBackground(Color.WHITE);
-	    inputPanel.setBorder(BorderFactory.createTitledBorder("Email Details"));
-
-	    JLabel receiverLabel = new JLabel("Receiver Email:");
-	    JTextField receiverField = new JTextField(20);
-	    receiverField.setText(receiver != null ? receiver : "");
-
-	    JLabel subjectLabel = new JLabel("Subject:");
-	    JTextField subjectField = new JTextField(20);
-	    subjectField.setText(subject != null ? subject : "");
-
-	    inputPanel.add(receiverLabel);
-	    inputPanel.add(receiverField);
-	    inputPanel.add(subjectLabel);
-	    inputPanel.add(subjectField);
-
-	    // Attachment panel for choosing files
-	    JPanel attachmentPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-	    attachmentPanel.setBackground(Color.WHITE);
-	    attachmentPanel.setBorder(BorderFactory.createTitledBorder("Attachment"));
-
-	    JLabel attachmentLabel = new JLabel("Attach File:");
-	    JButton attachButton = new JButton("Choose File");
-	    JLabel fileNameLabel = new JLabel("No file chosen");
-	    attachButton.addActionListener(e -> chooseFileToAttach(fileNameLabel));
-
-	    attachmentPanel.add(attachmentLabel);
-	    attachmentPanel.add(attachButton);
-	    attachmentPanel.add(fileNameLabel);
-
-	    // Email content area with scroll pane
-	    JPanel contentPanel = new JPanel(new BorderLayout());
-	    contentPanel.setBackground(Color.WHITE);
-	    contentPanel.setBorder(BorderFactory.createTitledBorder("Email Content"));
-
-	    sendEmailContentArea = new JTextArea(10, 30);
-	    sendEmailContentArea.setWrapStyleWord(true);
-	    sendEmailContentArea.setLineWrap(true);
-	    if (quotedContent != null) {
-	        sendEmailContentArea.setText(quotedContent);
-	    }
-	    JScrollPane contentScrollPane = new JScrollPane(sendEmailContentArea);
-	    contentPanel.add(contentScrollPane, BorderLayout.CENTER);
-
-	    // Panel for scheduling the send date and time (Initially hidden)
-	    JPanel schedulePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-	    schedulePanel.setBackground(Color.WHITE);
-	    schedulePanel.setBorder(BorderFactory.createTitledBorder("Schedule Email"));
-	    schedulePanel.setVisible(false); // Hide initially
-
-	    JLabel dateLabel = new JLabel("Send Date:");
-	    JDateChooser dateChooser = new JDateChooser();
-	    dateChooser.setDateFormatString("dd/MM/yyyy");
-
-	    JLabel timeLabel = new JLabel("Send Time:");
-	    SpinnerDateModel timeModel = new SpinnerDateModel();
-	    JSpinner timeSpinner = new JSpinner(timeModel);
-	    JSpinner.DateEditor timeEditor = new JSpinner.DateEditor(timeSpinner, "HH:mm");
-	    timeSpinner.setEditor(timeEditor);
-
-	    schedulePanel.add(dateLabel);
-	    schedulePanel.add(dateChooser);
-	    schedulePanel.add(timeLabel);
-	    schedulePanel.add(timeSpinner);
-
-	    // Button panel for main actions
-	    JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
-	    buttonPanel.setBackground(Color.WHITE);
-
-	    JButton sendButton = new JButton("📧 Send Email");
-	    sendButton.addActionListener(e -> sendEmail(receiverField, subjectField));
-
-	    JButton scheduleButton = new JButton("🕒 Schedule Email");
-	    scheduleButton.addActionListener(e -> {
-	        // Toggle the visibility of the schedule panel
-	        schedulePanel.setVisible(!schedulePanel.isVisible());
-	        mainPanel.revalidate(); // Revalidate layout to adjust the panel
-	        mainPanel.repaint(); // Repaint the panel
-	    });
-
-	    // Main options button with dropdown menu
-	    JButton moreOptionsButton = new JButton("More Options");
-	    JPopupMenu optionsMenu = new JPopupMenu();
-
-	    JMenuItem saveDraftItem = new JMenuItem("💾 Save Draft");
-	    saveDraftItem.addActionListener(e -> saveDraft(receiverField, subjectField, sendEmailContentArea.getText()));
-
-	    JMenuItem attachMultipleItem = new JMenuItem("📂 Attach Files");
-	    attachMultipleItem.addActionListener(e -> chooseMultipleFiles());
-
-	    JMenuItem sendTestItem = new JMenuItem("🔍 Send Test Email");
-	    sendTestItem.addActionListener(e -> sendTestEmail(receiverField));
-
-	    JMenuItem previewItem = new JMenuItem("👁️ Preview");
-	    previewItem.addActionListener(e -> previewEmail(receiverField, subjectField, sendEmailContentArea.getText()));
-
-	    JMenuItem clearAllItem = new JMenuItem("🧹 Clear All Fields");
-	    clearAllItem.addActionListener(e -> clearAllFields(receiverField, subjectField, sendEmailContentArea));
-
-	    // Add menu items to the popup menu
-	    optionsMenu.add(saveDraftItem);
-	    optionsMenu.add(attachMultipleItem);
-	    optionsMenu.add(sendTestItem);
-	    optionsMenu.add(previewItem);
-	    optionsMenu.add(clearAllItem);
-
-	    // Add action to show the options menu when button is clicked
-	    moreOptionsButton.addActionListener(e -> optionsMenu.show(moreOptionsButton, 0, moreOptionsButton.getHeight()));
-
-	    // Add buttons to the panel
-	    buttonPanel.add(sendButton);
-	    buttonPanel.add(scheduleButton);
-	    buttonPanel.add(moreOptionsButton); // Add the "More Options" button to the panel
-
-	    // Add all panels to main panel
-	    mainPanel.add(inputPanel);
-	    mainPanel.add(Box.createVerticalStrut(10)); // Spacer between sections
-	    mainPanel.add(attachmentPanel);
-	    mainPanel.add(Box.createVerticalStrut(10));
-	    mainPanel.add(contentPanel);
-	    mainPanel.add(Box.createVerticalStrut(10));
-	    mainPanel.add(schedulePanel); // Add the scheduling panel (hidden by default)
-	    mainPanel.add(Box.createVerticalStrut(10));
-	    mainPanel.add(buttonPanel);
-
-	    return mainPanel;
-	}
-
-	private void saveDraft(JTextField receiverField, JTextField subjectField, String content) {
-	    // Logic to save the draft (could be stored in a file, database, etc.)
-	    System.out.println("Draft saved: " + receiverField.getText() + ", " + subjectField.getText() + ", " + content);
-	    showNotification("Draft saved successfully", "Saved", JOptionPane.INFORMATION_MESSAGE);
-	}
-
-	private void chooseMultipleFiles() {
-	    JFileChooser fileChooser = new JFileChooser();
-	    fileChooser.setMultiSelectionEnabled(true);
-	    int result = fileChooser.showOpenDialog(null);
-	    if (result == JFileChooser.APPROVE_OPTION) {
-	        File[] files = fileChooser.getSelectedFiles();
-	        // Logic to handle multiple file attachments
-	        System.out.println("Files selected:");
-	        for (File file : files) {
-	            System.out.println(file.getName());
-	        }
-	     }
-	}
-
-	private void sendTestEmail(JTextField receiverField) {
-	    // Logic to send a test email (could send to the receiverField value or a predefined email)
-	    System.out.println("Test email sent to: " + receiverField.getText());
-	    showNotification("Test email sent successfully", "Test Email", JOptionPane.INFORMATION_MESSAGE);
-	}
-
-	private void previewEmail(JTextField receiverField, JTextField subjectField, String content) {
-	    // Logic to preview email (could be opened in a new window or dialog)
-	    System.out.println("Previewing email to: " + receiverField.getText() + " with subject: " + subjectField.getText() + " and content: " + content);
-	    showNotification("Email previewed successfully", "Preview", JOptionPane.INFORMATION_MESSAGE);
-	}
-
-	private void clearAllFields(JTextField receiverField, JTextField subjectField, JTextArea contentArea) {
-	    receiverField.setText("");
-	    subjectField.setText("");
-	    contentArea.setText("");
-	    System.out.println("All fields cleared.");
-	    showNotification("All fields have been cleared", "Clear", JOptionPane.INFORMATION_MESSAGE);
-	}
-
-
-
-	private void addInputField(JPanel panel, JLabel label, JTextField textField) {
-		// This helper method to keep the code DRY and improve layout
-		panel.add(label);
-		panel.add(textField);
-	}
-
-	private void chooseFileToAttach(JLabel fileNameLabel) {
-		fileChooser = new JFileChooser();
-		int returnValue = fileChooser.showOpenDialog(null);
-		if (returnValue == JFileChooser.APPROVE_OPTION) {
-			File selectedFile = fileChooser.getSelectedFile();
-			fileNameLabel.setText("Selected: " + selectedFile.getName()); // Show file name in the label
-		} else {
-			fileNameLabel.setText("No file chosen");
-		}
-	}
-
-	private void clearForm(JTextField receiverField, JTextField subjectField, JLabel fileNameLabel) {
-		receiverField.setText("");
-		subjectField.setText("");
-		fileNameLabel.setText("");
-		sendEmailContentArea.setText("");
-	}
-
-	private void sendEmail(JTextField receiverField, JTextField subjectField) {
-		String receiver = receiverField.getText();
-		String subject = subjectField.getText();
-		String content = sendEmailContentArea.getText();
-
-		// Basic validation checks
-		if (receiver.isEmpty() || subject.isEmpty() || content.isEmpty()) {
-			showNotification("Please fill in all fields.", "Warning", JOptionPane.WARNING_MESSAGE);
-			return;
-		}
-
-		// Validate email format (basic)
-		if (!receiver.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
-			showNotification("Please enter a valid email address.", "Invalid Email", JOptionPane.WARNING_MESSAGE);
-			return;
-		}
-
-		try {
-			// Simulate sending an email (client.sendRequest)
-			String response = client
-					.sendRequest("SEND_EMAIL:" + username + ":" + receiver + ":" + subject + ":" + content);
-			showNotification(response, "Email Sent", JOptionPane.INFORMATION_MESSAGE);
-			updateStatusLabel("Email sent to " + receiver);
-		} catch (Exception ex) {
-			showNotification("An error occurred: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-			ex.printStackTrace();
-		}
-	}
 
 	private JPanel createLoadEmailsPanel() {
 		JPanel panel = new JPanel(new BorderLayout());
@@ -444,7 +234,7 @@ public class MailClientView extends JFrame {
 		emailContents.clear();
 			
 		try {
-			String response = client.sendRequest("LOAD_EMAILS:" + username + ":" + currentPage + ":" + emailsPerPage);
+			String response = client.sendRequest("LOAD_EMAILS:" + userEmail + ":" + currentPage + ":" + emailsPerPage);
 
 			if (response == null || response.isEmpty()) {
 				updateStatusLabel("No emails to display.");
@@ -533,7 +323,7 @@ public class MailClientView extends JFrame {
 			@Override
 			protected Void doInBackground() throws Exception {
 				String response = client.sendRequest(
-						"SEARCH_EMAILS:" + username + ":" + keyword + ":" + currentPage + ":" + emailsPerPage);
+						"SEARCH_EMAILS:" + userEmail + ":" + keyword + ":" + currentPage + ":" + emailsPerPage);
 
 				if (response == null || response.isEmpty()) {
 					publish(new String[] { "No emails found for the search." });
@@ -619,7 +409,7 @@ public class MailClientView extends JFrame {
 		if (confirm == JOptionPane.YES_OPTION) { // Nếu người dùng xác nhận xóa
 			try {
 				// Gửi yêu cầu xóa email tới server
-				String response = client.sendRequest("DELETE_EMAIL:" + username + ":" + id);
+				String response = client.sendRequest("DELETE_EMAIL:" + userEmail + ":" + id);
 
 				// Hiển thị thông báo kết quả xóa email
 				showNotification(response, "Email Deletion", JOptionPane.INFORMATION_MESSAGE);
@@ -645,19 +435,24 @@ public class MailClientView extends JFrame {
 	        return;
 	    }
 
+	    // Lấy thông tin từ bảng email
 	    String sender = emailTable.getValueAt(selectedRow, 1).toString(); // Người gửi
-	    String subject = "Re: " + emailTable.getValueAt(selectedRow, 2).toString(); // Chủ đề: Thêm 'Re:' vào chủ đề
-	    String originalContent = emailContents.get(selectedRow); // Lấy nội dung email gốc
-
-	    // Trích dẫn nội dung gốc (bao gồm ngày gửi và người gửi)
+	    String subject = "Re: " + emailTable.getValueAt(selectedRow, 2).toString(); // Thêm "Re:" vào chủ đề
+	    String originalContent = emailContents.get(selectedRow); // Nội dung email gốc
 	    String date = emailTable.getValueAt(selectedRow, 3).toString(); // Ngày gửi
+
+	    // Trích dẫn nội dung email gốc
 	    String quotedContent = buildQuotedContent(sender, date, originalContent);
 
-	    // Mở panel soạn email với thông tin đã được chuẩn bị
-	    JPanel replyPanel = createSendEmailPanel(sender, subject, quotedContent); // Truyền người nhận, chủ đề, nội dung trích dẫn
-	    mainPanel.add(replyPanel, "ReplyEmail"); // Thêm panel vào mainPanel
-	    switchPanel("ReplyEmail"); // Chuyển đến panel soạn email
+	    // Tạo panel mới cho trả lời email, truyền thông tin đã chuẩn bị
+	    SendEmailPanel replyPanel = new SendEmailPanel(this);
+	    replyPanel.setInitialValues(sender, subject, quotedContent);
+
+	    // Thêm vào `mainPanel` và chuyển sang giao diện trả lời email
+	    mainPanel.add(replyPanel, "ReplyEmail");
+	    switchPanel("ReplyEmail");
 	}
+
 
 	private String buildQuotedContent(String sender, String date, String originalContent) {
 	    // Tạo nội dung trích dẫn đẹp hơn với người gửi và ngày gửi
@@ -694,11 +489,6 @@ public class MailClientView extends JFrame {
 
 	}
 
-	private void addInputField(JPanel panel, String labelText, JTextField textField) {
-		panel.add(new JLabel(labelText));
-		panel.add(textField);
-	}
-
 	private void createStatusLabel() {
 		statusLabel = new JLabel("Status: ");
 		statusLabel.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -721,7 +511,7 @@ public class MailClientView extends JFrame {
 	public void openSettings() {
 		// Truyền thêm username vào SettingsDialog
 		// Truyền userDAO và serverDAO vào SettingsDialog
-		new SettingsDialog(this, emailsPerPage, username, userDAO);
+		new SettingsDialog(this, emailsPerPage, userEmail, userDAO);
 	}
 
 	public void setEmailsPerPage(int emailsPerPage) {
@@ -797,6 +587,11 @@ public class MailClientView extends JFrame {
 	    loginScreen.setVisible(true);
 	}
 
+	public MailClient getClient() {
+	    return client;
+	}
 
-
+	public String getUserEmail() {
+	    return userEmail;
+	}
 }

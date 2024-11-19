@@ -18,152 +18,203 @@ public class LoginView extends JFrame {
     private JButton registerButton;
     private JLabel statusLabel;
     private JCheckBox showPasswordCheckbox;
-    private ServerDAO serverDAO;  // Object to query the database for server details
-    private DatabaseConnection dbConnection;  // Database connection object
+    private final ServerDAO serverDAO;
+    private final DatabaseConnection dbConnection;
 
-    // Constructor accepts a properly initialized ServerDAO object
     public LoginView(ServerDAO serverDAO) {
         if (serverDAO == null) {
-            throw new IllegalArgumentException("ServerDAO cannot be null");  // Early validation
+            throw new IllegalArgumentException("ServerDAO cannot be null");
         }
-        this.serverDAO = serverDAO;  // Initialize the ServerDAO
+        this.serverDAO = serverDAO;
+        this.dbConnection = new DatabaseConnection();
 
-        // JFrame setup
+        initializeUI();
+        setVisible(true);
+    }
+
+    /**
+     * Initialize the UI components and layout.
+     */
+    private void initializeUI() {
         setTitle("Mail Client - Login");
-        setSize(450, 250);
+        setSize(500, 350);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new BorderLayout());
+        setLayout(new BorderLayout());
+        setLocationRelativeTo(null);
 
-        // Header panel
-        JPanel headerPanel = new JPanel();
-        headerPanel.add(new JLabel("<html><h2>Mail Client</h2><p>Secure Login</p></html>"));
-        getContentPane().add(headerPanel, BorderLayout.NORTH);
+        // Add panels
+        add(createHeaderPanel(), BorderLayout.NORTH);
+        add(createMainPanel(), BorderLayout.CENTER);
+        add(createFooterPanel(), BorderLayout.SOUTH);
 
-        // Main panel (email and password fields)
+        // Apply global styles
+        applyGlobalStyles();
+    }
+
+    private JPanel createHeaderPanel() {
+        JPanel headerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        headerPanel.setBackground(new Color(0, 123, 255)); // Blue background
+        JLabel titleLabel = new JLabel("<html><h2 style='color: white;'>Mail Client</h2><p style='color: white;'>Secure Login</p></html>");
+        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        headerPanel.add(titleLabel);
+        return headerPanel;
+    }
+
+    private JPanel createMainPanel() {
         JPanel mainPanel = new JPanel(new GridLayout(3, 2, 10, 10));
-        mainPanel.setBorder(new EmptyBorder(10, 20, 10, 20));
+        mainPanel.setBorder(new EmptyBorder(20, 20, 10, 20));
+        mainPanel.setBackground(Color.WHITE);
 
-        mainPanel.add(new JLabel("Email:"));
-        emailField = new JTextField(15);
-        mainPanel.add(emailField);
-
-        mainPanel.add(new JLabel("Password:"));
-        passwordField = new JPasswordField(15);
-        mainPanel.add(passwordField);
-
-        // Panel for "Show Password" checkbox
-        JPanel checkboxPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        emailField = new JTextField(20);
+        passwordField = new JPasswordField(20);
         showPasswordCheckbox = new JCheckBox("Show Password");
         showPasswordCheckbox.addActionListener(e -> togglePasswordVisibility());
-        checkboxPanel.add(showPasswordCheckbox);
-        mainPanel.add(checkboxPanel);
+        showPasswordCheckbox.setBackground(Color.WHITE);
 
-        getContentPane().add(mainPanel, BorderLayout.CENTER);
+        mainPanel.add(new JLabel("Email:"));
+        mainPanel.add(emailField);
+        mainPanel.add(new JLabel("Password:"));
+        mainPanel.add(passwordField);
+        mainPanel.add(new JLabel());
+        mainPanel.add(showPasswordCheckbox);
 
-        // Buttons for login and register
-        JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
-        mainPanel.add(buttonsPanel);
-        loginButton = new JButton("Login");
-        registerButton = new JButton("Register");
-        buttonsPanel.add(loginButton);
-        buttonsPanel.add(registerButton);
+        return mainPanel;
+    }
 
-        loginButton.addActionListener(e -> login());
+    private JPanel createFooterPanel() {
+        JPanel footerPanel = new JPanel(new BorderLayout());
+        footerPanel.setBackground(Color.WHITE);
+
+        // Buttons Panel
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        buttonPanel.setBackground(Color.WHITE);
+
+        loginButton = createStyledButton("Login", new Color(40, 167, 69)); // Green
+        registerButton = createStyledButton("Register", new Color(220, 53, 69)); // Red
+
+        loginButton.addActionListener(e -> handleLogin());
         registerButton.addActionListener(e -> openRegisterView());
 
-        // Status label (for showing login messages)
+        buttonPanel.add(loginButton);
+        buttonPanel.add(registerButton);
+
+        footerPanel.add(buttonPanel, BorderLayout.NORTH);
+
+        // Status Label
         statusLabel = new JLabel(" ");
         statusLabel.setForeground(Color.RED);
         statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        getContentPane().add(statusLabel, BorderLayout.PAGE_END);
+        footerPanel.add(statusLabel, BorderLayout.SOUTH);
 
-        setLocationRelativeTo(null); // Center the window
-        setVisible(true);
-
-        // Initialize DatabaseConnection
-        dbConnection = new DatabaseConnection();
+        return footerPanel;
     }
 
-    // Toggle password visibility in the password field
     private void togglePasswordVisibility() {
         passwordField.setEchoChar(showPasswordCheckbox.isSelected() ? (char) 0 : '*');
     }
 
-    // Login method triggered by login button
-    private void login() {
-        statusLabel.setText("Logging in...");
-        String email = emailField.getText();
+    private void handleLogin() {
+        String email = emailField.getText().trim();
+        String password = new String(passwordField.getPassword());
 
-        // Validate email format
         if (!isValidEmail(email)) {
-            statusLabel.setText("Invalid email format");
+            showStatusMessage("Invalid email format.");
             return;
         }
 
-        // Create a SwingWorker to handle login asynchronously
+        if (password.isEmpty()) {
+            showStatusMessage("Password cannot be empty.");
+            return;
+        }
+
+        performLoginAsync(email, password);
+    }
+
+    private void performLoginAsync(String email, String password) {
+        statusLabel.setText("Logging in...");
+        loginButton.setEnabled(false);
+
         SwingWorker<Void, Void> worker = new SwingWorker<>() {
             @Override
             protected Void doInBackground() {
                 try {
-                    String password = new String(passwordField.getPassword());
-
-                    // Fetch server IP and port from the database using ServerDAO
                     Server server = serverDAO.getServerIpAndPort();
-
                     if (server == null) {
-                        statusLabel.setText("Server IP or Port not found in the databaseee");
-                        return null;
+                        throw new IllegalStateException("Server details not found.");
                     }
 
-                    String serverIp = server.getServerIp();
-                    int serverPort = server.getServerPort();
-
-                    // Create a MailClient object with the server details
-                    MailClient tempClient = new MailClient(serverIp, serverPort);
-                    String response = tempClient.sendRequest("LOGIN:" + email + ":" + password);
+                    MailClient mailClient = new MailClient(server.getServerIp(), server.getServerPort());
+                    String response = mailClient.sendRequest("LOGIN:" + email + ":" + password);
 
                     if (response.contains("successful")) {
-                        // Save the client's IP address to the server (if necessary)
-                        tempClient.sendRequest("SAVE_IP:" + email + ":" + InetAddress.getLocalHost().getHostAddress());
+                        String localIp = InetAddress.getLocalHost().getHostAddress();
+                        mailClient.sendRequest("SAVE_IP:" + email + ":" + localIp);
 
-                        // Get the UserDAO object with a valid database connection
                         Connection connection = dbConnection.getConnection();
                         UserDAO userDAO = new UserDAO(connection);
 
-                        // Open the MailClientView with the necessary objects
-                        MailClient client = new MailClient(serverIp, serverPort);
-                        new MailClientView(client, email, userDAO, serverDAO); // Pass UserDAO to MailClientView
-                        dispose(); // Close the login window
+                        SwingUtilities.invokeLater(() -> openMailClientView(mailClient, email, userDAO));
                     } else {
-                        statusLabel.setText(response); // Display login failure message
+                        showStatusMessage(response);
                     }
                 } catch (Exception e) {
-                    statusLabel.setText("An error occurred: " + e.getMessage());
-                    e.printStackTrace();  // Print the error details
+                    e.printStackTrace();
+                    showStatusMessage("Error: " + e.getMessage());
                 }
                 return null;
             }
 
             @Override
             protected void done() {
-                loginButton.setEnabled(true);  // Re-enable the login button after the task is done
+                loginButton.setEnabled(true);
             }
         };
-
-        loginButton.setEnabled(false);  // Disable the login button while the task is running
-        worker.execute();  // Execute the login task asynchronously
+        worker.execute();
     }
 
-    // Validate email format using regex
     private boolean isValidEmail(String email) {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         return email.matches(emailRegex);
     }
 
-    // Open the RegisterView window
-    private void openRegisterView() {
-        new RegisterView(serverDAO);
-        dispose();  // Close the LoginView
+    private void showStatusMessage(String message) {
+        statusLabel.setText(message);
     }
 
+    private void openRegisterView() {
+        new RegisterView(serverDAO);
+        dispose();
+    }
+
+    private void openMailClientView(MailClient mailClient, String email, UserDAO userDAO) {
+        new MailClientView(mailClient, email, userDAO, serverDAO);
+        dispose();
+    }
+
+    private JButton createStyledButton(String text, Color color) {
+        JButton button = new JButton(text);
+        button.setFocusPainted(false);
+        button.setBackground(color);
+        button.setForeground(Color.WHITE);
+        button.setFont(new Font("Arial", Font.BOLD, 14));
+        button.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 15));
+        button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                button.setBackground(color.darker());
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                button.setBackground(color);
+            }
+        });
+        return button;
+    }
+
+    private void applyGlobalStyles() {
+        UIManager.put("Label.font", new Font("Arial", Font.PLAIN, 14));
+        UIManager.put("TextField.font", new Font("Arial", Font.PLAIN, 14));
+        UIManager.put("PasswordField.font", new Font("Arial", Font.PLAIN, 14));
+        UIManager.put("CheckBox.font", new Font("Arial", Font.PLAIN, 14));
+    }
 }

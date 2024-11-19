@@ -1,30 +1,34 @@
 package model;
 
-import java.time.LocalDateTime;
-
 public class Attachment {
-    private int id;            // ID của attachment
-    private int mailId;        // ID của email mà attachment này thuộc về
-    private String fileName;   // Tên tệp đính kèm
-    private String filePath;   // Đường dẫn đến tệp đính kèm
-    private LocalDateTime uploadedAt; // Thời gian tải lên (thời gian đính kèm vào email)
+    private int attachmentId;
+    private int mailId;
+    private String fileName;
+    private String filePath;
+    private Integer fileSize;
+    private String fileType;
 
-    // Constructor
-    public Attachment(int id, int mailId, String fileName, String filePath, LocalDateTime uploadedAt) {
-        this.id = id;
+    // Constructor không tham số
+    public Attachment() {
+    }
+
+    // Constructor đầy đủ tham số (không bao gồm uploadedAt)
+    public Attachment(int attachmentId, int mailId, String fileName, String filePath, Integer fileSize, String fileType) {
+        this.attachmentId = attachmentId;
         this.mailId = mailId;
         this.fileName = fileName;
         this.filePath = filePath;
-        this.uploadedAt = uploadedAt;
+        this.fileSize = fileSize;
+        this.fileType = fileType;
     }
 
     // Getter và Setter
-    public int getId() {
-        return id;
+    public int getAttachmentId() {
+        return attachmentId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setAttachmentId(int attachmentId) {
+        this.attachmentId = attachmentId;
     }
 
     public int getMailId() {
@@ -51,23 +55,31 @@ public class Attachment {
         this.filePath = filePath;
     }
 
-    public LocalDateTime getUploadedAt() {
-        return uploadedAt;
+    public Integer getFileSize() {
+        return fileSize;
     }
 
-    public void setUploadedAt(LocalDateTime uploadedAt) {
-        this.uploadedAt = uploadedAt;
+    public void setFileSize(Integer fileSize) {
+        this.fileSize = fileSize;
     }
 
-    // Phương thức toString() để in thông tin đối tượng ra chuỗi
+    public String getFileType() {
+        return fileType;
+    }
+
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
+    }
+
     @Override
     public String toString() {
-        return "Attachment{" +
-                "id=" + id +
+        return "Attachments{" +
+                "attachmentId=" + attachmentId +
                 ", mailId=" + mailId +
                 ", fileName='" + fileName + '\'' +
                 ", filePath='" + filePath + '\'' +
-                ", uploadedAt=" + uploadedAt +
+                ", fileSize=" + fileSize +
+                ", fileType='" + fileType + '\'' +
                 '}';
     }
 }

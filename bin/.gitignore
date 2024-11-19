@@ -1,6 +1,2 @@
-/common/
-/dao/
-/server/
 /model/
-/client/
-/test/
+/dao/
