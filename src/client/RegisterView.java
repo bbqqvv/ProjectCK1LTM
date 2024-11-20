@@ -2,10 +2,7 @@ package client;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.text.JTextComponent;
-
 import dao.ServerDAO;
-
 import java.awt.*;
 
 public class RegisterView extends JFrame {
@@ -15,88 +12,109 @@ public class RegisterView extends JFrame {
     private JPasswordField confirmPasswordField;
     private JButton registerButton;
     private JButton cancelButton;
-    private JTextComponent statusLabel;
-    private ServerDAO serverDAO; // Thêm biến serverDAO
+    private JLabel statusLabel; // Dùng JLabel để hiển thị trạng thái
+    private ServerDAO serverDAO;
 
-    // Constructor của RegisterView yêu cầu ServerDAO
     public RegisterView(ServerDAO serverDAO) {
-        this.serverDAO = serverDAO; // Nhận ServerDAO từ đối tượng gọi
+        this.serverDAO = serverDAO;
+
+        // Cài đặt cửa sổ chính
         setTitle("Register");
-        setSize(400, 300);
+        setSize(450, 350);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new BorderLayout());
+        setLayout(new BorderLayout());
+        setResizable(false);
 
-        // Tạo panel tiêu đề
+        // Tiêu đề
         JPanel headerPanel = new JPanel();
-        headerPanel.add(new JLabel("<html><h2>Register Account</h2></html>"));
-        getContentPane().add(headerPanel, BorderLayout.NORTH);
+        headerPanel.setBackground(new Color(70, 130, 180));
+        headerPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+        JLabel headerLabel = new JLabel("Register Account");
+        headerLabel.setForeground(Color.WHITE);
+        headerLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        headerPanel.add(headerLabel);
+        add(headerPanel, BorderLayout.NORTH);
 
-        // Tạo panel chính với lưới
-        JPanel mainPanel = new JPanel(new GridLayout(5, 2, 10, 10));
-        mainPanel.setBorder(new EmptyBorder(10, 20, 10, 20));
+        // Nội dung chính
+        JPanel mainPanel = new JPanel(new GridLayout(5, 2, 15, 15));
+        mainPanel.setBorder(new EmptyBorder(20, 20, 10, 20));
 
-        mainPanel.add(new JLabel("Username:"));
-        usernameField = new JTextField(15);
+        JLabel usernameLabel = new JLabel("Username:");
+        usernameField = new JTextField(20);
+
+        JLabel emailLabel = new JLabel("Email:");
+        emailField = new JTextField(20);
+
+        JLabel passwordLabel = new JLabel("Password:");
+        passwordField = new JPasswordField(20);
+
+        JLabel confirmPasswordLabel = new JLabel("Confirm Password:");
+        confirmPasswordField = new JPasswordField(20);
+
+        mainPanel.add(usernameLabel);
         mainPanel.add(usernameField);
-
-        mainPanel.add(new JLabel("Email:"));
-        emailField = new JTextField(15);
+        mainPanel.add(emailLabel);
         mainPanel.add(emailField);
-
-        mainPanel.add(new JLabel("Password:"));
-        passwordField = new JPasswordField(15);
+        mainPanel.add(passwordLabel);
         mainPanel.add(passwordField);
-
-        mainPanel.add(new JLabel("Confirm Password:"));
-        confirmPasswordField = new JPasswordField(15);
+        mainPanel.add(confirmPasswordLabel);
         mainPanel.add(confirmPasswordField);
+        add(mainPanel, BorderLayout.CENTER);
 
-        getContentPane().add(mainPanel, BorderLayout.CENTER);
+        // Panel trạng thái
+        statusLabel = new JLabel(" ");
+        statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        statusLabel.setForeground(Color.RED);
+        add(statusLabel, BorderLayout.SOUTH);
 
-        // Tạo panel chứa nút đăng ký và hủy
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
+        // Nút hành động
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
         registerButton = new JButton("Register");
         cancelButton = new JButton("Cancel");
+        registerButton.setPreferredSize(new Dimension(120, 35));
+        cancelButton.setPreferredSize(new Dimension(120, 35));
         buttonPanel.add(registerButton);
         buttonPanel.add(cancelButton);
+        add(buttonPanel, BorderLayout.SOUTH);
 
+        // Hành động khi bấm nút
         registerButton.addActionListener(e -> register());
         cancelButton.addActionListener(e -> openLoginView());
 
-        getContentPane().add(buttonPanel, BorderLayout.SOUTH);
-
-        setLocationRelativeTo(null); // Căn giữa cửa sổ
+        // Hiển thị cửa sổ ở giữa màn hình
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 
     private void register() {
+        String username = usernameField.getText().trim();
+        String email = emailField.getText().trim();
+        String password = new String(passwordField.getPassword());
+        String confirmPassword = new String(confirmPasswordField.getPassword());
+
+        // Kiểm tra các trường hợp lỗi nhập liệu
+        if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            statusLabel.setText("All fields are required.");
+            return;
+        }
+
+        if (!password.equals(confirmPassword)) {
+            statusLabel.setText("Passwords do not match.");
+            return;
+        }
+
         try {
-            String username = usernameField.getText();
-            String email = emailField.getText();
-            String password = new String(passwordField.getPassword());
-            String confirmPassword = new String(confirmPasswordField.getPassword());
-
-            // Kiểm tra tính hợp lệ của thông tin đầu vào
-            if (!password.equals(confirmPassword)) {
-                statusLabel.setText("Passwords do not match.");
-                return;
-            }
-
-            if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
-                statusLabel.setText("All fields are required.");
-                return;
-            }
-
-            // Tạo đối tượng MailClient tạm thời để gửi yêu cầu đăng ký
             MailClient tempClient = new MailClient("localhost", 4445);
             String request = "REGISTER:" + username + ":" + email + ":" + password;
-            System.out.println("Sending request: " + request);
-            
             String response = tempClient.sendRequest(request);
-            JOptionPane.showMessageDialog(this, response);
+
+            // Thông báo kết quả
             if (response.contains("successful")) {
-                openLoginView();  // Chuyển tới LoginView sau khi đăng ký thành công
+                JOptionPane.showMessageDialog(this, "Registration successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                openLoginView();
                 dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, response, "Registration Failed", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "An error occurred: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -105,7 +123,7 @@ public class RegisterView extends JFrame {
     }
 
     private void openLoginView() {
-        new LoginView(serverDAO);  // Truyền serverDAO khi mở LoginView
+        new LoginView(serverDAO);
         dispose();
     }
 }

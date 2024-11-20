@@ -122,6 +122,7 @@ public class LoginView extends JFrame {
                     MailClient tempClient = new MailClient(serverIp, serverPort);
                     String response = tempClient.sendRequest("LOGIN:" + email + ":" + password);
 
+                 // Inside the login method in LoginView
                     if (response.contains("successful")) {
                         // Save the client's IP address to the server (if necessary)
                         tempClient.sendRequest("SAVE_IP:" + email + ":" + InetAddress.getLocalHost().getHostAddress());
@@ -132,11 +133,12 @@ public class LoginView extends JFrame {
 
                         // Open the MailClientView with the necessary objects
                         MailClient client = new MailClient(serverIp, serverPort);
-                        new MailClientView(client, email, userDAO, serverDAO); // Pass UserDAO to MailClientView
+                        new MailClientView(client, email, userDAO, serverDAO);  // Correct constructor call
                         dispose(); // Close the login window
                     } else {
                         statusLabel.setText(response); // Display login failure message
                     }
+
                 } catch (Exception e) {
                     statusLabel.setText("An error occurred: " + e.getMessage());
                     e.printStackTrace();  // Print the error details

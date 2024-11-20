@@ -1,16 +1,12 @@
 package client;
 
 import javax.swing.*;
-
 import dao.ServerDAO;
 import dao.UserDAO;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalTime;
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 public class SettingsDialog extends JDialog {
 
@@ -20,23 +16,28 @@ public class SettingsDialog extends JDialog {
     private String selectedSortOrder;
     private boolean notificationsEnabled;
     private boolean autoRefreshEnabled;
-    private String username;
-    private Locale currentLocale;
-    private ResourceBundle messages;
+    private String userEmail;
     private MailClientView parentView;
     private ServerDAO serverDAO;
-	private UserDAO userDAO;
-    // Constructor
-	public SettingsDialog(MailClientView parentView, int emailsPerPage, String username, UserDAO userDAO) {
-	    super(parentView, "Settings", true);
-	    this.parentView = parentView;
-	    this.emailsPerPage = emailsPerPage;
-	    this.username = username;
-	    this.userDAO = userDAO;  // Truyền userDAO vào constructor
-	    this.currentLocale = Locale.getDefault();
-	    this.messages = ResourceBundle.getBundle("messages", currentLocale);
-	    initializeDialog();
-	}
+    private UserDAO userDAO;
+
+    // Constructor only with parentView, leaving the rest for setters
+    public SettingsDialog(MailClientView parentView, UserDAO userDAO) {
+        super(parentView, "Settings", true);
+        this.parentView = parentView;
+        this.userEmail = parentView.getUserEmail();  // Gán userEmail từ parentView
+        this.userDAO = userDAO;
+        initializeDialog();
+    }
+
+
+    // Setters to initialize other values
+    public void initializeSettings(int emailsPerPage, String userEmail, UserDAO userDAO, ServerDAO serverDAO) {
+        this.emailsPerPage = emailsPerPage;
+        this.userEmail = userEmail;
+        this.userDAO = userDAO;  // Gán userDAO từ ngoài vào
+        this.serverDAO = serverDAO;  // Gán serverDAO
+    }
 
     private void initializeDialog() {
         setSize(550, 400);
@@ -46,59 +47,43 @@ public class SettingsDialog extends JDialog {
         JPanel settingsPanel = new JPanel(new GridLayout(0, 2, 15, 15));
         settingsPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        JLabel themeLabel = new JLabel(messages.getString("settings.selectTheme"));
-        JComboBox<String> themeComboBox = new JComboBox<>(new String[]{messages.getString("settings.light"), messages.getString("settings.dark"), messages.getString("settings.auto")});
-
-        JLabel emailsPerPageLabel = new JLabel(messages.getString("settings.emailsPerPage"));
+        // Components for settings
+        JComboBox<String> themeComboBox = new JComboBox<>(new String[]{"Light", "Dark", "Auto"});
         JTextField emailsPerPageField = new JTextField(String.valueOf(emailsPerPage));
-
-        JLabel fontSizeLabel = new JLabel(messages.getString("settings.fontSize"));
-        JComboBox<String> fontSizeComboBox = new JComboBox<>(new String[]{messages.getString("settings.small"), messages.getString("settings.medium"), messages.getString("settings.large")});
-
-        JLabel sortOrderLabel = new JLabel(messages.getString("settings.sortOrder"));
-        JComboBox<String> sortOrderComboBox = new JComboBox<>(new String[]{messages.getString("settings.date"), messages.getString("settings.subject"), messages.getString("settings.sender")});
-
-        JLabel notificationsLabel = new JLabel(messages.getString("settings.notifications"));
-        JCheckBox notificationsCheckBox = new JCheckBox(messages.getString("settings.enableNotifications"), notificationsEnabled);
-
-        JLabel autoRefreshLabel = new JLabel(messages.getString("settings.autoRefresh"));
-        JCheckBox autoRefreshCheckBox = new JCheckBox(messages.getString("settings.enableAutoRefresh"), autoRefreshEnabled);
-
-        JLabel usernameLabel = new JLabel(messages.getString("settings.currentUsername") + ": " + username);
-        JTextField usernameField = new JTextField(username);
-
-        // Add language selection ComboBox
-        JLabel languageLabel = new JLabel(messages.getString("settings.language"));
+        JComboBox<String> fontSizeComboBox = new JComboBox<>(new String[]{"Small", "Medium", "Large"});
+        JComboBox<String> sortOrderComboBox = new JComboBox<>(new String[]{"Date", "Subject", "Sender"});
+        JCheckBox notificationsCheckBox = new JCheckBox("Enable Notifications", notificationsEnabled);
+        JCheckBox autoRefreshCheckBox = new JCheckBox("Enable Auto Refresh", autoRefreshEnabled);
+        JTextField usernameField = new JTextField(userEmail);
         JComboBox<String> languageComboBox = new JComboBox<>(new String[]{"English", "Vietnamese"});
+
+        // Language selection listener
         languageComboBox.addActionListener(e -> {
             String selectedLanguage = (String) languageComboBox.getSelectedItem();
-            if (selectedLanguage.equals("Vietnamese")) {
-                changeLanguage(new Locale("vi", "VN"));
-            } else {
-                changeLanguage(Locale.ENGLISH);
-            }
+            String message = selectedLanguage.equals("Vietnamese") ? "Language set to Vietnamese." : "Language set to English.";
+            JOptionPane.showMessageDialog(this, message);
         });
 
         // Add components to settings panel
-        settingsPanel.add(themeLabel);
+        settingsPanel.add(new JLabel("Select Theme"));
         settingsPanel.add(themeComboBox);
-        settingsPanel.add(emailsPerPageLabel);
+        settingsPanel.add(new JLabel("Emails per Page"));
         settingsPanel.add(emailsPerPageField);
-        settingsPanel.add(fontSizeLabel);
+        settingsPanel.add(new JLabel("Font Size"));
         settingsPanel.add(fontSizeComboBox);
-        settingsPanel.add(sortOrderLabel);
+        settingsPanel.add(new JLabel("Sort Order"));
         settingsPanel.add(sortOrderComboBox);
-        settingsPanel.add(notificationsLabel);
+        settingsPanel.add(new JLabel("Notifications"));
         settingsPanel.add(notificationsCheckBox);
-        settingsPanel.add(autoRefreshLabel);
+        settingsPanel.add(new JLabel("Auto Refresh"));
         settingsPanel.add(autoRefreshCheckBox);
-        settingsPanel.add(usernameLabel);
+        settingsPanel.add(new JLabel("Current Email: " + userEmail));
         settingsPanel.add(usernameField);
-        settingsPanel.add(languageLabel);
+        settingsPanel.add(new JLabel("Language"));
         settingsPanel.add(languageComboBox);
 
         // Save Button with an icon
-        JButton saveButton = new JButton(messages.getString("settings.save"));
+        JButton saveButton = new JButton("Save");
         saveButton.setPreferredSize(new Dimension(120, 40));
         saveButton.addActionListener(e -> {
             selectedTheme = (String) themeComboBox.getSelectedItem();
@@ -112,16 +97,14 @@ public class SettingsDialog extends JDialog {
             try {
                 emailsPerPageValue = Integer.parseInt(emailsPerPageField.getText());
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(parentView, messages.getString("settings.invalidEmailsPerPage"), messages.getString("settings.invalidInput"),
+                JOptionPane.showMessageDialog(parentView, "Invalid value for Emails per Page.", "Invalid Input",
                         JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
             // Apply changes
             applyTheme(selectedTheme);
-            updateEmailsPerPage(emailsPerPageValue);
             updateFontSize(selectedFontSize);
-            updateSortOrder(selectedSortOrder);
             updateNotifications(notificationsEnabled);
             updateAutoRefresh(autoRefreshEnabled);
             updateUsername(newUsername);
@@ -130,7 +113,7 @@ public class SettingsDialog extends JDialog {
         });
 
         // Reset Button
-        JButton resetButton = new JButton(messages.getString("settings.reset"));
+        JButton resetButton = new JButton("Reset");
         resetButton.setPreferredSize(new Dimension(150, 40));
         resetButton.addActionListener(e -> {
             themeComboBox.setSelectedIndex(0); // Light theme
@@ -139,40 +122,38 @@ public class SettingsDialog extends JDialog {
             notificationsCheckBox.setSelected(true);
             autoRefreshCheckBox.setSelected(false);
             emailsPerPageField.setText("20");
-            usernameField.setText(username);
+            usernameField.setText(userEmail);
         });
 
-     // Logout Button
-        JButton logoutButton = new JButton(messages.getString("settings.logout"));
+        // Logout Button
+        JButton logoutButton = new JButton("Logout");
         logoutButton.setPreferredSize(new Dimension(120, 40));
 
         logoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Sử dụng email (hoặc username) từ thông tin đã truyền vào SettingsDialog
-                if (username == null || username.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, messages.getString("settings.noUserDetected"));
+                if (userEmail == null || userEmail.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "No user detected.");
                     return;
                 }
 
-                // Kiểm tra xem email (hoặc username) có đang đăng nhập không
-                if (userDAO.isUserLoggedIn(username)) { // username được truyền từ MailClientView
-                    // Nếu đang đăng nhập, tiến hành đăng xuất
-                    userDAO.updateLoginStatus(username, false);
-                    JOptionPane.showMessageDialog(null, messages.getString("settings.logoutSuccess"));
-
-                    // Quay về màn hình đăng nhập
-                    parentView.showLoginScreen(serverDAO);
+                if (userDAO.isUserLoggedIn(userEmail)) {
+                    userDAO.updateLoginStatus(userEmail, false);
+                    JOptionPane.showMessageDialog(null, "Logout successful.");
+                    // Safeguard if parentView is null
+                    if (parentView != null) {
+                        parentView.showLoginScreen(serverDAO);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error: Parent view is null.");
+                    }
                     dispose();
                 } else {
-                    // Nếu email không đăng nhập
-                    JOptionPane.showMessageDialog(null, messages.getString("settings.notLoggedIn"));
+                    JOptionPane.showMessageDialog(null, "User is not logged in.");
                 }
             }
         });
 
-
-        settingsPanel.add(logoutButton); // Thêm nút vào panel
+        settingsPanel.add(logoutButton);
 
         // Button Panel
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
@@ -187,40 +168,26 @@ public class SettingsDialog extends JDialog {
         setVisible(true);
     }
 
-    // Change language
-    private void changeLanguage(Locale newLocale) {
-        this.currentLocale = newLocale;
-        this.messages = ResourceBundle.getBundle("messages", currentLocale);  // Load new language
-        // Rebuild the dialog UI with new language and retain current values
-        initializeDialog();  // Ensure data is retained on language change
-    }
-
     private void applyTheme(String selectedTheme) {
         if ("Dark".equalsIgnoreCase(selectedTheme)) {
             parentView.getContentPane().setBackground(Color.DARK_GRAY);
-            parentView.updateStatusLabel(messages.getString("settings.darkThemeApplied"));
+            parentView.updateStatusLabel("Dark theme applied.");
         } else if ("Auto".equalsIgnoreCase(selectedTheme)) {
             applyAutoTheme();
         } else {
             parentView.getContentPane().setBackground(Color.WHITE);
-            parentView.updateStatusLabel(messages.getString("settings.lightThemeApplied"));
+            parentView.updateStatusLabel("Light theme applied.");
         }
         SwingUtilities.updateComponentTreeUI(parentView);
     }
 
     private void applyAutoTheme() {
-        // Set theme automatically based on the time of day
         LocalTime currentTime = LocalTime.now();
         if (currentTime.isBefore(LocalTime.NOON)) {
             applyTheme("Light");
         } else {
             applyTheme("Dark");
         }
-    }
-
-    private void updateEmailsPerPage(int emailsPerPageValue) {
-        parentView.setEmailsPerPage(emailsPerPageValue);
-        parentView.loadEmails(1);
     }
 
     private void updateFontSize(String fontSize) {
@@ -242,31 +209,26 @@ public class SettingsDialog extends JDialog {
         parentView.setFont(new Font("Arial", Font.PLAIN, fontSizeValue));
     }
 
-    private void updateSortOrder(String sortOrder) {
-        parentView.setSortOrder(sortOrder);
-        parentView.loadEmails(1);
-    }
-
     private void updateNotifications(boolean notificationsEnabled) {
         parentView.setNotificationsEnabled(notificationsEnabled);
         if (notificationsEnabled) {
-            parentView.updateStatusLabel(messages.getString("settings.notificationsEnabled"));
+            parentView.updateStatusLabel("Notifications enabled.");
         } else {
-            parentView.updateStatusLabel(messages.getString("settings.notificationsDisabled"));
+            parentView.updateStatusLabel("Notifications disabled.");
         }
     }
 
     private void updateAutoRefresh(boolean autoRefreshEnabled) {
         parentView.setAutoRefreshEnabled(autoRefreshEnabled);
         if (autoRefreshEnabled) {
-            parentView.updateStatusLabel(messages.getString("settings.autoRefreshEnabled"));
+            parentView.updateStatusLabel("Auto refresh enabled.");
         } else {
-            parentView.updateStatusLabel(messages.getString("settings.autoRefreshDisabled"));
+            parentView.updateStatusLabel("Auto refresh disabled.");
         }
     }
 
     private void updateUsername(String newUsername) {
         parentView.setUsername(newUsername);
-        parentView.updateStatusLabel(messages.getString("settings.usernameUpdated") + " " + newUsername);
+        parentView.updateStatusLabel("Username updated to: " + newUsername);
     }
 }

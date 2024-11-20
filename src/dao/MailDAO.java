@@ -40,7 +40,7 @@ public class MailDAO {
 			stmt.setString(1, username);
 			try (ResultSet rs = stmt.executeQuery()) {
 				while (rs.next()) {
-					Mail mail = new Mail(rs.getInt("id"), rs.getString("sender"), rs.getString("receiver"),
+					Mail mail = new Mail(rs.getInt("mail_id"), rs.getString("sender"), rs.getString("receiver"),
 							rs.getString("subject"), rs.getString("content"), rs.getDate("sent_date"),
 							rs.getBoolean("is_sent"));
 					mails.add(mail);
@@ -80,7 +80,7 @@ public class MailDAO {
 			// Thực thi câu lệnh truy vấn
 			try (ResultSet rs = stmt.executeQuery()) {
 				while (rs.next()) {
-					Mail mail = new Mail(rs.getInt("id"), rs.getString("sender"), rs.getString("receiver"),
+					Mail mail = new Mail(rs.getInt("mail_id"), rs.getString("sender"), rs.getString("receiver"),
 							rs.getString("subject"), rs.getString("content"), rs.getDate("sent_date"),
 							rs.getBoolean("is_sent"));
 					mails.add(mail);
@@ -95,7 +95,7 @@ public class MailDAO {
 	}
 
 	public boolean deleteMail(int mailId) {
-	    String sql = "DELETE FROM mails WHERE id = ?";
+	    String sql = "DELETE FROM mails WHERE mail_id = ?";
 	    try (PreparedStatement stmt = connection.prepareStatement(sql)) {
 	        stmt.setInt(1, mailId); // Set id của email cần xóa
 	        int rowsAffected = stmt.executeUpdate();
@@ -112,7 +112,7 @@ public class MailDAO {
 
 
 	public boolean mailExists(int mailId) {
-	    String sql = "SELECT COUNT(*) FROM mails WHERE id = ?";
+	    String sql = "SELECT COUNT(*) FROM mails WHERE mail_id = ?";
 	    try (PreparedStatement stmt = connection.prepareStatement(sql)) {
 	        stmt.setInt(1, mailId);
 	        try (ResultSet rs = stmt.executeQuery()) {
@@ -127,7 +127,7 @@ public class MailDAO {
 	}
 	
 	public boolean markEmailAsRead(int mailId) {
-	    String sql = "UPDATE mails SET is_sent = true WHERE id = ?";
+	    String sql = "UPDATE mails SET is_sent = true WHERE mail_id = ?";
 	    try (PreparedStatement stmt = connection.prepareStatement(sql)) {
 	        stmt.setInt(1, mailId); // Set ID của email cần cập nhật
 	        int rowsAffected = stmt.executeUpdate();

@@ -31,15 +31,14 @@ public class SidebarPanel extends JPanel {
         setBackground(BACKGROUND_COLOR);
         setPreferredSize(new Dimension(EXPANDED_WIDTH, getHeight()));
 
-        // Create panel for buttons
         buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
         buttonPanel.setBackground(BACKGROUND_COLOR);
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        // Add buttons to sidebar
+        // Add buttons to switch between panels
         addButtonFromImage("src/images/mail.png", "Send Email", "Send Email", e -> mailClientView.switchPanel("SendEmail"));
-        addButtonFromImage("src/images/loading.png", "Load Emails", "Load Emails", e -> mailClientView.switchPanel("LoadEmails"));
+        addButtonFromImage("src/images/loading.png", "Load Emails", "Load Emails", e -> mailClientView.switchPanel("EmailList"));
         addButtonFromImage("src/images/delete-message.png", "Delete Email", "Delete Email", e -> mailClientView.deleteEmail());
         addButtonFromImage("src/images/arrow.png", "Reply Email", "Reply Email", e -> mailClientView.replyEmail());
         addButtonFromImage("src/images/chat.png", "Chat", "Chat", e -> mailClientView.switchPanel("Chat"));
@@ -48,7 +47,7 @@ public class SidebarPanel extends JPanel {
         // Add hamburger menu button at the top of the sidebar
         createButtonMenu();
 
-        // Add buttonPanel to SidebarPanel
+        // Add the button panel to the sidebar
         add(buttonPanel, BorderLayout.CENTER);
     }
 
@@ -170,8 +169,6 @@ public class SidebarPanel extends JPanel {
 
         resizeTimer.start();
     }
-
-
 
     // Update button visibility with smooth transition
     private void updateButtonVisibility() {

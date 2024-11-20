@@ -130,14 +130,31 @@ public class MailServer {
             case "DELETE_EMAIL":  // Xử lý xóa email
                 handleDeleteEmail(tokens, packet);
                 break;
-
+                
+            case "REPLY_EMAIL":
+            	handleReplyEmail(tokens,packet);
+            
+            case "CHAT":
+            	handleChat(tokens,packet);
+	
+            	
             default:
                 sendResponse("Invalid command", packet);
                 break;
         }
     }
     
-    private void handleDeleteEmail(List<String> tokens, DatagramPacket packet) throws IOException {
+    private void handleChat(List<String> tokens, DatagramPacket packet) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void handleReplyEmail(List<String> tokens, DatagramPacket packet) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void handleDeleteEmail(List<String> tokens, DatagramPacket packet) throws IOException {
         if (tokens.size() < 2) {
             sendResponse("Invalid delete email request", packet);
             return;

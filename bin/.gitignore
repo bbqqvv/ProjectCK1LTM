@@ -1,6 +1,5 @@
-/common/
-/dao/
-/server/
-/model/
+/service/
+/controller/
 /client/
 /test/
+/model/
