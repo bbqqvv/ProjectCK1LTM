@@ -1,10 +1,8 @@
 package client;
 
 import javax.swing.*;
-
 import dao.ServerDAO;
 import dao.UserDAO;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,16 +21,24 @@ public class SettingsDialog extends JDialog {
     private ServerDAO serverDAO;
     private UserDAO userDAO;
 
-    // Constructor
-    public SettingsDialog(MailClientView parentView, int emailsPerPage, String userEmail, UserDAO userDAO) {
+    // Constructor only with parentView, leaving the rest for setters
+    public SettingsDialog(MailClientView parentView, UserDAO userDAO) {
         super(parentView, "Settings", true);
         this.parentView = parentView;
-        this.emailsPerPage = emailsPerPage;
-        this.userEmail = userEmail;
+        this.userEmail = parentView.getUserEmail();  // Gán userEmail từ parentView
         this.userDAO = userDAO;
         initializeDialog();
     }
-    
+
+
+    // Setters to initialize other values
+    public void initializeSettings(int emailsPerPage, String userEmail, UserDAO userDAO, ServerDAO serverDAO) {
+        this.emailsPerPage = emailsPerPage;
+        this.userEmail = userEmail;
+        this.userDAO = userDAO;  // Gán userDAO từ ngoài vào
+        this.serverDAO = serverDAO;  // Gán serverDAO
+    }
+
     private void initializeDialog() {
         setSize(550, 400);
         setLocationRelativeTo(parentView);
@@ -41,55 +47,39 @@ public class SettingsDialog extends JDialog {
         JPanel settingsPanel = new JPanel(new GridLayout(0, 2, 15, 15));
         settingsPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        JLabel themeLabel = new JLabel("Select Theme");
+        // Components for settings
         JComboBox<String> themeComboBox = new JComboBox<>(new String[]{"Light", "Dark", "Auto"});
-
-        JLabel emailsPerPageLabel = new JLabel("Emails per Page");
         JTextField emailsPerPageField = new JTextField(String.valueOf(emailsPerPage));
-
-        JLabel fontSizeLabel = new JLabel("Font Size");
         JComboBox<String> fontSizeComboBox = new JComboBox<>(new String[]{"Small", "Medium", "Large"});
-
-        JLabel sortOrderLabel = new JLabel("Sort Order");
         JComboBox<String> sortOrderComboBox = new JComboBox<>(new String[]{"Date", "Subject", "Sender"});
-
-        JLabel notificationsLabel = new JLabel("Notifications");
         JCheckBox notificationsCheckBox = new JCheckBox("Enable Notifications", notificationsEnabled);
-
-        JLabel autoRefreshLabel = new JLabel("Auto Refresh");
         JCheckBox autoRefreshCheckBox = new JCheckBox("Enable Auto Refresh", autoRefreshEnabled);
-
-        JLabel usernameLabel = new JLabel("Current Email: " + userEmail);
         JTextField usernameField = new JTextField(userEmail);
-
-        // Add language selection ComboBox
-        JLabel languageLabel = new JLabel("Language");
         JComboBox<String> languageComboBox = new JComboBox<>(new String[]{"English", "Vietnamese"});
+
+        // Language selection listener
         languageComboBox.addActionListener(e -> {
             String selectedLanguage = (String) languageComboBox.getSelectedItem();
-            if (selectedLanguage.equals("Vietnamese")) {
-                JOptionPane.showMessageDialog(this, "Language set to Vietnamese.");
-            } else {
-                JOptionPane.showMessageDialog(this, "Language set to English.");
-            }
+            String message = selectedLanguage.equals("Vietnamese") ? "Language set to Vietnamese." : "Language set to English.";
+            JOptionPane.showMessageDialog(this, message);
         });
 
         // Add components to settings panel
-        settingsPanel.add(themeLabel);
+        settingsPanel.add(new JLabel("Select Theme"));
         settingsPanel.add(themeComboBox);
-        settingsPanel.add(emailsPerPageLabel);
+        settingsPanel.add(new JLabel("Emails per Page"));
         settingsPanel.add(emailsPerPageField);
-        settingsPanel.add(fontSizeLabel);
+        settingsPanel.add(new JLabel("Font Size"));
         settingsPanel.add(fontSizeComboBox);
-        settingsPanel.add(sortOrderLabel);
+        settingsPanel.add(new JLabel("Sort Order"));
         settingsPanel.add(sortOrderComboBox);
-        settingsPanel.add(notificationsLabel);
+        settingsPanel.add(new JLabel("Notifications"));
         settingsPanel.add(notificationsCheckBox);
-        settingsPanel.add(autoRefreshLabel);
+        settingsPanel.add(new JLabel("Auto Refresh"));
         settingsPanel.add(autoRefreshCheckBox);
-        settingsPanel.add(usernameLabel);
+        settingsPanel.add(new JLabel("Current Email: " + userEmail));
         settingsPanel.add(usernameField);
-        settingsPanel.add(languageLabel);
+        settingsPanel.add(new JLabel("Language"));
         settingsPanel.add(languageComboBox);
 
         // Save Button with an icon
@@ -114,9 +104,7 @@ public class SettingsDialog extends JDialog {
 
             // Apply changes
             applyTheme(selectedTheme);
-            updateEmailsPerPage(emailsPerPageValue);
             updateFontSize(selectedFontSize);
-            updateSortOrder(selectedSortOrder);
             updateNotifications(notificationsEnabled);
             updateAutoRefresh(autoRefreshEnabled);
             updateUsername(newUsername);
@@ -152,7 +140,12 @@ public class SettingsDialog extends JDialog {
                 if (userDAO.isUserLoggedIn(userEmail)) {
                     userDAO.updateLoginStatus(userEmail, false);
                     JOptionPane.showMessageDialog(null, "Logout successful.");
-                    parentView.showLoginScreen(serverDAO);
+                    // Safeguard if parentView is null
+                    if (parentView != null) {
+                        parentView.showLoginScreen(serverDAO);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error: Parent view is null.");
+                    }
                     dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "User is not logged in.");
@@ -197,11 +190,6 @@ public class SettingsDialog extends JDialog {
         }
     }
 
-    private void updateEmailsPerPage(int emailsPerPageValue) {
-        parentView.setEmailsPerPage(emailsPerPageValue);
-        parentView.loadEmails(1);
-    }
-
     private void updateFontSize(String fontSize) {
         int fontSizeValue;
         switch (fontSize) {
@@ -219,11 +207,6 @@ public class SettingsDialog extends JDialog {
                 break;
         }
         parentView.setFont(new Font("Arial", Font.PLAIN, fontSizeValue));
-    }
-
-    private void updateSortOrder(String sortOrder) {
-        parentView.setSortOrder(sortOrder);
-        parentView.loadEmails(1);
     }
 
     private void updateNotifications(boolean notificationsEnabled) {

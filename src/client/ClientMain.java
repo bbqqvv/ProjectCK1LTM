@@ -1,6 +1,5 @@
 package client;
 
-import java.net.InetAddress;
 import java.sql.Connection;
 
 import javax.swing.SwingUtilities;

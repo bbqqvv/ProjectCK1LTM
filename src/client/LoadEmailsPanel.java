@@ -1,208 +1,225 @@
 package client;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+
+import controller.LoadEmailsController;
+import model.Mail;
+
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoadEmailsPanel extends JPanel {
+	private JTable emailTable;
+	private DefaultTableModel emailTableModel;
+	private MailClientView mailClientView;
+	private JTextPane emailDetailsArea;
+	private List<Mail> emailList = new ArrayList<>();
+	private LoadEmailsController controller;
 
-    private MailClient client;
-    private String userEmail;
-    private DefaultTableModel emailTableModel;
-    private JTable emailTable;
-    private JTextPane emailDetailsArea;
-    private JTextField searchField;
-    private int currentPage = 1;
-    private int emailsPerPage = 10;
+	public LoadEmailsPanel(MailClientView parent) {
+	    this.mailClientView = parent;
+	    this.controller = new LoadEmailsController(this, parent.getClient(), parent.getUserEmail());
+	    // Khởi tạo bảng và mô hình dữ liệu
+	    emailTableModel = new DefaultTableModel();
+	    emailTable = new JTable(emailTableModel);
+	    emailTableModel.addColumn("ID");
+	    emailTableModel.addColumn("Sender");
+	    emailTableModel.addColumn("Subject");
+	    emailTableModel.addColumn("Date");
 
-   
-    public LoadEmailsPanel(MailClientView parent) {
-        this.client = parent.getClient();
-        this.userEmail = parent.getUserEmail();
+	    setLayout(new BorderLayout());
 
-        setLayout(new BorderLayout());
-        setBackground(new Color(240, 248, 255));
+	    // Khởi tạo vùng chi tiết email
+	    emailDetailsArea = new JTextPane();
+	    emailDetailsArea.setContentType("text/html");
+	    emailDetailsArea.setEditable(false);
+	    emailDetailsArea.setFont(new Font("Arial", Font.PLAIN, 14));
 
-        // Search panel
-        JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
-        searchField = new JTextField(20);
-        JButton searchButton = new JButton("🔍 Search");
-        searchButton.addActionListener(e -> searchEmails());
-        searchPanel.add(new JLabel("Search by Subject or Sender:"));
-        searchPanel.add(searchField);
-        searchPanel.add(searchButton);
+	    // Tạo các thành phần giao diện
+	    createComponents();
 
-        add(searchPanel, BorderLayout.NORTH);
+	    // Tải email lần đầu tiên
+	    controller.loadEmails(1); 
+	}
 
-        // Email table
-        emailTableModel = new DefaultTableModel(new String[]{"ID", "Sender", "Subject", "Date"}, 0);
-        emailTable = new JTable(emailTableModel);
-        emailTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        emailTable.getSelectionModel().addListSelectionListener(e -> showEmailDetails());
-        JScrollPane emailScrollPane = new JScrollPane(emailTable);
 
-        // Add right-click menu
-        addRightClickMenu();
+	private void createComponents() {
+		// Tạo panel tìm kiếm
+		JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
+		JTextField searchField = new JTextField(20);
+		JButton searchButton = new JButton("🔍 Tìm kiếm");
 
-        // Email details
-        emailDetailsArea = new JTextPane();
-        emailDetailsArea.setContentType("text/html");
-        emailDetailsArea.setEditable(false);
-        JScrollPane detailsScrollPane = new JScrollPane(emailDetailsArea);
+		searchPanel.add(new JLabel("Tìm kiếm theo Subject hoặc Sender:"));
+		searchPanel.add(searchField);
+		searchPanel.add(searchButton);
+		add(searchPanel, BorderLayout.NORTH);
 
-        // Split pane for table and details
-        JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, emailScrollPane, detailsScrollPane);
-        splitPane.setResizeWeight(0.7);
-        add(splitPane, BorderLayout.CENTER);
+		// Cài đặt bảng
+		emailTable.setRowHeight(40); // Đặt chiều cao dòng
+		emailTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		emailTable.setDefaultEditor(Object.class, null);
+		customizeTableAppearance();
 
-        // Pagination panel
-        JPanel paginationPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        JButton prevPageButton = new JButton("◀ Previous");
-        JButton nextPageButton = new JButton("Next ▶");
-        prevPageButton.addActionListener(e -> loadEmails(currentPage - 1));
-        nextPageButton.addActionListener(e -> loadEmails(currentPage + 1));
-        paginationPanel.add(prevPageButton);
-        paginationPanel.add(nextPageButton);
+		// Thêm bảng vào giao diện
+		JScrollPane emailScrollPane = new JScrollPane(emailTable);
+		add(emailScrollPane, BorderLayout.CENTER);
 
-        add(paginationPanel, BorderLayout.SOUTH);
+		// Tạo vùng chi tiết và phân chia giao diện
+		JScrollPane detailsScrollPane = new JScrollPane(emailDetailsArea);
+		JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, emailScrollPane, detailsScrollPane);
+		splitPane.setResizeWeight(0.7);
+		add(splitPane, BorderLayout.CENTER);
 
-        // Load the initial page of emails
-        loadEmails(currentPage);
-    }
+		// Tạo các nút phân trang
+		JPanel paginationPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		JButton prevPageButton = new JButton("◀ Trang trước");
+		JButton nextPageButton = new JButton("Trang sau ▶");
+		JLabel pageLabel = new JLabel("Trang: 1");
 
-    public void loadEmails(int page) {
-        if (page < 1) return;
+		paginationPanel.add(prevPageButton);
+		paginationPanel.add(pageLabel);
+		paginationPanel.add(nextPageButton);
+		add(paginationPanel, BorderLayout.SOUTH);
 
-        currentPage = page;
-        emailTableModel.setRowCount(0);
+		// Lắng nghe các sự kiện
+		searchButton.addActionListener(e -> controller.handleSearch(searchField.getText()));
+		prevPageButton.addActionListener(e -> controller.handlePagination(false));
+		nextPageButton.addActionListener(e -> controller.handlePagination(true));
 
-        try {
-            String response = client.sendRequest("LOAD_EMAILS:" + userEmail + ":" + currentPage + ":" + emailsPerPage);
-            if (response == null || response.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "No emails to display.", "Info", JOptionPane.INFORMATION_MESSAGE);
-                return;
-            }
+		// Lắng nghe sự kiện chọn dòng trong bảng
+		emailTable.getSelectionModel().addListSelectionListener(e -> showEmailDetails());
 
-            String[] emails = response.split("\n");
-            for (String email : emails) {
-                String[] emailParts = parseEmail(email);
-                if (emailParts != null) {
-                    emailTableModel.addRow(emailParts);
-                }
-            }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error loading emails: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            ex.printStackTrace();
-        }
-    }
+		// Thêm menu chuột phải
+		addRightClickMenu();
+	}
 
-    private String[] parseEmail(String email) {
-        try {
-            String[] parts = email.split(", ");
-            String id = parts[0].split(": ")[1];
-            String sender = parts[1].split(": ")[1];
-            String subject = parts[3].split(": ")[1];
-            String date = parts[5].split(": ")[1];
-            return new String[]{id, sender, subject, date};
-        } catch (Exception e) {
-            return null;
-        }
-    }
+	private void addRightClickMenu() {
+		// Tạo popup menu cho chuột phải
+		JPopupMenu popupMenu = new JPopupMenu();
 
-    private void showEmailDetails() {
-        int selectedRow = emailTable.getSelectedRow();
-        if (selectedRow != -1) {
-            String sender = emailTable.getValueAt(selectedRow, 1).toString();
-            String subject = emailTable.getValueAt(selectedRow, 2).toString();
-            String date = emailTable.getValueAt(selectedRow, 3).toString();
-            String content = "<html><body>" +
-                    "<h2>" + subject + "</h2>" +
-                    "<p><strong>Sender:</strong> " + sender + "</p>" +
-                    "<p><strong>Date:</strong> " + date + "</p>" +
-                    "<hr>" +
-                    "<p>Email content here...</p>" +
-                    "</body></html>";
-            emailDetailsArea.setText(content);
-        }
-    }
+		// Thêm mục "Xóa"
+		JMenuItem deleteMenuItem = new JMenuItem("Xóa");
+		deleteMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.handleDeleteEmail();
+			}
+		});
 
-    private void searchEmails() {
-        String keyword = searchField.getText().trim();
-        if (keyword.isEmpty()) {
-            loadEmails(currentPage);
-            return;
-        }
+		// Thêm mục "Trả lời"
+		JMenuItem replyMenuItem = new JMenuItem("Trả lời");
+		replyMenuItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				mailClientView.replyEmail();
+			}
+		});
 
-        emailTableModel.setRowCount(0);
+		popupMenu.add(deleteMenuItem);
+		popupMenu.add(replyMenuItem);
 
-        try {
-            String response = client.sendRequest("SEARCH_EMAILS:" + userEmail + ":" + keyword + ":" + currentPage + ":" + emailsPerPage);
-            if (response == null || response.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "No results found.", "Info", JOptionPane.INFORMATION_MESSAGE);
-                return;
-            }
+		// Lắng nghe sự kiện chuột phải
+		emailTable.setComponentPopupMenu(popupMenu);
+	}
 
-            String[] emails = response.split("\n");
-            for (String email : emails) {
-                String[] emailParts = parseEmail(email);
-                if (emailParts != null) {
-                    emailTableModel.addRow(emailParts);
-                }
-            }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error searching emails: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            ex.printStackTrace();
-        }
-    }
+	private void showEmailDetails() {
+	    int selectedRow = emailTable.getSelectedRow();
+	    if (selectedRow >= 0) {
+	        // Get the subject and sender from the selected row
+	        String subject = emailTable.getValueAt(selectedRow, 2).toString();  // Assuming subject is in column 2
+	        String sender = emailTable.getValueAt(selectedRow, 1).toString();   // Assuming sender is in column 1
 
-    private void addRightClickMenu() {
-        JPopupMenu popupMenu = new JPopupMenu();
+	        // Assuming you have a list of emails (emailList) and each email has a getContent() method
+	        String content = ""; // Default empty content
+	        if (selectedRow < emailList.size()) {
+	            content = emailList.get(selectedRow).getContent(); // Get content from the email list
+	        }
 
-        JMenuItem deleteMenuItem = new JMenuItem("Delete");
-        deleteMenuItem.addActionListener(e -> deleteEmail());
-        popupMenu.add(deleteMenuItem);
+	        // Build the HTML for displaying email details
+	        String emailDetailsHTML = "<html><head><style>"
+	                + "/* Some CSS styling */"
+	                + "body { font-family: Arial, sans-serif; font-size: 14px; }"
+	                + ".email-container { margin: 10px; padding: 10px; border: 1px solid #ddd; }"
+	                + ".header { font-size: 18px; font-weight: bold; margin-bottom: 10px; }"
+	                + ".email-info { margin-bottom: 5px; }"
+	                + ".content { white-space: pre-wrap; word-wrap: break-word; }"
+	                + "</style></head><body>"
+	                + "<div class='email-container'>"
+	                + "<div class='header'>Subject: <span class='subject'>" + subject + "</span></div>"
+	                + "<div class='email-info'>From: <b>" + sender + "</b></div>"
+	                + "<div class='content'>" + content + "</div>"
+	                + "</div></body></html>";
 
-        JMenuItem replyMenuItem = new JMenuItem("Reply");
-        replyMenuItem.addActionListener(e -> replyEmail());
-        popupMenu.add(replyMenuItem);
+	        // Display the email details in the emailDetailsArea (a JTextArea or similar component)
+	        emailDetailsArea.setText(emailDetailsHTML);
+	        emailDetailsArea.setCaretPosition(0);  // Scroll to the top of the email content
+	    }
+	}
 
-        emailTable.setComponentPopupMenu(popupMenu);
-    }
 
-    private void deleteEmail() {
-        int selectedRow = emailTable.getSelectedRow();
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "Please select an email to delete.", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+	public DefaultTableModel getEmailTableModel() {
+		return emailTableModel;
+	}
 
-        String emailId = emailTable.getValueAt(selectedRow, 0).toString();
-        int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this email?", "Delete Email", JOptionPane.YES_NO_OPTION);
+	public void updateStatusLabel(String message) {
+		mailClientView.updateStatusLabel(message);
+	}
 
-        if (confirm == JOptionPane.YES_OPTION) {
-            try {
-                String response = client.sendRequest("DELETE_EMAIL:" + userEmail + ":" + emailId);
-                JOptionPane.showMessageDialog(this, response, "Info", JOptionPane.INFORMATION_MESSAGE);
-                loadEmails(currentPage);
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Error deleting email: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                ex.printStackTrace();
-            }
-        }
-    }
+	public void showNotification(String message, String title, int messageType) {
+		JOptionPane.showMessageDialog(this, message, title, messageType);
+	}
 
-    private void replyEmail() {
-        int selectedRow = emailTable.getSelectedRow();
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "Please select an email to reply to.", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+	public int getSelectedRow() {
+		return emailTable.getSelectedRow();
+	}
 
-        String sender = emailTable.getValueAt(selectedRow, 1).toString();
-        String subject = "Re: " + emailTable.getValueAt(selectedRow, 2).toString();
-        String originalContent = emailDetailsArea.getText();
+	public String getEmailIdAtRow(int row) {
+		return emailTable.getValueAt(row, 0).toString();
+	}
 
-        // TODO: Trigger parent panel to switch to SendEmailPanel with reply content
-        JOptionPane.showMessageDialog(this, "Replying to email from: " + sender, "Reply Email", JOptionPane.INFORMATION_MESSAGE);
-    }
+	public String getUserEmail() {
+		return mailClientView.getUserEmail();
+	}
+
+	private void customizeTableAppearance() {
+	    JTableHeader header = emailTable.getTableHeader();
+	    header.setFont(new Font("Arial", Font.BOLD, 14));
+	    header.setBackground(new Color(230, 230, 250)); // Light purple for header
+	    header.setForeground(Color.BLACK);
+
+	    DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+	    centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+
+	    for (int i = 0; i < emailTable.getColumnCount(); i++) {
+	        emailTable.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+	    }
+
+	    emailTable.setSelectionBackground(new Color(184, 207, 229));
+	    emailTable.setSelectionForeground(Color.BLACK);
+	}
+
+
+
+
+	public JTable getEmailTable() {
+		// TODO Auto-generated method stub
+		return emailTable;
+	}
+	public List<Mail> getEmailList() {
+	    return emailList;
+	}
+
+
+	public MailClientView getMailClientView() {
+		// TODO Auto-generated method stub
+		return mailClientView;
+	}
+
+
 }
