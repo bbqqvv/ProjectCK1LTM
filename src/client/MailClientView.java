@@ -164,17 +164,7 @@ public class MailClientView extends JFrame {
     // Open settings panel for the user
     public void openSettings() {
         SettingsDialog settingsDialog = new SettingsDialog(this, userDAO);
-        
-        // Gọi setter để truyền các giá trị cần thiết
-        settingsDialog.initializeSettings(
-            20, // Giả sử emailsPerPage là 20
-            this.getUserEmail(), // Lấy email người dùng từ parentView
-            this.getUserDAO(), // Lấy UserDAO từ parentView
-            this.getServerDAO() // Lấy ServerDAO từ parentView
-        );
-        
-        settingsDialog.setVisible(true);
-    }
+     }
 
     // Handle search emails based on the query
     public void handleSearch(String query) {

@@ -10892,3 +10892,103 @@ ID: 73, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content
 [18:13:06] Sent response: ID: 10, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: xxx, Content: 123123123123, Sent Date: 2024-11-19, Is Sent: false
 ID: 73, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: 123123123123, Sent Date: 2024-11-20, Is Sent: false
 
+[18:42:06] Received: LOGIN:exam@gmail.com:123
+[18:42:06] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, Port: 4445
+[18:42:06] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[18:42:06] Sent response: Invalid command
+[18:42:10] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[18:42:10] Sent response: ID: 10, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: xxx, Content: 123123123123, Sent Date: 2024-11-19, Is Sent: false
+ID: 73, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: 123123123123, Sent Date: 2024-11-20, Is Sent: false
+
+[18:42:10] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[18:42:10] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[18:42:10] Sent response: ID: 10, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: xxx, Content: 123123123123, Sent Date: 2024-11-19, Is Sent: false
+ID: 73, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: 123123123123, Sent Date: 2024-11-20, Is Sent: false
+
+[18:42:10] Sent response: ID: 10, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: xxx, Content: 123123123123, Sent Date: 2024-11-19, Is Sent: false
+ID: 73, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: 123123123123, Sent Date: 2024-11-20, Is Sent: false
+
+[18:42:11] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[18:42:11] Sent response: ID: 10, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: xxx, Content: 123123123123, Sent Date: 2024-11-19, Is Sent: false
+ID: 73, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: 123123123123, Sent Date: 2024-11-20, Is Sent: false
+
+[18:45:10] Received: LOGIN:exam@gmail.com:123
+[18:45:10] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, Port: 4445
+[18:45:10] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[18:45:10] Sent response: Invalid command
+[18:45:10] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[18:45:10] Sent response: ID: 10, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: xxx, Content: 123123123123, Sent Date: 2024-11-19, Is Sent: false
+ID: 73, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: 123123123123, Sent Date: 2024-11-20, Is Sent: false
+
+[18:45:10] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[18:45:10] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[18:45:11] Sent response: ID: 10, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: xxx, Content: 123123123123, Sent Date: 2024-11-19, Is Sent: false
+ID: 73, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: 123123123123, Sent Date: 2024-11-20, Is Sent: false
+
+[18:45:11] Sent response: ID: 10, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: xxx, Content: 123123123123, Sent Date: 2024-11-19, Is Sent: false
+ID: 73, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: 123123123123, Sent Date: 2024-11-20, Is Sent: false
+
+[18:45:11] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[18:45:11] Sent response: ID: 10, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: xxx, Content: 123123123123, Sent Date: 2024-11-19, Is Sent: false
+ID: 73, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: 123123123123, Sent Date: 2024-11-20, Is Sent: false
+
+[18:45:13] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[18:45:13] Sent response: ID: 10, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: xxx, Content: 123123123123, Sent Date: 2024-11-19, Is Sent: false
+ID: 73, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: 123123123123, Sent Date: 2024-11-20, Is Sent: false
+
+[18:45:34] Received: LOGIN:exam@gmail.com:123
+[18:45:34] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, Port: 4445
+[18:45:34] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[18:45:34] Sent response: Invalid command
+[18:45:34] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[18:45:34] Sent response: ID: 10, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: xxx, Content: 123123123123, Sent Date: 2024-11-19, Is Sent: false
+ID: 73, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: 123123123123, Sent Date: 2024-11-20, Is Sent: false
+
+[18:45:34] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[18:45:34] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[18:45:34] Sent response: ID: 10, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: xxx, Content: 123123123123, Sent Date: 2024-11-19, Is Sent: false
+ID: 73, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: 123123123123, Sent Date: 2024-11-20, Is Sent: false
+
+[18:45:34] Sent response: ID: 10, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: xxx, Content: 123123123123, Sent Date: 2024-11-19, Is Sent: false
+ID: 73, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: 123123123123, Sent Date: 2024-11-20, Is Sent: false
+
+[18:45:34] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[18:45:34] Sent response: ID: 10, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: xxx, Content: 123123123123, Sent Date: 2024-11-19, Is Sent: false
+ID: 73, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: 123123123123, Sent Date: 2024-11-20, Is Sent: false
+
+[18:45:37] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[18:45:37] Sent response: ID: 10, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: xxx, Content: 123123123123, Sent Date: 2024-11-19, Is Sent: false
+ID: 73, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: 123123123123, Sent Date: 2024-11-20, Is Sent: false
+
+[19:04:31] Received: LOGIN:exam@gmail.com:123
+[19:04:31] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, Port: 4445
+[19:04:31] Received: SAVE_IP:exam@gmail.com:192.168.1.3
+[19:04:31] Sent response: Invalid command
+[19:04:31] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[19:04:31] Sent response: ID: 10, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: xxx, Content: 123123123123, Sent Date: 2024-11-19, Is Sent: false
+ID: 73, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: 123123123123, Sent Date: 2024-11-20, Is Sent: false
+
+[19:04:31] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[19:04:31] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[19:04:31] Sent response: ID: 10, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: xxx, Content: 123123123123, Sent Date: 2024-11-19, Is Sent: false
+ID: 73, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: 123123123123, Sent Date: 2024-11-20, Is Sent: false
+
+[19:04:31] Sent response: ID: 10, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: xxx, Content: 123123123123, Sent Date: 2024-11-19, Is Sent: false
+ID: 73, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: 123123123123, Sent Date: 2024-11-20, Is Sent: false
+
+[19:04:31] Received: LOAD_EMAILS:exam@gmail.com:1:10
+[19:04:31] Sent response: ID: 10, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: xxx, Content: 123123123123, Sent Date: 2024-11-19, Is Sent: false
+ID: 73, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: 123123123123, Sent Date: 2024-11-20, Is Sent: false
+
+[19:04:43] Received: SEND_EMAIL:exam@gmail.com:exam1@gmail.com:xâccacasc:2312ewsdfasfasfasfasf
+[19:04:43] Sent response: Email sent
+[19:07:09] Attempting to stop the server...
+[19:07:09] Mail server stopped.
+[19:07:09] Error: Socket closed
+[19:07:09] Server information removed from database.
+[19:07:09] Server is no longer running.
+[19:07:09] Server stopped successfully.
+[19:07:09] Server status updated to 'Stopped'.
+[19:07:09] Server is running.
+[19:07:09] Server started...
+[19:07:09] Mail server is running on port 4445
