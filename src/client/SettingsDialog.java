@@ -31,13 +31,13 @@ public class SettingsDialog extends JDialog {
     }
 
 
-    // Setters to initialize other values
-    public void initializeSettings(int emailsPerPage, String userEmail, UserDAO userDAO, ServerDAO serverDAO) {
-        this.emailsPerPage = emailsPerPage;
-        this.userEmail = userEmail;
-        this.userDAO = userDAO;  // Gán userDAO từ ngoài vào
-        this.serverDAO = serverDAO;  // Gán serverDAO
-    }
+//    // Setters to initialize other values
+//    public void initializeSettings(int emailsPerPage, String userEmail, UserDAO userDAO, ServerDAO serverDAO) {
+//        this.emailsPerPage = emailsPerPage;
+//        this.userEmail = userEmail;
+//        this.userDAO = userDAO;  // Gán userDAO từ ngoài vào
+//        this.serverDAO = serverDAO;  // Gán serverDAO
+//    }
 
     private void initializeDialog() {
         setSize(550, 400);

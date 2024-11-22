@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Mail {
     private int id;
@@ -10,6 +11,7 @@ public class Mail {
     private String content;
     private Date sentDate;
     private boolean isSent;
+    private List<Attachment> attachments; // Danh sách tệp đính kèm
 
     public Mail(int id, String sender, String receiver, String subject, String content, Date sentDate, boolean isSent) {
         this.id = id;
@@ -19,6 +21,10 @@ public class Mail {
         this.content = content;
         this.sentDate = sentDate;
         this.isSent = isSent;
+    }
+
+    // Constructor không tham số
+    public Mail() {
     }
 
     // Getters and Setters
@@ -76,5 +82,15 @@ public class Mail {
 
     public void setSent(boolean sent) {
         isSent = sent;
+    }
+
+
+    // Constructor, getter, setter
+    public void setAttachments(List<Attachment> attachments) {
+        this.attachments = attachments;
+    }
+
+    public List<Attachment> getAttachments() {
+        return attachments;
     }
 }

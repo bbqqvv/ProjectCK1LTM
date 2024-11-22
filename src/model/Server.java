@@ -1,10 +1,5 @@
 package model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-
 public class Server {
     private String serverId;
     private String serverIp;

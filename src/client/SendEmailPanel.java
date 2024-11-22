@@ -1,31 +1,13 @@
 package client;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Insets;
+
+import java.awt.*;
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.SpinnerDateModel;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import com.toedter.calendar.JDateChooser;
+
+import controller.SendEmailController;
 import service.EmailSenderService;
 
 public class SendEmailPanel extends JPanel {
@@ -34,26 +16,28 @@ public class SendEmailPanel extends JPanel {
     private JTextField subjectField;
     private JTextArea contentArea;
     private JLabel fileNameLabel;
-    private EmailSenderService emailSenderService;
     private JButton scheduleButton;
     private JPanel schedulePanel;
+    private SendEmailController sendEmailController;
+    private File[] attachments; // Lưu các tệp đính kèm
 
     public SendEmailPanel(MailClientView parent) {
         MailClient client = parent.getClient();
         String userEmail = parent.getUserEmail();
-        this.emailSenderService = new EmailSenderService(client, userEmail);
+        EmailSenderService emailSenderService = new EmailSenderService(client, userEmail);
 
+        // Initialize the controller
+        sendEmailController = new SendEmailController(client,userEmail,emailSenderService);
+
+        // Panel layout
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBackground(Color.WHITE);
-        setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        setBackground(new Color(240, 248, 255));
+        setBorder(new EmptyBorder(15, 15, 15, 15));
 
         // Input fields for receiver and subject
-        JPanel inputPanel = new JPanel(new GridLayout(2, 2, 5, 5));
-        inputPanel.setBackground(Color.WHITE);
-        inputPanel.setBorder(BorderFactory.createTitledBorder("Email Details"));
-
-        receiverField = new JTextField(20);
-        subjectField = new JTextField(20);
+        JPanel inputPanel = createTitledPanel("Email Details", new GridLayout(2, 2, 10, 10));
+        receiverField = new JTextField(25);
+        subjectField = new JTextField(25);
 
         inputPanel.add(new JLabel("Receiver Email:"));
         inputPanel.add(receiverField);
@@ -61,50 +45,54 @@ public class SendEmailPanel extends JPanel {
         inputPanel.add(subjectField);
 
         // Attachment panel
-        JPanel attachmentPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        attachmentPanel.setBackground(Color.WHITE);
-        attachmentPanel.setBorder(BorderFactory.createTitledBorder("Attachment"));
-
-        JButton attachButton = new JButton("Choose File");
+        JPanel attachmentPanel = createTitledPanel("Attachment", new FlowLayout(FlowLayout.LEFT, 10, 5));
+        JButton attachButton = new JButton("📂 Choose File");
+        attachButton.setToolTipText("Click to choose a file");
         fileNameLabel = new JLabel("No file chosen");
-        attachButton.addActionListener(e -> chooseFilesToAttach());
-
-        attachmentPanel.add(new JLabel("Attach File:"));
+        JFileChooser fileChooser = new JFileChooser();
+        attachButton.addActionListener(e -> {
+            if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+                attachments = fileChooser.getSelectedFiles();
+                fileNameLabel.setText("Attached: " + attachments.length + " files");
+                sendEmailController.setAttachments(attachments);
+            }
+        });
         attachmentPanel.add(attachButton);
         attachmentPanel.add(fileNameLabel);
 
         // Content area
-        JPanel contentPanel = new JPanel(new BorderLayout());
-        contentPanel.setBackground(Color.WHITE);
-        contentPanel.setBorder(BorderFactory.createTitledBorder("Email Content"));
-
-        contentArea = new JTextArea(10, 30);
+        JPanel contentPanel = createTitledPanel("Email Content", new BorderLayout());
+        contentArea = new JTextArea(8, 30);
         contentArea.setWrapStyleWord(true);
         contentArea.setLineWrap(true);
         contentPanel.add(new JScrollPane(contentArea), BorderLayout.CENTER);
 
         // Button panel
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
-        buttonPanel.setBackground(Color.WHITE);
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
+        buttonPanel.setBackground(new Color(240, 248, 255));
 
         JButton sendButton = new JButton("📧 Send Email");
         sendButton.addActionListener(e -> sendEmail());
+        sendButton.setBackground(new Color(72, 209, 204));
+        sendButton.setForeground(Color.WHITE);
 
         JButton clearButton = new JButton("🧹 Clear Fields");
         clearButton.addActionListener(e -> clearFields());
+        clearButton.setBackground(new Color(255, 99, 71));
+        clearButton.setForeground(Color.WHITE);
 
-        // Schedule Button to show/hide the scheduling panel
         scheduleButton = new JButton("⏰ Schedule Send");
         scheduleButton.addActionListener(e -> toggleSchedulePanelVisibility());
+        scheduleButton.setBackground(new Color(255, 255, 255));
+        scheduleButton.setForeground(Color.WHITE);
 
         buttonPanel.add(sendButton);
         buttonPanel.add(scheduleButton);
         buttonPanel.add(clearButton);
 
         // Schedule Panel for date and time selection
-        schedulePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        schedulePanel.setBackground(Color.WHITE);
-        schedulePanel.setVisible(false); // Hide by default
+        schedulePanel = createTitledPanel("Schedule Email", new FlowLayout(FlowLayout.LEFT, 10, 5));
+        schedulePanel.setVisible(false); // Hidden by default
 
         JLabel scheduleLabel = new JLabel("Select Date and Time:");
         JDateChooser dateChooser = new JDateChooser();
@@ -123,87 +111,56 @@ public class SendEmailPanel extends JPanel {
         add(Box.createVerticalStrut(10));
         add(contentPanel);
         add(Box.createVerticalStrut(10));
-        add(schedulePanel); // Add schedule panel below content
+        add(schedulePanel);
         add(Box.createVerticalStrut(10));
         add(buttonPanel);
     }
 
+    private JPanel createTitledPanel(String title, LayoutManager layout) {
+        JPanel panel = new JPanel(layout);
+        panel.setBackground(new Color(240, 248, 255));
+        panel.setBorder(BorderFactory.createTitledBorder(
+                BorderFactory.createLineBorder(new Color(70, 130, 180), 1, true),
+                title
+        ));
+        return panel;
+    }
+
     private void toggleSchedulePanelVisibility() {
-        // Show or hide the schedule panel when the button is clicked
         boolean isVisible = !schedulePanel.isVisible();
         schedulePanel.setVisible(isVisible);
-        scheduleButton.setText(isVisible ? "❌ Cancel Schedule" : "⏰ Schedule Send"); // Change button text based on state
-        revalidate(); // Re-layout the panel
+        scheduleButton.setText(isVisible ? "❌ Cancel Schedule" : "⏰ Schedule Send");
+        revalidate();
         repaint();
     }
-	private void sendEmail() {
+
+    private void sendEmail() {
         String receiver = receiverField.getText();
         String subject = subjectField.getText();
         String content = contentArea.getText();
+        JLabel statusLabel = new JLabel(); // Hiển thị trạng thái gửi
 
-        // Basic validation checks
-        if (receiver.isEmpty() || subject.isEmpty() || content.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        try {
-            String response = emailSenderService.sendEmail(receiver, subject, content);
-            JOptionPane.showMessageDialog(this, response, "Email Sent", JOptionPane.INFORMATION_MESSAGE);
-        } catch (IllegalArgumentException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Invalid Email", JOptionPane.WARNING_MESSAGE);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, " An error occurred: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            ex.printStackTrace();
-        }
+        sendEmailController.sendEmail(receiver, subject, content, statusLabel);
+        JOptionPane.showMessageDialog(this, statusLabel.getText(), "Status", JOptionPane.INFORMATION_MESSAGE);
     }
-	 private void scheduleEmail(String receiver, String subject, String content, Date scheduledTime) {
-	        // Logic to schedule email
-	        String scheduledDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(scheduledTime);
-	        JOptionPane.showMessageDialog(this, "Email scheduled for: " + scheduledDateTime, "Scheduled", JOptionPane.INFORMATION_MESSAGE);
-
-	        // You can add scheduling logic here if your email service supports scheduling
-	        // For example, saving the scheduled time and email content, then sending it later
-	    }
-
-	 private void chooseFilesToAttach() {
-		    JFileChooser fileChooser = new JFileChooser();
-		    fileChooser.setMultiSelectionEnabled(true);  // Cho phép chọn nhiều file
-		    int returnValue = fileChooser.showOpenDialog(null);
-		    if (returnValue == JFileChooser.APPROVE_OPTION) {
-		        // Lấy các file đã chọn
-		        File[] selectedFiles = fileChooser.getSelectedFiles();
-		        if (selectedFiles.length > 0) {
-		            // Hiển thị tên các tệp đã chọn
-		            StringBuilder fileNames = new StringBuilder("Selected: ");
-		            for (File file : selectedFiles) {
-		                fileNames.append(file.getName()).append(" ");
-		            }
-		            fileNameLabel.setText(fileNames.toString());
-		        }
-		    } else {
-		        fileNameLabel.setText("No files chosen");
-		    }
-		}
+    private void clearFields() {
+        receiverField.setText("");
+        subjectField.setText("");
+        contentArea.setText("");
+        fileNameLabel.setText("No file chosen");
+    }
 
 
-	    private void clearFields() {
-	        receiverField.setText("");
-	        subjectField.setText("");
-	        contentArea.setText("");
-	        fileNameLabel.setText("No file chosen");
-	    }
+    public void setReceiver(String receiver) {
+        receiverField.setText(receiver);
+    }
 
-	    public void setInitialValues(String sender, String subject, String quotedContent) {
-	        // Đặt giá trị cho trường "Người nhận"
-	        receiverField.setText(sender);
+    public void setSubject(String subject) {
+        subjectField.setText(subject);
+    }
 
-	        // Đặt giá trị cho trường "Chủ đề"
-	        subjectField.setText(subject);
+    public void setContent(String content) {
+        contentArea.setText(content);
+    }
 
-	        // Đặt giá trị cho phần "Nội dung"
-	        contentArea.setText(quotedContent);
-	    }
-
-
-	}
+}

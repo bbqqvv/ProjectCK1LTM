@@ -19,6 +19,7 @@ import controller.LoadEmailsController;
 import dao.ServerDAO;
 import dao.UserDAO;
 import database.DatabaseConnection;
+import model.Mail;
 import service.EmailDeleteService;
 import service.EmailLoaderService;
 
@@ -31,6 +32,7 @@ public class MailClientView extends JFrame {
     private JPanel mainPanel;
     private SendEmailPanel sendEmailPanel;
     private LoadEmailsPanel loadEmailsPanel;
+    private  ChatPanel chatPanel;
     private Timer autoRefreshTimer;
     private boolean autoRefreshEnabled = false;
     private MailClient client;
@@ -89,7 +91,7 @@ public class MailClientView extends JFrame {
         // You can invoke settingsDialog from a button or menu item later in your code.
     }
 
-    
+
 
     // Setup auto-refresh functionality
     private void setupAutoRefresh() {
@@ -104,28 +106,29 @@ public class MailClientView extends JFrame {
         });
     }
 
-    // Create the main panel with CardLayout to switch between panels
+
+    // Create the main panel with CardLayout
     private void createMainPanel() {
         mainPanel = new JPanel(new CardLayout()); // Initialize CardLayout panel
 
-        // Initialize SendEmailPanel and LoadEmailsPanel
         sendEmailPanel = new SendEmailPanel(this);
         loadEmailsPanel = new LoadEmailsPanel(this);
+        chatPanel = new ChatPanel(this);  // Initialize chatPanel
 
-        // Add panels to the main panel with names
+        // Add panels to the main panel
         mainPanel.add(sendEmailPanel, "SendEmail");
         mainPanel.add(loadEmailsPanel, "EmailList");
-
-        // Load emails for the first time (you can change this if needed)
-        loadEmailsController.loadEmails(1);
+        mainPanel.add(chatPanel, "Chat");
     }
 
-    // Switch between panels (SendEmail or EmailList)
+    // Switch between panels (SendEmail, EmailList, or Chat)
     public void switchPanel(String panelName) {
         CardLayout layout = (CardLayout) mainPanel.getLayout();
         layout.show(mainPanel, panelName);
         if ("EmailList".equals(panelName)) {
-            loadEmailsController.loadEmails(1);  // Load emails for the current page
+            loadEmailsController.loadEmails(1);
+        } else if ("Chat".equals(panelName)) {
+            // Handle any chat-specific logic here if needed
         }
     }
 
@@ -164,17 +167,7 @@ public class MailClientView extends JFrame {
     // Open settings panel for the user
     public void openSettings() {
         SettingsDialog settingsDialog = new SettingsDialog(this, userDAO);
-        
-        // Gọi setter để truyền các giá trị cần thiết
-        settingsDialog.initializeSettings(
-            20, // Giả sử emailsPerPage là 20
-            this.getUserEmail(), // Lấy email người dùng từ parentView
-            this.getUserDAO(), // Lấy UserDAO từ parentView
-            this.getServerDAO() // Lấy ServerDAO từ parentView
-        );
-        
-        settingsDialog.setVisible(true);
-    }
+     }
 
     // Handle search emails based on the query
     public void handleSearch(String query) {
@@ -248,8 +241,27 @@ public class MailClientView extends JFrame {
 	        }
 	    }
 	    // Tạo lại LoginView với serverDAO và hiển thị màn hình đăng nhập
-	    LoginView loginScreen = new LoginView(serverDAO); 
+	    LoginView loginScreen = new LoginView(serverDAO);
 	    loginScreen.setVisible(true);
 	}
+
+    public void showReplyEmailPanel(Mail selectedMail) {
+        // Tạo panel trả lời email
+        SendEmailPanel replyPanel = new SendEmailPanel(this);
+
+        // Điền sẵn thông tin từ email được chọn
+        replyPanel.setReceiver(selectedMail.getSender());
+        replyPanel.setSubject("Re: " + selectedMail.getSubject());
+        replyPanel.setContent("\n\n--- Original Message ---\n" +
+                "From: " + selectedMail.getSender() + "\n" +
+                "Subject: " + selectedMail.getSubject() + "\n\n" +
+                selectedMail.getContent());
+
+        // Thêm panel trả lời vào CardLayout
+        mainPanel.add(replyPanel, "ReplyEmail");
+
+        // Chuyển sang panel trả lời
+        switchPanel("ReplyEmail");
+    }
 
 }

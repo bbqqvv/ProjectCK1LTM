@@ -14,11 +14,7 @@ public class ServerMain {
             UserDAO userDAO = new UserDAO(connection); // Khởi tạo UserDAO
             MailDAO mailDAO = new MailDAO(connection); // Khởi tạo MailDAO
             ServerDAO serverDAO = new ServerDAO(connection); // Khởi tạo ServerDAO
-            
-            // Khởi tạo MailServer với DAO
             MailServer mailServer = new MailServer(userDAO, mailDAO, serverDAO);
-            
-            // Khởi tạo ServerView và gán cho MailServer
             ServerView serverView = new ServerView(mailServer); // Pass mailServer to ServerView
             mailServer.setView(serverView); // Gán ServerView cho MailServer
 
