@@ -16,7 +16,7 @@ public class MailDAO {
 		this.connection = connection;
 	}
 
-	public boolean addMail(Mail mail) {
+	public int addMail(Mail mail) {
 		String sql = "INSERT INTO mails (sender, receiver, subject, content, sent_date, is_sent) VALUES (?, ?, ?, ?, ?, ?)";
 		try (PreparedStatement stmt = connection.prepareStatement(sql)) {
 			stmt.setString(1, mail.getSender());
@@ -25,13 +25,15 @@ public class MailDAO {
 			stmt.setString(4, mail.getContent());
 			stmt.setDate(5, new java.sql.Date(mail.getSentDate().getTime()));
 			stmt.setBoolean(6, mail.isSent());
-			stmt.executeUpdate();
-			return true; // Trả về true nếu thêm thành công
+
+			// Thực thi câu lệnh và trả về số lượng bản ghi bị ảnh hưởng
+			return stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false; // Trả về false nếu có lỗi
+			return -1; // Trả về -1 nếu có lỗi
 		}
 	}
+
 
 	public String getAllMailsForUser(String username) {
 		List<Mail> mails = new ArrayList<>();
@@ -139,6 +141,7 @@ public class MailDAO {
 	        return false; // Nếu có lỗi xảy ra, trả về false
 	    }
 	}
+
 
 
 }

@@ -1,5 +1,8 @@
 package server;
 
+import dao.AttachmentDAO;
+import model.Attachment;
+import model.Mail;
 import model.Server;
 import model.User;
 import dao.MailDAO;
@@ -11,8 +14,11 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -25,12 +31,14 @@ public class MailServer {
     private UserDAO userDAO;
     private MailDAO mailDAO;
     private ServerDAO serverDAO; // Thêm trường ServerDAO
+    private AttachmentDAO attachmentDAO;
     private ExecutorService executor = Executors.newFixedThreadPool(10);  // Tạo một ExecutorService với 10 luồng
 
     public MailServer(UserDAO userDAO, MailDAO mailDAO, ServerDAO serverDAO) {
         this.userDAO = userDAO;
         this.mailDAO = mailDAO;
         this.serverDAO = serverDAO;
+        this.attachmentDAO = attachmentDAO;
     }
 
     public void setView(ServerView view) {
@@ -264,17 +272,64 @@ public class MailServer {
 
 
     private void handleSendEmail(List<String> tokens, DatagramPacket packet) throws IOException {
-        if (tokens.size() < 4) {
-            sendResponse("Invalid email request", packet);
-            return;
-        }
         String sender = tokens.remove(0);
         String receiver = tokens.remove(0);
         String subject = tokens.remove(0);
         String content = tokens.remove(0);
-        boolean emailSent = mailDAO.addMail(new model.Mail(0, sender, receiver, subject, content, new java.util.Date(), false));
-        sendResponse(emailSent ? "Email sent" : "Failed to send email", packet);
+        String attachmentData = tokens.isEmpty() ? "" : tokens.remove(0);
+
+        try {
+            // 1. Lưu email vào CSDL
+            Mail mail = new Mail();
+            mail.setSender(sender);
+            mail.setReceiver(receiver);
+            mail.setSubject(subject);
+            mail.setContent(content);
+            mail.setSentDate(new java.util.Date());
+            mail.setSent(true);
+
+            int mailId = mailDAO.addMail(mail); // Lưu email, trả về mail_id
+
+            // 2. Xử lý tệp đính kèm nếu có
+            if (!attachmentData.isEmpty()) {
+                String[] attachments = attachmentData.split(";");
+                List<Attachment> attachmentList = new ArrayList<>();
+
+                for (String attachment : attachments) {
+                    String[] parts = attachment.split(":");
+                    if (parts.length < 2) continue;
+
+                    String fileName = parts[0];
+                    byte[] fileContent = Base64.getDecoder().decode(parts[1]);
+
+                    // Lưu file vào thư mục
+                    String filePath = "attachments/" + fileName;
+                    Files.write(Paths.get(filePath), fileContent);
+
+                    // Tạo đối tượng Attachment
+                    Attachment attachmentObj = new Attachment();
+                    attachmentObj.setMailId(mailId);
+                    attachmentObj.setFileName(fileName);
+                    attachmentObj.setFilePath(filePath);
+                    attachmentObj.setFileSize(fileContent.length);
+                    attachmentObj.setFileType(Files.probeContentType(Paths.get(filePath)));
+
+                    attachmentList.add(attachmentObj);
+                }
+
+                // Lưu danh sách tệp đính kèm vào CSDL
+                attachmentDAO.addAttachments(attachmentList);
+            }
+
+            // 3. Phản hồi thành công
+            sendResponse("Email sent successfully", packet);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            sendResponse("Failed to send email: " + e.getMessage(), packet);
+        }
     }
+
 
     private void handleLoadEmails(List<String> tokens, DatagramPacket packet) throws IOException {
         if (tokens.size() < 1) {

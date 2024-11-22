@@ -44,11 +44,14 @@ public class EmailLoaderService {
                 int id = Integer.parseInt(matcher.group(1));
                 String sender = matcher.group(2);
                 String subject = matcher.group(4);
+                String content = matcher.group(5);
                 Date sentDate = dateFormat.parse(matcher.group(6));
-                Mail mail = new Mail(id, sender, matcher.group(3), subject, matcher.group(5), sentDate, Boolean.parseBoolean(matcher.group(7)));
+                Mail mail = new Mail(id, sender, matcher.group(3), subject, content, sentDate, Boolean.parseBoolean(matcher.group(7)));
                 emailList.add(mail);
             }
         }
         return emailList;
     }
+
+
 }

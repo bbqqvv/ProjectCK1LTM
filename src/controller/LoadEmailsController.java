@@ -21,9 +21,9 @@ public class LoadEmailsController {
     private final EmailLoaderService emailLoaderService;
     private final EmailDeleteService emailDeleteService;
     private final String userEmail;
-    private int currentPage = 1;  
-    private final int emailsPerPage = 10;  
-    private final List<Mail> allEmails; 
+    private int currentPage = 1;
+    private final int emailsPerPage = 10;
+    private final List<Mail> allEmails;
 
     public LoadEmailsController(LoadEmailsPanel loadEmailsPanel, MailClient client, String userEmail) {
         this.loadEmailsPanel = loadEmailsPanel;
@@ -44,8 +44,8 @@ public class LoadEmailsController {
                     return emailLoaderService.loadEmails(page, emailsPerPage);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    loadEmailsPanel.showNotification("Lỗi khi tải email: " + e.getMessage(), 
-                        "Lỗi", JOptionPane.ERROR_MESSAGE);
+                    loadEmailsPanel.showNotification("Lỗi khi tải email: " + e.getMessage(),
+                            "Lỗi", JOptionPane.ERROR_MESSAGE);
                     return null;
                 }
             }
@@ -57,6 +57,8 @@ public class LoadEmailsController {
                     if (mails != null) {
                         allEmails.clear();
                         allEmails.addAll(mails);
+                        loadEmailsPanel.getEmailList().clear();
+                        loadEmailsPanel.getEmailList().addAll(mails);
                         updateTableData(mails);
                         loadEmailsPanel.updateStatusLabel("Hiển thị trang " + page);
                     }
@@ -64,6 +66,7 @@ public class LoadEmailsController {
                     e.printStackTrace();
                 }
             }
+
         };
         worker.execute();
     }
@@ -71,18 +74,25 @@ public class LoadEmailsController {
     /**
      * Cập nhật dữ liệu vào bảng.
      */
+// When emails are loaded, make sure each Mail object includes the content.
     private void updateTableData(List<Mail> mails) {
+        allEmails.clear();
+        allEmails.addAll(mails);
+        loadEmailsPanel.getEmailList().clear();
+        loadEmailsPanel.getEmailList().addAll(mails);
+
         DefaultTableModel model = loadEmailsPanel.getEmailTableModel();
         model.setRowCount(0);
         for (Mail mail : mails) {
             model.addRow(new Object[]{
-                mail.getId(),
-                mail.getSender(),
-                mail.getSubject(),
-                mail.getSentDate()
+                    mail.getSender(),
+                    mail.getSubject(),
+                    mail.getSentDate()
             });
         }
     }
+
+
 
     /**
      * Xử lý phân trang.
@@ -148,24 +158,26 @@ public class LoadEmailsController {
         return new ArrayList<>(allEmails); // Trả về một bản sao danh sách để tránh thay đổi bên ngoài
     }
 
-	public void setEmailsPerPage(int emailsPerPage2) {
-		// TODO Auto-generated method stub
-		
-	}
+    public void setEmailsPerPage(int emailsPerPage2) {
+        // TODO Auto-generated method stub
 
-	public void setSortOrder(String sortOrder) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
 
-	public void setNotificationsEnabled(boolean enabled) {
-		// TODO Auto-generated method stub
-		
-	}
+    public void setSortOrder(String sortOrder) {
+        // TODO Auto-generated method stub
 
-	public void handleReplyEmail() {
-		// TODO Auto-generated method stub
-		
-	}
+    }
+
+    public void setNotificationsEnabled(boolean enabled) {
+        // TODO Auto-generated method stub
+
+    }
+
+    public void handleReplyEmail() {
+        // TODO Auto-generated method stub
+
+    }
 
 }
+
+

@@ -1,43 +1,162 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ca28239-76fe-4d7d-a21a-2d0f0f412341" name="Changes" comment="" />
+    <list default="true" id="1ce72d04-9a5e-4903-b625-34f56e5ea6c5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ProjectCK1LTM.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/module/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/module/src/main/java/org/vanbui/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/module/src/test/java/org/vanbui/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/running.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/stopped.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2024_11_23_AM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2024_11_23_AM_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2024_11_23_AM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/client/ClientMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/ClientMain.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/client/LoadEmailsPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/LoadEmailsPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/client/LoginView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/LoginView$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/client/LoginView.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/LoginView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/client/MailClientView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/MailClientView$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/client/MailClientView.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/MailClientView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/client/SendEmailPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/SendEmailPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/dao/AttachmentDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/dao/AttachmentDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/dao/MailDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/dao/MailDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/dao/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/dao/UserDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/model/Attachment.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/model/Attachment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/model/Mail.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/model/Mail.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/model/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/model/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/server/MailServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/server/MailServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/server/ServerMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/server/ServerMain.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/server/ServerView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/server/ServerView$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/server/ServerView.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/server/ServerView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/ChatPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/ChatPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/LoadEmailsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/LoadEmailsPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/MailClientView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/MailClientView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/SendEmailPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/SendEmailPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/LoadEmailsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/LoadEmailsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/SendEmailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/SendEmailController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/AttachmentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/AttachmentDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/MailDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/MailDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Mail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Mail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/MailServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/MailServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/ServerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/ServerMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/ServerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/ServerView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/EmailLoaderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/EmailLoaderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/EmailReplyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/EmailReplyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/EmailSenderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/EmailSenderService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="dev" />
-      </map>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
     </option>
+  </component>
+  <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
-  <component name="ProjectId" id="2oxhs5PW1VOqmjqEe0lNI6d41rS" />
+  <component name="ProjectId" id="2pAVXQc3C3W7lStrRnZ8AJkW5EB" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.ClientMain.executor": "Run",
+    "Application.DatabaseConnectionTester.executor": "Run",
+    "Application.MailClientViewTest.executor": "Run",
     "Application.ServerMain.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "dev",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/WordSpace/Java/Swing/5LABLTM/Mail",
+    "last_opened_file_path": "D:/WordSpace/Java/Swing/5LABLTM/Mail/src/images",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Facets",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\WordSpace\Java\Swing\5LABLTM\Mail\src\images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\WordSpace\Java\Swing\5LABLTM\Mail\src\images" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.ServerMain">
+    <configuration name="ClientMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="client.ClientMain" />
+      <module name="ProjectCK1LTM" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DatabaseConnectionTester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test.DatabaseConnectionTester" />
+      <module name="ProjectCK1LTM" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MailClientViewTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test.MailClientViewTest" />
+      <module name="ProjectCK1LTM" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ServerMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="server.ServerMain" />
+      <module name="ProjectCK1LTM" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="server.*" />
@@ -51,31 +170,88 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.ServerMain" />
+        <item itemvalue="Application.ClientMain" />
+        <item itemvalue="Application.DatabaseConnectionTester" />
+        <item itemvalue="Application.MailClientViewTest" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="2ca28239-76fe-4d7d-a21a-2d0f0f412341" name="Changes" comment="" />
-      <created>1731817337554</created>
+      <changelist id="1ce72d04-9a5e-4903-b625-34f56e5ea6c5" name="Changes" comment="" />
+      <created>1732208908506</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1731817337554</updated>
-      <workItem from="1731817338649" duration="82000" />
-      <workItem from="1731841436692" duration="34000" />
+      <updated>1732208908506</updated>
+      <workItem from="1732208909529" duration="875000" />
+      <workItem from="1732210123504" duration="2371000" />
+      <workItem from="1732213337809" duration="6567000" />
+      <workItem from="1732236757391" duration="5898000" />
+      <workItem from="1732258649368" duration="1066000" />
+      <workItem from="1732260215580" duration="818000" />
+      <workItem from="1732266183569" duration="166000" />
+      <workItem from="1732272638814" duration="4679000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/client/LoadEmailsPanel.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/controller/LoadEmailsController.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/client/LoginView.java</url>
+          <line>93</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/client/LoginView.java</url>
+          <line>70</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/client/LoginView.java</url>
+          <line>107</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/client/LoginView.java</url>
+          <line>127</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/client/LoginView.java</url>
+          <line>130</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

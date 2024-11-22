@@ -1,12 +1,13 @@
 package dao;
 
-import model.User;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import org.mindrot.jbcrypt.BCrypt;
+
+import model.User;
 
 public class UserDAO {
     private final Connection connection;

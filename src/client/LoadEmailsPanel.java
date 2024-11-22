@@ -28,7 +28,6 @@ public class LoadEmailsPanel extends JPanel {
 	    // Khởi tạo bảng và mô hình dữ liệu
 	    emailTableModel = new DefaultTableModel();
 	    emailTable = new JTable(emailTableModel);
-	    emailTableModel.addColumn("ID");
 	    emailTableModel.addColumn("Sender");
 	    emailTableModel.addColumn("Subject");
 	    emailTableModel.addColumn("Date");
@@ -45,7 +44,7 @@ public class LoadEmailsPanel extends JPanel {
 	    createComponents();
 
 	    // Tải email lần đầu tiên
-	    controller.loadEmails(1); 
+	    controller.loadEmails(1);
 	}
 
 
@@ -114,12 +113,8 @@ public class LoadEmailsPanel extends JPanel {
 
 		// Thêm mục "Trả lời"
 		JMenuItem replyMenuItem = new JMenuItem("Trả lời");
-		replyMenuItem.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				mailClientView.replyEmail();
-			}
-		});
+		replyMenuItem.addActionListener(e -> handleReplyEmail());
+
 
 		popupMenu.add(deleteMenuItem);
 		popupMenu.add(replyMenuItem);
@@ -128,38 +123,58 @@ public class LoadEmailsPanel extends JPanel {
 		emailTable.setComponentPopupMenu(popupMenu);
 	}
 
+	private void handleReplyEmail() {
+		int selectedRow = emailTable.getSelectedRow();
+
+		if (selectedRow < 0 || selectedRow >= emailList.size()) {
+			showNotification("Vui lòng chọn email để trả lời.", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
+			return;
+		}
+		// Lấy email được chọn
+		Mail selectedMail = emailList.get(selectedRow);
+
+		// Gọi view để hiển thị giao diện trả lời email
+		mailClientView.showReplyEmailPanel(selectedMail);
+	}
+
+
 	private void showEmailDetails() {
-	    int selectedRow = emailTable.getSelectedRow();
-	    if (selectedRow >= 0) {
-	        // Get the subject and sender from the selected row
-	        String subject = emailTable.getValueAt(selectedRow, 2).toString();  // Assuming subject is in column 2
-	        String sender = emailTable.getValueAt(selectedRow, 1).toString();   // Assuming sender is in column 1
+		int selectedRow = emailTable.getSelectedRow();
 
-	        // Assuming you have a list of emails (emailList) and each email has a getContent() method
-	        String content = ""; // Default empty content
-	        if (selectedRow < emailList.size()) {
-	            content = emailList.get(selectedRow).getContent(); // Get content from the email list
-	        }
+		if (selectedRow < 0 || selectedRow >= emailList.size()) {
+			emailDetailsArea.setText("Please select an email to view its details.");
+			return;
+		}
 
-	        // Build the HTML for displaying email details
-	        String emailDetailsHTML = "<html><head><style>"
-	                + "/* Some CSS styling */"
-	                + "body { font-family: Arial, sans-serif; font-size: 14px; }"
-	                + ".email-container { margin: 10px; padding: 10px; border: 1px solid #ddd; }"
-	                + ".header { font-size: 18px; font-weight: bold; margin-bottom: 10px; }"
-	                + ".email-info { margin-bottom: 5px; }"
-	                + ".content { white-space: pre-wrap; word-wrap: break-word; }"
-	                + "</style></head><body>"
-	                + "<div class='email-container'>"
-	                + "<div class='header'>Subject: <span class='subject'>" + subject + "</span></div>"
-	                + "<div class='email-info'>From: <b>" + sender + "</b></div>"
-	                + "<div class='content'>" + content + "</div>"
-	                + "</div></body></html>";
+		Mail selectedMail = emailList.get(selectedRow);
 
-	        // Display the email details in the emailDetailsArea (a JTextArea or similar component)
-	        emailDetailsArea.setText(emailDetailsHTML);
-	        emailDetailsArea.setCaretPosition(0);  // Scroll to the top of the email content
-	    }
+		if (selectedMail == null) {
+			emailDetailsArea.setText("No details available for the selected email.");
+			return;
+		}
+
+		String subject = selectedMail.getSubject();
+		String sender = selectedMail.getSender();
+		String content = selectedMail.getContent();
+		if (content == null || content.isEmpty()) {
+			content = "No content available for this email.";
+		}
+
+		String emailDetailsHTML = "<html><head><style>"
+				+ "body { font-family: Arial, sans-serif; font-size: 14px; }"
+				+ ".email-container { margin: 10px; padding: 10px; border: 1px solid #ddd; }"
+				+ ".header { font-size: 18px; font-weight: bold; margin-bottom: 10px; }"
+				+ ".email-info { margin-bottom: 5px; }"
+				+ ".content { white-space: pre-wrap; word-wrap: break-word; }"
+				+ "</style></head><body>"
+				+ "<div class='email-container'>"
+				+ "<div class='header'>Subject: <span class='subject'>" + subject + "</span></div>"
+				+ "<div class='email-info'>From: <b>" + sender + "</b></div>"
+				+ "<div class='content'>" + content + "</div>"
+				+ "</div></body></html>";
+
+		emailDetailsArea.setText(emailDetailsHTML);
+		emailDetailsArea.setCaretPosition(0);
 	}
 
 
