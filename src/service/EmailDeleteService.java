@@ -1,28 +1,27 @@
 package service;
 
 import client.MailClient;
-import client.MailClientView;
-import javax.swing.*;
-import javax.swing.JTable;
 
 public class EmailDeleteService {
-    private MailClientView mailClientView;
     private MailClient client;
 
-    public EmailDeleteService(MailClient client,MailClientView mailClientView) {
-        this.mailClientView = mailClientView;
+    public EmailDeleteService(MailClient client) {
         this.client = client;
     }
 
-    public String deleteEmail(String userEmail, String emailId) {
-        try {
-            // Send request to delete the email from the server
-            String response = client.sendRequest("DELETE_EMAIL:" + userEmail + ":" + emailId);
-            return response; // Return the response to be handled by the controller
-        } catch (Exception ex) {
-            mailClientView.showNotification("An error occurred: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            ex.printStackTrace();
-            return null; // Return null to indicate failure
-        }
+    /**
+     * Xóa email dựa trên userEmail và emailId.
+     *
+     * @param userEmail Email người dùng.
+     * @param emailId   ID của email cần xóa.
+     * @return Phản hồi từ server.
+     * @throws Exception Nếu có lỗi trong quá trình gửi yêu cầu.
+     */
+    public String deleteEmail(String userEmail, String emailId) throws Exception {
+        // Chuẩn bị dữ liệu xóa email
+        String data = userEmail + ":" + emailId;
+
+        // Gửi yêu cầu đến server với lệnh "DELETE_EMAIL"
+        return client.sendRequest("DELETE_EMAIL", data, false,null); // Sử dụng UDP
     }
 }

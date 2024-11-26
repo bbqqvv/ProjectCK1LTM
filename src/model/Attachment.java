@@ -1,19 +1,31 @@
 package model;
 
 public class Attachment {
-    private int attachmentId;
-    private int mailId;
-    private String fileName;
-    private String filePath;
-    private Integer fileSize;
-    private String fileType;
+    private int attachmentId;    // ID của tệp đính kèm (Primary Key)
+    private int mailId;          // ID của email (Foreign Key)
+    private String fileName;     // Tên tệp
+    private String filePath;     // Đường dẫn lưu trữ tệp
+    private long fileSize;       // Kích thước tệp (byte)
+    private String fileType;     // Loại tệp (MIME type)
 
-    // Constructor không tham số
+    /**
+     * Constructor không tham số.
+     * Dành cho việc khởi tạo tạm thời và gán giá trị sau.
+     */
     public Attachment() {
     }
 
-    // Constructor đầy đủ tham số (không bao gồm uploadedAt)
-    public Attachment(int attachmentId, int mailId, String fileName, String filePath, Integer fileSize, String fileType) {
+    /**
+     * Constructor đầy đủ tham số.
+     *
+     * @param attachmentId ID của tệp đính kèm
+     * @param mailId       ID của email liên quan
+     * @param fileName     Tên tệp
+     * @param filePath     Đường dẫn lưu trữ tệp
+     * @param fileSize     Kích thước tệp (byte)
+     * @param fileType     Loại tệp (MIME type)
+     */
+    public Attachment(int attachmentId, int mailId, String fileName, String filePath, long fileSize, String fileType) {
         this.attachmentId = attachmentId;
         this.mailId = mailId;
         this.fileName = fileName;
@@ -44,6 +56,9 @@ public class Attachment {
     }
 
     public void setFileName(String fileName) {
+        if (fileName == null || fileName.trim().isEmpty()) {
+            throw new IllegalArgumentException("File name cannot be null or empty");
+        }
         this.fileName = fileName;
     }
 
@@ -52,14 +67,20 @@ public class Attachment {
     }
 
     public void setFilePath(String filePath) {
+        if (filePath == null || filePath.trim().isEmpty()) {
+            throw new IllegalArgumentException("File path cannot be null or empty");
+        }
         this.filePath = filePath;
     }
 
-    public Integer getFileSize() {
+    public long getFileSize() {
         return fileSize;
     }
 
-    public void setFileSize(Integer fileSize) {
+    public void setFileSize(long fileSize) {
+        if (fileSize < 0) {
+            throw new IllegalArgumentException("File size cannot be negative");
+        }
         this.fileSize = fileSize;
     }
 
@@ -73,7 +94,7 @@ public class Attachment {
 
     @Override
     public String toString() {
-        return "Attachments{" +
+        return "Attachment{" +
                 "attachmentId=" + attachmentId +
                 ", mailId=" + mailId +
                 ", fileName='" + fileName + '\'' +

@@ -8,22 +8,24 @@ public class User {
     private String password;
     private String email;
     private String ipAddress; // Thay đổi từ ipId sang ipAddress
+    private int portAddress;
     private Timestamp createdAt;
     private Timestamp updatedAt;
     private boolean isLogin;  // Thêm trường isLogin
 
     // Constructor with isLogin parameter
-    public User(int id, String username, String password, String email, String ipAddress, Timestamp createdAt, Timestamp updatedAt, boolean isLogin) {
+    public User(int id, String username, String password, String email, String ipAddress, int portAddress, Timestamp createdAt, Timestamp updatedAt, boolean isLogin) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
         this.ipAddress = ipAddress; // Khởi tạo địa chỉ IP
+        this.portAddress = portAddress;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.isLogin = isLogin;  // Khởi tạo trạng thái đăng nhập
     }
-    
+
     public User(int id, String username, String password, String email, boolean isLogin) {
         this.id = id;
         this.username = username;
@@ -76,6 +78,14 @@ public class User {
 
     public void setIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;
+    }
+
+    public int getPortAddress() {
+        return portAddress;
+    }
+
+    public void setPortAddress(int portAddress) {
+        this.portAddress = portAddress;
     }
 
     public Timestamp getCreatedAt() {

@@ -103,7 +103,7 @@ public class LoadEmailsPanel extends JPanel {
 		JPopupMenu popupMenu = new JPopupMenu();
 
 		// Thêm mục "Xóa"
-		JMenuItem deleteMenuItem = new JMenuItem("Xóa");
+		JMenuItem deleteMenuItem = new JMenuItem("Delete");
 		deleteMenuItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -112,13 +112,14 @@ public class LoadEmailsPanel extends JPanel {
 		});
 
 		// Thêm mục "Trả lời"
-		JMenuItem replyMenuItem = new JMenuItem("Trả lời");
+		JMenuItem replyMenuItem = new JMenuItem("Reply");
 		replyMenuItem.addActionListener(e -> handleReplyEmail());
+		JMenuItem chatMenuItem = new JMenuItem("Chat");
 
 
 		popupMenu.add(deleteMenuItem);
 		popupMenu.add(replyMenuItem);
-
+		popupMenu.add(chatMenuItem);
 		// Lắng nghe sự kiện chuột phải
 		emailTable.setComponentPopupMenu(popupMenu);
 	}

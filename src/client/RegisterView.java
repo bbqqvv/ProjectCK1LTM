@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import dao.ServerDAO;
 import java.awt.*;
+import java.util.regex.Pattern;
 
 public class RegisterView extends JFrame {
     private JTextField usernameField;
@@ -13,10 +14,12 @@ public class RegisterView extends JFrame {
     private JButton registerButton;
     private JButton cancelButton;
     private JLabel statusLabel; // Dùng JLabel để hiển thị trạng thái
-    private ServerDAO serverDAO;
+    private final ServerDAO serverDAO;
+    private final MailClient mailClient;
 
-    public RegisterView(ServerDAO serverDAO) {
+    public RegisterView(ServerDAO serverDAO, MailClient mailClient) {
         this.serverDAO = serverDAO;
+        this.mailClient = mailClient;
 
         // Cài đặt cửa sổ chính
         setTitle("Register");
@@ -93,8 +96,18 @@ public class RegisterView extends JFrame {
         String confirmPassword = new String(confirmPasswordField.getPassword());
 
         // Kiểm tra các trường hợp lỗi nhập liệu
-        if (username.isEmpty() || email.isEmpty() || password.isEmpty()) {
+        if (username.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             statusLabel.setText("All fields are required.");
+            return;
+        }
+
+        if (!isValidEmail(email)) {
+            statusLabel.setText("Invalid email format.");
+            return;
+        }
+
+        if (password.length() < 6) {
+            statusLabel.setText("Password must be at least 6 characters.");
             return;
         }
 
@@ -103,10 +116,10 @@ public class RegisterView extends JFrame {
             return;
         }
 
+        // Gửi yêu cầu đăng ký tới server
         try {
-            MailClient tempClient = new MailClient("localhost", 4445);
             String request = "REGISTER:" + username + ":" + email + ":" + password;
-            String response = tempClient.sendRequest(request);
+            String response = mailClient.sendRequest("REGISTER", request, false,null); // Sử dụng UDP
 
             // Thông báo kết quả
             if (response.contains("successful")) {
@@ -114,16 +127,24 @@ public class RegisterView extends JFrame {
                 openLoginView();
                 dispose();
             } else {
-                JOptionPane.showMessageDialog(this, response, "Registration Failed", JOptionPane.ERROR_MESSAGE);
+                statusLabel.setText(response); // Hiển thị lỗi nếu đăng ký thất bại
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "An error occurred: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            statusLabel.setText("An error occurred. Please try again.");
             e.printStackTrace();
         }
     }
 
     private void openLoginView() {
-        new LoginView(serverDAO);
+        new LoginView(serverDAO, mailClient); // Chuyển sang màn hình đăng nhập
         dispose();
+    }
+
+    /**
+     * Kiểm tra định dạng email hợp lệ.
+     */
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        return Pattern.compile(emailRegex).matcher(email).matches();
     }
 }

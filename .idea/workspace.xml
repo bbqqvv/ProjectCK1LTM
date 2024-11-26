@@ -5,56 +5,71 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ce72d04-9a5e-4903-b625-34f56e5ea6c5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ProjectCK1LTM.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/module/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/module/src/main/java/org/vanbui/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/module/src/test/java/org/vanbui/AppTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/running.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/stopped.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2024_11_23_AM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2024_11_23_AM_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_17_2024_11_23_AM__Changes_.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/client/ClientMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/ClientMain.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/client/LoadEmailsPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/LoadEmailsPanel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/client/LoginView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/LoginView$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/client/LoginView.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/LoginView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/client/MailClientView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/MailClientView$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/client/MailClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/MailClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/client/MailClientView$1.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/client/MailClientView.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/MailClientView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/client/RegisterView.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/RegisterView.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/client/SendEmailPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/SendEmailPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/client/SettingsDialog$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/SettingsDialog$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/client/SettingsDialog.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/SettingsDialog.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/client/SidebarPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/SidebarPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/client/SidebarPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/SidebarPanel$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/client/SidebarPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/SidebarPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/controller/LoadEmailsController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/LoadEmailsController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/controller/LoadEmailsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/LoadEmailsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/controller/SendEmailController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/SendEmailController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/dao/AttachmentDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/dao/AttachmentDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/dao/MailDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/dao/MailDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/dao/ChatDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/dao/ChatDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/dao/ChatMessageDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/dao/ChatMessageDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/dao/ChatParticipantDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/dao/ChatParticipantDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/dao/ServerDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/dao/ServerDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/dao/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/dao/UserDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/database/DatabaseConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/database/DatabaseConnection.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/model/Attachment.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/model/Attachment.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/model/Mail.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/model/Mail.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/model/Chat.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/model/Chat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/model/ChatMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/model/ChatMessage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/model/ChatParticipant.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/model/ChatParticipant.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/model/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/model/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/model/User.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/server/MailServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/server/MailServer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/server/ServerMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/server/ServerMain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/server/ServerView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/server/ServerView$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/server/ServerView.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/server/ServerView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/ChatPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/ChatPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/service/EmailDeleteService.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/service/EmailDeleteService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/service/EmailLoaderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/service/EmailLoaderService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/service/EmailReplyService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/service/EmailSenderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/service/EmailSenderService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/test/DatabaseConnectionTester.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/test/DatabaseConnectionTester.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/test/MailClientViewTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/test/MailClientViewTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/test/SessionTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/test/SessionTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.log" beforeDir="false" afterPath="$PROJECT_DIR$/server.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/ClientMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/ClientMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/LoadEmailsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/LoadEmailsPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/LoginView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/MailClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/MailClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/MailClientView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/MailClientView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/RegisterView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/RegisterView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/SendEmailPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/SendEmailPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/SettingsDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/SettingsDialog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/LoadEmailsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/LoadEmailsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/SendEmailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/SendEmailController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dao/AttachmentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/AttachmentDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/MailDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/MailDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Mail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Mail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/ServerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ServerDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Attachment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Attachment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/MailServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/MailServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/ServerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/ServerMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/ServerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/ServerView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/EmailDeleteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/EmailDeleteService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/EmailLoaderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/EmailLoaderService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/EmailReplyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/EmailReplyService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/EmailSenderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/EmailSenderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/MailClientViewTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/MailClientViewTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +86,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -79,33 +98,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ClientMain.executor": "Run",
-    "Application.DatabaseConnectionTester.executor": "Run",
-    "Application.MailClientViewTest.executor": "Run",
-    "Application.ServerMain.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "dev",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/WordSpace/Java/Swing/5LABLTM/Mail/src/images",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Facets",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ClientMain.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DatabaseConnectionTester.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MailClientViewTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ServerMain.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/WordSpace/Java/Swing/5LABLTM/Mail/src/images&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\WordSpace\Java\Swing\5LABLTM\Mail\src\images" />
@@ -114,7 +135,7 @@
       <recent name="D:\WordSpace\Java\Swing\5LABLTM\Mail\src\images" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ServerMain">
+  <component name="RunManager" selected="Application.ClientMain">
     <configuration name="ClientMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="client.ClientMain" />
       <module name="ProjectCK1LTM" />
@@ -169,10 +190,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ServerMain" />
         <item itemvalue="Application.ClientMain" />
-        <item itemvalue="Application.DatabaseConnectionTester" />
+        <item itemvalue="Application.ServerMain" />
         <item itemvalue="Application.MailClientViewTest" />
+        <item itemvalue="Application.DatabaseConnectionTester" />
       </list>
     </recent_temporary>
   </component>
@@ -199,7 +220,15 @@
       <workItem from="1732258649368" duration="1066000" />
       <workItem from="1732260215580" duration="818000" />
       <workItem from="1732266183569" duration="166000" />
-      <workItem from="1732272638814" duration="4679000" />
+      <workItem from="1732272638814" duration="4896000" />
+      <workItem from="1732347352904" duration="17976000" />
+      <workItem from="1732384804146" duration="6000" />
+      <workItem from="1732563681582" duration="78000" />
+      <workItem from="1732582837944" duration="10000" />
+      <workItem from="1732583567780" duration="1056000" />
+      <workItem from="1732590148794" duration="239000" />
+      <workItem from="1732611483205" duration="18690000" />
+      <workItem from="1732634089627" duration="2534000" />
     </task>
     <servers />
   </component>
@@ -210,42 +239,44 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/client/LoadEmailsPanel.java</url>
-          <line>21</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/controller/LoadEmailsController.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/client/LoginView.java</url>
-          <line>93</line>
+          <line>15</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/client/LoginView.java</url>
-          <line>70</line>
-          <properties>
-            <option name="lambda-ordinal" value="-1" />
-          </properties>
-          <option name="timeStamp" value="19" />
+          <url>file://$PROJECT_DIR$/src/controller/SendEmailController.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/client/LoginView.java</url>
-          <line>107</line>
-          <option name="timeStamp" value="20" />
+          <url>file://$PROJECT_DIR$/src/client/SettingsDialog.java</url>
+          <line>135</line>
+          <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/client/LoginView.java</url>
-          <line>127</line>
-          <option name="timeStamp" value="21" />
+          <url>file://$PROJECT_DIR$/src/client/SettingsDialog.java</url>
+          <line>139</line>
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/client/LoginView.java</url>
-          <line>130</line>
-          <option name="timeStamp" value="22" />
+          <url>file://$PROJECT_DIR$/src/client/SettingsDialog.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/client/SettingsDialog.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/client/SettingsDialog.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/client/SettingsDialog.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

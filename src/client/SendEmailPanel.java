@@ -19,8 +19,6 @@ public class SendEmailPanel extends JPanel {
     private JButton scheduleButton;
     private JPanel schedulePanel;
     private SendEmailController sendEmailController;
-    private File[] attachments; // Lưu các tệp đính kèm
-
     public SendEmailPanel(MailClientView parent) {
         MailClient client = parent.getClient();
         String userEmail = parent.getUserEmail();
@@ -50,13 +48,14 @@ public class SendEmailPanel extends JPanel {
         attachButton.setToolTipText("Click to choose a file");
         fileNameLabel = new JLabel("No file chosen");
         JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setMultiSelectionEnabled(true); // Cho phép chọn nhiều tệp
+
         attachButton.addActionListener(e -> {
-            if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-                attachments = fileChooser.getSelectedFiles();
-                fileNameLabel.setText("Attached: " + attachments.length + " files");
-                sendEmailController.setAttachments(attachments);
-            }
+            String result = sendEmailController.chooseFilesToAttach(fileChooser, fileNameLabel);
+            JOptionPane.showMessageDialog(this, result, "Attachment Status", JOptionPane.INFORMATION_MESSAGE);
         });
+
+
         attachmentPanel.add(attachButton);
         attachmentPanel.add(fileNameLabel);
 

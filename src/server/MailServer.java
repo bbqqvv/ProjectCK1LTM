@@ -9,13 +9,11 @@ import dao.MailDAO;
 import dao.ServerDAO;
 import dao.UserDAO;
 
-import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
+import java.io.*;
+import java.net.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
@@ -25,8 +23,10 @@ import java.util.concurrent.Executors;
 
 
 public class MailServer {
-    private static final int PORT = 4445;
+    private static final int UDP_PORT = 4445;
     private DatagramSocket socket;
+    private static final int TCP_PORT = 5555; // Cổng TCP
+    private ServerSocket tcpServerSocket;
     private ServerView view;
     private UserDAO userDAO;
     private MailDAO mailDAO;
@@ -34,7 +34,7 @@ public class MailServer {
     private AttachmentDAO attachmentDAO;
     private ExecutorService executor = Executors.newFixedThreadPool(10);  // Tạo một ExecutorService với 10 luồng
 
-    public MailServer(UserDAO userDAO, MailDAO mailDAO, ServerDAO serverDAO) {
+    public MailServer(UserDAO userDAO, MailDAO mailDAO, ServerDAO serverDAO, AttachmentDAO attachmentDAO) {
         this.userDAO = userDAO;
         this.mailDAO = mailDAO;
         this.serverDAO = serverDAO;
@@ -45,34 +45,70 @@ public class MailServer {
         this.view = view;
     }
 
-
     public void start() {
         try {
-            socket = new DatagramSocket(PORT);
-            view.appendLog("Mail server is running on port " + PORT);
+            // Khởi tạo UDP server
+            socket = new DatagramSocket(UDP_PORT);
+            view.appendLog("Mail server is running on UDP port " + UDP_PORT);
+
+            // Khởi tạo TCP server
+            tcpServerSocket = new ServerSocket(TCP_PORT);
+            view.appendLog("Mail server is running on TCP port " + TCP_PORT);
 
             // Lưu địa chỉ IP và port của server vào CSDL
             String serverIp = InetAddress.getLocalHost().getHostAddress();
-            serverDAO.saveServer(serverIp, PORT); // Lưu IP và port
+            serverDAO.saveServer(serverIp, UDP_PORT, TCP_PORT); // Lưu cả UDP và TCP port vào CSDL
 
+            // Chạy UDP server trong một luồng riêng biệt
+            new Thread(this::startUDPServer).start();
+
+            // Chạy TCP server trong một luồng riêng biệt
+            new Thread(this::startTCPServer).start();
+
+        } catch (IOException e) {
+            view.appendLog("Error: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    private void startUDPServer() {
+        try {
             while (true) {
                 byte[] buffer = new byte[1024];
                 DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
                 socket.receive(packet);
                 String request = new String(packet.getData(), 0, packet.getLength()).trim();
-                view.appendLog("Received: " + request);
+                view.appendLog("Received UDP request: " + request);
 
                 // Xử lý yêu cầu trong một thread từ ExecutorService
                 executor.submit(() -> {
                     try {
                         handleRequest(request, packet);
                     } catch (IOException e) {
-                        view.appendLog("Error processing request: " + e.getMessage());
+                        view.appendLog("Error processing UDP request: " + e.getMessage());
                     }
                 });
             }
         } catch (IOException e) {
-            view.appendLog("Error: " + e.getMessage());
+            view.appendLog("Error in UDP server: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    private void startTCPServer() {
+        try {
+            while (true) {
+                // Chấp nhận kết nối TCP
+                Socket clientSocket = tcpServerSocket.accept();
+                view.appendLog("New TCP connection from " + clientSocket.getInetAddress().getHostAddress());
+
+                // Xử lý yêu cầu TCP trong một thread riêng
+                executor.submit(() -> {
+                    handleTCPRequest(clientSocket);  // Xử lý kết nối TCP (gửi/nhận tệp)
+                });
+            }
+        } catch (IOException e) {
+            view.appendLog("Error in TCP server: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -87,14 +123,14 @@ public class MailServer {
 
             // Xóa địa chỉ IP và port của server khỏi CSDL
             String serverIp = InetAddress.getLocalHost().getHostAddress();
-            boolean isDeleted = serverDAO.deleteServer(serverIp, PORT);
-            
+            boolean isDeleted = serverDAO.deleteServer(serverIp, UDP_PORT);
+
             if (isDeleted) {
                 view.appendLog("Server information removed from database.");
             } else {
                 view.appendLog("Failed to remove server information from database.");
             }
-            
+
         } catch (IOException e) {
             view.appendLog("Error while stopping server: " + e.getMessage());
             e.printStackTrace();
@@ -105,10 +141,92 @@ public class MailServer {
         }
     }
 
+
+    private void handleTCPRequest(Socket clientSocket) {
+        try (InputStream input = clientSocket.getInputStream();
+             OutputStream output = clientSocket.getOutputStream();
+             DataInputStream dataInputStream = new DataInputStream(input);
+             DataOutputStream dataOutputStream = new DataOutputStream(output)) {
+
+            String command = dataInputStream.readUTF(); // Đọc lệnh từ client
+            System.out.println("Received TCP command: " + command);
+
+            switch (command) {
+                case "SEND_EMAIL_ATTACHMENT":
+                    // Xử lý tải tệp đính kèm từ client
+                    handleFileUpload(dataInputStream, dataOutputStream);
+                    break;
+
+                default:
+                    // Lệnh không hợp lệ
+                    System.err.println("Unknown TCP command: " + command);
+                    dataOutputStream.writeUTF("Unknown command: " + command);
+                    break;
+            }
+
+        } catch (IOException e) {
+            // Log lỗi nếu xảy ra trong quá trình xử lý
+            String errorMessage = "Error in handleTCPRequest: " + e.getMessage();
+            view.appendLog(errorMessage);
+            e.printStackTrace();
+
+            // Gửi phản hồi lỗi về client
+            try (OutputStream output = clientSocket.getOutputStream();
+                 DataOutputStream dataOutputStream = new DataOutputStream(output)) {
+                dataOutputStream.writeUTF("Server error: " + e.getMessage());
+            } catch (IOException ex) {
+                System.err.println("Error sending error response to client: " + ex.getMessage());
+            }
+
+        } finally {
+            // Đảm bảo đóng socket
+            try {
+                clientSocket.close();
+                System.out.println("Socket closed for client: " + clientSocket.getInetAddress().getHostAddress());
+            } catch (IOException e) {
+                System.err.println("Error closing client socket: " + e.getMessage());
+            }
+        }
+    }
+
+
+    private void handleFileUpload(DataInputStream dis, DataOutputStream dos) throws IOException {
+        int fileCount = dis.readInt(); // Nhận số lượng tệp
+        for (int i = 0; i < fileCount; i++) {
+            String fileName = dis.readUTF(); // Nhận tên tệp
+            long fileSize = dis.readLong(); // Nhận kích thước tệp
+
+            File attachmentsDir = new File("attachments");
+            if (!attachmentsDir.exists() && !attachmentsDir.mkdirs()) {
+                throw new IOException("Failed to create directory: " + attachmentsDir.getAbsolutePath());
+            }
+
+            File file = new File(attachmentsDir, fileName.replaceAll("[\\\\/:*?\"<>|]", "_"));
+
+            try (FileOutputStream fos = new FileOutputStream(file)) {
+                byte[] buffer = new byte[4096];
+                long remaining = fileSize;
+                int bytesRead;
+
+                while (remaining > 0 && (bytesRead = dis.read(buffer, 0, (int) Math.min(buffer.length, remaining))) != -1) {
+                    fos.write(buffer, 0, bytesRead);
+                    remaining -= bytesRead;
+                }
+            }
+
+            // Gửi phản hồi rằng tệp đã được nhận
+            dos.writeUTF("FILE_RECEIVED");
+        }
+
+        // Gửi phản hồi cuối cùng
+        dos.writeUTF("ALL_FILES_RECEIVED");
+    }
+
+
     private void handleRequest(String request, DatagramPacket packet) throws IOException {
         List<String> tokens = new ArrayList<>(Arrays.asList(request.split(":")));
         if (tokens.isEmpty()) {
-            sendResponse("Invalid command", packet);
+            sendResponseUDP("Invalid command", packet);
             return;
         }
 
@@ -138,33 +256,31 @@ public class MailServer {
             case "DELETE_EMAIL":  // Xử lý xóa email
                 handleDeleteEmail(tokens, packet);
                 break;
-                
+
             case "REPLY_EMAIL":
-            	handleReplyEmail(tokens,packet);
-            
+                handleReplyEmail(tokens, packet);
+
             case "CHAT":
-            	handleChat(tokens,packet);
-	
-            	
+                handleChat(tokens, packet);
             default:
-                sendResponse("Invalid command", packet);
+                sendResponseUDP("Invalid command", packet);
                 break;
         }
     }
-    
+
     private void handleChat(List<String> tokens, DatagramPacket packet) {
-		// TODO Auto-generated method stub
-		
-	}
+        // TODO Auto-generated method stub
 
-	private void handleReplyEmail(List<String> tokens, DatagramPacket packet) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
 
-	private void handleDeleteEmail(List<String> tokens, DatagramPacket packet) throws IOException {
+    private void handleReplyEmail(List<String> tokens, DatagramPacket packet) {
+        // TODO Auto-generated method stub
+
+    }
+
+    private void handleDeleteEmail(List<String> tokens, DatagramPacket packet) throws IOException {
         if (tokens.size() < 2) {
-            sendResponse("Invalid delete email request", packet);
+            sendResponseUDP("Invalid delete email request", packet);
             return;
         }
 
@@ -177,7 +293,7 @@ public class MailServer {
             // Kiểm tra email có tồn tại trong CSDL trước khi xóa
             boolean exists = mailDAO.mailExists(mailId);
             if (!exists) {
-                sendResponse("Email with ID " + mailId + " does not exist", packet);
+                sendResponseUDP("Email with ID " + mailId + " does not exist", packet);
                 return;
             }
 
@@ -187,21 +303,20 @@ public class MailServer {
             // Ghi log kết quả xóa
             if (isDeleted) {
                 System.out.println("Email with ID " + mailId + " deleted successfully.");
-                sendResponse("Email deleted successfully", packet);
+                sendResponseUDP("Email deleted successfully", packet);
             } else {
                 System.out.println("Failed to delete email with ID " + mailId);
-                sendResponse("Failed to delete email", packet);
+                sendResponseUDP("Failed to delete email", packet);
             }
         } catch (NumberFormatException e) {
-            sendResponse("Invalid email ID format", packet);
+            sendResponseUDP("Invalid email ID format", packet);
         }
     }
 
 
-    
     private void handleSearchEmails(List<String> tokens, DatagramPacket packet) throws IOException {
         if (tokens.size() < 3) {
-            sendResponse("Invalid search request", packet);
+            sendResponseUDP("Invalid search request", packet);
             return;
         }
         String email = tokens.remove(0);   // Email của người dùng cần tìm kiếm
@@ -211,27 +326,27 @@ public class MailServer {
 
         // Tìm kiếm email trong cơ sở dữ liệu
         String foundEmails = mailDAO.searchMailsForUser(email, keyword, currentPage, emailsPerPage);
-        sendResponse(foundEmails.isEmpty() ? "No emails found" : foundEmails, packet);
+        sendResponseUDP(foundEmails.isEmpty() ? "No emails found" : foundEmails, packet);
     }
 
     private void handleRegister(List<String> tokens, DatagramPacket packet) throws IOException {
         if (tokens.size() < 3) {
-            sendResponse("Invalid registration request", packet);
+            sendResponseUDP("Invalid registration request", packet);
             return;
         }
         String username = tokens.remove(0);
         String email = tokens.remove(0);
         String password = tokens.remove(0);
-        
+
         User newUser = new User(0, username, password, email, false);
         boolean registrationSuccess = userDAO.addUser(newUser);
-        sendResponse(registrationSuccess ? "Register successful" : "Register failed", packet);
+        sendResponseUDP(registrationSuccess ? "Register successful" : "Register failed", packet);
     }
 
 
     private void handleLogin(List<String> tokens, DatagramPacket packet) throws IOException {
         if (tokens.size() < 2) {
-            sendResponse("Invalid login request", packet);
+            sendResponseUDP("Invalid login request", packet);
             return;
         }
         String email = tokens.remove(0);
@@ -239,7 +354,7 @@ public class MailServer {
 
         // Kiểm tra xem người dùng đã đăng nhập hay chưa
         if (userDAO.isUserLoggedIn(email)) {
-            sendResponse("You are already logged in.", packet);
+            sendResponseUDP("You are already logged in.", packet);
             return;
         }
         // Tạo đối tượng User với trạng thái isLogin mặc định là false
@@ -254,22 +369,27 @@ public class MailServer {
             String ipAddress = packet.getAddress().getHostAddress();
             userDAO.updateUserIpAddress(email, ipAddress);
 
-            // Lấy thông tin máy chủ từ database
-            Server serverInfo = serverDAO.getServerIpAndPort();
+            // Lấy thông tin máy chủ từ database (cả UDP và TCP port)
+            Server serverInfo = serverDAO.getServerIpAndPort(); // Đây là phương thức lấy thông tin máy chủ (UDP + TCP)
 
             // Lấy tên người dùng
             String username = userDAO.getUsername(email);
 
-            // Tạo thông báo phản hồi bao gồm IP và Port của server
-            String response = "Login successful. Welcome, " + username + "!" 
-                              + (serverInfo != null ? " Server IP: " + serverInfo.getServerIp() 
-                              + ", Port: " + serverInfo.getServerPort() : " Server info not found.");
-            sendResponse(response, packet);
+            // Kiểm tra và xử lý thông tin server
+            if (serverInfo != null) {
+                // Gửi phản hồi với thông tin máy chủ và cổng TCP và UDP
+                String response = "Login successful. Welcome, " + username + "!" +
+                        " Server IP: " + serverInfo.getServerIp() +
+                        ", UDP Port: " + serverInfo.getUdpPort() +
+                        ", TCP Port: " + serverInfo.getTcpPort();  // Thêm TCP port vào phản hồi
+                sendResponseUDP(response, packet);
+            } else {
+                sendResponseUDP("Server info not found.", packet);
+            }
         } else {
-            sendResponse("Login failed. Invalid email or password.", packet);
+            sendResponseUDP("Login failed. Invalid email or password.", packet);
         }
     }
-
 
     private void handleSendEmail(List<String> tokens, DatagramPacket packet) throws IOException {
         String sender = tokens.remove(0);
@@ -288,63 +408,45 @@ public class MailServer {
             mail.setSentDate(new java.util.Date());
             mail.setSent(true);
 
-            int mailId = mailDAO.addMail(mail); // Lưu email, trả về mail_id
-
-            // 2. Xử lý tệp đính kèm nếu có
-            if (!attachmentData.isEmpty()) {
-                String[] attachments = attachmentData.split(";");
-                List<Attachment> attachmentList = new ArrayList<>();
-
-                for (String attachment : attachments) {
-                    String[] parts = attachment.split(":");
-                    if (parts.length < 2) continue;
-
-                    String fileName = parts[0];
-                    byte[] fileContent = Base64.getDecoder().decode(parts[1]);
-
-                    // Lưu file vào thư mục
-                    String filePath = "attachments/" + fileName;
-                    Files.write(Paths.get(filePath), fileContent);
-
-                    // Tạo đối tượng Attachment
-                    Attachment attachmentObj = new Attachment();
-                    attachmentObj.setMailId(mailId);
-                    attachmentObj.setFileName(fileName);
-                    attachmentObj.setFilePath(filePath);
-                    attachmentObj.setFileSize(fileContent.length);
-                    attachmentObj.setFileType(Files.probeContentType(Paths.get(filePath)));
-
-                    attachmentList.add(attachmentObj);
-                }
-
-                // Lưu danh sách tệp đính kèm vào CSDL
-                attachmentDAO.addAttachments(attachmentList);
-            }
+            mailDAO.addMail(mail); // Lưu email, trả về mail_id
 
             // 3. Phản hồi thành công
-            sendResponse("Email sent successfully", packet);
+            sendResponseUDP("Email sent successfully", packet);
 
         } catch (Exception e) {
             e.printStackTrace();
-            sendResponse("Failed to send email: " + e.getMessage(), packet);
+            sendResponseUDP("Failed to send email: " + e.getMessage(), packet);
         }
     }
 
 
     private void handleLoadEmails(List<String> tokens, DatagramPacket packet) throws IOException {
         if (tokens.size() < 1) {
-            sendResponse("Invalid load emails request", packet);
+            sendResponseUDP("Invalid load emails request", packet);
             return;
         }
         String email = tokens.remove(0);
         String emails = mailDAO.getAllMailsForUser(email);
-        sendResponse(emails.isEmpty() ? "No emails found" : emails, packet);
+        sendResponseUDP(emails.isEmpty() ? "No emails found" : emails, packet);
     }
 
-    private void sendResponse(String response, DatagramPacket packet) throws IOException {
+    private void sendResponseUDP(String response, DatagramPacket packet) throws IOException {
         byte[] buf = response.getBytes();
         DatagramPacket responsePacket = new DatagramPacket(buf, buf.length, packet.getAddress(), packet.getPort());
         socket.send(responsePacket);
         view.appendLog("Sent response: " + response);
     }
+
+    private void sendResponseTCP(String response, Socket clientSocket) throws IOException {
+        try (OutputStream outputStream = clientSocket.getOutputStream();
+             DataOutputStream dataOutputStream = new DataOutputStream(outputStream)) {
+            // Gửi phản hồi qua TCP
+            dataOutputStream.writeUTF(response);
+            dataOutputStream.flush();  // Đảm bảo phản hồi được gửi ngay lập tức
+        } catch (IOException e) {
+            view.appendLog("Error sending response to client: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
 }
