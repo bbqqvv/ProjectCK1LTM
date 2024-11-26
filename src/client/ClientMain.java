@@ -10,8 +10,15 @@ import model.Server;
 public class ClientMain {
     public static void main(String[] args) {
         try {
-            Connection connection = DatabaseConnection.getConnection(); // Kết nối đến cơ sở dữ liệu
-            ServerDAO serverDAO = new ServerDAO(connection); // Khởi tạo ServerDAO
+            // Kết nối đến cơ sở dữ liệu
+            Connection connection = DatabaseConnection.getConnection();
+            if (connection == null) {
+                System.err.println("Failed to connect to the database.");
+                return;
+            }
+
+            // Khởi tạo ServerDAO
+            ServerDAO serverDAO = new ServerDAO(connection);
 
             // Lấy thông tin server từ cơ sở dữ liệu
             Server server = serverDAO.getServerIpAndPort();
@@ -20,11 +27,12 @@ public class ClientMain {
                 return;
             }
 
-            // Khởi tạo MailClient với thông tin từ server
+            // Khởi tạo MailClient với thông tin server
             MailClient mailClient = new MailClient(server.getServerIp(), server.getUdpPort(), server.getTcpPort());
 
             // Hiển thị giao diện đăng nhập
             SwingUtilities.invokeLater(() -> new LoginView(serverDAO, mailClient));
+
         } catch (Exception e) {
             System.err.println("Error initializing client: " + e.getMessage());
             e.printStackTrace();

@@ -84,6 +84,7 @@ public class LoadEmailsController {
         model.setRowCount(0);
         for (Mail mail : mails) {
             model.addRow(new Object[]{
+                    mail.getId(),
                     mail.getSender(),
                     mail.getSubject(),
                     mail.getSentDate()

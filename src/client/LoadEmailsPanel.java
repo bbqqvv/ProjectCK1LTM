@@ -6,6 +6,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 import controller.LoadEmailsController;
+import lombok.Getter;
 import model.Mail;
 
 import java.awt.*;
@@ -17,7 +18,9 @@ import java.util.List;
 public class LoadEmailsPanel extends JPanel {
 	private JTable emailTable;
 	private DefaultTableModel emailTableModel;
-	private MailClientView mailClientView;
+    // TODO Auto-generated method stub
+    @Getter
+    private MailClientView mailClientView;
 	private JTextPane emailDetailsArea;
 	private List<Mail> emailList = new ArrayList<>();
 	private LoadEmailsController controller;
@@ -28,7 +31,8 @@ public class LoadEmailsPanel extends JPanel {
 	    // Khởi tạo bảng và mô hình dữ liệu
 	    emailTableModel = new DefaultTableModel();
 	    emailTable = new JTable(emailTableModel);
-	    emailTableModel.addColumn("Sender");
+		emailTableModel.addColumn("ID");
+		emailTableModel.addColumn("Sender");
 	    emailTableModel.addColumn("Subject");
 	    emailTableModel.addColumn("Date");
 
@@ -229,12 +233,6 @@ public class LoadEmailsPanel extends JPanel {
 	}
 	public List<Mail> getEmailList() {
 	    return emailList;
-	}
-
-
-	public MailClientView getMailClientView() {
-		// TODO Auto-generated method stub
-		return mailClientView;
 	}
 
 

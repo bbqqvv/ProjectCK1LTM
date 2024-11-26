@@ -29,7 +29,7 @@ public class SendEmailPanel extends JPanel {
 
         // Panel layout
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBackground(new Color(240, 248, 255));
+        setBackground(new Color(255, 255, 255));
         setBorder(new EmptyBorder(15, 15, 15, 15));
 
         // Input fields for receiver and subject
@@ -68,7 +68,7 @@ public class SendEmailPanel extends JPanel {
 
         // Button panel
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
-        buttonPanel.setBackground(new Color(240, 248, 255));
+        buttonPanel.setBackground(new Color(255, 255, 255));
 
         JButton sendButton = new JButton("📧 Send Email");
         sendButton.addActionListener(e -> sendEmail());
@@ -117,7 +117,7 @@ public class SendEmailPanel extends JPanel {
 
     private JPanel createTitledPanel(String title, LayoutManager layout) {
         JPanel panel = new JPanel(layout);
-        panel.setBackground(new Color(240, 248, 255));
+        panel.setBackground(new Color(255, 255, 255));
         panel.setBorder(BorderFactory.createTitledBorder(
                 BorderFactory.createLineBorder(new Color(70, 130, 180), 1, true),
                 title

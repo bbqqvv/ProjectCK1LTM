@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ServerView extends JFrame {
     private JTextArea logArea;
@@ -24,24 +26,22 @@ public class ServerView extends JFrame {
     private boolean isRunning = false;
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
     private MailServer mailServer;
-    private JPanel sidebarPanel; // Thay đổi từ JScrollPane để dễ quản lý
-    private boolean isSidebarVisible = true; // Trạng thái hiển thị của sidebar
-    private JButton toggleSidebarButton; // Nút đóng/mở sidebar
-
-    // Sidebar components
+    private JPanel sidebarPanel;
+    private boolean isSidebarVisible = true;
+    private JButton toggleSidebarButton;
     private DefaultListModel<String> clientListModel;
     private JList<String> clientList;
+    private Set<String> activeClients = new HashSet<>(); // Lưu trữ client đã kết nối
 
     public ServerView(MailServer mailServer) {
-        this.mailServer = mailServer; // Initialize mailServer
+        this.mailServer = mailServer;
         setTitle("Mail Server");
-        setSize(900, 500); // Increased width to accommodate the sidebar
+        setSize(1000, 600);  // Tăng chiều rộng của cửa sổ
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         getContentPane().setLayout(new BorderLayout(10, 10));
-        getContentPane().setBackground(new Color(240, 248, 255));
+        getContentPane().setBackground(new Color(250, 250, 250));  // Background sáng hơn
         initUI();
-
         setVisible(true);
     }
 
@@ -55,21 +55,21 @@ public class ServerView extends JFrame {
     private void initToolBar() {
         JToolBar toolBar = new JToolBar();
         toolBar.setFloatable(false);
-        toolBar.setBackground(new Color(131, 122, 122));
+        toolBar.setBackground(new Color(200, 200, 255));  // Màu nền sáng
         toolBar.setBorder(new EmptyBorder(5, 5, 5, 5));
 
         startButton = createButton("Start Server", "Start the server", e -> startServer(e), "/images/play.png", 24, 24);
         stopButton = createButton("Stop Server", "Stop the server", e -> stopServer(e), "/images/stop-button.png", 24, 24);
         clearLogButton = createButton("Clear Log", "Clear the log area", e -> logArea.setText(""), "/images/clean.png", 24, 24);
         saveLogButton = createButton("Save Log", "Save the log to a file", e -> saveLogToFile(e), "/images/diskette.png", 24, 24);
-        toggleSidebarButton = createButton("", "Show/Hide sidebar", e -> toggleSidebar(), "/images/menu-bar.png", 24, 24);
+        toggleSidebarButton = createButton("Toggle Sidebar", "Show/Hide sidebar", e -> toggleSidebar(), "/images/menu-bar.png", 24, 24);
 
         toolBar.add(startButton);
         toolBar.add(stopButton);
         toolBar.addSeparator();
         toolBar.add(clearLogButton);
         toolBar.add(saveLogButton);
-        toolBar.addSeparator(new Dimension(400,0) );
+        toolBar.addSeparator(new Dimension(500, 0));
 
         toolBar.add(toggleSidebarButton);
 
@@ -78,27 +78,23 @@ public class ServerView extends JFrame {
 
     private void toggleSidebar() {
         if (isSidebarVisible) {
-            getContentPane().remove(sidebarPanel); // Xóa sidebar khỏi giao diện
-            toggleSidebarButton.setText("");
+            getContentPane().remove(sidebarPanel);
+            toggleSidebarButton.setText("Show Sidebar");
         } else {
-            getContentPane().add(sidebarPanel, BorderLayout.EAST); // Thêm lại sidebar
-            toggleSidebarButton.setText("");
+            getContentPane().add(sidebarPanel, BorderLayout.EAST);
+            toggleSidebarButton.setText("Hide Sidebar");
         }
 
-        isSidebarVisible = !isSidebarVisible; // Đổi trạng thái hiển thị
-        getContentPane().revalidate(); // Cập nhật giao diện
-        getContentPane().repaint();   // Vẽ lại giao diện
+        isSidebarVisible = !isSidebarVisible;
+        getContentPane().revalidate();
+        getContentPane().repaint();
     }
-
 
     private JButton createButton(String text, String toolTipText, ActionListener action, String iconPath, int width, int height) {
         JButton button = new JButton(text);
 
         try {
-            // Load the icon
             ImageIcon icon = new ImageIcon(getClass().getResource(iconPath));
-
-            // Resize the icon
             Image scaledImage = icon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
             button.setIcon(new ImageIcon(scaledImage));
         } catch (NullPointerException e) {
@@ -128,11 +124,6 @@ public class ServerView extends JFrame {
                 0,
                 new Font("SansSerif", Font.BOLD, 14),
                 new Color(80, 80, 80)
-        ));
-
-        scrollPane.setBorder(BorderFactory.createCompoundBorder(
-                scrollPane.getBorder(),
-                BorderFactory.createEmptyBorder(5, 5, 5, 5)
         ));
 
         getContentPane().add(scrollPane, BorderLayout.CENTER);
@@ -167,14 +158,11 @@ public class ServerView extends JFrame {
         JScrollPane sidebarScroll = new JScrollPane(clientList);
         sidebarScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
-        // Đặt JScrollPane vào JPanel để quản lý dễ hơn
         sidebarPanel = new JPanel(new BorderLayout());
         sidebarPanel.add(sidebarScroll, BorderLayout.CENTER);
 
-        // Thêm sidebar vào giao diện chính
         getContentPane().add(sidebarPanel, BorderLayout.EAST);
     }
-
 
     private void startServer(ActionEvent e) {
         if (isRunning) {
@@ -246,15 +234,25 @@ public class ServerView extends JFrame {
         }
     }
 
-    public void addClient(String clientName) {
-        clientListModel.addElement(clientName);
+    public void addClient(String clientIdentifier) {
+        if (!activeClients.contains(clientIdentifier)) {
+            activeClients.add(clientIdentifier); // Thêm client vào Set
+            clientListModel.addElement(clientIdentifier); // Thêm client vào Sidebar
+            clientList.revalidate();
+            clientList.repaint();
+        }
+    }
+    // Phương thức loại bỏ client khỏi Sidebar
+    public void removeClient(String clientIdentifier) {
+        if (activeClients.contains(clientIdentifier)) {
+            activeClients.remove(clientIdentifier); // Loại bỏ client khỏi Set
+            clientListModel.removeElement(clientIdentifier); // Loại bỏ client khỏi Sidebar
+            clientList.revalidate();
+            clientList.repaint();
+        }
     }
 
-    public void removeClient(String clientName) {
-        clientListModel.removeElement(clientName);
-    }
-
-    private void updateUIForRunningState(boolean isRunning) {
+    public void updateUIForRunningState(boolean isRunning) {
         startButton.setEnabled(!isRunning);
         stopButton.setEnabled(isRunning);
 
@@ -267,5 +265,9 @@ public class ServerView extends JFrame {
             statusLabel.setForeground(Color.RED);
             statusLabel.setIcon(new ImageIcon("icons/stopped.png"));
         }
+    }
+
+    public boolean isClientAlreadyAdded(String clientIdentifier) {
+        return clientListModel.contains(clientIdentifier); // Kiểm tra xem client có tồn tại không
     }
 }
