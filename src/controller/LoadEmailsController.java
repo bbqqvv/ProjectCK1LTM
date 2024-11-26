@@ -24,12 +24,11 @@ public class LoadEmailsController {
     private int currentPage = 1;
     private final int emailsPerPage = 10;
     private final List<Mail> allEmails;
-
     public LoadEmailsController(LoadEmailsPanel loadEmailsPanel, MailClient client, String userEmail) {
         this.loadEmailsPanel = loadEmailsPanel;
         this.userEmail = userEmail;
         this.emailLoaderService = new EmailLoaderService(client, userEmail);
-        this.emailDeleteService = new EmailDeleteService(client, loadEmailsPanel.getMailClientView());
+        this.emailDeleteService = new EmailDeleteService(client); // Chỉ cần MailClient
         this.allEmails = new ArrayList<>();
     }
 
@@ -129,24 +128,46 @@ public class LoadEmailsController {
      * Xử lý xóa email.
      */
     public void handleDeleteEmail() {
-        int selectedRow = loadEmailsPanel.getSelectedRow();
+        int selectedRow = loadEmailsPanel.getSelectedRow(); // Lấy hàng đang được chọn trong bảng email
         if (selectedRow >= 0) {
-            String emailId = loadEmailsPanel.getEmailIdAtRow(selectedRow);
+            String emailId = loadEmailsPanel.getEmailIdAtRow(selectedRow); // Lấy ID của email cần xóa
             int confirm = JOptionPane.showConfirmDialog(loadEmailsPanel.getMailClientView(),
                     "Bạn có chắc muốn xóa email này?", "Xác nhận xóa", JOptionPane.YES_NO_OPTION);
 
             if (confirm == JOptionPane.YES_OPTION) {
-                String response = emailDeleteService.deleteEmail(userEmail, emailId);
-                if (response != null && response.contains("successfully")) {
-                    loadEmailsPanel.showNotification(response, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-                    loadEmails(currentPage);
-                } else {
-                    loadEmailsPanel.showNotification(response, "Lỗi", JOptionPane.ERROR_MESSAGE);
-                }
+                SwingWorker<Void, Void> worker = new SwingWorker<>() {
+                    @Override
+                    protected Void doInBackground() {
+                        try {
+                            // Gọi EmailDeleteService để xóa email
+                            String response = emailDeleteService.deleteEmail(userEmail, emailId);
+
+                            // Kiểm tra phản hồi từ server
+                            if (response != null && response.contains("successfully")) {
+                                loadEmailsPanel.showNotification(response, "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                            } else {
+                                loadEmailsPanel.showNotification("Xóa email thất bại: " + response, "Lỗi", JOptionPane.ERROR_MESSAGE);
+                            }
+                        } catch (Exception e) {
+                            handleError("Lỗi khi xóa email", e);
+                        }
+                        return null;
+                    }
+
+                    @Override
+                    protected void done() {
+                        loadEmails(currentPage); // Tải lại danh sách email sau khi xóa
+                    }
+                };
+                worker.execute();
             }
         } else {
             loadEmailsPanel.showNotification("Vui lòng chọn email để xóa.", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
         }
+    }
+    private void handleError(String message, Exception e) {
+        e.printStackTrace();
+        loadEmailsPanel.showNotification(message + ": " + e.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
     }
 
     /**

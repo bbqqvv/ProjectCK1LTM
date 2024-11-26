@@ -8,8 +8,10 @@ import model.Server;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.io.File;
 import java.net.InetAddress;
 import java.sql.Connection;
+import java.util.regex.Pattern;
 
 public class LoginView extends JFrame {
     private JTextField emailField;
@@ -18,26 +20,32 @@ public class LoginView extends JFrame {
     private JButton registerButton;
     private JLabel statusLabel;
     private JCheckBox showPasswordCheckbox;
-    private ServerDAO serverDAO;  // Object to query the database for server details
-    private DatabaseConnection dbConnection;  // Database connection object
+    private final ServerDAO serverDAO;
+    private final MailClient mailClient;
 
-    // Constructor accepts a properly initialized ServerDAO object
-    public LoginView(ServerDAO serverDAO) {
+    public LoginView(ServerDAO serverDAO, MailClient mailClient) {
         if (serverDAO == null) {
-            throw new IllegalArgumentException("ServerDAO cannot be null");  // Early validation
+            throw new IllegalArgumentException("ServerDAO cannot be null");
         }
-        this.serverDAO = serverDAO;  // Initialize the ServerDAO
+        if (mailClient == null) {
+            throw new IllegalArgumentException("MailClient cannot be null");
+        }
+
+        this.serverDAO = serverDAO;
+        this.mailClient = mailClient;
 
         // JFrame setup
         setTitle("Mail Client - Login");
         setSize(450, 250);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new BorderLayout());
+        setLocationRelativeTo(null); // Center the window
 
         // Header panel
         JPanel headerPanel = new JPanel();
-        headerPanel.add(new JLabel("<html><h2>Mail Client</h2><p>Secure Login</p></html>"));
-        getContentPane().add(headerPanel, BorderLayout.NORTH);
+        headerPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        JLabel headerLabel = new JLabel("<html><h2>Mail Client</h2><p>Secure Login</p></html>");
+        headerPanel.add(headerLabel);
+        add(headerPanel, BorderLayout.NORTH);
 
         // Main panel (email and password fields)
         JPanel mainPanel = new JPanel(new GridLayout(3, 2, 10, 10));
@@ -58,15 +66,15 @@ public class LoginView extends JFrame {
         checkboxPanel.add(showPasswordCheckbox);
         mainPanel.add(checkboxPanel);
 
-        getContentPane().add(mainPanel, BorderLayout.CENTER);
+        add(mainPanel, BorderLayout.CENTER);
 
         // Buttons for login and register
-        JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
-        mainPanel.add(buttonsPanel);
+        JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10)); // Added spacing for buttons
         loginButton = new JButton("Login");
         registerButton = new JButton("Register");
         buttonsPanel.add(loginButton);
         buttonsPanel.add(registerButton);
+        add(buttonsPanel, BorderLayout.SOUTH);
 
         loginButton.addActionListener(e -> login());
         registerButton.addActionListener(e -> openRegisterView());
@@ -75,97 +83,108 @@ public class LoginView extends JFrame {
         statusLabel = new JLabel(" ");
         statusLabel.setForeground(Color.RED);
         statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        getContentPane().add(statusLabel, BorderLayout.PAGE_END);
+        add(statusLabel, BorderLayout.PAGE_END);
 
-        setLocationRelativeTo(null); // Center the window
         setVisible(true);
 
-        // Initialize DatabaseConnection
-        dbConnection = new DatabaseConnection();
+        // Add KeyListener to trigger login on Enter press
+        emailField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                    login(); // Trigger login when Enter is pressed
+                }
+            }
+        });
+
+        passwordField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                    login(); // Trigger login when Enter is pressed
+                }
+            }
+        });
     }
 
-    // Toggle password visibility in the password field
     private void togglePasswordVisibility() {
         passwordField.setEchoChar(showPasswordCheckbox.isSelected() ? (char) 0 : '*');
     }
 
-    // Login method triggered by login button
     private void login() {
         statusLabel.setText("Logging in...");
-        String email = emailField.getText();
+        String email = emailField.getText().trim();
+        String password = new String(passwordField.getPassword());
 
-        // Validate email format
-        if (!isValidEmail(email)) {
-            statusLabel.setText("Invalid email format");
+        if (email.isEmpty() || password.isEmpty()) {
+            statusLabel.setText("Email and password are required.");
             return;
         }
 
-        // Create a SwingWorker to handle login asynchronously
+        if (!isValidEmail(email)) {
+            statusLabel.setText("Invalid email format.");
+            return;
+        }
+
         SwingWorker<Void, Void> worker = new SwingWorker<>() {
             @Override
             protected Void doInBackground() {
                 try {
-                    String password = new String(passwordField.getPassword());
-
-                    // Fetch server IP and port from the database using ServerDAO
+                    // Lấy thông tin server từ cơ sở dữ liệu (cổng UDP và TCP)
                     Server server = serverDAO.getServerIpAndPort();
-
                     if (server == null) {
-                        statusLabel.setText("Server IP or Port not found in the databaseee");
+                        statusLabel.setText("Server information not found.");
                         return null;
                     }
 
-                    String serverIp = server.getServerIp();
-                    int serverPort = server.getServerPort();
+                    // Tạo MailClient mới với cổng UDP và TCP lấy từ server
+                    MailClient client = new MailClient(server.getServerIp(), server.getUdpPort(), server.getTcpPort());
 
-                    // Create a MailClient object with the server details
-                    MailClient tempClient = new MailClient(serverIp, serverPort);
-                    String response = tempClient.sendRequest("LOGIN:" + email + ":" + password);
+                    // Gửi yêu cầu đăng nhập qua UDP
+                    String command = "LOGIN";
+                    String data = email + ":" + password;
+                    String response = client.sendRequest(command, data, false,null); // false = UDP
 
-                 // Inside the login method in LoginView
                     if (response.contains("successful")) {
-                        // Save the client's IP address to the server (if necessary)
-                        tempClient.sendRequest("SAVE_IP:" + email + ":" + InetAddress.getLocalHost().getHostAddress());
-
-                        // Get the UserDAO object with a valid database connection
-                        Connection connection = dbConnection.getConnection();
+                        // Lưu địa chỉ IP của client
+                        String clientIp = InetAddress.getLocalHost().getHostAddress();
+                        client.sendRequest("SAVE_IP", email + ":" + clientIp, false, null);
+                        // Lấy đối tượng UserDAO để truy xuất thông tin người dùng
+                        Connection connection = DatabaseConnection.getConnection();
                         UserDAO userDAO = new UserDAO(connection);
-
-                        // Open the MailClientView with the necessary objects
-                        MailClient client = new MailClient(serverIp, serverPort);
-                        new MailClientView(client, email, userDAO, serverDAO);  // Correct constructor call
-                        dispose(); // Close the login window
+                        // Sau khi đăng nhập thành công, tiếp tục các tác vụ khác
+                        SwingUtilities.invokeLater(() -> {
+                            new MailClientView(client, email, userDAO, serverDAO);
+                            dispose(); // Đóng LoginView
+                        });
                     } else {
-                        statusLabel.setText(response); // Display login failure message
+                        SwingUtilities.invokeLater(() -> statusLabel.setText(response)); // Hiển thị lỗi đăng nhập
                     }
-
                 } catch (Exception e) {
-                    statusLabel.setText("An error occurred: " + e.getMessage());
-                    e.printStackTrace();  // Print the error details
+                    SwingUtilities.invokeLater(() -> {
+                        statusLabel.setText("An error occurred: " + e.getMessage());
+                        e.printStackTrace();
+                    });
                 }
                 return null;
             }
 
             @Override
             protected void done() {
-                loginButton.setEnabled(true);  // Re-enable the login button after the task is done
+                loginButton.setEnabled(true); // Kích hoạt lại nút Login sau khi xử lý
             }
         };
 
-        loginButton.setEnabled(false);  // Disable the login button while the task is running
-        worker.execute();  // Execute the login task asynchronously
+        loginButton.setEnabled(false); // Vô hiệu hóa nút Login trong khi xử lý
+        worker.execute();
     }
 
-    // Validate email format using regex
+
     private boolean isValidEmail(String email) {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-        return email.matches(emailRegex);
+        return Pattern.compile(emailRegex).matcher(email).matches();
     }
 
-    // Open the RegisterView window
     private void openRegisterView() {
-        new RegisterView(serverDAO);
-        dispose();  // Close the LoginView
+        new RegisterView(serverDAO, mailClient);  // Truyền MailClient cho RegisterView
+        dispose();  // Đóng LoginView
     }
-
 }

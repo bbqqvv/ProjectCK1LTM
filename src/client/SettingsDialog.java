@@ -142,7 +142,7 @@ public class SettingsDialog extends JDialog {
                     JOptionPane.showMessageDialog(null, "Logout successful.");
                     // Safeguard if parentView is null
                     if (parentView != null) {
-                        parentView.showLoginScreen(serverDAO);
+                        parentView.showLoginScreen();
                     } else {
                         JOptionPane.showMessageDialog(null, "Error: Parent view is null.");
                     }
@@ -164,8 +164,6 @@ public class SettingsDialog extends JDialog {
         // Add components to the dialog
         add(settingsPanel, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
-
-        setVisible(true);
     }
 
     private void applyTheme(String selectedTheme) {

@@ -1,27 +1,20 @@
 package client;
 
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.Timer;
+
+import javax.swing.*;
+
 import controller.LoadEmailsController;
 import dao.ServerDAO;
 import dao.UserDAO;
 import database.DatabaseConnection;
 import model.Mail;
-import service.EmailDeleteService;
-import service.EmailLoaderService;
 
 /**
  * Mail Client UI
@@ -32,14 +25,14 @@ public class MailClientView extends JFrame {
     private JPanel mainPanel;
     private SendEmailPanel sendEmailPanel;
     private LoadEmailsPanel loadEmailsPanel;
-    private  ChatPanel chatPanel;
+    private ChatPanel chatPanel;
     private Timer autoRefreshTimer;
     private boolean autoRefreshEnabled = false;
     private MailClient client;
     private String userEmail;
     private JLabel statusLabel;
     private LoadEmailsController loadEmailsController;
-    private List<String> emailContents;  // Store email contents
+    private List<String> emailContents; // Store email contents
     private SidebarPanel sidePanel;
     private UserDAO userDAO;
     private ServerDAO serverDAO;
@@ -49,10 +42,9 @@ public class MailClientView extends JFrame {
         this.userEmail = userEmail;
         this.userDAO = userDAO;
         this.serverDAO = serverDAO;
+        this.emailContents = new ArrayList<>();
         this.loadEmailsPanel = new LoadEmailsPanel(this);
         this.loadEmailsController = new LoadEmailsController(loadEmailsPanel, client, userEmail);
-
-        this.emailContents = new ArrayList<>();
 
         // JFrame settings
         setTitle("Mail Client");
@@ -81,31 +73,21 @@ public class MailClientView extends JFrame {
         updateStatusLabel("Logged in as: " + userEmail);
 
         // Load emails when the panel is created
-        loadEmailsController.loadEmails(1); // Load emails for the first time
+        loadEmailsController.loadEmails(1);
 
         // Set up auto-refresh every 5 minutes (300000ms)
         setupAutoRefresh();
-
-        // If you want to allow users to access Settings, initialize SettingsDialog here or as needed
-//         SettingsDialog settingsDialog = new SettingsDialog(this);
-        // You can invoke settingsDialog from a button or menu item later in your code.
     }
-
-
 
     // Setup auto-refresh functionality
     private void setupAutoRefresh() {
-        autoRefreshTimer = new Timer(300000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (autoRefreshEnabled) {
-                    loadEmailsController.loadEmails(1); // Reload emails on auto-refresh
-                    updateStatusLabel("Emails auto-refreshed at: " + new java.util.Date());
-                }
+        autoRefreshTimer = new Timer(300000, e -> {
+            if (autoRefreshEnabled) {
+                loadEmailsController.loadEmails(1); // Reload emails on auto-refresh
+                updateStatusLabel("Emails auto-refreshed at: " + new java.util.Date());
             }
         });
     }
-
 
     // Create the main panel with CardLayout
     private void createMainPanel() {
@@ -113,7 +95,7 @@ public class MailClientView extends JFrame {
 
         sendEmailPanel = new SendEmailPanel(this);
         loadEmailsPanel = new LoadEmailsPanel(this);
-        chatPanel = new ChatPanel(this);  // Initialize chatPanel
+        chatPanel = new ChatPanel(this); // Initialize chatPanel
 
         // Add panels to the main panel
         mainPanel.add(sendEmailPanel, "SendEmail");
@@ -125,10 +107,11 @@ public class MailClientView extends JFrame {
     public void switchPanel(String panelName) {
         CardLayout layout = (CardLayout) mainPanel.getLayout();
         layout.show(mainPanel, panelName);
+
         if ("EmailList".equals(panelName)) {
-            loadEmailsController.loadEmails(1);
+            loadEmailsController.loadEmails(1); // Reload emails if switching to email list
         } else if ("Chat".equals(panelName)) {
-            // Handle any chat-specific logic here if needed
+            updateStatusLabel("Switched to Chat panel.");
         }
     }
 
@@ -155,19 +138,23 @@ public class MailClientView extends JFrame {
     }
 
     // Enable or disable auto-refresh
-    public void setAutoRefreshEnabled(boolean autoRefreshEnabled) {
-        this.autoRefreshEnabled = autoRefreshEnabled;
-        if (autoRefreshEnabled) {
+    public void setAutoRefreshEnabled(boolean enabled) {
+        this.autoRefreshEnabled = enabled;
+        if (enabled) {
             autoRefreshTimer.start();
+            updateStatusLabel("Auto-refresh enabled.");
         } else {
             autoRefreshTimer.stop();
+            updateStatusLabel("Auto-refresh disabled.");
         }
     }
 
     // Open settings panel for the user
     public void openSettings() {
         SettingsDialog settingsDialog = new SettingsDialog(this, userDAO);
-     }
+        settingsDialog.setVisible(true);
+    }
+
 
     // Handle search emails based on the query
     public void handleSearch(String query) {
@@ -191,12 +178,12 @@ public class MailClientView extends JFrame {
 
     // Getter for the email contents list
     public List<String> getEmailContents() {
-        return emailContents;
+        return new ArrayList<>(emailContents);
     }
 
     // Setter for email contents list
     public void setEmailContents(List<String> emailContents) {
-        this.emailContents = emailContents;
+        this.emailContents = new ArrayList<>(emailContents);
     }
 
     // Get the MailClient instance
@@ -210,46 +197,30 @@ public class MailClientView extends JFrame {
     }
 
     public void setUsername(String newUsername) {
-        this.userEmail = newUsername;  // Update the userEmail field
-        updateStatusLabel("Username updated to: " + newUsername);  // Update status label
+        this.userEmail = newUsername;
+        updateStatusLabel("Username updated to: " + newUsername);
     }
 
-	public UserDAO getUserDAO() {
-	    return userDAO;
-	}
+    // Handle logout and show login screen
+    public void showLoginScreen() {
+        setVisible(false); // Hide current window
 
-	public ServerDAO getServerDAO() {
-	    return serverDAO;
-	}
+        try {
+            Connection connection = DatabaseConnection.getConnection();
+            ServerDAO newServerDAO = new ServerDAO(connection);
+            new LoginView(newServerDAO, client).setVisible(true);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error reconnecting to the database: " + ex.getMessage(),
+                    "Database Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
+    }
 
-	public void showLoginScreen(ServerDAO serverDAO) {
-	    // Ẩn màn hình hiện tại
-	    this.setVisible(false);
-
-	    // Hiển thị thông báo đăng xuất thành công
-	    JOptionPane.showMessageDialog(this, "Logged out successfully.", "Logout", JOptionPane.INFORMATION_MESSAGE);
-
-	    if (serverDAO == null) {
-	        try {
-	            Connection connection = DatabaseConnection.getConnection();
-	            serverDAO = new ServerDAO(connection);
-	        } catch (SQLException ex) {
-	            JOptionPane.showMessageDialog(this, "Error reconnecting to the database: " + ex.getMessage(),
-	                    "Database Error", JOptionPane.ERROR_MESSAGE);
-	            ex.printStackTrace();
-	            return;
-	        }
-	    }
-	    // Tạo lại LoginView với serverDAO và hiển thị màn hình đăng nhập
-	    LoginView loginScreen = new LoginView(serverDAO);
-	    loginScreen.setVisible(true);
-	}
-
+    // Show reply email panel
     public void showReplyEmailPanel(Mail selectedMail) {
-        // Tạo panel trả lời email
         SendEmailPanel replyPanel = new SendEmailPanel(this);
 
-        // Điền sẵn thông tin từ email được chọn
+        // Prefill email reply information
         replyPanel.setReceiver(selectedMail.getSender());
         replyPanel.setSubject("Re: " + selectedMail.getSubject());
         replyPanel.setContent("\n\n--- Original Message ---\n" +
@@ -257,11 +228,8 @@ public class MailClientView extends JFrame {
                 "Subject: " + selectedMail.getSubject() + "\n\n" +
                 selectedMail.getContent());
 
-        // Thêm panel trả lời vào CardLayout
+        // Add reply panel to CardLayout and switch to it
         mainPanel.add(replyPanel, "ReplyEmail");
-
-        // Chuyển sang panel trả lời
         switchPanel("ReplyEmail");
     }
-
 }

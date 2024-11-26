@@ -10,7 +10,7 @@ public class MailClientViewTest {
         // Khởi tạo MailClient
         MailClient client;
         try {
-            client = new MailClient("localhost", 4445); // Địa chỉ server và port
+            client = new MailClient("localhost", 4445,1); // Địa chỉ server và port
         } catch (Exception e) {
             e.printStackTrace();
             return;
