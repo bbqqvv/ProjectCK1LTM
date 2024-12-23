@@ -144,11 +144,11 @@ public class LoadEmailsPanel extends JPanel {
 		mailClientView.showReplyEmailPanel(selectedMail);
 	}
 
-
 	private void showEmailDetails() {
 		int selectedRow = emailTable.getSelectedRow();
 
-		if (selectedRow < 0 || selectedRow >= emailList.size()) {
+		// Kiểm tra hàng được chọn có hợp lệ không
+		if (selectedRow == -1 || selectedRow >= emailList.size()) {
 			emailDetailsArea.setText("Please select an email to view its details.");
 			return;
 		}
@@ -160,6 +160,7 @@ public class LoadEmailsPanel extends JPanel {
 			return;
 		}
 
+		// Hiển thị chi tiết email
 		String subject = selectedMail.getSubject();
 		String sender = selectedMail.getSender();
 		String content = selectedMail.getContent();
@@ -183,7 +184,6 @@ public class LoadEmailsPanel extends JPanel {
 		emailDetailsArea.setText(emailDetailsHTML);
 		emailDetailsArea.setCaretPosition(0);
 	}
-
 
 	public DefaultTableModel getEmailTableModel() {
 		return emailTableModel;

@@ -25,7 +25,7 @@ public class SendEmailController {
                 throw new IllegalArgumentException("Please fill in all fields.");
             }
             // Gửi email cùng hoặc không có tệp đính kèm
-            String response = emailSenderService.sendEmail(receiver, subject, content, attachments != null && attachments.length > 0 ? attachments : null);
+            String response = emailSenderService.sendEmail(receiver, subject, content);
             statusLabel.setText("Email Sent: " + response);
             JOptionPane.showMessageDialog(null, "Email Sent: " + response, "Success", JOptionPane.INFORMATION_MESSAGE);
         } catch (IllegalArgumentException ex) {

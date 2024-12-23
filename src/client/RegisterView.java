@@ -112,8 +112,8 @@ public class RegisterView extends JFrame {
 
         // Gửi yêu cầu đăng ký tới server
         try {
-            String request = username + ":" + email + ":" + password;
-            String response = mailClient.sendRequest("REGISTER", request); // Sử dụng UDP
+            String request ="REGISTER" + username + ":" + email + ":" + password;
+            String response = mailClient.sendRequest( request); // Sử dụng UDP
 
             // Thông báo kết quả
             if (response.contains("successful")) {

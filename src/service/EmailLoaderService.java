@@ -25,22 +25,22 @@ public class EmailLoaderService {
     /**
      * Tải email từ server.
      *
-     * @param page           Trang cần tải.
+     * @param page          Trang cần tải.
      * @param emailsPerPage Số email trên mỗi trang.
      * @return Danh sách các email.
      * @throws Exception Nếu có lỗi xảy ra khi tải email.
      */
     public List<Mail> loadEmails(int page, int emailsPerPage) throws Exception {
-        validatePageNumber(page);  // Kiểm tra số trang hợp lệ
+        validatePageNumber(page); // Kiểm tra số trang hợp lệ
 
-        String request = buildRequest(page, emailsPerPage);  // Tạo yêu cầu gửi đến server
-        String response = client.sendRequest("LOAD_EMAILS", request);  // Sử dụng UDP (false)
+        String request = buildRequest(page, emailsPerPage); // Tạo yêu cầu gửi đến server
+        String response = client.sendRequest(request); // Sử dụng client để gửi yêu cầu
 
         if (response == null || response.isEmpty()) {
             throw new Exception("Không có email nào hoặc server không phản hồi.");
         }
 
-        return parseEmailResponse(response);  // Phân tích và trả về danh sách email
+        return parseEmailResponse(response); // Phân tích và trả về danh sách email
     }
 
     /**
@@ -58,12 +58,12 @@ public class EmailLoaderService {
     /**
      * Tạo yêu cầu tải email từ server.
      *
-     * @param page           Trang cần tải.
+     * @param page          Trang cần tải.
      * @param emailsPerPage Số email trên mỗi trang.
      * @return Yêu cầu để gửi đến server.
      */
     private String buildRequest(int page, int emailsPerPage) {
-        return userEmail + ":" + page + ":" + emailsPerPage;
+        return "LOAD_EMAILS:" + userEmail + ":" + page + ":" + emailsPerPage;
     }
 
     /**
