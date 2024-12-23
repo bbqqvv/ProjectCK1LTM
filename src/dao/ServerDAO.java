@@ -28,7 +28,6 @@ public class ServerDAO {
             preparedStatement.setString(1, serverIp);
             preparedStatement.setInt(2, udpPort);
 
-            // Thiết lập các tham số cho phần ON DUPLICATE KEY UPDATE
             preparedStatement.setInt(3, udpPort);  // Cập nhật port_udp
 
             // Thực thi câu truy vấn

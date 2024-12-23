@@ -6,26 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="1ce72d04-9a5e-4903-b625-34f56e5ea6c5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/client/LoginView$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/LoginView$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/client/LoginView.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/LoginView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/client/MailClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/MailClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/client/RegisterView.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/RegisterView.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/dao/ServerDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/dao/ServerDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/model/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/model/Server.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/server/MailServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/server/MailServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/service/EmailDeleteService.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/service/EmailDeleteService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/service/EmailLoaderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/service/EmailLoaderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/service/EmailSenderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/service/EmailSenderService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.log" beforeDir="false" afterPath="$PROJECT_DIR$/server.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/LoginView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/MailClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/MailClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/RegisterView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/RegisterView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dao/ServerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ServerDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/MailServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/MailServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/EmailDeleteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/EmailDeleteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/EmailLoaderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/EmailLoaderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/EmailSenderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/EmailSenderService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +39,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.ClientMain.executor": "Debug",
+    "Application.ClientMain.executor": "Run",
     "Application.DatabaseConnectionTester.executor": "Run",
     "Application.MailClientViewTest.executor": "Run",
     "Application.ServerMain.executor": "Run",
@@ -67,7 +50,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
-    "git-widget-placeholder": "devPush",
+    "git-widget-placeholder": "1c5da65f",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/WordSpace/Java/Swing/5LABLTM/Mail/src/images",

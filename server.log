@@ -3432,3 +3432,72 @@ ID: 5, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXX, Co
 [21:49:20] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam1, Content: XXXXXXXXX, Sent Date: 2024-12-23, Is Sent: true
 ID: 5, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXX, Content: 1313123123123123, Sent Date: 2024-12-23, Is Sent: true
 
+[23:24:42] Server started...
+[23:24:43] Mail server is running on UDP port 4445
+[23:24:43] Server is running.
+[23:25:00] Attempting to stop the server...
+[23:25:00] Mail server stopped.
+[23:25:00] Error in UDP server: Socket closed
+[23:25:00] Server information removed from database.
+[23:25:00] Server is no longer running.
+[23:25:00] Server stopped successfully.
+[23:25:00] Server status updated to 'Stopped'.
+[23:25:02] Server started...
+[23:25:02] Mail server is running on UDP port 4445
+[23:25:02] Server is running.
+[23:25:04] Attempting to stop the server...
+[23:25:04] Mail server stopped.
+[23:25:04] Error in UDP server: Socket closed
+[23:25:04] Server information removed from database.
+[23:25:04] Server is no longer running.
+[23:25:04] Server stopped successfully.
+[23:25:04] Server status updated to 'Stopped'.
+[23:25:06] Server started...
+[23:25:06] Mail server is running on UDP port 4445
+[23:25:06] Server is running.
+[23:25:18] Received UDP request: LOGIN:exam@gmail.com:123
+[23:25:19] Sent response: Login successful. Welcome, V! Server IP: 192.168.1.3, UDP Port: 4445
+[23:25:19] Received UDP request: SAVE_IP:exam@gmail.com:192.168.1.3
+[23:25:19] Sent response: Invalid command
+[23:25:19] Received UDP request: LOAD_EMAILS:exam@gmail.com:1:10
+[23:25:19] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam1, Content: XXXXXXXXX, Sent Date: 2024-12-23, Is Sent: true
+ID: 5, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXX, Content: 1313123123123123, Sent Date: 2024-12-23, Is Sent: true
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: Quân Khùng, Sent Date: 2024-12-23, Is Sent: true
+
+[23:25:19] Received UDP request: LOAD_EMAILS:exam@gmail.com:1:10
+[23:25:19] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam1, Content: XXXXXXXXX, Sent Date: 2024-12-23, Is Sent: true
+ID: 5, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXX, Content: 1313123123123123, Sent Date: 2024-12-23, Is Sent: true
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: Quân Khùng, Sent Date: 2024-12-23, Is Sent: true
+
+[23:25:19] Received UDP request: LOAD_EMAILS:exam@gmail.com:1:10
+[23:25:19] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam1, Content: XXXXXXXXX, Sent Date: 2024-12-23, Is Sent: true
+ID: 5, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXX, Content: 1313123123123123, Sent Date: 2024-12-23, Is Sent: true
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: Quân Khùng, Sent Date: 2024-12-23, Is Sent: true
+
+[23:25:20] Received UDP request: LOAD_EMAILS:exam@gmail.com:1:10
+[23:25:20] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam1, Content: XXXXXXXXX, Sent Date: 2024-12-23, Is Sent: true
+ID: 5, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXX, Content: 1313123123123123, Sent Date: 2024-12-23, Is Sent: true
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: Quân Khùng, Sent Date: 2024-12-23, Is Sent: true
+
+[23:25:21] Received UDP request: LOAD_EMAILS:exam@gmail.com:1:10
+[23:25:21] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam1, Content: XXXXXXXXX, Sent Date: 2024-12-23, Is Sent: true
+ID: 5, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXX, Content: 1313123123123123, Sent Date: 2024-12-23, Is Sent: true
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: Quân Khùng, Sent Date: 2024-12-23, Is Sent: true
+
+[23:25:24] Received UDP request: DELETE_EMAIL:exam@gmail.com:exam1@gmail.com
+[23:25:24] Sent response: Invalid email ID format
+[23:25:25] Received UDP request: LOAD_EMAILS:exam@gmail.com:1:10
+[23:25:25] Sent response: ID: 1, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello Exam1, Content: XXXXXXXXX, Sent Date: 2024-12-23, Is Sent: true
+ID: 5, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: Hello XXX, Content: 1313123123123123, Sent Date: 2024-12-23, Is Sent: true
+ID: 7, Sender: exam1@gmail.com, Receiver: exam@gmail.com, Subject: XXX, Content: Quân Khùng, Sent Date: 2024-12-23, Is Sent: true
+
+[23:27:33] Attempting to stop the server...
+[23:27:33] Mail server stopped.
+[23:27:33] Error in UDP server: Socket closed
+[23:27:33] Server information removed from database.
+[23:27:33] Server is no longer running.
+[23:27:33] Server stopped successfully.
+[23:27:33] Server status updated to 'Stopped'.
+[23:27:34] Server started...
+[23:27:34] Mail server is running on UDP port 4445
+[23:27:34] Server is running.
