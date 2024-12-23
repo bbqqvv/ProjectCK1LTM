@@ -34,7 +34,7 @@ public class SendEmailPanel extends JPanel {
         sendEmailController = new SendEmailController(client, userEmail, emailSenderService);
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBackground(new Color(240, 248, 255));
+        setBackground(new Color(255, 255, 255));
         setBorder(new EmptyBorder(15, 15, 15, 15));
 
         // Input fields for receiver and subject
@@ -58,7 +58,7 @@ public class SendEmailPanel extends JPanel {
 
         // Button panel
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
-        buttonPanel.setBackground(new Color(240, 248, 255));
+        buttonPanel.setBackground(new Color(255, 255, 255));
 
         JButton sendButton = new JButton("📧 Send Email");
         sendButton.addActionListener(e -> sendEmail());
@@ -81,7 +81,7 @@ public class SendEmailPanel extends JPanel {
 
         scheduleButton = new JButton("⏰ Schedule Send");
         scheduleButton.addActionListener(e -> toggleSchedulePanelVisibility());
-        scheduleButton.setBackground(new Color(255, 255, 255));
+        scheduleButton.setBackground(new Color(162, 127, 184));
         scheduleButton.setForeground(Color.WHITE);
 
         // Thêm nút vào panel
@@ -140,9 +140,9 @@ public class SendEmailPanel extends JPanel {
 
     private JPanel createTitledPanel(String title, LayoutManager layout) {
         JPanel panel = new JPanel(layout);
-        panel.setBackground(new Color(240, 248, 255));
+        panel.setBackground(new Color(230, 230, 250));
         panel.setBorder(BorderFactory.createTitledBorder(
-                BorderFactory.createLineBorder(new Color(70, 130, 180), 1, true),
+                BorderFactory.createLineBorder(new Color(230, 230, 250), 1, true),
                 title
         ));
         return panel;

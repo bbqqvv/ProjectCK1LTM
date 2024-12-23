@@ -6,62 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="1ce72d04-9a5e-4903-b625-34f56e5ea6c5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/client/ClientMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/ClientMain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/client/LoadEmailsPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/LoadEmailsPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/client/LoginView$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/LoginView$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/client/LoginView.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/LoginView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/client/MailClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/MailClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/client/MailClientView.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/MailClientView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/client/RegisterView.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/RegisterView.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/client/SendEmailPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/SendEmailPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/client/SidebarPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/SidebarPanel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/client/SidebarPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/SidebarPanel$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/client/SidebarPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/client/SidebarPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/controller/SendEmailController.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/controller/SendEmailController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/dao/ChatDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/dao/ChatMessageDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/dao/ChatParticipantDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/dao/ServerDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/dao/ServerDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/dao/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/dao/UserDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/messages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/bin/messages.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/messages_vi.properties" beforeDir="false" afterPath="$PROJECT_DIR$/bin/messages_vi.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/model/Chat.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/model/ChatMessage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/model/ChatParticipant.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/server/MailServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/server/MailServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/server/ServerMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/server/ServerMain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/server/ServerView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/server/ServerView$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/server/ServerView.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/server/ServerView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/test/MailClientViewTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/test/MailClientViewTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.log" beforeDir="false" afterPath="$PROJECT_DIR$/server.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/ClientMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/ClientMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/LoadEmailsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/LoadEmailsPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/LoginView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/MailClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/MailClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/MailClientView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/MailClientView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/RegisterView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/RegisterView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/SendEmailPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/SendEmailPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/client/SidebarPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/SidebarPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/LoginController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/SendEmailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/SendEmailController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/ChatDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/ChatMessageDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/ChatParticipantDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/ServerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ServerDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/messages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/messages.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/messages_vi.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/messages_vi.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Chat.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/ChatMessage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/ChatParticipant.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/MailServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/MailServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/ServerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/ServerMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/ServerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/ServerView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/EmailReplyService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/LoginService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/MailClientViewTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/MailClientViewTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/SettingsDialogTestUI.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +50,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
-    "git-widget-placeholder": "147e3484",
+    "git-widget-placeholder": "72cf424c",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/WordSpace/Java/Swing/5LABLTM/Mail/src/images",
