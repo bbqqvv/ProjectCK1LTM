@@ -22,6 +22,6 @@ public class EmailDeleteService {
         String data = userEmail + ":" + emailId;
 
         // Gửi yêu cầu đến server với lệnh "DELETE_EMAIL"
-        return client.sendRequest("DELETE_EMAIL", data, false,null); // Sử dụng UDP
+        return client.sendRequest("DELETE_EMAIL", data); // Sử dụng UDP
     }
 }

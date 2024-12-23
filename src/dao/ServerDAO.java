@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.UUID; // Import UUID class
 
 public class ServerDAO {
     private Connection connection;
@@ -21,19 +20,16 @@ public class ServerDAO {
             return;
         }
 
-        String uniqueId = UUID.randomUUID().toString();  // Tạo UUID
-
-        String sql = "INSERT INTO server_config (server_id, server_ip, port_udp) VALUES (?, ?, ?) "
+        String sql = "INSERT INTO server_config (server_ip, port_udp) VALUES (?, ?) "
                 + "ON DUPLICATE KEY UPDATE port_udp = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             // Thiết lập các tham số cho phần VALUES
-            preparedStatement.setString(1, uniqueId);  // Thiết lập UUID dưới dạng String
-            preparedStatement.setString(2, serverIp);
-            preparedStatement.setInt(3, udpPort);
+            preparedStatement.setString(1, serverIp);
+            preparedStatement.setInt(2, udpPort);
 
             // Thiết lập các tham số cho phần ON DUPLICATE KEY UPDATE
-            preparedStatement.setInt(4, udpPort);  // Cập nhật port_udp
+            preparedStatement.setInt(3, udpPort);  // Cập nhật port_udp
 
             // Thực thi câu truy vấn
             preparedStatement.executeUpdate();

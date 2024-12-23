@@ -75,7 +75,7 @@ public class LoginView extends JFrame {
         registerButton = new JButton("Register");
         buttonsPanel.add(loginButton);
         buttonsPanel.add(registerButton);
-        add(buttonsPanel, BorderLayout.SOUTH);
+        add(buttonsPanel, BorderLayout.NORTH);
 
         loginButton.addActionListener(e -> login());
         registerButton.addActionListener(e -> openRegisterView());
@@ -141,12 +141,12 @@ public class LoginView extends JFrame {
                     // Gửi yêu cầu đăng nhập qua UDP
                     String command = "LOGIN";
                     String data = email + ":" + password;
-                    String response = client.sendRequest(command, data, false,null); // false = UDP
+                    String response = client.sendRequest(command, data); // false = UDP
 
                     if (response.contains("successful")) {
                         // Lưu địa chỉ IP của client
                         String clientIp = InetAddress.getLocalHost().getHostAddress();
-                        client.sendRequest("SAVE_IP", email + ":" + clientIp, false, null);
+                        client.sendRequest("SAVE_IP", email + ":" + clientIp);
                         // Lấy đối tượng UserDAO để truy xuất thông tin người dùng
                         Connection connection = DatabaseConnection.getConnection();
                         UserDAO userDAO = new UserDAO(connection);

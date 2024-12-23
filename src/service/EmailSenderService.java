@@ -37,9 +37,9 @@ public class EmailSenderService {
 
         // Gửi lệnh "SEND_EMAIL" qua UDP hoặc "SEND_EMAIL_ATTACHMENT" qua TCP
         if (useTcp) {
-            return client.sendRequest("SEND_EMAIL_ATTACHMENT", data, true,attachments);  // true để sử dụng TCP
+            return client.sendRequest("SEND_EMAIL_ATTACHMENT", data);  // true để sử dụng TCP
         } else {
-            return client.sendRequest("SEND_EMAIL", data, false,null); // false để sử dụng UDP
+            return client.sendRequest("SEND_EMAIL", data); // false để sử dụng UDP
         }
     }
 
@@ -61,7 +61,7 @@ public class EmailSenderService {
         String data = userEmail + ":" + receiver + ":" + subject + ":" + content + ":" + formattedDate;
 
         // Gửi lệnh "SCHEDULE_EMAIL" qua UDP
-        return client.sendRequest("SCHEDULE_EMAIL", data, false,null);
+        return client.sendRequest("SCHEDULE_EMAIL", data);
     }
 
     /**

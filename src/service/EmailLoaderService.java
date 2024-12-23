@@ -34,7 +34,7 @@ public class EmailLoaderService {
         validatePageNumber(page);  // Kiểm tra số trang hợp lệ
 
         String request = buildRequest(page, emailsPerPage);  // Tạo yêu cầu gửi đến server
-        String response = client.sendRequest("LOAD_EMAILS", request, false,null);  // Sử dụng UDP (false)
+        String response = client.sendRequest("LOAD_EMAILS", request);  // Sử dụng UDP (false)
 
         if (response == null || response.isEmpty()) {
             throw new Exception("Không có email nào hoặc server không phản hồi.");
