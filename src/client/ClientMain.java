@@ -19,11 +19,8 @@ public class ClientMain {
                 System.err.println("Server information not found in the database.");
                 return;
             }
-
-            // Khởi tạo MailClient với thông tin từ server
             MailClient mailClient = new MailClient(server.getServerIp(), server.getUdpPort());
 
-            // Hiển thị giao diện đăng nhập
             SwingUtilities.invokeLater(() -> new LoginView(serverDAO, mailClient));
         } catch (Exception e) {
             System.err.println("Error initializing client: " + e.getMessage());

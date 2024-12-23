@@ -8,7 +8,6 @@ import model.Server;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.io.File;
 import java.net.InetAddress;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -128,45 +127,33 @@ public class LoginView extends JFrame {
             @Override
             protected Void doInBackground() {
                 try {
-                    // Lấy thông tin server từ cơ sở dữ liệu (cổng UDP và TCP)
-                    Server server = serverDAO.getServerIpAndPort();
-                    if (server == null) {
-                        statusLabel.setText("Server information not found.");
-                        return null;
-                    }
+                    // Set cứng IP và cổng
+                    String fixedServerIp = "192.168.1.3"; // Địa chỉ IP cố định
+                    int fixedUdpPort = 4445;              // Cổng cố định
 
-                    // Tạo MailClient mới với cổng UDP và TCP lấy từ server
-                    MailClient client = new MailClient(server.getServerIp(), server.getUdpPort());
-
-                    // Gửi yêu cầu đăng nhập qua UDP
-                    String command = "LOGIN";
-                    String data = email + ":" + password;
-                    String response = client.sendRequest(command, data); // false = UDP
+                    MailClient mailClient = new MailClient(fixedServerIp, fixedUdpPort);
+                    String response = mailClient.sendRequest("LOGIN:" + email + ":" + password);
 
                     if (response.contains("successful")) {
-                        // Lưu địa chỉ IP của client
-                        String clientIp = InetAddress.getLocalHost().getHostAddress();
-                        client.sendRequest("SAVE_IP", email + ":" + clientIp);
-                        // Lấy đối tượng UserDAO để truy xuất thông tin người dùng
+                        String localIp = InetAddress.getLocalHost().getHostAddress();
+                        mailClient.sendRequest("SAVE_IP:" + email + ":" + localIp);
+
                         Connection connection = DatabaseConnection.getConnection();
                         UserDAO userDAO = new UserDAO(connection);
-                        // Sau khi đăng nhập thành công, tiếp tục các tác vụ khác
+
                         SwingUtilities.invokeLater(() -> {
                             try {
-                                new MailClientView(client, email, userDAO, serverDAO);
+                                openMailClientView(mailClient, email, userDAO);
                             } catch (SQLException e) {
                                 throw new RuntimeException(e);
                             }
-                            dispose(); // Đóng LoginView
                         });
                     } else {
-                        SwingUtilities.invokeLater(() -> statusLabel.setText(response)); // Hiển thị lỗi đăng nhập
+//                        showStatusMessage(response);
                     }
                 } catch (Exception e) {
-                    SwingUtilities.invokeLater(() -> {
-                        statusLabel.setText("An error occurred: " + e.getMessage());
-                        e.printStackTrace();
-                    });
+                    e.printStackTrace();
+//                    showStatusMessage("Error: " + e.getMessage());
                 }
                 return null;
             }
@@ -182,6 +169,10 @@ public class LoginView extends JFrame {
     }
 
 
+    private void openMailClientView(MailClient mailClient, String email, UserDAO userDAO) throws SQLException {
+        new MailClientView(mailClient, email, userDAO, serverDAO);
+        dispose();
+    }
     private boolean isValidEmail(String email) {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         return Pattern.compile(emailRegex).matcher(email).matches();
