@@ -11,6 +11,7 @@ import java.awt.*;
 import java.io.File;
 import java.net.InetAddress;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.regex.Pattern;
 
 public class LoginView extends JFrame {
@@ -79,7 +80,6 @@ public class LoginView extends JFrame {
         loginButton.addActionListener(e -> login());
         registerButton.addActionListener(e -> openRegisterView());
 
-        // Status label (for showing login messages)
         statusLabel = new JLabel(" ");
         statusLabel.setForeground(Color.RED);
         statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -136,7 +136,7 @@ public class LoginView extends JFrame {
                     }
 
                     // Tạo MailClient mới với cổng UDP và TCP lấy từ server
-                    MailClient client = new MailClient(server.getServerIp(), server.getUdpPort(), server.getTcpPort());
+                    MailClient client = new MailClient(server.getServerIp(), server.getUdpPort());
 
                     // Gửi yêu cầu đăng nhập qua UDP
                     String command = "LOGIN";
@@ -152,7 +152,11 @@ public class LoginView extends JFrame {
                         UserDAO userDAO = new UserDAO(connection);
                         // Sau khi đăng nhập thành công, tiếp tục các tác vụ khác
                         SwingUtilities.invokeLater(() -> {
-                            new MailClientView(client, email, userDAO, serverDAO);
+                            try {
+                                new MailClientView(client, email, userDAO, serverDAO);
+                            } catch (SQLException e) {
+                                throw new RuntimeException(e);
+                            }
                             dispose(); // Đóng LoginView
                         });
                     } else {

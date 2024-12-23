@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.*;
 
 import controller.LoadEmailsController;
+import dao.SaveDarftDao;
 import dao.ServerDAO;
 import dao.UserDAO;
 import database.DatabaseConnection;
@@ -25,6 +26,8 @@ public class MailClientView extends JFrame {
     private JPanel mainPanel;
     private SendEmailPanel sendEmailPanel;
     private LoadEmailsPanel loadEmailsPanel;
+    private LoadEmailDraftPanel loadEmailDraftPanel;
+
     private ChatPanel chatPanel;
     private Timer autoRefreshTimer;
     private boolean autoRefreshEnabled = false;
@@ -36,13 +39,22 @@ public class MailClientView extends JFrame {
     private SidebarPanel sidePanel;
     private UserDAO userDAO;
     private ServerDAO serverDAO;
+    private SaveDarftDao saveDarftDao;  // Declare SaveDao here
 
-    public MailClientView(MailClient client, String userEmail, UserDAO userDAO, ServerDAO serverDAO) {
+    public MailClientView(MailClient client, String userEmail, UserDAO userDAO, ServerDAO serverDAO) throws SQLException {
         this.client = client;
         this.userEmail = userEmail;
         this.userDAO = userDAO;
         this.serverDAO = serverDAO;
         this.emailContents = new ArrayList<>();
+
+        // Initialize connection
+        Connection connection = DatabaseConnection.getConnection();
+
+        // Initialize saveDarftDao with the database connection
+        this.saveDarftDao = new SaveDarftDao(connection);  // Ensure it's initialized here
+
+        // Initialize panels after saveDarftDao is initialized
         this.loadEmailsPanel = new LoadEmailsPanel(this);
         this.loadEmailsController = new LoadEmailsController(loadEmailsPanel, client, userEmail);
 
@@ -79,6 +91,11 @@ public class MailClientView extends JFrame {
         setupAutoRefresh();
     }
 
+    // Method to get the userId from the UserDAO based on the userEmail
+    public int getUserId() throws SQLException {
+        return userDAO.getUserIdByEmail(userEmail); // Truy vấn userId từ cơ sở dữ liệu
+    }
+
     // Setup auto-refresh functionality
     private void setupAutoRefresh() {
         autoRefreshTimer = new Timer(300000, e -> {
@@ -89,31 +106,34 @@ public class MailClientView extends JFrame {
         });
     }
 
-    // Create the main panel with CardLayout
-    private void createMainPanel() {
-        mainPanel = new JPanel(new CardLayout()); // Initialize CardLayout panel
-
+    private void createMainPanel() throws SQLException {
+        mainPanel = new JPanel(new CardLayout());
         sendEmailPanel = new SendEmailPanel(this);
         loadEmailsPanel = new LoadEmailsPanel(this);
         chatPanel = new ChatPanel(this); // Initialize chatPanel
 
-        // Add panels to the main panel
+        // Initialize loadEmailDraftPanel with the initialized saveDarftDao
+        loadEmailDraftPanel = new LoadEmailDraftPanel(this, saveDarftDao);
+
+        mainPanel.add(loadEmailDraftPanel, "SaveDraft");
         mainPanel.add(sendEmailPanel, "SendEmail");
         mainPanel.add(loadEmailsPanel, "EmailList");
         mainPanel.add(chatPanel, "Chat");
     }
 
-    // Switch between panels (SendEmail, EmailList, or Chat)
     public void switchPanel(String panelName) {
         CardLayout layout = (CardLayout) mainPanel.getLayout();
         layout.show(mainPanel, panelName);
 
         if ("EmailList".equals(panelName)) {
-            loadEmailsController.loadEmails(1); // Reload emails if switching to email list
+            loadEmailsController.loadEmails(1);
+        } else if ("SaveDraft".equals(panelName)) {
+            updateStatusLabel("Switched to SaveDraft panel.");
         } else if ("Chat".equals(panelName)) {
             updateStatusLabel("Switched to Chat panel.");
         }
     }
+
 
     // Show notifications to the user
     public void showNotification(String message, String title, int messageType) {
@@ -154,7 +174,6 @@ public class MailClientView extends JFrame {
         SettingsDialog settingsDialog = new SettingsDialog(this, userDAO);
         settingsDialog.setVisible(true);
     }
-
 
     // Handle search emails based on the query
     public void handleSearch(String query) {
@@ -217,7 +236,7 @@ public class MailClientView extends JFrame {
     }
 
     // Show reply email panel
-    public void showReplyEmailPanel(Mail selectedMail) {
+    public void showReplyEmailPanel(Mail selectedMail) throws SQLException {
         SendEmailPanel replyPanel = new SendEmailPanel(this);
 
         // Prefill email reply information

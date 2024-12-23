@@ -11,6 +11,7 @@ import model.Mail;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +41,6 @@ public class LoadEmailsPanel extends JPanel {
 	    emailDetailsArea.setEditable(false);
 	    emailDetailsArea.setFont(new Font("Arial", Font.PLAIN, 14));
 
-	    // Tạo các thành phần giao diện
 	    createComponents();
 
 	    // Tải email lần đầu tiên
@@ -113,7 +113,13 @@ public class LoadEmailsPanel extends JPanel {
 
 		// Thêm mục "Trả lời"
 		JMenuItem replyMenuItem = new JMenuItem("Reply");
-		replyMenuItem.addActionListener(e -> handleReplyEmail());
+		replyMenuItem.addActionListener(e -> {
+            try {
+                handleReplyEmail();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 		JMenuItem chatMenuItem = new JMenuItem("Chat");
 
 
@@ -124,7 +130,7 @@ public class LoadEmailsPanel extends JPanel {
 		emailTable.setComponentPopupMenu(popupMenu);
 	}
 
-	private void handleReplyEmail() {
+	private void handleReplyEmail() throws SQLException {
 		int selectedRow = emailTable.getSelectedRow();
 
 		if (selectedRow < 0 || selectedRow >= emailList.size()) {

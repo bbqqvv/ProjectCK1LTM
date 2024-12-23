@@ -21,7 +21,7 @@ public class ClientMain {
             }
 
             // Khởi tạo MailClient với thông tin từ server
-            MailClient mailClient = new MailClient(server.getServerIp(), server.getUdpPort(), server.getTcpPort());
+            MailClient mailClient = new MailClient(server.getServerIp(), server.getUdpPort());
 
             // Hiển thị giao diện đăng nhập
             SwingUtilities.invokeLater(() -> new LoginView(serverDAO, mailClient));

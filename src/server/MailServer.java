@@ -31,14 +31,12 @@ public class MailServer {
     private UserDAO userDAO;
     private MailDAO mailDAO;
     private ServerDAO serverDAO; // Thêm trường ServerDAO
-    private AttachmentDAO attachmentDAO;
     private ExecutorService executor = Executors.newFixedThreadPool(10);  // Tạo một ExecutorService với 10 luồng
 
-    public MailServer(UserDAO userDAO, MailDAO mailDAO, ServerDAO serverDAO, AttachmentDAO attachmentDAO) {
+    public MailServer(UserDAO userDAO, MailDAO mailDAO, ServerDAO serverDAO) {
         this.userDAO = userDAO;
         this.mailDAO = mailDAO;
         this.serverDAO = serverDAO;
-        this.attachmentDAO = attachmentDAO;
     }
 
     public void setView(ServerView view) {
@@ -51,19 +49,12 @@ public class MailServer {
             socket = new DatagramSocket(UDP_PORT);
             view.appendLog("Mail server is running on UDP port " + UDP_PORT);
 
-            // Khởi tạo TCP server
-            tcpServerSocket = new ServerSocket(TCP_PORT);
-            view.appendLog("Mail server is running on TCP port " + TCP_PORT);
-
             // Lưu địa chỉ IP và port của server vào CSDL
             String serverIp = InetAddress.getLocalHost().getHostAddress();
-            serverDAO.saveServer(serverIp, UDP_PORT, TCP_PORT); // Lưu cả UDP và TCP port vào CSDL
+            serverDAO.saveServer(serverIp, UDP_PORT); // Lưu cả UDP và TCP port vào CSDL
 
             // Chạy UDP server trong một luồng riêng biệt
             new Thread(this::startUDPServer).start();
-
-            // Chạy TCP server trong một luồng riêng biệt
-            new Thread(this::startTCPServer).start();
 
         } catch (IOException e) {
             view.appendLog("Error: " + e.getMessage());
@@ -95,23 +86,6 @@ public class MailServer {
         }
     }
 
-    private void startTCPServer() {
-        try {
-            while (true) {
-                // Chấp nhận kết nối TCP
-                Socket clientSocket = tcpServerSocket.accept();
-                view.appendLog("New TCP connection from " + clientSocket.getInetAddress().getHostAddress());
-
-                // Xử lý yêu cầu TCP trong một thread riêng
-                executor.submit(() -> {
-                    handleTCPRequest(clientSocket);  // Xử lý kết nối TCP (gửi/nhận tệp)
-                });
-            }
-        } catch (IOException e) {
-            view.appendLog("Error in TCP server: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
 
 
     public void stop() throws UnknownHostException {
