@@ -14,7 +14,7 @@ public class MailClient {
         this.udpPort = udpPort;
     }
 
-    public String sendRequest(String command, String data, boolean useTcp, File[] files) throws IOException {
+    public String sendRequest(String command, String data) throws IOException {
 
             return sendRequestUdp(command, data);
 

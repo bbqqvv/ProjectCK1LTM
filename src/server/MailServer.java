@@ -25,8 +25,6 @@ import java.util.concurrent.Executors;
 public class MailServer {
     private static final int UDP_PORT = 4445;
     private DatagramSocket socket;
-    private static final int TCP_PORT = 5555; // Cổng TCP
-    private ServerSocket tcpServerSocket;
     private ServerView view;
     private UserDAO userDAO;
     private MailDAO mailDAO;
@@ -113,87 +111,6 @@ public class MailServer {
             // Update the view to indicate that the server has stopped
             view.appendLog("Server is no longer running.");
         }
-    }
-
-
-    private void handleTCPRequest(Socket clientSocket) {
-        try (InputStream input = clientSocket.getInputStream();
-             OutputStream output = clientSocket.getOutputStream();
-             DataInputStream dataInputStream = new DataInputStream(input);
-             DataOutputStream dataOutputStream = new DataOutputStream(output)) {
-
-            String command = dataInputStream.readUTF(); // Đọc lệnh từ client
-            System.out.println("Received TCP command: " + command);
-
-            switch (command) {
-                case "SEND_EMAIL_ATTACHMENT":
-                    // Xử lý tải tệp đính kèm từ client
-                    handleFileUpload(dataInputStream, dataOutputStream);
-                    break;
-
-                default:
-                    // Lệnh không hợp lệ
-                    System.err.println("Unknown TCP command: " + command);
-                    dataOutputStream.writeUTF("Unknown command: " + command);
-                    break;
-            }
-
-        } catch (IOException e) {
-            // Log lỗi nếu xảy ra trong quá trình xử lý
-            String errorMessage = "Error in handleTCPRequest: " + e.getMessage();
-            view.appendLog(errorMessage);
-            e.printStackTrace();
-
-            // Gửi phản hồi lỗi về client
-            try (OutputStream output = clientSocket.getOutputStream();
-                 DataOutputStream dataOutputStream = new DataOutputStream(output)) {
-                dataOutputStream.writeUTF("Server error: " + e.getMessage());
-            } catch (IOException ex) {
-                System.err.println("Error sending error response to client: " + ex.getMessage());
-            }
-
-        } finally {
-            // Đảm bảo đóng socket
-            try {
-                clientSocket.close();
-                System.out.println("Socket closed for client: " + clientSocket.getInetAddress().getHostAddress());
-            } catch (IOException e) {
-                System.err.println("Error closing client socket: " + e.getMessage());
-            }
-        }
-    }
-
-
-    private void handleFileUpload(DataInputStream dis, DataOutputStream dos) throws IOException {
-        int fileCount = dis.readInt(); // Nhận số lượng tệp
-        for (int i = 0; i < fileCount; i++) {
-            String fileName = dis.readUTF(); // Nhận tên tệp
-            long fileSize = dis.readLong(); // Nhận kích thước tệp
-
-            File attachmentsDir = new File("attachments");
-            if (!attachmentsDir.exists() && !attachmentsDir.mkdirs()) {
-                throw new IOException("Failed to create directory: " + attachmentsDir.getAbsolutePath());
-            }
-
-            File file = new File(attachmentsDir, fileName.replaceAll("[\\\\/:*?\"<>|]", "_"));
-
-            try (FileOutputStream fos = new FileOutputStream(file)) {
-                byte[] buffer = new byte[4096];
-                long remaining = fileSize;
-                int bytesRead;
-
-                while (remaining > 0 && (bytesRead = dis.read(buffer, 0, (int) Math.min(buffer.length, remaining))) != -1) {
-                    fos.write(buffer, 0, bytesRead);
-                    remaining -= bytesRead;
-                }
-            }
-
-            // Gửi phản hồi rằng tệp đã được nhận
-            dos.writeUTF("FILE_RECEIVED");
-        }
-
-        // Gửi phản hồi cuối cùng
-        dos.writeUTF("ALL_FILES_RECEIVED");
     }
 
 
@@ -354,8 +271,7 @@ public class MailServer {
                 // Gửi phản hồi với thông tin máy chủ và cổng TCP và UDP
                 String response = "Login successful. Welcome, " + username + "!" +
                         " Server IP: " + serverInfo.getServerIp() +
-                        ", UDP Port: " + serverInfo.getUdpPort() +
-                        ", TCP Port: " + serverInfo.getTcpPort();  // Thêm TCP port vào phản hồi
+                        ", UDP Port: " + serverInfo.getUdpPort();  // Thêm TCP port vào phản hồi
                 sendResponseUDP(response, packet);
             } else {
                 sendResponseUDP("Server info not found.", packet);
@@ -370,7 +286,6 @@ public class MailServer {
         String receiver = tokens.remove(0);
         String subject = tokens.remove(0);
         String content = tokens.remove(0);
-        String attachmentData = tokens.isEmpty() ? "" : tokens.remove(0);
 
         try {
             // 1. Lưu email vào CSDL
