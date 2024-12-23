@@ -35,23 +35,14 @@ public class SidebarPanel extends JPanel {
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
         buttonPanel.setBackground(BACKGROUND_COLOR);
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-        // Add buttons to switch between panels
-        addButtonFromImage("src/images/mail.png", "Send Email", "Send Email", e -> mailClientView.switchPanel("SendEmail"));
-        addButtonFromImage("src/images/loading.png", "Load Emails", "Load Emails", e -> mailClientView.switchPanel("EmailList"));
-        addButtonFromImage("src/images/delete-message.png", "Delete Email", "Delete Email", e -> mailClientView.deleteEmail());
-        addButtonFromImage("src/images/arrow.png", "Reply Email", "Reply Email", e -> mailClientView.replyEmail());
+        addButtonFromImage("src/images/mail.png", "Gửi mail", "Send Email", e -> mailClientView.switchPanel("SendEmail"));
+        addButtonFromImage("src/images/loading.png", "Tải mail", "Load Emails", e -> mailClientView.switchPanel("EmailList"));
+        addButtonFromImage("src/images/save-instagram.png", "Mail đã lưu", "Mail đã lưu", e -> mailClientView.switchPanel("SaveDraft"));
         addButtonFromImage("src/images/chat.png", "Chat", "Chat", e -> mailClientView.switchPanel("Chat"));
         addButtonFromImage("src/images/gear.png", "Settings", "Settings", e -> mailClientView.openSettings());
-
-        // Add hamburger menu button at the top of the sidebar
         createButtonMenu();
-
-        // Add the button panel to the sidebar
         add(buttonPanel, BorderLayout.CENTER);
     }
-
-    // Method to create buttons with icon and text
     private JButton createSidebarButton(String imagePath, String tooltip, String text, ActionListener action) {
         ImageIcon icon = new ImageIcon(imagePath);
         if (icon.getImageLoadStatus() != MediaTracker.COMPLETE) {
@@ -73,16 +64,13 @@ public class SidebarPanel extends JPanel {
         button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         button.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        // Set button text for expanded mode
         if (!sidebarCollapsed) {
             button.setText(text);
         }
 
-        // Horizontal BoxLayout to align text and icon neatly
         button.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 0));
         button.setHorizontalAlignment(SwingConstants.LEFT); // Align text to the left
 
-        // Add hover effect for button
         button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {

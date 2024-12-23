@@ -95,12 +95,6 @@ public class RegisterView extends JFrame {
         String password = new String(passwordField.getPassword());
         String confirmPassword = new String(confirmPasswordField.getPassword());
 
-        // Kiểm tra các trường hợp lỗi nhập liệu
-        if (username.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-            statusLabel.setText("All fields are required.");
-            return;
-        }
-
         if (!isValidEmail(email)) {
             statusLabel.setText("Invalid email format.");
             return;
@@ -118,7 +112,7 @@ public class RegisterView extends JFrame {
 
         // Gửi yêu cầu đăng ký tới server
         try {
-            String request = "REGISTER:" + username + ":" + email + ":" + password;
+            String request = username + ":" + email + ":" + password;
             String response = mailClient.sendRequest("REGISTER", request, false,null); // Sử dụng UDP
 
             // Thông báo kết quả

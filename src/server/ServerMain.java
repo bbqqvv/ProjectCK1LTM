@@ -17,7 +17,7 @@ public class ServerMain {
             AttachmentDAO attachmentDAO = new AttachmentDAO(connection);
 
             ServerDAO serverDAO = new ServerDAO(connection); // Khởi tạo ServerDAO
-            MailServer mailServer = new MailServer(userDAO, mailDAO, serverDAO,attachmentDAO);
+            MailServer mailServer = new MailServer(userDAO, mailDAO, serverDAO);
             ServerView serverView = new ServerView(mailServer); // Pass mailServer to ServerView
             mailServer.setView(serverView); // Gán ServerView cho MailServer
 

@@ -30,7 +30,18 @@ public class UserDAO {
         }
         return false;
     }
-
+    public int getUserIdByEmail(String email) throws SQLException {
+        String query = "SELECT id FROM users WHERE email = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("id");
+            } else {
+                throw new SQLException("User not found with email: " + email);
+            }
+        }
+    }
     public boolean loginUser(User loginUser) {
         String sql = "SELECT * FROM users WHERE email = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {

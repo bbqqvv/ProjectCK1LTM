@@ -12,7 +12,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.ArrayList;
 
 public class ServerView extends JFrame {
     private JTextArea logArea;
@@ -24,18 +23,12 @@ public class ServerView extends JFrame {
     private boolean isRunning = false;
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
     private MailServer mailServer;
-    private JPanel sidebarPanel; // Thay đổi từ JScrollPane để dễ quản lý
-    private boolean isSidebarVisible = true; // Trạng thái hiển thị của sidebar
-    private JButton toggleSidebarButton; // Nút đóng/mở sidebar
-
     // Sidebar components
     private DefaultListModel<String> clientListModel;
-    private JList<String> clientList;
-
     public ServerView(MailServer mailServer) {
         this.mailServer = mailServer; // Initialize mailServer
         setTitle("Mail Server");
-        setSize(900, 500); // Increased width to accommodate the sidebar
+        setSize(600, 500); // Increased width to accommodate the sidebar
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         getContentPane().setLayout(new BorderLayout(10, 10));
@@ -49,7 +42,6 @@ public class ServerView extends JFrame {
         initToolBar();
         initLogArea();
         initStatusBar();
-        initSidebar();
     }
 
     private void initToolBar() {
@@ -62,7 +54,6 @@ public class ServerView extends JFrame {
         stopButton = createButton("Stop Server", "Stop the server", e -> stopServer(e), "/images/stop-button.png", 24, 24);
         clearLogButton = createButton("Clear Log", "Clear the log area", e -> logArea.setText(""), "/images/clean.png", 24, 24);
         saveLogButton = createButton("Save Log", "Save the log to a file", e -> saveLogToFile(e), "/images/diskette.png", 24, 24);
-        toggleSidebarButton = createButton("", "Show/Hide sidebar", e -> toggleSidebar(), "/images/menu-bar.png", 24, 24);
 
         toolBar.add(startButton);
         toolBar.add(stopButton);
@@ -71,23 +62,7 @@ public class ServerView extends JFrame {
         toolBar.add(saveLogButton);
         toolBar.addSeparator(new Dimension(400,0) );
 
-        toolBar.add(toggleSidebarButton);
-
         getContentPane().add(toolBar, BorderLayout.NORTH);
-    }
-
-    private void toggleSidebar() {
-        if (isSidebarVisible) {
-            getContentPane().remove(sidebarPanel); // Xóa sidebar khỏi giao diện
-            toggleSidebarButton.setText("");
-        } else {
-            getContentPane().add(sidebarPanel, BorderLayout.EAST); // Thêm lại sidebar
-            toggleSidebarButton.setText("");
-        }
-
-        isSidebarVisible = !isSidebarVisible; // Đổi trạng thái hiển thị
-        getContentPane().revalidate(); // Cập nhật giao diện
-        getContentPane().repaint();   // Vẽ lại giao diện
     }
 
 
@@ -150,30 +125,6 @@ public class ServerView extends JFrame {
         getContentPane().add(statusPanel, BorderLayout.SOUTH);
     }
 
-    private void initSidebar() {
-        clientListModel = new DefaultListModel<>();
-        clientList = new JList<>(clientListModel);
-        clientList.setFont(new Font("SansSerif", Font.PLAIN, 14));
-        clientList.setBackground(new Color(245, 245, 245));
-        clientList.setBorder(BorderFactory.createTitledBorder(
-                BorderFactory.createLineBorder(new Color(180, 200, 230)),
-                "🖧 Connected Clients",
-                0,
-                0,
-                new Font("SansSerif", Font.BOLD, 14),
-                new Color(80, 80, 80)
-        ));
-
-        JScrollPane sidebarScroll = new JScrollPane(clientList);
-        sidebarScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-
-        // Đặt JScrollPane vào JPanel để quản lý dễ hơn
-        sidebarPanel = new JPanel(new BorderLayout());
-        sidebarPanel.add(sidebarScroll, BorderLayout.CENTER);
-
-        // Thêm sidebar vào giao diện chính
-        getContentPane().add(sidebarPanel, BorderLayout.EAST);
-    }
 
 
     private void startServer(ActionEvent e) {
@@ -244,14 +195,6 @@ public class ServerView extends JFrame {
         } catch (IOException e) {
             logArea.append("Error writing log to file: " + e.getMessage() + "\n");
         }
-    }
-
-    public void addClient(String clientName) {
-        clientListModel.addElement(clientName);
-    }
-
-    public void removeClient(String clientName) {
-        clientListModel.removeElement(clientName);
     }
 
     private void updateUIForRunningState(boolean isRunning) {

@@ -1,13 +1,15 @@
 package client;
 
 import java.awt.*;
-import java.io.File;
+import java.sql.Connection;
+import java.sql.SQLException;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import com.toedter.calendar.JDateChooser;
-
+import controller.SaveDraftController;
 import controller.SendEmailController;
+import database.DatabaseConnection;
 import service.EmailSenderService;
 
 public class SendEmailPanel extends JPanel {
@@ -15,49 +17,37 @@ public class SendEmailPanel extends JPanel {
     private JTextField receiverField;
     private JTextField subjectField;
     private JTextArea contentArea;
-    private JLabel fileNameLabel;
     private JButton scheduleButton;
     private JPanel schedulePanel;
     private SendEmailController sendEmailController;
-    public SendEmailPanel(MailClientView parent) {
+    private SaveDraftController saveDraftController;
+    private Connection connection;
+    private MailClientView parent;  // Thêm một trường lưu trữ parent để lấy userId
+
+    public SendEmailPanel(MailClientView parent) throws SQLException {
+        this.parent = parent;  // Lưu đối tượng parent để lấy thông tin userId
         MailClient client = parent.getClient();
         String userEmail = parent.getUserEmail();
         EmailSenderService emailSenderService = new EmailSenderService(client, userEmail);
+        connection = DatabaseConnection.getConnection();  // Giả sử bạn đã có lớp DatabaseConnection
 
-        // Initialize the controller
-        sendEmailController = new SendEmailController(client,userEmail,emailSenderService);
+        sendEmailController = new SendEmailController(client, userEmail, emailSenderService);
 
-        // Panel layout
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(new Color(240, 248, 255));
         setBorder(new EmptyBorder(15, 15, 15, 15));
 
         // Input fields for receiver and subject
-        JPanel inputPanel = createTitledPanel("Email Details", new GridLayout(2, 2, 10, 10));
+        JPanel inputPanel = createTitledPanel("Chi tiết email", new GridLayout(2, 2, 10, 10));
         receiverField = new JTextField(25);
         subjectField = new JTextField(25);
 
-        inputPanel.add(new JLabel("Receiver Email:"));
+        inputPanel.add(new JLabel("Email người nhận: "));
         inputPanel.add(receiverField);
-        inputPanel.add(new JLabel("Subject:"));
+        inputPanel.add(new JLabel("Vấn đề: "));
         inputPanel.add(subjectField);
 
-        // Attachment panel
-        JPanel attachmentPanel = createTitledPanel("Attachment", new FlowLayout(FlowLayout.LEFT, 10, 5));
-        JButton attachButton = new JButton("📂 Choose File");
-        attachButton.setToolTipText("Click to choose a file");
-        fileNameLabel = new JLabel("No file chosen");
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setMultiSelectionEnabled(true); // Cho phép chọn nhiều tệp
-
-        attachButton.addActionListener(e -> {
-            String result = sendEmailController.chooseFilesToAttach(fileChooser, fileNameLabel);
-            JOptionPane.showMessageDialog(this, result, "Attachment Status", JOptionPane.INFORMATION_MESSAGE);
-        });
-
-
-        attachmentPanel.add(attachButton);
-        attachmentPanel.add(fileNameLabel);
+        saveDraftController = new SaveDraftController(connection);
 
         // Content area
         JPanel contentPanel = createTitledPanel("Email Content", new BorderLayout());
@@ -75,6 +65,15 @@ public class SendEmailPanel extends JPanel {
         sendButton.setBackground(new Color(72, 209, 204));
         sendButton.setForeground(Color.WHITE);
 
+        JButton saveButton = new JButton("📂 Lưu nháp");
+        saveButton.addActionListener(e -> {
+            try {
+                saveDraft();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        }); // Lắng nghe sự kiện Lưu nháp
+
         JButton clearButton = new JButton("🧹 Clear Fields");
         clearButton.addActionListener(e -> clearFields());
         clearButton.setBackground(new Color(255, 99, 71));
@@ -85,7 +84,9 @@ public class SendEmailPanel extends JPanel {
         scheduleButton.setBackground(new Color(255, 255, 255));
         scheduleButton.setForeground(Color.WHITE);
 
+        // Thêm nút vào panel
         buttonPanel.add(sendButton);
+        buttonPanel.add(saveButton);  // Thêm nút Lưu nháp vào hàng cùng với các nút khác
         buttonPanel.add(scheduleButton);
         buttonPanel.add(clearButton);
 
@@ -106,13 +107,35 @@ public class SendEmailPanel extends JPanel {
         // Add components to the main panel
         add(inputPanel);
         add(Box.createVerticalStrut(10));
-        add(attachmentPanel);
-        add(Box.createVerticalStrut(10));
         add(contentPanel);
         add(Box.createVerticalStrut(10));
         add(schedulePanel);
         add(Box.createVerticalStrut(10));
         add(buttonPanel);
+    }
+
+    // Phương thức lưu email nháp
+    private void saveDraft() throws SQLException {
+        String receiver = receiverField.getText();
+        String subject = subjectField.getText();
+        String content = contentArea.getText();
+
+        int userId = parent.getUserId();  // Giả sử bạn có phương thức getUserId trong MailClientView
+
+        JLabel statusLabel = new JLabel(); // Hiển thị trạng thái lưu
+        saveDraftController.saveDraft(receiver, subject, content, userId); // Truyền userId vào
+        JOptionPane.showMessageDialog(this, statusLabel.getText(), "Lưu Thành Công", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    // Phương thức gửi email
+    private void sendEmail() {
+        String receiver = receiverField.getText();
+        String subject = subjectField.getText();
+        String content = contentArea.getText();
+        JLabel statusLabel = new JLabel(); // Hiển thị trạng thái gửi
+
+        sendEmailController.sendEmail(receiver, subject, content, statusLabel);
+        JOptionPane.showMessageDialog(this, statusLabel.getText(), "Status", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private JPanel createTitledPanel(String title, LayoutManager layout) {
@@ -133,22 +156,11 @@ public class SendEmailPanel extends JPanel {
         repaint();
     }
 
-    private void sendEmail() {
-        String receiver = receiverField.getText();
-        String subject = subjectField.getText();
-        String content = contentArea.getText();
-        JLabel statusLabel = new JLabel(); // Hiển thị trạng thái gửi
-
-        sendEmailController.sendEmail(receiver, subject, content, statusLabel);
-        JOptionPane.showMessageDialog(this, statusLabel.getText(), "Status", JOptionPane.INFORMATION_MESSAGE);
-    }
     private void clearFields() {
         receiverField.setText("");
         subjectField.setText("");
         contentArea.setText("");
-        fileNameLabel.setText("No file chosen");
     }
-
 
     public void setReceiver(String receiver) {
         receiverField.setText(receiver);
@@ -161,5 +173,4 @@ public class SendEmailPanel extends JPanel {
     public void setContent(String content) {
         contentArea.setText(content);
     }
-
 }
